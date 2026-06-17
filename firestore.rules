@@ -1,0 +1,104 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+         (request.auth.token.email == "northbrasil@northbrasil.com.br"));
+    }
+
+    // High Priority Collections
+    match /staffs/{staffId} {
+      allow read, write: if true;
+    }
+
+    match /trainings/{trainingId} {
+      allow read, write: if true;
+    }
+
+    // Other Collections
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    match /allocations/{alocId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /daily_allocations/{dailyId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /tasks/{taskId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /inventory/{productId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /inventory_moves/{moveId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /finance_functions/{functionId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /finance_additionals/{additionalId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /checklist_templates/{templateId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /training_checklists/{trainingId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /logs/{logId} {
+      allow read: if true;
+      allow create: if true;
+    }
+
+    match /allocation_logs/{logId} {
+      allow read: if true;
+      allow create: if true;
+    }
+
+    match /perfis_acesso/{perfilId} {
+      allow read, write: if true;
+    }
+
+    match /checklist_programs/{programId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /checklist_phases/{phaseId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Default deny for anything not matched explicitly
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

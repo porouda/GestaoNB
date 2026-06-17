@@ -1,0 +1,14 @@
+<?php
+header("Location: login.html");
+exit;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="0; url=login.html">
+    <script>window.location.replace('login.html');</script>
+</head>
+<body>
+    Redirecionando para o login...
+</body>
+</html>

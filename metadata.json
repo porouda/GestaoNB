@@ -1,0 +1,6 @@
+{
+  "name": "Gestão NorthBrasil",
+  "description": "Sistema de gestão de alta performance para treinamentos, staffs e estoque, totalmente em React SPA com Firebase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Treinamentos - Sistema de Treinamentos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    
+
+
+
+</head>
+<body>
+
+    <div class="sidebar" id="sidebar">
+        <!-- Menu carregado via script.js -->
+    </div>
+
+    <div class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Cadastro de Treinamentos</h1>
+        </header>
+
+        <div class="container-full">
+            <div class="form-container" style="background: none; border: none; padding: 0;">
+                <form class="form" id="treinamentoForm">
+                    <input type="hidden" id="treinamentoId" name="id">
+
+                    <!-- Identificação do Negócio -->
+                    <div class="form-section-new">
+                        <div class="section-new-header highlight-blue">
+                            <i class="fas fa-briefcase"></i>
+                            <h3>Identificação do Negócio</h3>
+                        </div>
+                        <div class="grid-form">
+                            <div class="form-group span-2">
+                                <label for="nomeNegocio"><i class="fas fa-building"></i> Nome do Negócio / Empresa *</label>
+                                <input type="text" id="nomeNegocio" name="nomeNegocio" placeholder="Nome do cliente ou projeto" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="etapa"><i class="fas fa-tasks"></i> Etapa Atual *</label>
+                                <select id="etapa" name="etapa" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Reunião Agendada">Reunião Agendada</option>
+                                    <option value="Aguardando Posição">Aguardando Posição</option>
+                                    <option value="Fazer Proposta">Fazer Proposta</option>
+                                    <option value="Confirmado">Confirmado</option>
+                                    <option value="Follow Up 1">Follow Up 1</option>
+                                    <option value="Não Realizado">Não Realizado</option>
+                                    <option value="1º Contato">1º Contato</option>
+                                    <option value="Realizado">Realizado</option>
+                                    <option value="Follow Up 2">Follow Up 2</option>
+                                    <option value="Enviar Proposta">Enviar Proposta</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="programaNb"><i class="fas fa-book-open"></i> Programa NB</label>
+                                <input type="text" id="programaNb" name="programaNb" placeholder="Nome do programa escolar/treinamento">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detalhes do Evento -->
+                    <div class="form-section-new">
+                        <div class="section-new-header highlight-green">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3>Detalhes do Evento</h3>
+                        </div>
+                        <div class="grid-form">
+                            <div class="form-group">
+                                <label for="dataEvento"><i class="fas fa-calendar-day"></i> Data do Evento *</label>
+                                <input type="date" id="dataEvento" name="dataEvento" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="participantes"><i class="fas fa-users"></i> Qtd. Participantes (PAX)</label>
+                                <input type="number" id="participantes" name="participantes" placeholder="0">
+                            </div>
+                            <div class="form-group span-2">
+                                <label for="localEvento"><i class="fas fa-map-marker-alt"></i> Local do Evento</label>
+                                <input type="text" id="localEvento" name="localEvento" placeholder="Hotel, Fazenda, Empresa...">
+                            </div>
+                            <div class="form-group">
+                                <label for="cidade"><i class="fas fa-city"></i> Cidade</label>
+                                <input type="text" id="cidade" name="cidade" placeholder="Cidade - UF">
+                            </div>
+                            <div class="form-group span-2">
+                                <label for="contatos"><i class="fas fa-address-book"></i> Contatos no Local</label>
+                                <input type="text" id="contatos" name="contatos" placeholder="Nome, telefone, e-mail do contato">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Observações -->
+                    <div class="form-section-new">
+                        <div class="section-new-header highlight-gray">
+                            <i class="fas fa-sticky-note"></i>
+                            <h3>Observações Adicionais</h3>
+                        </div>
+                        <div class="grid-form">
+                            <div class="form-group span-all">
+                                <textarea id="observacoes" name="observacoes" rows="6" class="auto-resize-textarea" placeholder="Detalhes logísticos, materiais necessários ou exigências do cliente..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions-new">
+                        <button type="submit" class="btn-save"><i class="fas fa-check"></i> Salvar Treinamento</button>
+                        <button type="reset" class="btn-clear"><i class="fas fa-eraser"></i> Limpar Formulário</button>
+                        <button type="button" class="btn-back" onclick="window.history.back()"><i class="fas fa-arrow-left"></i> Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <script type="module" src="js/auth-check.js"></script>
+    <script type="module" src="js/script.js"></script>
+
+    <script>
+        // Função para ajustar a altura da textarea
+        function ajustarAlturaTextarea(textarea) {
+            if (!textarea) return;
+            textarea.style.height = 'auto';
+            textarea.style.height = (textarea.scrollHeight + 2) + 'px';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const textarea = document.getElementById('observacoes');
+            if (textarea) {
+                textarea.addEventListener('input', () => ajustarAlturaTextarea(textarea));
+                setTimeout(() => ajustarAlturaTextarea(textarea), 200);
+            }
+        });
+    </script>
+</body>
+</html>

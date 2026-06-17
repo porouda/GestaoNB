@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relação de Entrega de Uniformes</title>
+    <link rel="stylesheet" href="css/imprimir-uniformes.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>RELAÇÃO DE ENTREGA UNIFORMES E FICHA DE RESPONSABILIDADE</h1>
+    </div>
+
+    <div class="info-header">
+        <div class="info-item">
+            <strong>DATA:</strong>
+            <span id="dataEvento"></span>
+        </div>
+        <div class="info-item">
+            <strong>LOCAL:</strong>
+            <span id="localEvento"></span>
+        </div>
+        <div class="info-item">
+            <strong>EMPRESA:</strong>
+            <span id="nomeNegocio"></span>
+        </div>
+        <div class="info-item">
+            <strong>PROGRAMA NB:</strong>
+            <span id="programaNb"></span>
+        </div>
+    </div>
+
+    <table class="uniforme-table">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Nome</th>
+                <th colspan="2">Camiseta</th>
+                <th colspan="2">Camiseta Montagem</th>
+                <th colspan="2">Calça</th>
+                <th colspan="2">Camisa</th>
+                <th colspan="2">Agasalho</th>
+                <th colspan="2">Outro</th>
+                <th>Obs</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>retir</th>
+                <th>devol</th>
+                <th>retir</th>
+                <th>devol</th>
+                <th>retir</th>
+                <th>devol</th>
+                <th>retir</th>
+                <th>devol</th>
+                <th>retir</th>
+                <th>devol</th>
+                <th>retir</th>
+                <th>devol</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="uniformeTableBody">
+            <!-- Dados serão preenchidos aqui -->
+        </tbody>
+    </table>
+
+    <!--<div class="footer">
+        <div class="signature-area">
+            <p>_______________________________________</p>
+            <p>Responsável</p>
+        </div>
+        <div class="signature-area">
+            <p>_______________________________________</p>
+            <p>Coordenador(a)</p>
+        </div>
+    </div>-->
+
+    <button class="print-btn" onclick="window.print()">Imprimir</button>
+    <script src="js/auth-check.js"></script>
+    <script src="js/imprimir-uniformes.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Staffs - Sistema de Treinamentos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="sidebar" id="sidebar">
+        <!-- Menu carregado via script.js -->
+    </div>
+
+    <div class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Cadastro de Staffs</h1>
+        </header>
+
+        <div class="container-full" style="background: none; border: none; padding: 0; box-shadow: none;">
+            <form class="form" id="staffForm" style="display: flex; flex-direction: column; gap: 20px;">
+                <!-- Adiciona campo oculto para armazenar o ID -->
+                <input type="hidden" id="staffId" name="id">
+
+                <!-- Dados Pessoais (Card Bento Principal) -->
+                <div class="container-full">
+                    <div class="section-new-header">
+                        <i class="fas fa-user-circle"></i>
+                        <h3>Dados Pessoais e Contato</h3>
+                    </div>
+                    <div class="grid-form">
+                        <div class="form-group">
+                            <label for="ativo"><i class="fas fa-toggle-on"></i> Status no Sistema *</label>
+                            <select id="ativo" name="ativo" required>
+                                <option value="">Selecione...</option>
+                                <option value="sim">Ativo</option>
+                                <option value="nao">Inativo</option>
+                            </select>
+                        </div>
+                        <div class="form-group span-2">
+                            <label for="nomeCompleto"><i class="fas fa-id-card"></i> Nome Completo *</label>
+                            <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Ex: João Silva Sauro" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nomeAbreviado"><i class="fas fa-user-tag"></i> Nome de Guerra *</label>
+                            <input type="text" id="nomeAbreviado" name="nomeAbreviado" placeholder="Como é chamado" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rg"><i class="fas fa-address-card"></i> RG</label>
+                            <input type="text" id="rg" name="rg" placeholder="Somente números">
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf"><i class="fas fa-fingerprint"></i> CPF *</label>
+                            <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dtNasc"><i class="fas fa-birthday-cake"></i> Data de Nascimento</label>
+                            <input type="date" id="dtNasc" name="dtNasc">
+                        </div>
+                        <div class="form-group">
+                            <label for="celular"><i class="fab fa-whatsapp"></i> Celular / WhatsApp</label>
+                            <input type="text" id="celular" name="celular" placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="form-group span-2">
+                            <label for="email"><i class="fas fa-envelope"></i> E-mail Principal</label>
+                            <input type="email" id="email" name="email" placeholder="email@empresa.com">
+                        </div>
+                        <div class="form-group span-3">
+                            <label for="endereco"><i class="fas fa-map-marker-alt"></i> Endereço Completo</label>
+                            <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro, cidade - UF">
+                        </div>
+                        <div class="form-group">
+                            <label for="dtEntrada"><i class="fas fa-calendar-plus"></i> Data de Admissão</label>
+                            <input type="date" id="dtEntrada" name="dtEntrada">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-grid-2-cols" style="display: grid; gap: 20px;">
+                    <!-- Dados Bancários (Tile Esquerda) -->
+                    <div class="container-full" style="margin-bottom: 0;">
+                        <div class="section-new-header highlight-green">
+                            <i class="fas fa-university"></i>
+                            <h3>Dados para Pagamento</h3>
+                        </div>
+                        <div class="grid-form">
+                            <div class="form-group span-all">
+                                <label for="formaPagamento">Método Preferencial</label>
+                                <select id="formaPagamento" name="formaPagamento">
+                                    <option value="">Selecione...</option>
+                                    <option value="boleto">Boleto</option>
+                                    <option value="pix">Chave PIX</option>
+                                    <option value="transferencia">Transferência Bancária</option>
+                                </select>
+                            </div>
+                            <div class="form-group span-all">
+                                <label for="banco">Instituição Bancária</label>
+                                <input type="text" id="banco" name="banco" placeholder="Ex: Itaú, Nubank...">
+                            </div>
+                            <div class="form-group">
+                                <label for="agencia">Agência</label>
+                                <input type="text" id="agencia" name="agencia">
+                            </div>
+                            <div class="form-group">
+                                <label for="conta">Número da Conta</label>
+                                <input type="text" id="conta" name="conta">
+                            </div>
+                            <div class="form-group">
+                                <label for="tipoConta">Tipo de Conta</label>
+                                <select id="tipoConta" name="tipoConta">
+                                    <option value="">Selecione...</option>
+                                    <option value="corrente">Corrente</option>
+                                    <option value="poupanca">Poupança</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dados Embraer (Tile Direita) -->
+                    <div class="container-full" style="margin-bottom: 0;">
+                        <div class="section-new-header highlight-blue">
+                            <i class="fas fa-plane"></i>
+                            <h3>Integração Embraer</h3>
+                        </div>
+                        <div class="grid-form">
+                            <div class="form-group span-all">
+                                <label for="integracaoEmbraer">Tipo de Contrato</label>
+                                <select id="integracaoEmbraer" name="integracaoEmbraer">
+                                    <option value="">Selecione...</option>
+                                    <option value="contrato_embraer">Direto Embraer</option>
+                                    <option value="contrato_stefanini">Via Stefanini</option>
+                                    <option value="nao">Sem Integração</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vencimentoASO">Vencimento ASO</label>
+                                <input type="date" id="vencimentoASO" name="vencimentoASO">
+                            </div>
+                            <div class="form-group">
+                                <label for="vencimentoContrato">Vencimento Integ.</label>
+                                <input type="date" id="vencimentoContrato" name="vencimentoContrato">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Observações (Tile Final) -->
+                <div class="container-full">
+                    <div class="section-new-header highlight-gray">
+                        <i class="fas fa-sticky-note"></i>
+                        <h3>Observações Gerais</h3>
+                    </div>
+                    <div class="grid-form">
+                        <div class="form-group span-all">
+                            <textarea id="observacoes" name="observacoes" rows="4" placeholder="Alguma informação relevante..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions-new">
+                    <button type="submit" class="btn-save"><i class="fas fa-check"></i> Salvar Registro</button>
+                    <button type="reset" class="btn-clear"><i class="fas fa-eraser"></i> Limpar</button>
+                    <button type="button" class="btn-back" onclick="window.history.back()"><i class="fas fa-arrow-left"></i> Voltar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="module" src="js/auth-check.js"></script>
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>

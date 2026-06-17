@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Staffs - Sistema de Treinamentos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="sidebar" id="sidebar">
+        <!-- Menu carregado via script.js -->
+    </div>
+
+    <div class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Consulta de Staffs</h1>
+        </header>
+
+        <div class="container-full bento-filter-row" style="padding: 20px;">
+            <div class="filter-group">
+                <label for="filtroAtivo" style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Status:</label>
+                <select id="filtroAtivo" class="form-control" style="background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px;">
+                    <option value="">Todos</option>
+                    <option value="sim">Ativo</option>
+                    <option value="nao">Inativo</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="buscaNome" style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Buscar Nome:</label>
+                <input type="text" id="buscaNome" class="form-control" placeholder="Digite parte do nome..." style="background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px; width: 300px;">
+            </div>
+        </div>
+
+        <div class="container-full" style="padding: 0; overflow: hidden;">
+            <div class="table-container" style="border: none; border-radius: 0; overflow: visible; box-shadow: none;">
+                <table class="staff-table">
+                    <thead>
+                        <tr style="background: var(--primary-color);">
+                            <th style="background: transparent; color: #fff; font-weight: 600;">Nome Abreviado</th>
+                            <th style="background: transparent; color: #fff; font-weight: 600;">RG</th>
+                            <th style="background: transparent; color: #fff; font-weight: 600;">CPF</th>
+                            <th style="background: transparent; color: #fff; font-weight: 600;">Data de Nascimento</th>
+                            <th style="background: transparent; color: #fff; font-weight: 600;">Telefone</th>
+                        </tr>
+                    </thead>
+                    <tbody id="staffTableBody">
+                        <!-- Dados serão carregados aqui -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/auth-check.js"></script>
+    <script type="module" src="js/script.js"></script>
+</body>
+</html>

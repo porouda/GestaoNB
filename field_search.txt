@@ -1,0 +1,51 @@
+src/pages/StaffPaymentReport.tsx:  treinamento_id: string;
+src/pages/StaffPaymentReport.tsx:          treinamento_id: getRefId(d.treinamento_id || d.treinamentoId || d.id_treinamento || d.treinamento || d.id_evento || d.evento || d.treinamento_ref)
+src/pages/StaffPaymentReport.tsx:      const training = trainings.find(t => t.id === aloc.treinamento_id);
+src/pages/TrainingsPage.tsx:                      onClick={() => navigate(`/treinamentos/editar/${event.id}`)}
+src/pages/TrainingsPage.tsx:                            onClick={(e) => { e.stopPropagation(); navigate(`/treinamentos/editar/${event.id}`); }}
+src/pages/TrainingsPage.tsx:                  <p className="text-slate-400 font-black uppercase text-sm tracking-widest">Nenhum treinamento encontrado</p>
+src/pages/ConsultantAllocationPage.tsx:  treinamento_id?: string;
+src/pages/ConsultantAllocationPage.tsx:        const trId = getRefId(d.treinamento_id || d.treinamentoId || d.id_treinamento || d.treinamento || d.id_evento || d.id_projeto || d.projeto_id);
+src/pages/ConsultantAllocationPage.tsx:        // Se tem treinamento_id, é formal. Se não, é daily (pool)
+src/pages/ConsultantAllocationPage.tsx:          treinamento_id: trId,
+src/pages/ConsultantAllocationPage.tsx:    return allocations.filter(a => a.treinamento_id === trainingId && consultantIds.has(getRefId(a.staff_id)));
+src/pages/ConsultantAllocationPage.tsx:        treinamento_id: '', // Empty means Pool/Daily
+src/pages/ConsultantAllocationPage.tsx:        treinamento_id: newTargetType === 'formal' ? newTrainingId : '', 
+src/pages/ConsultantAllocationPage.tsx:                      const isFormal = !!aloc.treinamento_id;
+src/pages/ConsultantAllocationPage.tsx:                                            aloc.treinamento_id ? 'bg-indigo-100 text-indigo-700' : 'bg-amber-100 text-amber-700'
+src/pages/ConsultantAllocationPage.tsx:                                            {aloc.treinamento_id ? 'Formal' : 'Pool/Diária'}
+src/pages/ConsultantAllocationPage.tsx:                                          value={aloc.treinamento_id || 'TMP'}
+src/pages/ConsultantAllocationPage.tsx:                                        onChange={(e) => handleUpdateAssignment(staff.id, aloc.type!, aloc.id, aloc.treinamento_id ? 'formal' : 'daily', aloc.treinamento_id || '', e.target.value)}
+src/pages/StaffFormPage.tsx:            const tid = getRefIdLocal(d.treinamento_id || d.treinamentoId || d.id_treinamento || d.treinamento || d.id_evento || d.evento || d.treinamento_ref || d.id_projeto || d.id_treinamento_nb);
+src/pages/StaffFormPage.tsx:            return { ...d, id: doc.id, staff_id: sid, treinamento_id: tid, status: statusVal };
+src/pages/StaffFormPage.tsx:        const cleanTrainingId = getRefId(aloc.treinamento_id || aloc.treinamentoId || aloc.id_treinamento || aloc.treinamento || aloc.id_evento || aloc.evento || aloc.treinamento_ref || aloc.id_projeto || aloc.id_treinamento_nb);
+src/pages/AllocationPage.tsx:  treinamento_id: string;
+src/pages/AllocationPage.tsx:            d.treinamento_id ||
+src/pages/AllocationPage.tsx:            d.id_treinamento ||
+src/pages/AllocationPage.tsx:            treinamento_id: getRefId(rawTrainingId),
+src/pages/AllocationPage.tsx:        where("treinamento_id", "==", selectedTrainingId),
+src/pages/AllocationPage.tsx:    // Apenas considerar staffs alocados no dia selecionado ou em treinamentos do dia
+src/pages/AllocationPage.tsx:          if (trainingTodayIds.has(String(aloc.treinamento_id))) return true;
+src/pages/AllocationPage.tsx:      // Prioridade 1: ID do treinamento já bate com um dos treinamentos visíveis no dia
+src/pages/AllocationPage.tsx:      if (aloc.treinamento_id && visibleTrainingIds.has(String(aloc.treinamento_id))) return true;
+src/pages/AllocationPage.tsx:    return filteredAllocations.filter(a => !a.treinamento_id || a.treinamento_id === '');
+src/pages/AllocationPage.tsx:  // Alocações por treinamento ordenadas por status de prioridade
+src/pages/AllocationPage.tsx:      .filter((a) => String(a.treinamento_id) === String(trainingId))
+src/pages/AllocationPage.tsx:        treinamento_id: trainingId,
+src/pages/AllocationPage.tsx:        aloc.treinamento_id,
+src/pages/AllocationPage.tsx:        treinamento_id: finalTrainingId,
+src/pages/AllocationPage.tsx:        trainings.find((t) => t.id === aloc?.treinamento_id) ||
+src/pages/AllocationPage.tsx:        monthTrainings.find((t) => t.id === aloc?.treinamento_id);
+src/pages/AllocationPage.tsx:          aloc.treinamento_id,
+src/pages/AllocationPage.tsx:          `Staff ${staff?.nomeAbreviado} removido do treinamento [${training?.nomeNegocio || "N/A"}].`,
+src/pages/AllocationPage.tsx:          await createLog(aloc.treinamento_id, actionMsg);
+src/pages/StaffPortalPage.tsx:        const tid = getRefId(d.treinamento_id || d.treinamentoId || d.id_treinamento || d.treinamento || d.id_evento || d.evento || d.treinamento_ref);
+src/pages/StaffPortalPage.tsx:        return { ...d, id: doc.id, staff_id: sid, treinamento_id: tid, status };
+src/pages/StaffPortalPage.tsx:      const t = trainings.find(tr => tr.id === aloc.treinamento_id);
+src/pages/StaffPortalPage.tsx:        title: t?.nome_negocio || 'Treinamento Indefinido', 
+src/pages/StaffPortalPage.tsx:      const training = trainings.find(t => t.id === selectedAloc.negocio_id);
+src/pages/StaffPortalPage.tsx:        selectedAloc.negocio_id || null,
+src/pages/HomePage.tsx:              <Link to="/treinamentos" className="text-blue-600 font-black text-[10px] uppercase tracking-widest flex items-center gap-1 hover:gap-2 transition-all">
+src/components/AppLayout.tsx:              <SidebarItem to="/treinamentos" icon={GraduationCap}>Treinamentos</SidebarItem>
+src/lib/alocacao-core.ts:      negocio_id: negocioId,
+src/App.tsx:        <Route path="/treinamentos/editar/:id" element={

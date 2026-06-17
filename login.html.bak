@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema NorthBrasil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #f4f7f9; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .login-card { background: #ffffff; width: 100%; max-width: 400px; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
+        .logo-container { margin-bottom: 30px; }
+        .logo-container img { max-width: 280px; height: auto; }
+        .logo-placeholder { font-weight: 600; font-size: 24px; color: #1e293b; margin-bottom: 10px; display: block; }
+        h2 { color: #475569; font-size: 18px; margin-bottom: 25px; font-weight: 500; }
+        .btn-login { width: 100%; padding: 14px; background-color: #1e293b; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.3s; margin-top: 10px; }
+        .btn-login:hover { background-color: #0f172a; }
+        .footer-text { margin-top: 25px; font-size: 11px; color: #94a3b8; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo-container">
+            <img src="img/logo.png" alt="NorthBrasil Logo" referrerPolicy="no-referrer" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="logo-placeholder" style="display:none;">NORTHBRASIL</span>
+        </div>
+
+        <h2>Treinamento e Desenvolvimento</h2>
+
+        <div id="msgErro" class="error-message" style="background: #fee2e2; color: #dc2626; padding: 10px; border-radius: 6px; font-size: 14px; margin-bottom: 20px; display: none;"></div>
+
+        <form id="loginForm">
+            <div style="position: relative; margin-bottom: 20px; text-align: left;">
+                <label for="cpf" style="display: block; font-size: 13px; color: #64748b; margin-bottom: 8px; font-weight: 500;">CPF</label>
+                <i class="fas fa-user" style="position: absolute; left: 15px; top: 38px; color: #94a3b8;"></i>
+                <input type="text" id="cpf" placeholder="000.000.000-00" required style="width: 100%; padding: 12px 15px 12px 40px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 15px; outline: none; transition: border-color 0.2s;">
+            </div>
+
+            <div style="position: relative; margin-bottom: 20px; text-align: left;">
+                <label for="senha" style="display: block; font-size: 13px; color: #64748b; margin-bottom: 8px; font-weight: 500;">Senha</label>
+                <i class="fas fa-lock" style="position: absolute; left: 15px; top: 38px; color: #94a3b8;"></i>
+                <input type="password" id="senha" placeholder="••••••••" required style="width: 100%; padding: 12px 15px 12px 40px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 15px; outline: none; transition: border-color 0.2s;">
+            </div>
+
+            <button type="submit" class="btn-login" id="btnEntrar" style="width: 100%; padding: 14px; background-color: #1e293b; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.3s; margin-top: 10px;">
+                <span id="btnText">Acessar Sistema</span>
+            </button>
+        </form>
+
+        <p class="footer-text" style="margin-top: 25px; font-size: 11px; color: #94a3b8;">&copy; 2026 NorthBrasil - Todos os direitos reservados</p>
+    </div>
+
+    <script type="module">
+        const loginForm = document.getElementById('loginForm');
+        const btn = document.getElementById('btnEntrar');
+        const btnText = document.getElementById('btnText');
+        const msgErro = document.getElementById('msgErro');
+
+        loginForm.onsubmit = async (e) => {
+            e.preventDefault();
+            
+            btn.disabled = true;
+            btnText.innerText = "Verificando...";
+            msgErro.style.display = 'none';
+            msgErro.innerText = '';
+
+            const cpf = document.getElementById('cpf').value;
+            const senha = document.getElementById('senha').value;
+
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => {
+                controller.abort();
+                msgErro.innerText = "O servidor demorou muito para responder. Tente novamente.";
+                msgErro.style.display = 'block';
+                btn.disabled = false;
+                btnText.innerText = "Entrar";
+            }, 12000); 
+
+            try {
+                console.log("Enviando requisição de login...");
+                const res = await fetch('/api/login-cpf', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cpf, senha }),
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                const result = await res.json();
+                console.log("Resposta recebida:", result);
+
+                if (result.status === 'success') {
+                    window.location.replace('home.html');
+                } else {
+                    msgErro.innerText = result.details ? `${result.message} (${result.details})` : (result.message || "Erro ao fazer login.");
+                    msgErro.style.display = 'block';
+                    btn.disabled = false;
+                    btnText.innerText = "Entrar";
+                }
+            } catch (error) {
+                clearTimeout(timeoutId);
+                if (error.name !== 'AbortError') {
+                    console.error("Erro fatal:", error);
+                    msgErro.innerText = "Erro de conexão: Verifique sua internet.";
+                    msgErro.style.display = 'block';
+                    btn.disabled = false;
+                    btnText.innerText = "Entrar";
+                }
+            }
+        };
+    </script>
+    <script type="module" src="js/auth-check.js"></script>
+</body>
+</html>

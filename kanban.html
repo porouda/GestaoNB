@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Tarefas - Kanban</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Estilos do sistema -->
+    <link rel="stylesheet" href="css/kanban.css">  <!-- Estilos específicos do Kanban -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Menu Lateral -->
+    <div class="sidebar" id="sidebar">
+        <!-- Menu carregado via script.js -->
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Painel de Tarefas <button id="add-task-btn" class="btn-add-task" style="vertical-align: middle;"><i class="fas fa-plus"></i></button></h1>
+        </div>
+
+        <div class="container-full" style="background: none; border: none; padding: 0; box-shadow: none;">
+            <!-- Quadro Kanban -->
+            <div class="kanban-board" style="height: auto; min-height: calc(100vh - 150px); align-items: flex-start;">
+                <!-- Coluna To Do -->
+                <div class="column bento-card" id="todoColumn" style="border-top: 5px solid #ffbc00; flex: 1;">
+                    <h2 style="font-weight: 800; font-size: 1.1rem; color: var(--primary-color);">To Do <span class="count" id="todoCount">0</span> </h2>
+                    <div class="tasks-container" ondrop="drop(event)" ondragover="allowDrop(event)" style="background: transparent; padding: 0; min-height: 100px;">
+                        <!-- Tarefas serão adicionadas aqui -->
+                    </div>
+                </div>
+                
+                <!-- Coluna Doing -->
+                <div class="column bento-card" id="doingColumn" style="border-top: 5px solid var(--accent-color); flex: 1;">
+                    <h2 style="font-weight: 800; font-size: 1.1rem; color: var(--primary-color);">In Progress <span class="count" id="doingCount">0</span></h2>
+                    <div class="tasks-container" ondrop="drop(event)" ondragover="allowDrop(event)" style="background: transparent; padding: 0; min-height: 100px;">
+                        <!-- Tarefas serão adicionadas aqui -->
+                    </div>
+                </div>
+                
+                <!-- Coluna Done -->
+                <div class="column bento-card" id="doneColumn" style="border-top: 5px solid var(--success-color); flex: 1;">
+                    <h2 style="font-weight: 800; font-size: 1.1rem; color: var(--primary-color);">Done <span class="count" id="doneCount">0</span></h2>
+                    <div class="tasks-container" ondrop="drop(event)" ondragover="allowDrop(event)" style="background: transparent; padding: 0; min-height: 100px;">
+                        <!-- Tarefas serão adicionadas aqui -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </main>
+
+<!-- Modal de Edição de Tarefa -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal()">&times;</span>
+    <h2>Editar Tarefa</h2>
+    <input type="hidden" id="editTaskId">
+    <label for="editTaskName">Nome:</label>
+    <input type="text" id="editTaskName" required>
+    <label for="editTaskResponsibles">Responsáveis:</label>
+    <input type="text" id="editTaskResponsibles" required>
+    <label for="editTaskDeadline">Prazo:</label>
+    <input type="date" id="editTaskDeadline" required>
+    <label for="editTaskObservations">Observações:</label>
+    <textarea id="editTaskObservations"></textarea>
+    <!-- *** NOVOS CAMPOS *** -->
+    <label for="editTaskPriority">Prioridade:</label>
+    <select id="editTaskPriority" required>
+        <option value="normal">Normal</option>
+        <option value="importante">Importante</option>
+        <option value="urgente">Urgente</option>
+    </select>
+    <!-- Campo de data de conclusão (oculto inicialmente, mostrado se status for 'done') -->
+    <label for="editTaskCompletionDate" id="completionDateLabel" style="display:none;">Data de Conclusão:</label>
+    <input type="date" id="editTaskCompletionDate" style="display:none;">
+    <!-- *** FIM DOS NOVOS CAMPOS *** -->
+    <button onclick="salvarEdicaoTarefa()">Salvar</button>
+    <button onclick="fecharModal()">Cancelar</button>
+  </div>
+</div>
+
+    <script type="module" src="js/auth-check.js"></script>
+    <script type="module" src="js/script.js"></script> <!-- Scripts do sistema -->
+    <script type="module" src="js/kanban.js"></script>  <!-- Scripts específicos do Kanban -->
+</body>
+</html>

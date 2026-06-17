@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Checklist - Sistema de Treinamentos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="sidebar" id="sidebar">
+        <!-- Menu carregado dinamicamente -->
+    </div>
+
+    <div class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Cadastro de Checklist</h1>
+        </header>
+
+        <div class="container-full">
+            <div class="checklist-container">
+                <h3>Gerenciamento de Checklist por Tipo de Treinamento</h3>
+                
+                <div id="checklistTableContainer" class="checklist-table-container">
+                    <!-- Tabela será preenchida via JavaScript -->
+                </div>
+
+                <button class="btn btn-primary" id="salvarChecklist">Salvar Checklist</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/auth-check.js"></script>
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/checklist.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário de Treinamentos Fechados - Sistema de Treinamentos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="sidebar" id="sidebar">
+        <!-- Menu carregado via script.js -->
+    </div>
+
+    <div class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Calendário de Treinamentos</h1>
+        </header>
+
+        <div class="container-full">
+            <div class="calendario-container">
+                <div class="calendario-linha">
+                    <div class="calendario-semana">
+                        <div class="semana-titulo">Semana Atual</div>
+                        <div id="semana1" class="semana-dias"></div>
+                    </div>
+                    <div class="calendario-semana">
+                        <div class="semana-titulo">Próxima Semana</div>
+                        <div id="semana2" class="semana-dias"></div>
+                    </div>
+                </div>
+                <div class="calendario-linha">
+                    <div class="calendario-semana">
+                        <div class="semana-titulo">Semana +2</div>
+                        <div id="semana3" class="semana-dias"></div>
+                    </div>
+                    <div class="calendario-semana">
+                        <div class="semana-titulo">Semana +3</div>
+                        <div id="semana4" class="semana-dias"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/auth-check.js"></script>
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/calendario.js"></script>
+</body>
+</html>

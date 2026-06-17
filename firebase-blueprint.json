@@ -1,0 +1,295 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile and permissions",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["admin", "user", "guest"] },
+        "permissions": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["userId", "name", "email", "role"]
+    },
+    "Staff": {
+      "title": "Staff",
+      "description": "Staff member record",
+      "type": "object",
+      "properties": {
+        "ativo": { "type": "string", "enum": ["sim", "não"] },
+        "nome_completo": { "type": "string" },
+        "nome_abreviado": { "type": "string" },
+        "rg": { "type": "string" },
+        "cpf": { "type": "string" },
+        "dt_nascimento": { "type": "string", "format": "date" },
+        "celular": { "type": "string" },
+        "endereco": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "dt_entrada": { "type": "string", "format": "date" },
+        "forma_pagamento": { "type": "string" },
+        "banco": { "type": "string" },
+        "agencia": { "type": "string" },
+        "conta": { "type": "string" },
+        "tipo_conta": { "type": "string" },
+        "vencimento_aso": { "type": "string", "format": "date" },
+        "integracao_embraer": { "type": "string" },
+        "vencimento_contrato": { "type": "string", "format": "date" },
+        "observacoes": { "type": "string" },
+        "funcaoId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["nome_completo", "cpf"]
+    },
+    "Training": {
+      "title": "Training",
+      "description": "Training event record",
+      "type": "object",
+      "properties": {
+        "hubspotId": { "type": "string" },
+        "nome_negocio": { "type": "string" },
+        "nomeNegocio": { "type": "string" },
+        "etapa": { "type": "string" },
+        "programa_nb": { "type": "string" },
+        "data_evento": { "type": "string" },
+        "dataEvento": { "type": "string" },
+        "participantes": { "type": "number" },
+        "local_evento": { "type": "string" },
+        "cidade": { "type": "string" },
+        "contatos": { "type": "string" },
+        "observacoes": { "type": "string" },
+        "lastSyncedAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "hora_saida": { "type": "string" },
+        "hora_retorno": { "type": "string" },
+        "transporte": { "type": "string" },
+        "coordenador_interno": { "type": "string" },
+        "coordenador_montagem": { "type": "string" },
+        "coordenador_evento": { "type": "string" },
+        "voucher_alimentacao": { "type": "string" },
+        "bombeiro": { "type": "string" },
+        "hora_real_saida": { "type": "string" },
+        "hora_real_chegada": { "type": "string" },
+        "obs_logistica": { "type": "string" },
+        "obs_geral_logistica": { "type": "string" },
+        "qtd_staffs": { "type": "number" },
+        "qtd_equipes": { "type": "number" },
+        "log_pre_conferido_por": { "type": "string" },
+        "log_pre_conferido_em": { "type": "string" },
+        "log_pos_conferido_por": { "type": "string" },
+        "log_pos_conferido_em": { "type": "string" }
+      },
+      "required": ["nome_negocio", "data_evento"]
+    },
+    "Log": {
+      "title": "SystemLog",
+      "description": "System operation log",
+      "type": "object",
+      "properties": {
+        "usuario_id": { "type": "string" },
+        "usuario_nome": { "type": "string" },
+        "acao": { "type": "string" },
+        "tabela_afetada": { "type": "string" },
+        "registro_id": { "type": "string" },
+        "descricao": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["acao", "timestamp"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Inventory product",
+      "type": "object",
+      "properties": {
+        "nome": { "type": "string" },
+        "quantidade": { "type": "number" },
+        "quantidadeMinima": { "type": "number" },
+        "quantidade_minima": { "type": "number" },
+        "observacoes": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["nome", "quantidade"]
+    },
+    "Allocation": {
+      "title": "Allocation",
+      "description": "Staff training allocation",
+      "type": "object",
+      "properties": {
+        "treinamento_id": { "type": "string" },
+        "staff_id": { "type": "string" },
+        "status": { "type": "string", "enum": ["intencao", "whatsapp", "pessoalmente", "confirmado", "recusado"] },
+        "data_alocacao": { "type": "string", "format": "date-time" },
+        "obs": { "type": "string" },
+        "motivo_recusa": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "updatedBy": { "type": "string" }
+      },
+      "required": ["treinamento_id", "staff_id", "status"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "Kanban task item",
+      "type": "object",
+      "properties": {
+        "nome": { "type": "string" },
+        "responsaveis": { "type": "string" },
+        "prazo": { "type": "string" },
+        "prioridade": { "type": "string", "enum": ["normal", "alta", "baixa"] },
+        "status": { "type": "string", "enum": ["todo", "doing", "done"] },
+        "observacoes": { "type": "string" },
+        "data_conclusao": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["nome", "status", "prioridade"]
+    },
+    "InventoryMove": {
+      "title": "InventoryMove",
+      "description": "Movement of goods in/out of inventory",
+      "type": "object",
+      "properties": {
+        "produtoId": { "type": "string" },
+        "nomeProduto": { "type": "string" },
+        "tipo": { "type": "string", "enum": ["entrada", "saida"] },
+        "quantidade": { "type": "number" },
+        "data": { "type": "string", "format": "date-time" },
+        "responsavel": { "type": "string" },
+        "observacoes": { "type": "string" }
+      },
+      "required": ["produtoId", "tipo", "quantidade", "data"]
+    },
+    "FinanceFunction": {
+      "title": "FinanceFunction",
+      "description": "Staff role pay rates",
+      "type": "object",
+      "properties": {
+        "nome": { "type": "string" },
+        "valor_diaria": { "type": "number" },
+        "valor_meio_periodo": { "type": "number" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["nome", "valor_diaria", "valor_meio_periodo"]
+    },
+    "FinanceAdditional": {
+      "title": "FinanceAdditional",
+      "description": "Additional earnings configuration",
+      "type": "object",
+      "properties": {
+        "nome": { "type": "string" },
+        "valor_padrao": { "type": "number" },
+        "descricao": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["nome"]
+    },
+    "ChecklistTemplate": {
+      "title": "ChecklistTemplate",
+      "description": "Master checklist task from Excel",
+      "type": "object",
+      "properties": {
+        "descricao": { "type": "string" },
+        "fase": { "type": "string" },
+        "programas": { "type": "array", "items": { "type": "string" } },
+        "ordem": { "type": "number" }
+      },
+      "required": ["descricao", "fase", "programas"]
+    },
+    "TrainingChecklist": {
+      "title": "TrainingChecklist",
+      "description": "Instance of a checklist for a specific training",
+      "type": "object",
+      "properties": {
+        "trainingId": { "type": "string" },
+        "tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "templateId": { "type": "string" },
+              "descricao": { "type": "string" },
+              "fase": { "type": "string" },
+              "completado": { "type": "boolean" },
+              "completadoPor": { "type": "string" },
+              "completadoPorUid": { "type": "string" },
+              "completadoEm": { "type": "string", "format": "date-time" }
+            }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["trainingId", "tasks"]
+    },
+    "ProfileAccess": {
+      "title": "ProfileAccess",
+      "description": "Customizable user access profile with page-level restrictions",
+      "type": "object",
+      "properties": {
+        "nome": { "type": "string" },
+        "descricao": { "type": "string" },
+        "paginas": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["nome"]
+    }
+  },
+  "firestore": {
+    "/perfis_acesso/{perfilId}": {
+      "schema": "ProfileAccess",
+      "description": "Customizable user access profiles with page permissions"
+    },
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles and permissions"
+    },
+    "/staffs/{staffId}": {
+      "schema": "Staff",
+      "description": "Staff member documentation"
+    },
+    "/trainings/{trainingId}": {
+      "schema": "Training",
+      "description": "Training events data"
+    },
+    "/logs/{logId}": {
+      "schema": "Log",
+      "description": "System activity logs"
+    },
+    "/inventory/{productId}": {
+      "schema": "Product",
+      "description": "Stock management"
+    },
+    "/allocations/{allocationId}": {
+      "schema": "Allocation",
+      "description": "Staff-to-training maps"
+    },
+    "/allocation_logs/{logId}": {
+      "schema": "Log",
+      "description": "Logs of staff allocation changes"
+    },
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Kanban board tasks"
+    },
+    "/inventory_moves/{moveId}": {
+      "schema": "InventoryMove",
+      "description": "Log of inventory movements"
+    },
+    "/finance_functions/{functionId}": {
+      "schema": "FinanceFunction",
+      "description": "Configurations for staff roles and rates"
+    },
+    "/finance_additionals/{additionalId}": {
+      "schema": "FinanceAdditional",
+      "description": "Configurations for additional earnings"
+    },
+    "/checklist_templates/{templateId}": {
+      "schema": "ChecklistTemplate",
+      "description": "Master tasks for checklists"
+    },
+    "/training_checklists/{trainingId}": {
+      "schema": "TrainingChecklist",
+      "description": "Specific checklists for trainings"
+    }
+  }
+}

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Estoque</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Estilos principais do sistema -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Modais de Estoque */
+        .modal-produto, .modal-movimentacao, .modal-relatorio {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-produto-content, .modal-movimentacao-content, .modal-relatorio-content {
+            background-color: var(--card-bg);
+            margin: 5% auto;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .modal-relatorio-content {
+            max-width: 800px;
+        }
+
+        .modal-produto-content h2, .modal-movimentacao-content h2, .modal-relatorio-content h2 {
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .modal-relatorio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--danger-color);
+        }
+
+        /* Inputs dentro do modal */
+        .modal-produto-content label, .modal-movimentacao-content label {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .modal-produto-content input, .modal-produto-content textarea,
+        .modal-movimentacao-content input, .modal-movimentacao-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-color);
+            font-size: 0.95rem;
+        }
+
+        #saveProdutoBtn, #saveMovimentacaoBtn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #saveProdutoBtn:hover, #saveMovimentacaoBtn:hover {
+            background: #2563eb;
+        }
+
+        /* Tabela de Relatório */
+        .relatorio-table-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .relatorio-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .relatorio-table th {
+            text-align: left;
+            padding: 12px;
+            background: var(--bg-color);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            position: sticky;
+            top: 0;
+        }
+
+        .relatorio-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        /* Estilos da Lista Profissional */
+        .main-content {
+            height: 100vh;
+            overflow: hidden !important;
+        }
+
+        .estoque-controls-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+            background: white;
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-container-estoque {
+            flex: 1;
+            position: relative;
+            min-width: 250px;
+        }
+
+        .search-container-estoque i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .search-container-estoque input {
+            width: 100%;
+            padding: 8px 10px 8px 35px;
+            border-radius: 8px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-color);
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .stats-pills {
+            display: flex;
+            gap: 8px;
+        }
+
+        .stat-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .stat-pill span {
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .stat-pill.alerta {
+            border-color: #fecaca;
+            background: #fff1f2;
+            color: #e11d48;
+        }
+
+        .stat-pill.alerta span {
+            color: #e11d48;
+        }
+
+        .estoque-lista-container {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .lista-header {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 120px;
+            gap: 15px;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        #estoque-lista {
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .lista-item-estoque {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 120px;
+            gap: 15px;
+            padding: 10px 20px;
+            align-items: center;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .lista-item-estoque:last-child {
+            border-bottom: none;
+        }
+
+        .lista-item-estoque:hover {
+            background-color: var(--bg-color);
+        }
+
+        .status-indicator {
+            position: absolute;
+            left: 0;
+            top: 15%;
+            height: 70%;
+            width: 4px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .btn-mini {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            color: white;
+        }
+
+        .btn-mini:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-mini-history {
+            background: var(--bg-color);
+            color: var(--text-muted);
+            border: 1.5px solid var(--border-color);
+        }
+
+        .btn-mini-history:hover {
+            background: var(--border-color);
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <!-- Menu carregado via script.js -->
+    </div>
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <div class="page-header" style="margin-bottom: 12px;">
+            <h1 class="page-title">Gestão de Estoque</h1>
+        </div>
+
+        <!-- Barra de Controles Consolidada -->
+        <div class="estoque-controls-row">
+            <div class="search-container-estoque">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchProduto" placeholder="Pesquisar material no inventário...">
+            </div>
+            
+            <div class="stats-pills">
+                <div class="stat-pill">
+                    <i class="fas fa-boxes"></i> Total: <span id="stat-total-itens">0</span>
+                </div>
+                <div class="stat-pill alerta">
+                    <i class="fas fa-exclamation-triangle"></i> Baixo: <span id="stat-alerta-estoque">0</span>
+                </div>
+            </div>
+
+            <button onclick="window.adicionarProduto()" class="btn-save" style="padding: 8px 15px; font-size: 0.8rem; white-space: nowrap;">
+                <i class="fas fa-plus"></i> Novo Produto
+            </button>
+        </div>
+
+        <div class="estoque-lista-container">
+            <div class="lista-header">
+                <div>Material / Descrição</div>
+                <div style="text-align: center;">Qtd. Atual</div>
+                <div style="text-align: center;">Mínimo</div>
+                <div style="text-align: center;">Ações</div>
+            </div>
+            <div id="estoque-lista">
+                <!-- Linhas de produtos serão inseridas aqui pelo JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Edição/Adição de Produto -->
+    <div id="produtoModal" class="modal-produto">
+        <div class="modal-produto-content">
+            <span class="close close-produto">&times;</span>
+            <h2 id="produtoModalTitle">Adicionar Produto</h2>
+            <input type="hidden" id="editProdutoId">
+            <label for="editNome">Material:</label>
+            <input type="text" id="editNome" required>
+            <label for="editQuantidade">Quantidade:</label>
+            <input type="number" id="editQuantidade" min="0" required>
+            <label for="editQuantidadeMinima">Quantidade Mínima:</label>
+            <input type="number" id="editQuantidadeMinima" min="0" required>
+            <label for="editObservacoes">Observações:</label>
+            <textarea id="editObservacoes"></textarea>
+            <button id="saveProdutoBtn">Salvar</button>
+            <button class="close-produto">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Modal de Entrada/Saída de Produto -->
+    <div id="movimentacaoModal" class="modal-movimentacao">
+        <div class="modal-movimentacao-content">
+            <span class="close close-movimentacao">&times;</span>
+            <h2 id="movimentacaoModalTitle">Registrar Movimentação</h2>
+            <input type="hidden" id="movProdutoId">
+            <input type="hidden" id="movTipo"> <!-- 'entrada' ou 'saida' -->
+            <label for="movNomeProduto">Produto:</label>
+            <input type="text" id="movNomeProduto" readonly> <!-- Nome do produto, somente leitura -->
+            <label for="movQuantidade">Quantidade:</label>
+            <input type="number" id="movQuantidade" min="1" required>
+            <label for="movData">Data:</label>
+            <input type="date" id="movData" required>
+            <label for="movResponsavel">Adicionado por:</label>
+            <input type="text" id="movResponsavel" required>
+            <label for="movObservacoesMov">Observações:</label>
+            <textarea id="movObservacoesMov"></textarea>
+            <button id="saveMovimentacaoBtn">Registrar</button>
+            <button class="close-movimentacao">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- --- NOVO: Modal de Relatório de Movimentações --- -->
+    <div id="relatorioModal" class="modal-relatorio">
+        <div class="modal-relatorio-content">
+            <div class="modal-relatorio-header">
+                <h2 class="modal-relatorio-title">Relatório de Movimentações</h2>
+                <span class="close close-relatorio">&times;</span>
+            </div>
+            <div class="relatorio-table-container">
+                <table class="relatorio-table">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Quantidade</th>
+                            <th>Data</th>
+                            <th>Responsável</th>
+                            <th>Observações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="relatorioTableBody">
+                        <!-- Linhas serão inseridas aqui pelo JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/auth-check.js"></script>
+    <script type="module" src="js/script.js"></script> <!-- Scripts principais do sistema -->
+    <script type="module" src="js/consulta-estoque.js"></script> <!-- Scripts específicos desta página -->
+</body>
+</html>

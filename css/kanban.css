@@ -1,0 +1,435 @@
+/* --- ESTILOS GERAIS DO KANBAN --- */
+
+/* Formulário de adição de tarefa */
+.task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.task-form input,
+.task-form textarea { /* Inclui textarea se houver */
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.task-form button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.task-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Quadro Kanban */
+.kanban-board {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    
+    height: calc(100vh - 90px); /* Ajuste conforme necessário */
+}
+
+.column {
+    flex: 1;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column; /* Organiza o header e o container de tarefas verticalmente */
+    max-height: 100%; /* Limita a altura da coluna ao espaço disponível */
+}
+
+.column h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 18px;
+    flex-shrink: 0; /* Não encolhe o header */
+}
+
+.count {
+    background-color: #6c757d;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/* Container de tarefas com barra de rolagem */
+.tasks-container {
+    padding: 10px;
+    overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
+    flex-grow: 1; /* Faz o container crescer para ocupar o espaço disponível */
+    max-height: calc(100% - 60px); /* Ajusta a altura para não ultrapassar o espaço da coluna, subtraindo aproximadamente a altura do cabeçalho */
+    min-height: 200px; /* Garante uma altura mínima mesmo que não haja tarefas */
+}
+
+/* Força a barra de rolagem a aparecer se o conteúdo exceder */
+.tasks-container::-webkit-scrollbar {
+    width: 8px; /* Largura da barra */
+}
+
+.tasks-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Cor do fundo da barra */
+    border-radius: 4px;
+}
+
+.tasks-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1; /* Cor do "polegar" da barra */
+    border-radius: 4px;
+}
+
+.tasks-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8; /* Cor do "polegar" ao passar o mouse */
+}
+
+/* Tarefa arrastável */
+.task-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: grab;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative; /* Necessário para o tooltip absoluto */
+}
+
+.task-card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.task-card:active {
+    cursor: grabbing;
+}
+
+.task-name {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.task-responsibles {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.task-deadline {
+    color: #dc3545;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Cores das colunas */
+#todoColumn .task-card {
+    border-left: 4px solid #ffc107; /* Amarelo */
+}
+
+#doingColumn .task-card {
+    border-left: 4px solid #007bff; /* Azul */
+}
+
+#doneColumn .task-card {
+    border-left: 4px solid #28a745; /* Verde */
+}
+
+/* Efeito de drag */
+.drag-over {
+    background-color: #e9ecef;
+    border: 2px dashed #007bff;
+}
+
+/* --- TOOLTIP DE OBSERVAÇÕES (Usando ::after e data-observacoes - SIMPLIFICADO E EFICIENTE) --- */
+.task-card {
+    position: relative; /* Necessário para o pseudo-elemento ::after */
+}
+
+/* Estilo da tooltip usando pseudo-elemento ::after */
+.task-card::after {
+    content: attr(data-observacoes); /* Lê o conteúdo do atributo data-observacoes */
+    position: absolute;
+    bottom: 100%; /* Posiciona acima do card */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    background-color: #333; /* Fundo escuro */
+    color: white; /* Texto claro */
+    padding: 8px; /* Espaçamento interno */
+    border-radius: 6px; /* Bordas arredondadas */
+    font-size: 12px; /* Tamanho de fonte pequeno */
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.2s ease; /* Transição suave para aparecer/desaparecer */
+    pointer-events: none; /* Não interfere em cliques ou hover em elementos atrás */
+    z-index: 10000; /* Z-index alto para ficar acima de outros elementos */
+    width: max-content; /* Largura ajustável ao conteúdo */
+    max-width: 250px; /* Largura máxima */
+    min-width: 100px; /* Largura mínima */
+    /* Importante: Estas propriedades permitem quebras de linha e ajuste de altura */
+    white-space: pre-line; /* MUITO IMPORTANTE: Preserva espaços e respeita \n, mas quebra linha automaticamente */
+    word-wrap: break-word; /* Quebra palavras longas se necessário */
+    word-break: break-word; /* Alternativa para quebra de palavras (menos suporte) */
+    line-height: 1.3; /* Espaçamento entre linhas */
+    text-align: left; /* Alinhamento do texto à esquerda */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* Sombra leve */
+    display: block; /* Garante que o elemento seja exibido se houver conteúdo */
+    /* Ajuste de altura automática é feito implicitamente pelo conteúdo e pelas propriedades acima */
+}
+
+/* Triângulo abaixo da tooltip */
+.task-card::before {
+    content: "";
+    position: absolute;
+    top: 100%; /* Na borda inferior da tooltip */
+    left: 50%;
+    transform: translateX(-50%) translateY(-1px); /* Centraliza e sobrepõe levemente a borda do card */
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent; /* Cor do triângulo igual ao fundo da tooltip */
+    z-index: 9999; /* Deve estar logo abaixo da tooltip (::after) */
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.2s ease; /* Transição para aparecer/desaparecer com o ::after */
+}
+
+/* Mostra a tooltip e o triângulo ao passar o mouse sobre o card */
+.task-card:hover::after,
+.task-card:hover::before {
+    opacity: 1;
+}
+
+/* Oculta a tooltip e o triângulo se o atributo data-observacoes não existir ou for vazio */
+.task-card:not([data-observacoes])::after,
+.task-card:not([data-observacoes])::before,
+.task-card[data-observacoes=""]::after,
+.task-card[data-observacoes=""]::before {
+    display: none;
+}
+
+/* --- FIM DA SEÇÃO DE TOOLTIP --- */
+
+
+/* --- MODAL DE EDIÇÃO --- */
+
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Fundo preto */
+    background-color: rgba(0,0,0,0.4); /* Preto com opacidade */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.modal-content input, .modal-content textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+
+/* --- MENU DE CONTEXTO (Botão Direito) --- */
+
+.context-menu {
+    position: fixed; /* Fixo na tela */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000; /* Acima de tudo */
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.context-option {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+.context-option:last-child {
+    border-bottom: none;
+}
+
+.context-option:hover {
+    background-color: #f0f0f0;
+}
+
+/* --- RESPONSIVIDADE --- */
+
+@media (max-width: 768px) {
+    .kanban-board {
+        flex-direction: column;
+        height: auto; /* Reseta a altura em dispositivos móveis */
+    }
+
+    .task-form {
+        flex-direction: column;
+    }
+
+    .tasks-container {
+        max-height: 400px; /* Altura máxima em dispositivos móveis */
+    }
+}
+
+/* Estilos para o Tooltip Dinâmico de Observações (com ajuste de altura, quebra de linha e respeito a \n) */
+.tooltip-dinamico {
+    position: fixed; /* Fixo na tela */
+    background-color: #333;
+    color: #fff;
+    text-align: left; /* Alinhamento do texto à esquerda */
+    border-radius: 6px;
+    padding: 8px;
+    z-index: 10000; /* Muito alto para garantir que fique acima de tudo */
+    font-size: 0.85rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    max-width: 300px; /* Define um limite máximo para a largura */
+    word-wrap: break-word; /* ou overflow-wrap: break-word; */
+    white-space: pre-line; /* MUITO IMPORTANTE: Preserva espaços e quebras de linha */
+    /* width: max-content; */ /* Pode interferir com o ajuste automático baseado no conteúdo e max-width */
+    /* Removido: height e min-height fixos para permitir ajuste automático */
+    pointer-events: none; /* Garante que a tooltip flutuante não bloqueie cliques ou movimentos do mouse */
+    box-sizing: border-box; /* Inclui padding na largura/altura totais */
+    line-height: 1.3; /* Ajuste opcional para espaçamento entre linhas */
+}
+
+.header-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+/* Estilo para o botão "+" dentro do cabeçalho da coluna */
+.btn-add-task {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-add-task:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+/* ... estilos anteriores ... */
+
+/* Estilos para prioridade */
+.task-card.prioridade-urgente {
+    border-left: 4px solid #dc3545; /* Vermelho para Urgente */
+    background-color: #ffebee; /* Fundo claro vermelho */
+}
+
+.task-card.prioridade-importante {
+    border-left: 4px solid #ff9800; /* Laranja para Importante */
+    background-color: #fff3e0; /* Fundo claro laranja */
+}
+
+.task-card.prioridade-normal {
+    /* Estilo padrão já definido */
+    border-left: 4px solid #6c757d; /* Cinza para Normal */
+    background-color: #f8f9fa; /* Fundo claro cinza */
+}
+
+/* Estilo para data de conclusão */
+.task-completion-date {
+    color: #28a745; /* Verde */
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 3px;
+}
+
+.task-priority {
+    color: #666;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+/* ... estilos anteriores ... */
+
+/* Estilos para campos novos no modal */
+.modal-content label[for="editTaskPriority"],
+.modal-content label[for="editTaskCompletionDate"] {
+    margin-top: 10px; /* Espaçamento consistente */
+}
+
+.modal-content select#editTaskPriority {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fafafa;
+}
+
+/* ... estilos restantes ... */

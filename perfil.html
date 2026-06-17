@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Perfil - NorthBrasil</title>
+    <style>html { display: none; }</style>
+    <script src="js/auth-check.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .profile-container { max-width: 1000px; margin: 20px auto; padding: 20px; padding-bottom: 100px; /* Espaço extra no final para os botões não ficarem colados */ }
+        .form-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .row { display: flex; gap: 20px; margin-bottom: 15px; flex-wrap: wrap; }
+        .col { flex: 1; min-width: 200px; display: flex; flex-direction: column; }
+        label { font-size: 11px; font-weight: bold; text-transform: uppercase; color: #1e293b; margin-bottom: 5px; }
+        input, select, textarea { padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #f8fafc; color: #334155; font-size: 14px; }
+        input:disabled, select:disabled, textarea:disabled { background: #f1f5f9; color: #94a3b8; cursor: not-allowed; border-color: #eee; }
+        .editable input, .editable select, .editable textarea { background: #fff; border-color: #3498db; }
+        .section-title { border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; margin: 25px 0 15px 0; color: #1e293b; font-size: 14px; font-weight: 800; text-transform: uppercase; }
+        .actions { margin-top: 30px; display: flex; justify-content: flex-end; gap: 15px; position: sticky; bottom: 20px; padding: 15px 0; bottom: 0; z-index: 100;}
+        .btn-edit { background: #fd7e14; color: white; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .btn-save { background: #28a745; color: white; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-weight: bold; display: none; }
+        .restricted-field { border-left: 3px solid #ef4444; padding-left: 10px; } /* Destaque para campos admin */
+        .main-content {overflow-y: auto !important; /* Permite scroll vertical */height: 100vh; }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar"></div>
+
+    <div class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Meu Perfil / Dados Cadastrais</h1>
+        </header>
+
+        <div class="profile-container">
+            <form id="perfilForm" class="form-card">
+                
+                <!-- SEÇÃO 1: PESSOAL -->
+                <div class="section-title"><i class="fas fa-id-card"></i> Informações Pessoais</div>
+                <div class="row">
+                    <div class="col">
+                        <label>Nome Completo</label>
+                        <input type="text" id="nome_completo" disabled>
+                    </div>
+                    <div class="col">
+                        <label>Nome Abreviado (Como aparece no sistema)</label>
+                        <input type="text" id="nome_abreviado" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label>CPF (Login - Inalterável)</label>
+                        <input type="text" id="cpf" disabled>
+                    </div>
+                    <div class="col">
+                        <label>RG</label>
+                        <input type="text" id="rg" disabled>
+                    </div>
+                    <div class="col">
+                        <label>Data de Nascimento</label>
+                        <input type="date" id="dt_nascimento" disabled>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO 2: CONTATO -->
+                <div class="section-title"><i class="fas fa-map-marker-alt"></i> Contato e Localização</div>
+                <div class="row">
+                    <div class="col">
+                        <label>E-mail Principal</label>
+                        <input type="email" id="email" disabled>
+                    </div>
+                    <div class="col">
+                        <label>Celular / WhatsApp</label>
+                        <input type="text" id="celular" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label>Endereço Residencial</label>
+                        <input type="text" id="endereco" disabled>
+                    </div>
+                </div>
+
+                <!-- SEÇÃO 3: FINANCEIRO -->
+                <div class="section-title"><i class="fas fa-university"></i> Dados para Pagamento</div>
+                <div class="row">
+                    <div class="col">
+                        <label>Forma de Pagamento</label>
+                        <select id="forma_pagamento" disabled>
+                            <option value="PIX">PIX</option>
+                            <option value="Transferência">Transferência</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label>Chave PIX</label>
+                        <input type="text" id="pix" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label>Banco</label>
+                        <input type="text" id="banco" disabled>
+                    </div>
+                    <div class="col">
+                        <label>Agência</label>
+                        <input type="text" id="agencia" disabled>
+                    </div>
+                    <div class="col">
+                        <label>Conta</label>
+                        <input type="text" id="conta" disabled>
+                    </div>
+                    <div class="col">
+                        <label>Tipo</label>
+                        <input type="text" id="tipo_conta" disabled placeholder="Ex: Corrente / Poupança">
+                    </div>
+                </div>
+
+                <!-- SEÇÃO 4: ADMINISTRATIVO (Restrito) -->
+                <div class="section-title"><i class="fas fa-user-shield"></i> Administrativo (Apenas Leitura)</div>
+                <div class="row">
+                    <div class="col restricted-field">
+                        <label>Status da Conta</label>
+                        <select id="ativo" disabled data-admin-only="true">
+                            <option value="sim">Ativo</option>
+                            <option value="nao">Inativo</option>
+                        </select>
+                    </div>
+                    <div class="col restricted-field">
+                        <label>Data de Entrada</label>
+                        <input type="date" id="dt_entrada" disabled data-admin-only="true">
+                    </div>
+                    <div class="col restricted-field">
+                        <label>Vencimento ASO</label>
+                        <input type="date" id="vencimento_aso" disabled data-admin-only="true">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col restricted-field">
+                        <label>Integração Embraer</label>
+                        <input type="text" id="integracao_embraer" disabled data-admin-only="true">
+                    </div>
+                    <div class="col restricted-field">
+                        <label>Vencimento Contrato</label>
+                        <input type="date" id="vencimento_contrato" disabled data-admin-only="true">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col restricted-field">
+                        <label>Observações Administrativas</label>
+                        <textarea id="observacoes" disabled data-admin-only="true" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button type="button" class="btn-edit" id="btnEdit" onclick="habilitarEdicao()">
+                        <i class="fas fa-edit"></i> Editar Meus Dados
+                    </button>
+                    <button type="submit" class="btn-save" id="btnSave">
+                        <i class="fas fa-save"></i> Salvar Alterações
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/perfil.js"></script>
+</body>
+</html>
