@@ -1,0 +1,7520 @@
+[
+  {
+    "_id": "36962053809_107",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764504000,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "status": "confirmado",
+    "treinamento_id": "36962053809",
+    "obs": ""
+  },
+  {
+    "_id": "36962053809_202",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "treinamento_id": "36962053809",
+    "obs": "",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764504000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "36962053809_275",
+    "obs": "",
+    "treinamento_id": "36962053809",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764504000,
+      "nanoseconds": 0
+    },
+    "staff_id": "275"
+  },
+  {
+    "_id": "36962053809_276",
+    "staff_id": "276",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764504000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "treinamento_id": "36962053809",
+    "obs": ""
+  },
+  {
+    "_id": "36962053809_57",
+    "obs": "",
+    "treinamento_id": "36962053809",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764504000,
+      "nanoseconds": 0
+    },
+    "staff_id": "57"
+  },
+  {
+    "_id": "40328300595_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "treinamento_id": "40328300595",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "40328300595_163",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "40328300595",
+    "staff_id": "163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "40328300595_168",
+    "staff_id": "168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "motivo_recusa": "não pode",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "treinamento_id": "40328300595",
+    "obs": ""
+  },
+  {
+    "_id": "40328300595_185",
+    "obs": "",
+    "treinamento_id": "40328300595",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "185"
+  },
+  {
+    "_id": "40328300595_202",
+    "treinamento_id": "40328300595",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": "Sem disponibilidade",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "202"
+  },
+  {
+    "_id": "40328300595_237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "237",
+    "obs": "",
+    "treinamento_id": "40328300595",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "40328300595_5",
+    "staff_id": "5",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "40328300595"
+  },
+  {
+    "_id": "40328300595_66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "66",
+    "treinamento_id": "40328300595",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "40328300595_67",
+    "obs": "",
+    "treinamento_id": "40328300595",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": "compromisso",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "67"
+  },
+  {
+    "_id": "40683133593_110",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "110",
+    "treinamento_id": "40683133593",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "40683133593_114",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "114",
+    "obs": "",
+    "treinamento_id": "40683133593",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.180Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "40683133593_150",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.180Z",
+    "obs": "",
+    "treinamento_id": "40683133593",
+    "staff_id": "150",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "40683133593_160",
+    "staff_id": "160",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.180Z",
+    "obs": "",
+    "treinamento_id": "40683133593"
+  },
+  {
+    "_id": "40683133593_167",
+    "staff_id": "167",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.180Z",
+    "treinamento_id": "40683133593",
+    "obs": ""
+  },
+  {
+    "_id": "40683133593_168",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "40683133593",
+    "staff_id": "168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "40683133593_17",
+    "obs": "",
+    "treinamento_id": "40683133593",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "17"
+  },
+  {
+    "_id": "40683133593_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.180Z",
+    "treinamento_id": "40683133593",
+    "obs": ""
+  },
+  {
+    "_id": "40683133593_202",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.180Z",
+    "status": "confirmado",
+    "treinamento_id": "40683133593",
+    "obs": "",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "40683133593_237",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.180Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "40683133593",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "40683133593_246",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "treinamento_id": "40683133593",
+    "obs": ""
+  },
+  {
+    "_id": "40683133593_25",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "treinamento_id": "40683133593",
+    "obs": ""
+  },
+  {
+    "_id": "40683133593_79",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.180Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "40683133593",
+    "staff_id": "79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "41880266077_107",
+    "obs": "",
+    "treinamento_id": "41880266077",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765627200,
+      "nanoseconds": 0
+    },
+    "staff_id": "107"
+  },
+  {
+    "_id": "41880266077_135",
+    "obs": "",
+    "treinamento_id": "41880266077",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765627200,
+      "nanoseconds": 0
+    },
+    "staff_id": "135"
+  },
+  {
+    "_id": "41880266077_237",
+    "obs": "",
+    "treinamento_id": "41880266077",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765627200,
+      "nanoseconds": 0
+    },
+    "staff_id": "237"
+  },
+  {
+    "_id": "41880266077_246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765627200,
+      "nanoseconds": 0
+    },
+    "staff_id": "246",
+    "treinamento_id": "41880266077",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "41880266077_5",
+    "staff_id": "5",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765627200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "obs": "",
+    "treinamento_id": "41880266077"
+  },
+  {
+    "_id": "42229001294_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "treinamento_id": "42229001294",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.180Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "42229001294_163",
+    "staff_id": "163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "42229001294"
+  },
+  {
+    "_id": "42229001294_219",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "42229001294",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "42229001294_235",
+    "treinamento_id": "42229001294",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "235"
+  },
+  {
+    "_id": "42229001294_66",
+    "staff_id": "66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "treinamento_id": "42229001294",
+    "obs": ""
+  },
+  {
+    "_id": "42229001294_67",
+    "obs": "",
+    "treinamento_id": "42229001294",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "67"
+  },
+  {
+    "_id": "42229001294_84",
+    "treinamento_id": "42229001294",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "84"
+  },
+  {
+    "_id": "42868501827_107",
+    "treinamento_id": "42868501827",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768651200,
+      "nanoseconds": 0
+    },
+    "staff_id": "107"
+  },
+  {
+    "_id": "42868501827_114",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "treinamento_id": "42868501827",
+    "obs": "",
+    "staff_id": "114",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768651200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "42868501827_163",
+    "staff_id": "163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768651200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "treinamento_id": "42868501827",
+    "obs": ""
+  },
+  {
+    "_id": "42868501827_185",
+    "obs": "",
+    "treinamento_id": "42868501827",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768651200,
+      "nanoseconds": 0
+    },
+    "staff_id": "185"
+  },
+  {
+    "_id": "42868501827_57",
+    "staff_id": "57",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768651200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "obs": "",
+    "treinamento_id": "42868501827"
+  },
+  {
+    "_id": "43595396659_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "treinamento_id": "43595396659",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "43595396659_135",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "treinamento_id": "43595396659",
+    "obs": ""
+  },
+  {
+    "_id": "43595396659_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": "Aula",
+    "obs": "",
+    "treinamento_id": "43595396659"
+  },
+  {
+    "_id": "43595396659_202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    },
+    "staff_id": "202",
+    "treinamento_id": "43595396659",
+    "obs": "",
+    "motivo_recusa": "Tem Compromisso",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "recusado"
+  },
+  {
+    "_id": "43595396659_21",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "treinamento_id": "43595396659",
+    "obs": "",
+    "staff_id": "21",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "43595396659_237",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": "Aula",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "recusado",
+    "obs": "",
+    "treinamento_id": "43595396659"
+  },
+  {
+    "_id": "43595396659_246",
+    "treinamento_id": "43595396659",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    },
+    "staff_id": "246"
+  },
+  {
+    "_id": "43595396659_25",
+    "treinamento_id": "43595396659",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    },
+    "staff_id": "25"
+  },
+  {
+    "_id": "43595396659_278",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    },
+    "staff_id": "278",
+    "obs": "",
+    "treinamento_id": "43595396659",
+    "motivo_recusa": "Aula",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "recusado"
+  },
+  {
+    "_id": "43595396659_280",
+    "obs": "",
+    "treinamento_id": "43595396659",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    },
+    "staff_id": "280"
+  },
+  {
+    "_id": "43595396659_79",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "43595396659",
+    "staff_id": "79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773057600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "43896831305_107",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "status": "confirmado",
+    "treinamento_id": "43896831305",
+    "obs": "",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764331200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "43896831305_17",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764331200,
+      "nanoseconds": 0
+    },
+    "staff_id": "17",
+    "treinamento_id": "43896831305",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z"
+  },
+  {
+    "_id": "43896831305_202",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "43896831305",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764331200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "43896831305_219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764331200,
+      "nanoseconds": 0
+    },
+    "staff_id": "219",
+    "treinamento_id": "43896831305",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "44491241118_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "motivo_recusa": "Não tem disponibilidade",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "treinamento_id": "44491241118",
+    "obs": ""
+  },
+  {
+    "_id": "44491241118_219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "staff_id": "219",
+    "obs": "",
+    "treinamento_id": "44491241118",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "44491241118_237",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "treinamento_id": "44491241118",
+    "obs": "",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "44491241118_246",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "status": "confirmado",
+    "treinamento_id": "44491241118",
+    "obs": "",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "44491241118_270",
+    "staff_id": "270",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "44491241118"
+  },
+  {
+    "_id": "44491241118_281",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "staff_id": "281",
+    "obs": "",
+    "treinamento_id": "44491241118",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z"
+  },
+  {
+    "_id": "44491241118_46",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "44491241118"
+  },
+  {
+    "_id": "44491241118_79",
+    "staff_id": "79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "44491241118"
+  },
+  {
+    "_id": "44866676050_107",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "status": "intencao",
+    "treinamento_id": "44866676050",
+    "obs": "",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "44866676050_135",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.179Z",
+    "treinamento_id": "44866676050",
+    "obs": "",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "44866676050_175",
+    "obs": "",
+    "treinamento_id": "44866676050",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.179Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "175"
+  },
+  {
+    "_id": "44866676050_219",
+    "treinamento_id": "44866676050",
+    "obs": "",
+    "status": "intencao",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "219"
+  },
+  {
+    "_id": "44866676050_229",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.179Z",
+    "obs": "",
+    "treinamento_id": "44866676050",
+    "staff_id": "229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "44866676050_23",
+    "obs": "",
+    "treinamento_id": "44866676050",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.180Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "23"
+  },
+  {
+    "_id": "44866676050_270",
+    "obs": "",
+    "treinamento_id": "44866676050",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.178Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764849600,
+      "nanoseconds": 0
+    },
+    "staff_id": "270"
+  },
+  {
+    "_id": "45092712219_134",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "treinamento_id": "45092712219",
+    "obs": "",
+    "staff_id": "134",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45092712219_135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    },
+    "staff_id": "135",
+    "obs": "",
+    "treinamento_id": "45092712219",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "45092712219_202",
+    "obs": "",
+    "treinamento_id": "45092712219",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    },
+    "staff_id": "202"
+  },
+  {
+    "_id": "45092712219_23",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "treinamento_id": "45092712219",
+    "obs": "",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45092712219_246",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "treinamento_id": "45092712219",
+    "obs": "",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45092712219_270",
+    "treinamento_id": "45092712219",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    },
+    "staff_id": "270"
+  },
+  {
+    "_id": "45416581653_229",
+    "staff_id": "229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765195200,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "45416581653"
+  },
+  {
+    "_id": "45416581653_23",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765195200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "treinamento_id": "45416581653",
+    "obs": ""
+  },
+  {
+    "_id": "45416581653_237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765195200,
+      "nanoseconds": 0
+    },
+    "staff_id": "237",
+    "obs": "",
+    "treinamento_id": "45416581653",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "45476361774_11",
+    "treinamento_id": "45476361774",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    },
+    "staff_id": "11"
+  },
+  {
+    "_id": "45476361774_111",
+    "treinamento_id": "45476361774",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    },
+    "staff_id": "111"
+  },
+  {
+    "_id": "45476361774_151",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "obs": "",
+    "treinamento_id": "45476361774",
+    "staff_id": "151",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45476361774_163",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "45476361774",
+    "staff_id": "163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45476361774_167",
+    "staff_id": "167",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "45476361774"
+  },
+  {
+    "_id": "45476361774_168",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "obs": "",
+    "treinamento_id": "45476361774",
+    "staff_id": "168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45476361774_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "45476361774"
+  },
+  {
+    "_id": "45476361774_199",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    },
+    "staff_id": "199",
+    "obs": "",
+    "treinamento_id": "45476361774",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "45476361774_2",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "treinamento_id": "45476361774",
+    "obs": "",
+    "staff_id": "2",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45476361774_21",
+    "treinamento_id": "45476361774",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    },
+    "staff_id": "21"
+  },
+  {
+    "_id": "45476361774_237",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "obs": "",
+    "treinamento_id": "45476361774",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45476361774_52",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    },
+    "staff_id": "52",
+    "obs": "",
+    "treinamento_id": "45476361774",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "45476361774_67",
+    "staff_id": "67",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "treinamento_id": "45476361774",
+    "obs": ""
+  },
+  {
+    "_id": "45476361774_79",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "45476361774",
+    "staff_id": "79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45725825836_202",
+    "treinamento_id": "45725825836",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764676800,
+      "nanoseconds": 0
+    },
+    "staff_id": "202"
+  },
+  {
+    "_id": "45725825836_246",
+    "treinamento_id": "45725825836",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764676800,
+      "nanoseconds": 0
+    },
+    "staff_id": "246"
+  },
+  {
+    "_id": "45725825836_46",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764676800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "obs": "",
+    "treinamento_id": "45725825836"
+  },
+  {
+    "_id": "45915950776_1",
+    "status": "intencao",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "45915950776",
+    "staff_id": "1",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764072000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45915950776_114",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764072000,
+      "nanoseconds": 0
+    },
+    "staff_id": "114",
+    "obs": "",
+    "treinamento_id": "45915950776",
+    "status": "intencao",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "45915950776_150",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764072000,
+      "nanoseconds": 0
+    },
+    "staff_id": "150",
+    "treinamento_id": "45915950776",
+    "obs": "",
+    "status": "intencao",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "45915950776_25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764072000,
+      "nanoseconds": 0
+    },
+    "staff_id": "25",
+    "obs": "",
+    "treinamento_id": "45915950776",
+    "status": "intencao",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z"
+  },
+  {
+    "_id": "45915950776_57",
+    "staff_id": "57",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764072000,
+      "nanoseconds": 0
+    },
+    "status": "intencao",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "45915950776"
+  },
+  {
+    "_id": "45915950776_63",
+    "obs": "",
+    "treinamento_id": "45915950776",
+    "status": "intencao",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764072000,
+      "nanoseconds": 0
+    },
+    "staff_id": "63"
+  },
+  {
+    "_id": "45915950776_66",
+    "status": "intencao",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "treinamento_id": "45915950776",
+    "obs": "",
+    "staff_id": "66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764072000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "45915950776_91",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764072000,
+      "nanoseconds": 0
+    },
+    "staff_id": "91",
+    "obs": "",
+    "treinamento_id": "45915950776",
+    "status": "intencao",
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "46557583993_114",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774699200,
+      "nanoseconds": 0
+    },
+    "staff_id": "114",
+    "treinamento_id": "46557583993",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z"
+  },
+  {
+    "_id": "46557583993_135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774699200,
+      "nanoseconds": 0
+    },
+    "staff_id": "135",
+    "treinamento_id": "46557583993",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "46557583993_168",
+    "treinamento_id": "46557583993",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774699200,
+      "nanoseconds": 0
+    },
+    "staff_id": "168"
+  },
+  {
+    "_id": "46557583993_185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774699200,
+      "nanoseconds": 0
+    },
+    "staff_id": "185",
+    "treinamento_id": "46557583993",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "46557583993_202",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "treinamento_id": "46557583993",
+    "obs": "",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774699200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "46557583993_237",
+    "treinamento_id": "46557583993",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774699200,
+      "nanoseconds": 0
+    },
+    "staff_id": "237"
+  },
+  {
+    "_id": "46557583993_25",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774699200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "treinamento_id": "46557583993",
+    "obs": ""
+  },
+  {
+    "_id": "46557583993_46",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "46557583993",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774699200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "46638088713_114",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "46638088713",
+    "staff_id": "114",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "46638088713_160",
+    "treinamento_id": "46638088713",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    },
+    "staff_id": "160"
+  },
+  {
+    "_id": "46638088713_167",
+    "treinamento_id": "46638088713",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    },
+    "staff_id": "167"
+  },
+  {
+    "_id": "46638088713_237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    },
+    "staff_id": "237",
+    "treinamento_id": "46638088713",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "46638088713_46",
+    "obs": "",
+    "treinamento_id": "46638088713",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    },
+    "staff_id": "46"
+  },
+  {
+    "_id": "46638088713_84",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    },
+    "staff_id": "84",
+    "obs": "",
+    "treinamento_id": "46638088713",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "46709508964_110",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772539200,
+      "nanoseconds": 0
+    },
+    "staff_id": "110",
+    "treinamento_id": "46709508964",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "46709508964_229",
+    "staff_id": "229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772539200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "treinamento_id": "46709508964",
+    "obs": ""
+  },
+  {
+    "_id": "46709508964_23",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772539200,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado",
+    "treinamento_id": "46709508964",
+    "obs": ""
+  },
+  {
+    "_id": "46749187096_150",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "treinamento_id": "46749187096",
+    "obs": "",
+    "staff_id": "150",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "46749187096_167",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": "agenda",
+    "treinamento_id": "46749187096",
+    "obs": "",
+    "staff_id": "167",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "46749187096_168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "168",
+    "obs": "",
+    "treinamento_id": "46749187096",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "46749187096_185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "185",
+    "treinamento_id": "46749187096",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "46749187096_202",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "treinamento_id": "46749187096",
+    "obs": "",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "46749187096_219",
+    "obs": "",
+    "treinamento_id": "46749187096",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "219"
+  },
+  {
+    "_id": "46749187096_229",
+    "treinamento_id": "46749187096",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "229"
+  },
+  {
+    "_id": "46749187096_23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "23",
+    "obs": "",
+    "treinamento_id": "46749187096",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "46749187096_237",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": "agenda",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "recusado",
+    "obs": "",
+    "treinamento_id": "46749187096"
+  },
+  {
+    "_id": "46749187096_25",
+    "obs": "",
+    "treinamento_id": "46749187096",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "25"
+  },
+  {
+    "_id": "46749187096_278",
+    "treinamento_id": "46749187096",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "278"
+  },
+  {
+    "_id": "46749187096_62",
+    "staff_id": "62",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "treinamento_id": "46749187096",
+    "obs": ""
+  },
+  {
+    "_id": "46794708277_107",
+    "treinamento_id": "46794708277",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764590400,
+      "nanoseconds": 0
+    },
+    "staff_id": "107"
+  },
+  {
+    "_id": "46794708277_114",
+    "staff_id": "114",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764590400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "obs": "",
+    "treinamento_id": "46794708277"
+  },
+  {
+    "_id": "46794708277_150",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "status": "confirmado",
+    "treinamento_id": "46794708277",
+    "obs": "",
+    "staff_id": "150",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764590400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "46794708277_219",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764590400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "46794708277"
+  },
+  {
+    "_id": "46794708277_237",
+    "obs": "",
+    "treinamento_id": "46794708277",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.181Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1764590400,
+      "nanoseconds": 0
+    },
+    "staff_id": "237"
+  },
+  {
+    "_id": "46794767406_107",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "46794767406",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "46794767406_135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    },
+    "staff_id": "135",
+    "treinamento_id": "46794767406",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "46794767406_185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    },
+    "staff_id": "185",
+    "treinamento_id": "46794767406",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z"
+  },
+  {
+    "_id": "46794767406_202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    },
+    "staff_id": "202",
+    "treinamento_id": "46794767406",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z"
+  },
+  {
+    "_id": "46794767406_235",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "obs": "",
+    "treinamento_id": "46794767406",
+    "staff_id": "235",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765972800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "47172415349_107",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774008000,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "47172415349"
+  },
+  {
+    "_id": "47172415349_229",
+    "staff_id": "229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774008000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "treinamento_id": "47172415349",
+    "obs": ""
+  },
+  {
+    "_id": "47172415349_5",
+    "staff_id": "5",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774008000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "treinamento_id": "47172415349",
+    "obs": ""
+  },
+  {
+    "_id": "47172415349_66",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": "aula na sexta",
+    "treinamento_id": "47172415349",
+    "obs": "",
+    "staff_id": "66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774008000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "47172415349_67",
+    "obs": "",
+    "treinamento_id": "47172415349",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774008000,
+      "nanoseconds": 0
+    },
+    "staff_id": "67"
+  },
+  {
+    "_id": "47172415349_79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774008000,
+      "nanoseconds": 0
+    },
+    "staff_id": "79",
+    "obs": "",
+    "treinamento_id": "47172415349",
+    "status": "recusado",
+    "motivo_recusa": "não pode dormir",
+    "updatedAt": "2026-06-17T14:39:33.579Z"
+  },
+  {
+    "_id": "47537259323_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "obs": "",
+    "treinamento_id": "47537259323",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z"
+  },
+  {
+    "_id": "47537259323_219",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "treinamento_id": "47537259323",
+    "obs": "",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "47537259323_235",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    },
+    "staff_id": "235",
+    "obs": "",
+    "treinamento_id": "47537259323",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "47537259323_237",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "treinamento_id": "47537259323",
+    "obs": ""
+  },
+  {
+    "_id": "47537259323_46",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765886400,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "status": "confirmado",
+    "treinamento_id": "47537259323",
+    "obs": ""
+  },
+  {
+    "_id": "47720342175_107",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "treinamento_id": "47720342175",
+    "obs": ""
+  },
+  {
+    "_id": "47720342175_150",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "treinamento_id": "47720342175",
+    "obs": "",
+    "staff_id": "150",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "47720342175_246",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "treinamento_id": "47720342175",
+    "obs": "",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "47720342175_25",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "obs": "",
+    "treinamento_id": "47720342175"
+  },
+  {
+    "_id": "47720342175_5",
+    "treinamento_id": "47720342175",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    },
+    "staff_id": "5"
+  },
+  {
+    "_id": "48265713227_110",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "48265713227",
+    "staff_id": "110",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769774400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48265713227_219",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769774400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "obs": "",
+    "treinamento_id": "48265713227"
+  },
+  {
+    "_id": "48265713227_79",
+    "staff_id": "79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769774400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "treinamento_id": "48265713227",
+    "obs": ""
+  },
+  {
+    "_id": "48265713227_84",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "treinamento_id": "48265713227",
+    "obs": "",
+    "staff_id": "84",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769774400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48359315536_135",
+    "treinamento_id": "48359315536",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774267200,
+      "nanoseconds": 0
+    },
+    "staff_id": "135"
+  },
+  {
+    "_id": "48359315536_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774267200,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "treinamento_id": "48359315536",
+    "obs": ""
+  },
+  {
+    "_id": "48359315536_202",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774267200,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": "Tem compromisso a noite",
+    "treinamento_id": "48359315536",
+    "obs": ""
+  },
+  {
+    "_id": "48359315536_21",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "treinamento_id": "48359315536",
+    "obs": "",
+    "staff_id": "21",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774267200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48359315536_246",
+    "obs": "",
+    "treinamento_id": "48359315536",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774267200,
+      "nanoseconds": 0
+    },
+    "staff_id": "246"
+  },
+  {
+    "_id": "48359315536_25",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null,
+    "treinamento_id": "48359315536",
+    "obs": "",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774267200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48359315536_278",
+    "staff_id": "278",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774267200,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": "Não pode",
+    "obs": "",
+    "treinamento_id": "48359315536"
+  },
+  {
+    "_id": "48359315536_79",
+    "obs": "",
+    "treinamento_id": "48359315536",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.581Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774267200,
+      "nanoseconds": 0
+    },
+    "staff_id": "79"
+  },
+  {
+    "_id": "48878202798_202",
+    "obs": "",
+    "treinamento_id": "48878202798",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765540800,
+      "nanoseconds": 0
+    },
+    "staff_id": "202"
+  },
+  {
+    "_id": "48878202798_23",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765540800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "48878202798"
+  },
+  {
+    "_id": "48878202798_270",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765540800,
+      "nanoseconds": 0
+    },
+    "staff_id": "270",
+    "treinamento_id": "48878202798",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "48886916378_11",
+    "staff_id": "11",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "treinamento_id": "48886916378",
+    "obs": ""
+  },
+  {
+    "_id": "48886916378_110",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "obs": "",
+    "treinamento_id": "48886916378",
+    "staff_id": "110",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48886916378_111",
+    "treinamento_id": "48886916378",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "111"
+  },
+  {
+    "_id": "48886916378_151",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "151",
+    "treinamento_id": "48886916378",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "48886916378_160",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "treinamento_id": "48886916378",
+    "obs": "",
+    "staff_id": "160",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48886916378_163",
+    "treinamento_id": "48886916378",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "163"
+  },
+  {
+    "_id": "48886916378_199",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "199",
+    "obs": "",
+    "treinamento_id": "48886916378",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "48886916378_52",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "48886916378",
+    "staff_id": "52",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48886916378_66",
+    "treinamento_id": "48886916378",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "66"
+  },
+  {
+    "_id": "48886916378_67",
+    "staff_id": "67",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "48886916378"
+  },
+  {
+    "_id": "48886916378_84",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "treinamento_id": "48886916378",
+    "obs": "",
+    "staff_id": "84",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48887036050_135",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "treinamento_id": "48887036050",
+    "obs": "",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765281600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48887036050_23",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765281600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "treinamento_id": "48887036050",
+    "obs": ""
+  },
+  {
+    "_id": "48887036050_246",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "obs": "",
+    "treinamento_id": "48887036050",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765281600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48887036050_270",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765281600,
+      "nanoseconds": 0
+    },
+    "staff_id": "270",
+    "treinamento_id": "48887036050",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z"
+  },
+  {
+    "_id": "48945589123_111",
+    "obs": "",
+    "treinamento_id": "48945589123",
+    "status": "recusado",
+    "motivo_recusa": "Viagem a trabalho e qualificação da pesquisa",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772798400,
+      "nanoseconds": 0
+    },
+    "staff_id": "111"
+  },
+  {
+    "_id": "48945589123_160",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772798400,
+      "nanoseconds": 0
+    },
+    "staff_id": "160",
+    "obs": "",
+    "treinamento_id": "48945589123",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z"
+  },
+  {
+    "_id": "48945589123_167",
+    "status": "recusado",
+    "motivo_recusa": "Tem aula",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "treinamento_id": "48945589123",
+    "obs": "",
+    "staff_id": "167",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772798400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "48945589123_168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772798400,
+      "nanoseconds": 0
+    },
+    "staff_id": "168",
+    "treinamento_id": "48945589123",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "48945589123_246",
+    "obs": "",
+    "treinamento_id": "48945589123",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772798400,
+      "nanoseconds": 0
+    },
+    "staff_id": "246"
+  },
+  {
+    "_id": "48945589123_25",
+    "obs": "",
+    "treinamento_id": "48945589123",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772798400,
+      "nanoseconds": 0
+    },
+    "staff_id": "25"
+  },
+  {
+    "_id": "48945589123_67",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado",
+    "treinamento_id": "48945589123",
+    "obs": "",
+    "staff_id": "67",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772798400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "49070018196_107",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "obs": "",
+    "treinamento_id": "49070018196",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1766059200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "49070018196_110",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1766059200,
+      "nanoseconds": 0
+    },
+    "staff_id": "110",
+    "obs": "",
+    "treinamento_id": "49070018196",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "49070018196_135",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "status": "confirmado",
+    "treinamento_id": "49070018196",
+    "obs": "",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1766059200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "49070018196_202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1766059200,
+      "nanoseconds": 0
+    },
+    "staff_id": "202",
+    "treinamento_id": "49070018196",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z"
+  },
+  {
+    "_id": "49616256952_135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769428800,
+      "nanoseconds": 0
+    },
+    "staff_id": "135",
+    "obs": "",
+    "treinamento_id": "49616256952",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "49616256952_23",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769428800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "treinamento_id": "49616256952",
+    "obs": ""
+  },
+  {
+    "_id": "49616256952_237",
+    "obs": "",
+    "treinamento_id": "49616256952",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769428800,
+      "nanoseconds": 0
+    },
+    "staff_id": "237"
+  },
+  {
+    "_id": "49616256952_246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769428800,
+      "nanoseconds": 0
+    },
+    "staff_id": "246",
+    "obs": "",
+    "treinamento_id": "49616256952",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "50324206256_107",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769860800,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "50324206256"
+  },
+  {
+    "_id": "50324206256_114",
+    "treinamento_id": "50324206256",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769860800,
+      "nanoseconds": 0
+    },
+    "staff_id": "114"
+  },
+  {
+    "_id": "50324206256_135",
+    "treinamento_id": "50324206256",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769860800,
+      "nanoseconds": 0
+    },
+    "staff_id": "135"
+  },
+  {
+    "_id": "50324206256_168",
+    "staff_id": "168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769860800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "50324206256"
+  },
+  {
+    "_id": "50324206256_202",
+    "obs": "",
+    "treinamento_id": "50324206256",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769860800,
+      "nanoseconds": 0
+    },
+    "staff_id": "202"
+  },
+  {
+    "_id": "50324206256_237",
+    "obs": "",
+    "treinamento_id": "50324206256",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769860800,
+      "nanoseconds": 0
+    },
+    "staff_id": "237"
+  },
+  {
+    "_id": "50324206256_57",
+    "treinamento_id": "50324206256",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769860800,
+      "nanoseconds": 0
+    },
+    "staff_id": "57"
+  },
+  {
+    "_id": "50435902886_107",
+    "obs": "",
+    "treinamento_id": "50435902886",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": "Não pode ficar fora. Pai estará em campinas",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774526400,
+      "nanoseconds": 0
+    },
+    "staff_id": "107"
+  },
+  {
+    "_id": "50435902886_150",
+    "staff_id": "150",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774526400,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "50435902886"
+  },
+  {
+    "_id": "50435902886_237",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774526400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "treinamento_id": "50435902886",
+    "obs": ""
+  },
+  {
+    "_id": "50435902886_246",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "treinamento_id": "50435902886",
+    "obs": "",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774526400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50435902886_79",
+    "staff_id": "79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774526400,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "50435902886"
+  },
+  {
+    "_id": "50435919433_114",
+    "obs": "",
+    "treinamento_id": "50435919433",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765368000,
+      "nanoseconds": 0
+    },
+    "staff_id": "114"
+  },
+  {
+    "_id": "50435919433_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765368000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "50435919433"
+  },
+  {
+    "_id": "50435919433_202",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "50435919433",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765368000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50435919433_219",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "50435919433",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765368000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50435919433_229",
+    "obs": "",
+    "treinamento_id": "50435919433",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765368000,
+      "nanoseconds": 0
+    },
+    "staff_id": "229"
+  },
+  {
+    "_id": "50435919433_237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765368000,
+      "nanoseconds": 0
+    },
+    "staff_id": "237",
+    "obs": "",
+    "treinamento_id": "50435919433",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z"
+  },
+  {
+    "_id": "50435919433_246",
+    "treinamento_id": "50435919433",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765368000,
+      "nanoseconds": 0
+    },
+    "staff_id": "246"
+  },
+  {
+    "_id": "50435919433_25",
+    "obs": "",
+    "treinamento_id": "50435919433",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765368000,
+      "nanoseconds": 0
+    },
+    "staff_id": "25"
+  },
+  {
+    "_id": "50435919433_270",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765368000,
+      "nanoseconds": 0
+    },
+    "staff_id": "270",
+    "obs": "",
+    "treinamento_id": "50435919433",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "50435919433_46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765368000,
+      "nanoseconds": 0
+    },
+    "staff_id": "46",
+    "treinamento_id": "50435919433",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z"
+  },
+  {
+    "_id": "50435941388_107",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "treinamento_id": "50435941388",
+    "obs": ""
+  },
+  {
+    "_id": "50435941388_114",
+    "obs": "",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    },
+    "staff_id": "114"
+  },
+  {
+    "_id": "50435941388_135",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "treinamento_id": "50435941388",
+    "obs": "",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50435941388_150",
+    "staff_id": "150",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "treinamento_id": "50435941388",
+    "obs": ""
+  },
+  {
+    "_id": "50435941388_160",
+    "staff_id": "160",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "treinamento_id": "50435941388",
+    "obs": ""
+  },
+  {
+    "_id": "50435941388_163",
+    "obs": "",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    },
+    "staff_id": "163"
+  },
+  {
+    "_id": "50435941388_167",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "obs": "",
+    "treinamento_id": "50435941388",
+    "staff_id": "167",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50435941388_185",
+    "obs": "",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    },
+    "staff_id": "185"
+  },
+  {
+    "_id": "50435941388_202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    },
+    "staff_id": "202",
+    "obs": "",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z"
+  },
+  {
+    "_id": "50435941388_237",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "50435941388",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50435941388_246",
+    "treinamento_id": "50435941388",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    },
+    "staff_id": "246"
+  },
+  {
+    "_id": "50435941388_25",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "treinamento_id": "50435941388",
+    "obs": "",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50435941388_67",
+    "staff_id": "67",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "obs": "",
+    "treinamento_id": "50435941388"
+  },
+  {
+    "_id": "50435941388_79",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.182Z",
+    "motivo_recusa": null,
+    "treinamento_id": "50435941388",
+    "obs": "",
+    "staff_id": "79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1765454400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50502417174_107",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null,
+    "treinamento_id": "50502417174",
+    "obs": "",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774872000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50502417174_150",
+    "treinamento_id": "50502417174",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774872000,
+      "nanoseconds": 0
+    },
+    "staff_id": "150"
+  },
+  {
+    "_id": "50502417174_168",
+    "motivo_recusa": "Não pode ",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "recusado",
+    "treinamento_id": "50502417174",
+    "obs": "",
+    "staff_id": "168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774872000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50502417174_202",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.581Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "50502417174",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774872000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50502417174_246",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado",
+    "treinamento_id": "50502417174",
+    "obs": "",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774872000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50502417174_278",
+    "treinamento_id": "50502417174",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": "Não pode na segunda. Aula",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774872000,
+      "nanoseconds": 0
+    },
+    "staff_id": "278"
+  },
+  {
+    "_id": "50505767512_107",
+    "status": "recusado",
+    "motivo_recusa": "Não pode ficar fora. Pai estará em campinas",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "treinamento_id": "50505767512",
+    "obs": "",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50505767512_11",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    },
+    "staff_id": "11",
+    "treinamento_id": "50505767512",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "50505767512_150",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "50505767512",
+    "staff_id": "150",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50505767512_160",
+    "staff_id": "160",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "obs": "",
+    "treinamento_id": "50505767512"
+  },
+  {
+    "_id": "50505767512_185",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "50505767512",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50505767512_237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    },
+    "staff_id": "237",
+    "treinamento_id": "50505767512",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "50505767512_246",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null,
+    "treinamento_id": "50505767512",
+    "obs": "",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50505767512_4",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    },
+    "staff_id": "4",
+    "obs": "",
+    "treinamento_id": "50505767512",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "50505767512_79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    },
+    "staff_id": "79",
+    "treinamento_id": "50505767512",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "50513338489_114",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    },
+    "staff_id": "114",
+    "obs": "",
+    "treinamento_id": "50513338489",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "50513338489_135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    },
+    "staff_id": "135",
+    "treinamento_id": "50513338489",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z"
+  },
+  {
+    "_id": "50513338489_168",
+    "staff_id": "168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "obs": "",
+    "treinamento_id": "50513338489"
+  },
+  {
+    "_id": "50513338489_185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    },
+    "staff_id": "185",
+    "treinamento_id": "50513338489",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "50513338489_2",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    },
+    "staff_id": "2",
+    "obs": "",
+    "treinamento_id": "50513338489",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "50513338489_229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    },
+    "staff_id": "229",
+    "treinamento_id": "50513338489",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z"
+  },
+  {
+    "_id": "50513338489_237",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "treinamento_id": "50513338489",
+    "obs": "",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50513338489_25",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "50513338489",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50513338489_277",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    },
+    "staff_id": "277",
+    "treinamento_id": "50513338489",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "50513338489_46",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado",
+    "treinamento_id": "50513338489",
+    "obs": "",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50513338489_52",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    },
+    "staff_id": "52",
+    "obs": "",
+    "treinamento_id": "50513338489",
+    "motivo_recusa": "NB Cancelou, como não terá mais disponibilidade",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "recusado"
+  },
+  {
+    "_id": "50513338489_67",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    },
+    "staff_id": "67",
+    "treinamento_id": "50513338489",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "50513338489_84",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770465600,
+      "nanoseconds": 0
+    },
+    "staff_id": "84",
+    "treinamento_id": "50513338489",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z"
+  },
+  {
+    "_id": "50513408000_135",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769601600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "50513408000"
+  },
+  {
+    "_id": "50513408000_150",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "treinamento_id": "50513408000",
+    "obs": "",
+    "staff_id": "150",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769601600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50513408000_246",
+    "treinamento_id": "50513408000",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769601600,
+      "nanoseconds": 0
+    },
+    "staff_id": "246"
+  },
+  {
+    "_id": "50574802738_135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769688000,
+      "nanoseconds": 0
+    },
+    "staff_id": "135",
+    "treinamento_id": "50574802738",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z"
+  },
+  {
+    "_id": "50574802738_150",
+    "obs": "",
+    "treinamento_id": "50574802738",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769688000,
+      "nanoseconds": 0
+    },
+    "staff_id": "150"
+  },
+  {
+    "_id": "50574802738_246",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769688000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.183Z",
+    "treinamento_id": "50574802738",
+    "obs": ""
+  },
+  {
+    "_id": "50574802745_107",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "treinamento_id": "50574802745",
+    "obs": "",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768996800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50574802745_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768996800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "50574802745"
+  },
+  {
+    "_id": "50574802811_110",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772625600,
+      "nanoseconds": 0
+    },
+    "staff_id": "110",
+    "obs": "",
+    "treinamento_id": "50574802811",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "50574802811_135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772625600,
+      "nanoseconds": 0
+    },
+    "staff_id": "135",
+    "treinamento_id": "50574802811",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z"
+  },
+  {
+    "_id": "50574802811_229",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado",
+    "treinamento_id": "50574802811",
+    "obs": "",
+    "staff_id": "229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772625600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50574802811_23",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "obs": "",
+    "treinamento_id": "50574802811",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772625600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "50574802811_237",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772625600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "obs": "",
+    "treinamento_id": "50574802811"
+  },
+  {
+    "_id": "51020424972_110",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "treinamento_id": "51020424972",
+    "obs": "",
+    "staff_id": "110",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769688000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51020424972_163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769688000,
+      "nanoseconds": 0
+    },
+    "staff_id": "163",
+    "treinamento_id": "51020424972",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z"
+  },
+  {
+    "_id": "51020424972_185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769688000,
+      "nanoseconds": 0
+    },
+    "staff_id": "185",
+    "treinamento_id": "51020424972",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "51020424972_202",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769688000,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "51020424972"
+  },
+  {
+    "_id": "51020424972_25",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "51020424972",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769688000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51020424972_52",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769688000,
+      "nanoseconds": 0
+    },
+    "staff_id": "52",
+    "treinamento_id": "51020424972",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "51020424972_67",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado",
+    "treinamento_id": "51020424972",
+    "obs": "",
+    "staff_id": "67",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769688000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51244925964_107",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "51244925964",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768478400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51244925964_219",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "treinamento_id": "51244925964",
+    "obs": "",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768478400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51244925964_23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768478400,
+      "nanoseconds": 0
+    },
+    "staff_id": "23",
+    "obs": "",
+    "treinamento_id": "51244925964",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "51514816570_119",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "51514816570",
+    "staff_id": "119",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773403200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51514816570_135",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773403200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "treinamento_id": "51514816570",
+    "obs": ""
+  },
+  {
+    "_id": "51514816570_185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773403200,
+      "nanoseconds": 0
+    },
+    "staff_id": "185",
+    "obs": "",
+    "treinamento_id": "51514816570",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "51514816570_246",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "51514816570",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773403200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51514816570_25",
+    "obs": "",
+    "treinamento_id": "51514816570",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773403200,
+      "nanoseconds": 0
+    },
+    "staff_id": "25"
+  },
+  {
+    "_id": "51514816570_79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773403200,
+      "nanoseconds": 0
+    },
+    "staff_id": "79",
+    "treinamento_id": "51514816570",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z"
+  },
+  {
+    "_id": "51663150260_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768996800,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "treinamento_id": "51663150260",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "51663150260_135",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "treinamento_id": "51663150260",
+    "obs": "",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768996800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51663150260_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768996800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "51663150260"
+  },
+  {
+    "_id": "51663150260_219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768996800,
+      "nanoseconds": 0
+    },
+    "staff_id": "219",
+    "treinamento_id": "51663150260",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "51663150260_237",
+    "obs": "",
+    "treinamento_id": "51663150260",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768996800,
+      "nanoseconds": 0
+    },
+    "staff_id": "237"
+  },
+  {
+    "_id": "51779351625_150",
+    "treinamento_id": "51779351625",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768478400,
+      "nanoseconds": 0
+    },
+    "staff_id": "150"
+  },
+  {
+    "_id": "51779351625_202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768478400,
+      "nanoseconds": 0
+    },
+    "staff_id": "202",
+    "obs": "",
+    "treinamento_id": "51779351625",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z"
+  },
+  {
+    "_id": "51779351625_46",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "51779351625",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768478400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51926139727_107",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "51926139727"
+  },
+  {
+    "_id": "51926139727_168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    },
+    "staff_id": "168",
+    "obs": "",
+    "treinamento_id": "51926139727",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z"
+  },
+  {
+    "_id": "51926139727_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": "Trabalho na faculdade",
+    "obs": "",
+    "treinamento_id": "51926139727"
+  },
+  {
+    "_id": "51926139727_219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    },
+    "staff_id": "219",
+    "obs": "",
+    "treinamento_id": "51926139727",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "51926139727_237",
+    "obs": "",
+    "treinamento_id": "51926139727",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": "teste",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    },
+    "staff_id": "237"
+  },
+  {
+    "_id": "51926139727_4",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "51926139727",
+    "staff_id": "4",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51926139727_57",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "51926139727",
+    "staff_id": "57",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51926139727_66",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "treinamento_id": "51926139727",
+    "obs": "",
+    "staff_id": "66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "51926139727_67",
+    "staff_id": "67",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "51926139727"
+  },
+  {
+    "_id": "52002393658_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "treinamento_id": "52002393658",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z"
+  },
+  {
+    "_id": "52002393658_135",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "52002393658",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "52002393658_2",
+    "staff_id": "2",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "52002393658"
+  },
+  {
+    "_id": "52002393658_229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "staff_id": "229",
+    "obs": "",
+    "treinamento_id": "52002393658",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "52002393658_23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "staff_id": "23",
+    "treinamento_id": "52002393658",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z"
+  },
+  {
+    "_id": "52002393658_66",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "52002393658",
+    "staff_id": "66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "52002393658_84",
+    "treinamento_id": "52002393658",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773835200,
+      "nanoseconds": 0
+    },
+    "staff_id": "84"
+  },
+  {
+    "_id": "52003305005_107",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "52003305005",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768824000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "52003305005_163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768824000,
+      "nanoseconds": 0
+    },
+    "staff_id": "163",
+    "treinamento_id": "52003305005",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "52003305005_168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768824000,
+      "nanoseconds": 0
+    },
+    "staff_id": "168",
+    "obs": "",
+    "treinamento_id": "52003305005",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "52003305005_185",
+    "treinamento_id": "52003305005",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768824000,
+      "nanoseconds": 0
+    },
+    "staff_id": "185"
+  },
+  {
+    "_id": "52003305005_202",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768824000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "treinamento_id": "52003305005",
+    "obs": ""
+  },
+  {
+    "_id": "52003305005_219",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "treinamento_id": "52003305005",
+    "obs": "",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768824000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "52003305005_237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768824000,
+      "nanoseconds": 0
+    },
+    "staff_id": "237",
+    "treinamento_id": "52003305005",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z"
+  },
+  {
+    "_id": "52076835197_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768219200,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "treinamento_id": "52076835197",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "52076835197_114",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "treinamento_id": "52076835197",
+    "obs": "",
+    "staff_id": "114",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768219200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "52076835197_135",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768219200,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "52076835197"
+  },
+  {
+    "_id": "52076835197_202",
+    "treinamento_id": "52076835197",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768219200,
+      "nanoseconds": 0
+    },
+    "staff_id": "202"
+  },
+  {
+    "_id": "52076835197_237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768219200,
+      "nanoseconds": 0
+    },
+    "staff_id": "237",
+    "treinamento_id": "52076835197",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "52994270746_135",
+    "treinamento_id": "52994270746",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772107200,
+      "nanoseconds": 0
+    },
+    "staff_id": "135"
+  },
+  {
+    "_id": "52994270746_160",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772107200,
+      "nanoseconds": 0
+    },
+    "staff_id": "160",
+    "treinamento_id": "52994270746",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "52994270746_185",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado",
+    "treinamento_id": "52994270746",
+    "obs": "",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772107200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "52994270746_237",
+    "treinamento_id": "52994270746",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772107200,
+      "nanoseconds": 0
+    },
+    "staff_id": "237"
+  },
+  {
+    "_id": "52994270746_278",
+    "staff_id": "278",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772107200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "52994270746"
+  },
+  {
+    "_id": "52994270746_4",
+    "staff_id": "4",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772107200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "52994270746"
+  },
+  {
+    "_id": "52994270746_46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772107200,
+      "nanoseconds": 0
+    },
+    "staff_id": "46",
+    "treinamento_id": "52994270746",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "52994270746_67",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772107200,
+      "nanoseconds": 0
+    },
+    "staff_id": "67",
+    "treinamento_id": "52994270746",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": "Não tem disponibilidade"
+  },
+  {
+    "_id": "52994270746_79",
+    "treinamento_id": "52994270746",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772107200,
+      "nanoseconds": 0
+    },
+    "staff_id": "79"
+  },
+  {
+    "_id": "53343167043_107",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "obs": "",
+    "treinamento_id": "53343167043",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769083200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "53343167043_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769083200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "53343167043"
+  },
+  {
+    "_id": "53343167043_202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769083200,
+      "nanoseconds": 0
+    },
+    "staff_id": "202",
+    "treinamento_id": "53343167043",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "53343167043_229",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "53343167043",
+    "staff_id": "229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769083200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "53343167043_23",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769083200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "treinamento_id": "53343167043",
+    "obs": ""
+  },
+  {
+    "_id": "53343167043_270",
+    "obs": "",
+    "treinamento_id": "53343167043",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769083200,
+      "nanoseconds": 0
+    },
+    "staff_id": "270"
+  },
+  {
+    "_id": "53696538271_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769428800,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "obs": "",
+    "treinamento_id": "53696538271",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "53696538271_25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769428800,
+      "nanoseconds": 0
+    },
+    "staff_id": "25",
+    "obs": "",
+    "treinamento_id": "53696538271",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z"
+  },
+  {
+    "_id": "53696538271_46",
+    "treinamento_id": "53696538271",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769428800,
+      "nanoseconds": 0
+    },
+    "staff_id": "46"
+  },
+  {
+    "_id": "53697245757_135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770379200,
+      "nanoseconds": 0
+    },
+    "staff_id": "135",
+    "treinamento_id": "53697245757",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "53697245757_202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770379200,
+      "nanoseconds": 0
+    },
+    "staff_id": "202",
+    "obs": "",
+    "treinamento_id": "53697245757",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "53697245757_46",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "53697245757",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770379200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "53700624390_107",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769515200,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "53700624390"
+  },
+  {
+    "_id": "53700624390_160",
+    "staff_id": "160",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769515200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "obs": "",
+    "treinamento_id": "53700624390"
+  },
+  {
+    "_id": "53700624390_167",
+    "staff_id": "167",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769515200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "53700624390"
+  },
+  {
+    "_id": "53700624390_52",
+    "obs": "",
+    "treinamento_id": "53700624390",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769515200,
+      "nanoseconds": 0
+    },
+    "staff_id": "52"
+  },
+  {
+    "_id": "53700624390_57",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "obs": "",
+    "treinamento_id": "53700624390",
+    "staff_id": "57",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1769515200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "53897828942_114",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "114",
+    "treinamento_id": "53897828942",
+    "obs": "",
+    "status": "recusado",
+    "motivo_recusa": "trabalho",
+    "updatedAt": "2026-06-17T14:39:33.185Z"
+  },
+  {
+    "_id": "53897828942_119",
+    "obs": "",
+    "treinamento_id": "53897828942",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "119"
+  },
+  {
+    "_id": "53897828942_135",
+    "obs": "",
+    "treinamento_id": "53897828942",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "135"
+  },
+  {
+    "_id": "53897828942_17",
+    "obs": "",
+    "treinamento_id": "53897828942",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": "agenda",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "17"
+  },
+  {
+    "_id": "53897828942_270",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado",
+    "treinamento_id": "53897828942",
+    "obs": "",
+    "staff_id": "270",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "53897828942_277",
+    "obs": "",
+    "treinamento_id": "53897828942",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "277"
+  },
+  {
+    "_id": "53897828942_46",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "53897828942",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "53897828942_79",
+    "obs": "",
+    "treinamento_id": "53897828942",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "staff_id": "79"
+  },
+  {
+    "_id": "53897828942_92",
+    "staff_id": "92",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770206400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "treinamento_id": "53897828942",
+    "obs": ""
+  },
+  {
+    "_id": "54020407913_110",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "54020407913",
+    "staff_id": "110",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770379200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54020407913_237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770379200,
+      "nanoseconds": 0
+    },
+    "staff_id": "237",
+    "obs": "",
+    "treinamento_id": "54020407913",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.185Z"
+  },
+  {
+    "_id": "54020407913_25",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770379200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "54020407913"
+  },
+  {
+    "_id": "54061378998_110",
+    "staff_id": "110",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770292800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "treinamento_id": "54061378998",
+    "obs": ""
+  },
+  {
+    "_id": "54061378998_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770292800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "treinamento_id": "54061378998",
+    "obs": ""
+  },
+  {
+    "_id": "54061378998_219",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null,
+    "treinamento_id": "54061378998",
+    "obs": "",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770292800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54061378998_229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770292800,
+      "nanoseconds": 0
+    },
+    "staff_id": "229",
+    "obs": "",
+    "treinamento_id": "54061378998",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.185Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "54061378998_237",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "54061378998",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770292800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54194701362_107",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "54194701362",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768910400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54194701362_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1768910400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.184Z",
+    "motivo_recusa": null,
+    "treinamento_id": "54194701362",
+    "obs": ""
+  },
+  {
+    "_id": "54263985450_135",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.577Z",
+    "obs": "",
+    "treinamento_id": "54263985450",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773230400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54263985450_160",
+    "treinamento_id": "54263985450",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773230400,
+      "nanoseconds": 0
+    },
+    "staff_id": "160"
+  },
+  {
+    "_id": "54263985450_163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773230400,
+      "nanoseconds": 0
+    },
+    "staff_id": "163",
+    "treinamento_id": "54263985450",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "54263985450_23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773230400,
+      "nanoseconds": 0
+    },
+    "staff_id": "23",
+    "obs": "",
+    "treinamento_id": "54263985450",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z"
+  },
+  {
+    "_id": "54263985450_246",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773230400,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "54263985450"
+  },
+  {
+    "_id": "54263985450_4",
+    "staff_id": "4",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773230400,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "54263985450"
+  },
+  {
+    "_id": "54263985450_67",
+    "treinamento_id": "54263985450",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773230400,
+      "nanoseconds": 0
+    },
+    "staff_id": "67"
+  },
+  {
+    "_id": "54263985450_79",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.577Z",
+    "obs": "",
+    "treinamento_id": "54263985450",
+    "staff_id": "79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773230400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54350288653_135",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770811200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "treinamento_id": "54350288653",
+    "obs": ""
+  },
+  {
+    "_id": "54350288653_202",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770811200,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "54350288653"
+  },
+  {
+    "_id": "54350288653_278",
+    "obs": "",
+    "treinamento_id": "54350288653",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770811200,
+      "nanoseconds": 0
+    },
+    "staff_id": "278"
+  },
+  {
+    "_id": "54350288653_46",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "54350288653",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770811200,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54350288653_66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770811200,
+      "nanoseconds": 0
+    },
+    "staff_id": "66",
+    "obs": "",
+    "treinamento_id": "54350288653",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.186Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "54955880783_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "treinamento_id": "54955880783",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": "Com restrição de horário"
+  },
+  {
+    "_id": "54955880783_135",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": "Estará em deslocamento - Retorno RJ X CPS - Inter Risk ",
+    "obs": "",
+    "treinamento_id": "54955880783"
+  },
+  {
+    "_id": "54955880783_150",
+    "treinamento_id": "54955880783",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "staff_id": "150"
+  },
+  {
+    "_id": "54955880783_163",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "obs": "",
+    "treinamento_id": "54955880783",
+    "staff_id": "163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54955880783_185",
+    "treinamento_id": "54955880783",
+    "obs": "",
+    "status": "recusado",
+    "motivo_recusa": "Não tem disponibilidade",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "staff_id": "185"
+  },
+  {
+    "_id": "54955880783_202",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "treinamento_id": "54955880783",
+    "obs": ""
+  },
+  {
+    "_id": "54955880783_21",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "staff_id": "21",
+    "treinamento_id": "54955880783",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z"
+  },
+  {
+    "_id": "54955880783_219",
+    "treinamento_id": "54955880783",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "staff_id": "219"
+  },
+  {
+    "_id": "54955880783_237",
+    "motivo_recusa": "Estará em deslocamento - Retorno RJ X CPS - Inter Risk",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "recusado",
+    "obs": "",
+    "treinamento_id": "54955880783",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54955880783_246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "staff_id": "246",
+    "treinamento_id": "54955880783",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "54955880783_270",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "staff_id": "270",
+    "obs": "",
+    "treinamento_id": "54955880783",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "54955880783_46",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "54955880783"
+  },
+  {
+    "_id": "54955880783_79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772712000,
+      "nanoseconds": 0
+    },
+    "staff_id": "79",
+    "obs": "",
+    "treinamento_id": "54955880783",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "54956682577_135",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "54956682577"
+  },
+  {
+    "_id": "54956682577_202",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "54956682577",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54956682577_246",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "treinamento_id": "54956682577",
+    "obs": "",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "54956682577_277",
+    "staff_id": "277",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "54956682577"
+  },
+  {
+    "_id": "54956682577_46",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "54956682577",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1770897600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55034857629_135",
+    "treinamento_id": "55034857629",
+    "obs": "",
+    "motivo_recusa": "Viajando para Manaus",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "recusado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774353600,
+      "nanoseconds": 0
+    },
+    "staff_id": "135"
+  },
+  {
+    "_id": "55034857629_160",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774353600,
+      "nanoseconds": 0
+    },
+    "staff_id": "160",
+    "obs": "",
+    "treinamento_id": "55034857629",
+    "status": "recusado",
+    "motivo_recusa": "ASO ",
+    "updatedAt": "2026-06-17T14:39:33.580Z"
+  },
+  {
+    "_id": "55034857629_202",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado",
+    "treinamento_id": "55034857629",
+    "obs": "",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774353600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55034857629_23",
+    "obs": "",
+    "treinamento_id": "55034857629",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774353600,
+      "nanoseconds": 0
+    },
+    "staff_id": "23"
+  },
+  {
+    "_id": "55034857629_4",
+    "obs": "",
+    "treinamento_id": "55034857629",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774353600,
+      "nanoseconds": 0
+    },
+    "staff_id": "4"
+  },
+  {
+    "_id": "55034857629_66",
+    "treinamento_id": "55034857629",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": "Aula",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774353600,
+      "nanoseconds": 0
+    },
+    "staff_id": "66"
+  },
+  {
+    "_id": "55034857629_67",
+    "obs": "",
+    "treinamento_id": "55034857629",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774353600,
+      "nanoseconds": 0
+    },
+    "staff_id": "67"
+  },
+  {
+    "_id": "55389465231_114",
+    "staff_id": "114",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "recusado",
+    "treinamento_id": "55389465231",
+    "obs": ""
+  },
+  {
+    "_id": "55389465231_119",
+    "obs": "",
+    "treinamento_id": "55389465231",
+    "status": "recusado",
+    "motivo_recusa": "Não tem disponibilidade",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "119"
+  },
+  {
+    "_id": "55389465231_150",
+    "treinamento_id": "55389465231",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": "Não tem disponibilidade",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "150"
+  },
+  {
+    "_id": "55389465231_229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "229",
+    "treinamento_id": "55389465231",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z"
+  },
+  {
+    "_id": "55389465231_279",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "279",
+    "treinamento_id": "55389465231",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "55389465231_46",
+    "treinamento_id": "55389465231",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "46"
+  },
+  {
+    "_id": "55389465231_79",
+    "obs": "",
+    "treinamento_id": "55389465231",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    },
+    "staff_id": "79"
+  },
+  {
+    "_id": "55389465231_84",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado",
+    "treinamento_id": "55389465231",
+    "obs": "",
+    "staff_id": "84",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772884800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55433797981_107",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "55433797981"
+  },
+  {
+    "_id": "55433797981_11",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "55433797981",
+    "staff_id": "11",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55433797981_163",
+    "staff_id": "163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "55433797981"
+  },
+  {
+    "_id": "55433797981_167",
+    "staff_id": "167",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": "Não tem disponibilidade",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "status": "recusado",
+    "obs": "",
+    "treinamento_id": "55433797981"
+  },
+  {
+    "_id": "55433797981_168",
+    "status": "recusado",
+    "motivo_recusa": "Não pode",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "obs": "",
+    "treinamento_id": "55433797981",
+    "staff_id": "168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55433797981_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": "Não tem disponibilidade",
+    "treinamento_id": "55433797981",
+    "obs": ""
+  },
+  {
+    "_id": "55433797981_219",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "55433797981"
+  },
+  {
+    "_id": "55433797981_4",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null,
+    "treinamento_id": "55433797981",
+    "obs": "",
+    "staff_id": "4",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55433797981_57",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null,
+    "treinamento_id": "55433797981",
+    "obs": "",
+    "staff_id": "57",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55433797981_66",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null,
+    "treinamento_id": "55433797981",
+    "obs": "",
+    "staff_id": "66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55433797981_67",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    },
+    "staff_id": "67",
+    "treinamento_id": "55433797981",
+    "obs": "",
+    "status": "recusado",
+    "motivo_recusa": "Não Pode",
+    "updatedAt": "2026-06-17T14:39:33.578Z"
+  },
+  {
+    "_id": "55433797981_79",
+    "obs": "",
+    "treinamento_id": "55433797981",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773662400,
+      "nanoseconds": 0
+    },
+    "staff_id": "79"
+  },
+  {
+    "_id": "55454956929_135",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "55454956929"
+  },
+  {
+    "_id": "55454956929_185",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "55454956929"
+  },
+  {
+    "_id": "55454956929_2",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "staff_id": "2",
+    "obs": "",
+    "treinamento_id": "55454956929",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "55454956929_229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "staff_id": "229",
+    "obs": "",
+    "treinamento_id": "55454956929",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z"
+  },
+  {
+    "_id": "55454956929_23",
+    "treinamento_id": "55454956929",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "staff_id": "23"
+  },
+  {
+    "_id": "55454956929_237",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": "Medico",
+    "treinamento_id": "55454956929",
+    "obs": "",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55454956929_25",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "55454956929"
+  },
+  {
+    "_id": "55454956929_277",
+    "obs": "",
+    "treinamento_id": "55454956929",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "staff_id": "277"
+  },
+  {
+    "_id": "55454956929_278",
+    "obs": "",
+    "treinamento_id": "55454956929",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "staff_id": "278"
+  },
+  {
+    "_id": "55454956929_4",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "staff_id": "4",
+    "treinamento_id": "55454956929",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z"
+  },
+  {
+    "_id": "55454956929_66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "staff_id": "66",
+    "obs": "",
+    "treinamento_id": "55454956929",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z"
+  },
+  {
+    "_id": "55454956929_67",
+    "treinamento_id": "55454956929",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": "Trabalho na faculdade",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "staff_id": "67"
+  },
+  {
+    "_id": "55454956929_84",
+    "staff_id": "84",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772193600,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "55454956929"
+  },
+  {
+    "_id": "55475655048_111",
+    "obs": "",
+    "treinamento_id": "55475655048",
+    "motivo_recusa": "Não respondeu a mensagem",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "recusado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    },
+    "staff_id": "111"
+  },
+  {
+    "_id": "55475655048_135",
+    "treinamento_id": "55475655048",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    },
+    "staff_id": "135"
+  },
+  {
+    "_id": "55475655048_163",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "treinamento_id": "55475655048",
+    "obs": "",
+    "staff_id": "163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55475655048_167",
+    "staff_id": "167",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "treinamento_id": "55475655048",
+    "obs": ""
+  },
+  {
+    "_id": "55475655048_202",
+    "obs": "",
+    "treinamento_id": "55475655048",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    },
+    "staff_id": "202"
+  },
+  {
+    "_id": "55475655048_219",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "obs": "",
+    "treinamento_id": "55475655048",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55475655048_229",
+    "treinamento_id": "55475655048",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    },
+    "staff_id": "229"
+  },
+  {
+    "_id": "55475655048_270",
+    "obs": "",
+    "treinamento_id": "55475655048",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    },
+    "staff_id": "270"
+  },
+  {
+    "_id": "55475655048_277",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "55475655048",
+    "staff_id": "277",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55475655048_46",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "obs": "",
+    "treinamento_id": "55475655048",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55475655048_66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772020800,
+      "nanoseconds": 0
+    },
+    "staff_id": "66",
+    "treinamento_id": "55475655048",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "55478325041_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1771848000,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "obs": "",
+    "treinamento_id": "55478325041",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "55478325041_219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1771848000,
+      "nanoseconds": 0
+    },
+    "staff_id": "219",
+    "treinamento_id": "55478325041",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": "Não pode"
+  },
+  {
+    "_id": "55478325041_23",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "55478325041",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1771848000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55478325041_237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1771848000,
+      "nanoseconds": 0
+    },
+    "staff_id": "237",
+    "obs": "",
+    "treinamento_id": "55478325041",
+    "status": "recusado",
+    "motivo_recusa": "Não pode",
+    "updatedAt": "2026-06-17T14:39:33.187Z"
+  },
+  {
+    "_id": "55478325041_25",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1771848000,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.187Z",
+    "status": "confirmado",
+    "treinamento_id": "55478325041",
+    "obs": ""
+  },
+  {
+    "_id": "55927343922_135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    },
+    "staff_id": "135",
+    "obs": "",
+    "treinamento_id": "55927343922",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "55927343922_202",
+    "status": "recusado",
+    "motivo_recusa": "Não tem disponibilidade ",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "treinamento_id": "55927343922",
+    "obs": "",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55927343922_229",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "55927343922",
+    "staff_id": "229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "55927343922_46",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "confirmado",
+    "treinamento_id": "55927343922",
+    "obs": "",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774440000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56116139846_202",
+    "obs": "",
+    "treinamento_id": "56116139846",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774526400,
+      "nanoseconds": 0
+    },
+    "staff_id": "202"
+  },
+  {
+    "_id": "56116139846_23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774526400,
+      "nanoseconds": 0
+    },
+    "staff_id": "23",
+    "obs": "",
+    "treinamento_id": "56116139846",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "56116139846_25",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774526400,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "treinamento_id": "56116139846",
+    "obs": ""
+  },
+  {
+    "_id": "56116139846_278",
+    "obs": "",
+    "treinamento_id": "56116139846",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774526400,
+      "nanoseconds": 0
+    },
+    "staff_id": "278"
+  },
+  {
+    "_id": "56122050337_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "treinamento_id": "56122050337",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "56122050337_135",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.189Z",
+    "motivo_recusa": null,
+    "treinamento_id": "56122050337",
+    "obs": ""
+  },
+  {
+    "_id": "56122050337_160",
+    "obs": "",
+    "treinamento_id": "56122050337",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    },
+    "staff_id": "160"
+  },
+  {
+    "_id": "56122050337_163",
+    "staff_id": "163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.189Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "56122050337"
+  },
+  {
+    "_id": "56122050337_23",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "treinamento_id": "56122050337",
+    "obs": "",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56122050337_246",
+    "obs": "",
+    "treinamento_id": "56122050337",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    },
+    "staff_id": "246"
+  },
+  {
+    "_id": "56122050337_79",
+    "staff_id": "79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "56122050337"
+  },
+  {
+    "_id": "56175336541_168",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773921600,
+      "nanoseconds": 0
+    },
+    "staff_id": "168",
+    "treinamento_id": "56175336541",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "56175336541_185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773921600,
+      "nanoseconds": 0
+    },
+    "staff_id": "185",
+    "obs": "",
+    "treinamento_id": "56175336541",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "56175336541_202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773921600,
+      "nanoseconds": 0
+    },
+    "staff_id": "202",
+    "obs": "",
+    "treinamento_id": "56175336541",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "56175336541_219",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "status": "confirmado",
+    "treinamento_id": "56175336541",
+    "obs": "",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773921600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56175336541_237",
+    "obs": "",
+    "treinamento_id": "56175336541",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773921600,
+      "nanoseconds": 0
+    },
+    "staff_id": "237"
+  },
+  {
+    "_id": "56175336541_25",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "status": "confirmado",
+    "treinamento_id": "56175336541",
+    "obs": "",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773921600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56175336541_270",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "56175336541",
+    "staff_id": "270",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773921600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56175336541_278",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "treinamento_id": "56175336541",
+    "obs": "",
+    "staff_id": "278",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773921600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56175336541_46",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "treinamento_id": "56175336541",
+    "obs": "",
+    "staff_id": "46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773921600,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56214465436_107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "107",
+    "obs": "",
+    "treinamento_id": "56214465436",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": "Não tem disponibilidade"
+  },
+  {
+    "_id": "56214465436_135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "135",
+    "treinamento_id": "56214465436",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "56214465436_151",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "151",
+    "treinamento_id": "56214465436",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": "Não retornou msg do wpp"
+  },
+  {
+    "_id": "56214465436_163",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "56214465436",
+    "staff_id": "163",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56214465436_167",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "167",
+    "treinamento_id": "56214465436",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": "Não tem disponibilidade"
+  },
+  {
+    "_id": "56214465436_168",
+    "obs": "",
+    "treinamento_id": "56214465436",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": "Não tem disponibilidade",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "168"
+  },
+  {
+    "_id": "56214465436_17",
+    "obs": "",
+    "treinamento_id": "56214465436",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": "Não tem disponibilidade",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "17"
+  },
+  {
+    "_id": "56214465436_185",
+    "obs": "",
+    "treinamento_id": "56214465436",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": "Não tem disponibilidade",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "185"
+  },
+  {
+    "_id": "56214465436_202",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "treinamento_id": "56214465436",
+    "obs": ""
+  },
+  {
+    "_id": "56214465436_229",
+    "staff_id": "229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "obs": "",
+    "treinamento_id": "56214465436"
+  },
+  {
+    "_id": "56214465436_237",
+    "staff_id": "237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "treinamento_id": "56214465436",
+    "obs": ""
+  },
+  {
+    "_id": "56214465436_25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "25",
+    "obs": "",
+    "treinamento_id": "56214465436",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "56214465436_278",
+    "motivo_recusa": "Não tem disponibilidade",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "status": "recusado",
+    "obs": "",
+    "treinamento_id": "56214465436",
+    "staff_id": "278",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56214465436_4",
+    "treinamento_id": "56214465436",
+    "obs": "",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null,
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "4"
+  },
+  {
+    "_id": "56214465436_46",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "46",
+    "obs": "",
+    "treinamento_id": "56214465436",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "56214465436_66",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "66",
+    "treinamento_id": "56214465436",
+    "obs": "",
+    "status": "recusado",
+    "motivo_recusa": "Não tem disponibilidade",
+    "updatedAt": "2026-06-17T14:39:33.578Z"
+  },
+  {
+    "_id": "56214465436_67",
+    "staff_id": "67",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "treinamento_id": "56214465436",
+    "obs": ""
+  },
+  {
+    "_id": "56214465436_79",
+    "treinamento_id": "56214465436",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773748800,
+      "nanoseconds": 0
+    },
+    "staff_id": "79"
+  },
+  {
+    "_id": "56611329382_135",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "treinamento_id": "56611329382",
+    "obs": "",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56611329382_202",
+    "staff_id": "202",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "56611329382"
+  },
+  {
+    "_id": "56611329382_246",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado",
+    "treinamento_id": "56611329382",
+    "obs": "",
+    "staff_id": "246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56611329382_25",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "obs": "",
+    "treinamento_id": "56611329382"
+  },
+  {
+    "_id": "56611329382_278",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1772452800,
+      "nanoseconds": 0
+    },
+    "staff_id": "278",
+    "treinamento_id": "56611329382",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.188Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "56646457380_107",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": "Cliente declinou trabalho",
+    "obs": "",
+    "treinamento_id": "56646457380"
+  },
+  {
+    "_id": "56646457380_185",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": "Aula",
+    "obs": "",
+    "treinamento_id": "56646457380",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56646457380_219",
+    "status": "recusado",
+    "motivo_recusa": "Cliente declinou trabalho",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "treinamento_id": "56646457380",
+    "obs": "",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56646457380_237",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    },
+    "staff_id": "237",
+    "obs": "",
+    "treinamento_id": "56646457380",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": "Cliente declinou trabalho "
+  },
+  {
+    "_id": "56646457380_25",
+    "staff_id": "25",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "motivo_recusa": "Cliente declinou trabalho",
+    "treinamento_id": "56646457380",
+    "obs": ""
+  },
+  {
+    "_id": "56646457380_46",
+    "treinamento_id": "56646457380",
+    "obs": "",
+    "status": "recusado",
+    "motivo_recusa": "Cliente declinou trabalho",
+    "updatedAt": "2026-06-17T14:39:33.578Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1773144000,
+      "nanoseconds": 0
+    },
+    "staff_id": "46"
+  },
+  {
+    "_id": "56707031413_107",
+    "staff_id": "107",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774612800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "treinamento_id": "56707031413",
+    "obs": ""
+  },
+  {
+    "_id": "56707031413_111",
+    "obs": "",
+    "treinamento_id": "56707031413",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": "Não tem disponibilidade",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774612800,
+      "nanoseconds": 0
+    },
+    "staff_id": "111"
+  },
+  {
+    "_id": "56707031413_21",
+    "staff_id": "21",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774612800,
+      "nanoseconds": 0
+    },
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": "Não tem disponibilidade",
+    "treinamento_id": "56707031413",
+    "obs": ""
+  },
+  {
+    "_id": "56707031413_219",
+    "staff_id": "219",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774612800,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "status": "confirmado",
+    "treinamento_id": "56707031413",
+    "obs": ""
+  },
+  {
+    "_id": "56707031413_23",
+    "staff_id": "23",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774612800,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "status": "confirmado",
+    "obs": "",
+    "treinamento_id": "56707031413"
+  },
+  {
+    "_id": "56707031413_278",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "obs": "",
+    "treinamento_id": "56707031413",
+    "staff_id": "278",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774612800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56707031413_4",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.579Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "treinamento_id": "56707031413",
+    "staff_id": "4",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774612800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "56707031413_79",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774612800,
+      "nanoseconds": 0
+    },
+    "staff_id": "79",
+    "treinamento_id": "56707031413",
+    "obs": "",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": "Está na Tokio Marine"
+  },
+  {
+    "_id": "56707031413_84",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1774612800,
+      "nanoseconds": 0
+    },
+    "staff_id": "84",
+    "treinamento_id": "56707031413",
+    "obs": "",
+    "status": "confirmado",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.579Z"
+  },
+  {
+    "_id": "58025115923_135",
+    "staff_id": "135",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1775044800,
+      "nanoseconds": 0
+    },
+    "motivo_recusa": "viagem",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "recusado",
+    "treinamento_id": "58025115923",
+    "obs": ""
+  },
+  {
+    "_id": "58025115923_185",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado",
+    "treinamento_id": "58025115923",
+    "obs": "",
+    "staff_id": "185",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1775044800,
+      "nanoseconds": 0
+    }
+  },
+  {
+    "_id": "58025115923_229",
+    "staff_id": "229",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1775044800,
+      "nanoseconds": 0
+    },
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null,
+    "treinamento_id": "58025115923",
+    "obs": ""
+  },
+  {
+    "_id": "58025115923_246",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1775044800,
+      "nanoseconds": 0
+    },
+    "staff_id": "246",
+    "obs": "",
+    "treinamento_id": "58025115923",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "status": "confirmado"
+  },
+  {
+    "_id": "58025115923_4",
+    "treinamento_id": "58025115923",
+    "obs": "",
+    "status": "recusado",
+    "motivo_recusa": "Não pode",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1775044800,
+      "nanoseconds": 0
+    },
+    "staff_id": "4"
+  },
+  {
+    "_id": "58025115923_84",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T14:39:33.580Z",
+    "motivo_recusa": null,
+    "treinamento_id": "58025115923",
+    "obs": "",
+    "staff_id": "84",
+    "data_alocacao": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1775044800,
+      "nanoseconds": 0
+    }
+  }
+]

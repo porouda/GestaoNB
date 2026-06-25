@@ -232,9 +232,26 @@
         "updatedAt": { "type": "string", "format": "date-time" }
       },
       "required": ["nome"]
+    },
+    "ChecklistActivity": {
+      "title": "ChecklistActivity",
+      "description": "Custom extra activity or game and its required materials",
+      "type": "object",
+      "properties": {
+        "nome": { "type": "string" },
+        "programa": { "type": "string" },
+        "itens": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["nome", "programa"]
     }
   },
   "firestore": {
+    "/checklist_activities/{activityId}": {
+      "schema": "ChecklistActivity",
+      "description": "Extra activities and materials defined per program"
+    },
     "/perfis_acesso/{perfilId}": {
       "schema": "ProfileAccess",
       "description": "Customizable user access profiles with page permissions"

@@ -96,6 +96,11 @@ service cloud.firestore {
       allow write: if true;
     }
 
+    match /checklist_activities/{activityId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
     // Default deny for anything not matched explicitly
     match /{document=**} {
       allow read, write: if false;

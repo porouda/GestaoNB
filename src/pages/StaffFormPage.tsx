@@ -722,12 +722,13 @@ export const StaffFormPage = ({ user }: { user?: any }) => {
                         <div className="absolute left-[11px] top-5 bottom-0 w-0.5 bg-slate-100 group-hover:bg-blue-100 transition-colors" />
                       )}
                       {/* Timeline Dot */}
-                      <div className={`absolute left-0 top-1.5 w-6 h-6 rounded-full border-4 border-white shadow-sm z-10 
+                      <div className={`absolute left-0 top-1.5 w-6 h-6 rounded-full border-4 border-white shadow-sm z-10 flex items-center justify-center 
                         ${item.aloc.status === 'confirmado' ? 'bg-emerald-500' : 
-                          item.aloc.status === 'whatsapp' ? 'bg-amber-500' :
-                          item.aloc.status === 'pessoalmente' ? 'bg-indigo-500' :
-                          item.aloc.status === 'pre_reserva' ? 'bg-cyan-500' :
-                          item.aloc.status === 'recusado' ? 'bg-red-500' : 'bg-slate-300'}`} 
+                          item.aloc.status === 'whatsapp' ? 'bg-teal-500' :
+                          item.aloc.status === 'pessoalmente' ? 'bg-sky-500' :
+                          item.aloc.status === 'pre_reserva' ? 'bg-orange-500' :
+                          item.aloc.status === 'deslocamento' ? 'bg-indigo-500' :
+                          item.aloc.status === 'recusado' ? 'bg-rose-500' : 'bg-slate-500'}`} 
                       />
 
                       <div className="p-5 rounded-2xl border border-slate-200 bg-white hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all cursor-default">
@@ -740,25 +741,28 @@ export const StaffFormPage = ({ user }: { user?: any }) => {
                               
                               {/* Status Badges Matching AllocationPage */}
                               {item.aloc.status === 'confirmado' && (
-                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-700 border border-emerald-200">Confirmado</span>
+                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200">Confirmado</span>
                               )}
                               {item.aloc.status === 'whatsapp' && (
-                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-amber-100 text-amber-700 border border-amber-200">Chamado no Zap</span>
+                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-teal-50 text-teal-700 border border-teal-200">Chamado no Zap</span>
                               )}
                               {item.aloc.status === 'pessoalmente' && (
-                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-indigo-100 text-indigo-700 border border-indigo-200">Pessoalmente</span>
+                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-sky-50 text-sky-700 border border-sky-200">Pessoalmente</span>
                               )}
                               {item.aloc.status === 'pre_reserva' && (
-                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-cyan-100 text-cyan-700 border border-cyan-200">Pré-Reserva</span>
+                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-orange-50 text-orange-700 border border-orange-200">Pré-Reserva</span>
+                              )}
+                              {item.aloc.status === 'deslocamento' && (
+                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-indigo-50 text-indigo-700 border border-indigo-200">Deslocamento</span>
                               )}
                               {item.aloc.status === 'intencao' && (
-                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">Pendência</span>
+                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-zinc-50 text-zinc-700 border border-zinc-250">Pendência</span>
                               )}
                               {item.aloc.status === 'recusado' && (
-                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-red-100 text-red-700 border border-red-200">Recusado</span>
+                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-rose-50 text-rose-700 border border-rose-200">Recusado</span>
                               )}
                               {item.aloc.status === 'data_liberada' && (
-                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-slate-50 text-slate-400 border border-slate-100">Data Liberada</span>
+                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider bg-slate-50 text-slate-500 border border-slate-200">Data Liberada</span>
                               )}
                             </div>
 

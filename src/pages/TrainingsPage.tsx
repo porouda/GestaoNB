@@ -32,9 +32,16 @@ export const TrainingsPage = ({ user }: { user?: any }) => {
   const [syncing, setSyncing] = useState(false);
   const [previewDeals, setPreviewDeals] = useState<any[]>([]);
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
+  const [isHubSpotConfigOpen, setIsHubSpotConfigOpen] = useState(false);
+  const [trainingToDelete, setTrainingToDelete] = useState<{ id: string, name: string } | null>(null);
+  const [deleting, setDeleting] = useState(false);
+  const [hubspotImportMode, setHubspotImportMode] = useState<'default' | 'range'>('default');
+  const [hubspotStartDate, setHubspotStartDate] = useState('');
+  const [hubspotEndDate, setHubspotEndDate] = useState('');
   const navigate = useNavigate();
 
   const { canWrite } = usePagePermission('treinamentos', user);
+  const { canWrite: canSyncHubSpot } = usePagePermission('importar-hubspot', user);
 
   const uniqueEtapas = useMemo(() => {
     const etapas = trainings
@@ -86,10 +93,42 @@ export const TrainingsPage = ({ user }: { user?: any }) => {
     return timeStr.substring(0, 5);
   };
 
-  const handleHubSpotPreview = async () => {
+  const handleHubSpotPreview = () => {
+    if (!canSyncHubSpot) {
+      alert('Acesso negado: Você não possui a permissão necessária para sincronizar com o HubSpot.');
+      return;
+    }
+    setIsHubSpotConfigOpen(true);
+  };
+
+  const executeHubSpotPreview = async () => {
+    if (hubspotImportMode === 'range') {
+      if (!hubspotStartDate || !hubspotEndDate) {
+        alert('Por favor, defina o intervalo de datas.');
+        return;
+      }
+      if (hubspotStartDate > hubspotEndDate) {
+        alert('A data inicial não pode ser maior que a data final.');
+        return;
+      }
+    }
+
+    setIsHubSpotConfigOpen(false);
     setSyncing(true);
     try {
-      const response = await fetch('/api/hubspot/preview', {
+      let url = '/api/hubspot/preview';
+      const params = new URLSearchParams();
+      if (hubspotImportMode === 'range') {
+        params.append('startDate', hubspotStartDate);
+        params.append('endDate', hubspotEndDate);
+      }
+      
+      const queryString = params.toString();
+      if (queryString) {
+        url += `?${queryString}`;
+      }
+
+      const response = await fetch(url, {
         headers: {
           'x-auth-user': localStorage.getItem('nb_auth') || ''
         }
@@ -120,6 +159,10 @@ export const TrainingsPage = ({ user }: { user?: any }) => {
   };
 
   const confirmHubSpotSync = async () => {
+    if (!canSyncHubSpot) {
+      alert('Acesso negado: Você não possui a permissão necessária para sincronizar com o HubSpot.');
+      return;
+    }
     setSyncing(true);
     try {
       const response = await fetch('/api/hubspot/sync', {
@@ -212,19 +255,27 @@ export const TrainingsPage = ({ user }: { user?: any }) => {
     fetchTrainings();
   }, []);
 
-  const handleDelete = async (e: React.MouseEvent, id: string, name: string) => {
+  const handleDelete = (e: React.MouseEvent, id: string, name: string) => {
     e.stopPropagation();
     if (!canWrite) {
       alert('Acesso negado: Você não possui a permissão de escrita necessária para excluir treinamentos.');
       return;
     }
-    if (window.confirm(`Tem certeza que deseja excluir o treinamento "${name}"?`)) {
-      try {
-        await deleteDoc(doc(db, 'trainings', id));
-        setTrainings(prev => prev.filter(t => t.id !== id));
-      } catch (err) {
-        alert('Erro ao excluir treinamento');
-      }
+    setTrainingToDelete({ id, name });
+  };
+
+  const confirmDelete = async () => {
+    if (!trainingToDelete) return;
+    setDeleting(true);
+    try {
+      await deleteDoc(doc(db, 'trainings', trainingToDelete.id));
+      setTrainings(prev => prev.filter(t => t.id !== trainingToDelete.id));
+      setTrainingToDelete(null);
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao excluir treinamento. Tente novamente.');
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -258,7 +309,7 @@ export const TrainingsPage = ({ user }: { user?: any }) => {
             <p className="text-slate-500 font-medium">Gerencie o cronograma de eventos, propostas e logística.</p>
           </div>
           <div className="flex gap-2">
-            {canWrite && (
+            {canSyncHubSpot && (
               <button 
                 onClick={handleHubSpotPreview}
                 disabled={syncing}
@@ -483,6 +534,7 @@ export const TrainingsPage = ({ user }: { user?: any }) => {
                     <thead className="sticky top-0 bg-white z-10">
                       <tr className="border-b border-slate-100 italic">
                         <th className="pb-3 text-[10px] font-black text-slate-400 uppercase tracking-widest px-2 w-48">Negócio (HubSpot)</th>
+                        <th className="pb-3 text-[10px] font-black text-slate-400 uppercase tracking-widest px-2 w-48">Empresa</th>
                         <th className="pb-3 text-[10px] font-black text-slate-400 uppercase tracking-widest px-2 w-24">Data</th>
                         <th className="pb-3 text-[10px] font-black text-slate-400 uppercase tracking-widest px-2 w-32">Programa</th>
                         <th className="pb-3 text-[10px] font-black text-slate-400 uppercase tracking-widest px-2 w-16 text-center">Pax</th>
@@ -499,6 +551,11 @@ export const TrainingsPage = ({ user }: { user?: any }) => {
                           <td className="py-3 px-2">
                             <p className="text-sm font-black text-slate-700 uppercase leading-tight">{deal.nome_negocio}</p>
                             <span className="text-[9px] font-mono text-slate-400">#{deal.hubspotId}</span>
+                          </td>
+                          <td className="py-3 px-2">
+                            <p className="text-xs font-bold text-slate-700 uppercase truncate max-w-[180px]" title={deal.empresa || '---'}>
+                              {deal.empresa || <span className="text-slate-300 italic">Sem Empresa</span>}
+                            </p>
                           </td>
                           <td className="py-3 px-2">
                             <p className="text-xs font-bold text-slate-600">{deal.data_evento ? formatarDataParaExibicao(deal.data_evento) : '---'}</p>
@@ -561,6 +618,161 @@ export const TrainingsPage = ({ user }: { user?: any }) => {
                   )}
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* HubSpot Config Options Modal */}
+      {isHubSpotConfigOpen && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200">
+            <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-orange-50/50">
+              <div>
+                <h2 className="text-xl font-black text-slate-800 flex items-center gap-2">
+                  <RefreshCw className="text-orange-600 animate-pulse" size={24} />
+                  Filtro HubSpot
+                </h2>
+                <p className="text-xs text-slate-500 font-medium">Configure como deseja importar os dados.</p>
+              </div>
+              <button 
+                onClick={() => setIsHubSpotConfigOpen(false)}
+                className="p-2 hover:bg-white rounded-xl transition-all text-slate-400 hover:text-slate-600 shadow-sm border border-transparent hover:border-slate-200"
+              >
+                <Plus size={24} className="rotate-45" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              <div className="space-y-3">
+                <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider">Modo de Importação</label>
+                <div className="grid grid-cols-1 gap-3">
+                  <label className={`flex items-start gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${hubspotImportMode === 'default' ? 'border-orange-500 bg-orange-50/20' : 'border-slate-100 bg-slate-50 hover:bg-slate-100/50'}`}>
+                    <input 
+                      type="radio" 
+                      name="hubspotMode" 
+                      checked={hubspotImportMode === 'default'}
+                      onChange={() => setHubspotImportMode('default')}
+                      className="mt-1 text-orange-600 focus:ring-orange-500 accent-orange-600"
+                    />
+                    <div>
+                      <p className="text-sm font-bold text-slate-700">Padrão</p>
+                      <p className="text-xs text-slate-400">Importa os últimos 200 negócios atualizados/criados no HubSpot.</p>
+                    </div>
+                  </label>
+
+                  <label className={`flex items-start gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${hubspotImportMode === 'range' ? 'border-orange-500 bg-orange-50/20' : 'border-slate-100 bg-slate-50 hover:bg-slate-100/50'}`}>
+                    <input 
+                      type="radio" 
+                      name="hubspotMode" 
+                      checked={hubspotImportMode === 'range'}
+                      onChange={() => setHubspotImportMode('range')}
+                      className="mt-1 text-orange-600 focus:ring-orange-500 accent-orange-600"
+                    />
+                    <div>
+                      <p className="text-sm font-bold text-slate-700">Por Período (Range de Datas)</p>
+                      <p className="text-xs text-slate-400">Importa negócios cuja data do evento esteja dentro do intervalo definido.</p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              {hubspotImportMode === 'range' && (
+                <div className="grid grid-cols-2 gap-4 animate-in slide-in-from-top-4 duration-300">
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider">Data Inicial</label>
+                    <input 
+                      type="date" 
+                      value={hubspotStartDate}
+                      onChange={(e) => setHubspotStartDate(e.target.value)}
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all text-xs font-bold text-slate-600"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider">Data Final</label>
+                    <input 
+                      type="date" 
+                      value={hubspotEndDate}
+                      onChange={(e) => setHubspotEndDate(e.target.value)}
+                      className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all text-xs font-bold text-slate-600"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="p-6 bg-slate-50 border-t border-slate-100 flex justify-end gap-3">
+              <button 
+                onClick={() => setIsHubSpotConfigOpen(false)}
+                className="px-5 py-2.5 rounded-xl font-bold text-slate-500 bg-white border border-slate-200 hover:bg-slate-100 transition-all text-xs uppercase"
+              >
+                Cancelar
+              </button>
+              <button 
+                onClick={executeHubSpotPreview}
+                className="px-6 py-2.5 rounded-xl font-bold text-white bg-orange-600 hover:bg-orange-700 transition-all shadow-lg shadow-orange-100 text-xs uppercase"
+              >
+                Buscar do HubSpot
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {trainingToDelete && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setTrainingToDelete(null)}>
+          <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-200" onClick={(e) => e.stopPropagation()}>
+            <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-red-50/50">
+              <div>
+                <h2 className="text-xl font-black text-red-650 flex items-center gap-2">
+                  <Trash2 className="text-red-600 animate-bounce" size={24} />
+                  Excluir Treinamento
+                </h2>
+                <p className="text-[9px] text-red-500 font-extrabold uppercase tracking-widest mt-1">Ação Irreversível</p>
+              </div>
+              <button 
+                onClick={() => setTrainingToDelete(null)}
+                className="p-2 hover:bg-white rounded-xl transition-all text-slate-400 hover:text-slate-600 shadow-sm border border-transparent hover:border-slate-200"
+              >
+                <Plus size={24} className="rotate-45" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <p className="text-[10px] font-black uppercase text-slate-400 tracking-wider">Você está prestes a excluir:</p>
+              <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                <h4 className="text-sm font-black text-slate-800 uppercase leading-snug">{trainingToDelete.name}</h4>
+                <p className="text-[9px] font-bold text-slate-400 uppercase mt-1">ID: {trainingToDelete.id}</p>
+              </div>
+
+              <p className="text-xs text-slate-600 font-bold leading-relaxed uppercase tracking-wide">
+                Essa ação é definitiva e removerá permanentemente o treinamento do sistema. Deseja continuar?
+              </p>
+            </div>
+
+            <div className="p-6 bg-slate-50 border-t border-slate-100 flex justify-end gap-3">
+              <button 
+                onClick={() => setTrainingToDelete(null)}
+                disabled={deleting}
+                className="px-5 py-2.5 rounded-xl font-bold text-slate-500 bg-white border border-slate-200 hover:bg-slate-100 transition-all text-xs uppercase disabled:opacity-50"
+              >
+                Cancelar
+              </button>
+              <button 
+                onClick={confirmDelete}
+                disabled={deleting}
+                className="px-6 py-2.5 rounded-xl font-bold text-white bg-red-600 hover:bg-red-700 active:bg-red-800 transition-all shadow-lg shadow-red-100 text-xs uppercase flex items-center gap-2 disabled:opacity-50"
+              >
+                {deleting ? (
+                  <>
+                    <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Excluindo...</span>
+                  </>
+                ) : (
+                  <span>Sim, Excluir</span>
+                )}
+              </button>
             </div>
           </div>
         </div>

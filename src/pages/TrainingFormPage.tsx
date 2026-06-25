@@ -12,6 +12,8 @@ export const TrainingFormPage = ({ user }: { user?: any }) => {
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(!!id);
   const [error, setError] = useState<string | null>(null);
+  const [stages, setStages] = useState<string[]>([]);
+  const [loadingStages, setLoadingStages] = useState(false);
   
   const { canWrite } = usePagePermission('treinamentos', user);
   
@@ -26,6 +28,53 @@ export const TrainingFormPage = ({ user }: { user?: any }) => {
     contatos: '',
     observacoes: ''
   });
+  const [baseOpLabel, setBaseOpLabel] = useState<string>('Op 1');
+  const [dateOffsets, setDateOffsets] = useState<DateOffsetDetail[]>([]);
+  const [addMode, setAddMode] = useState<'individual' | 'range'>('individual');
+
+  interface DateOffsetDetail {
+    offset: number;
+    opLabel: string;
+  }
+
+  useEffect(() => {
+    const fetchStages = async () => {
+      setLoadingStages(true);
+      try {
+        const response = await fetch('/api/hubspot/stages');
+        const data = await response.json();
+        if (data.status === 'success' && Array.isArray(data.stages)) {
+          setStages(data.stages);
+        } else {
+          setStages([
+            "Confirmado",
+            "Aguardando Posição",
+            "Reunião Agendada",
+            "Fazer Proposta",
+            "Follow Up 1",
+            "Não Realizado",
+            "Realizado",
+            "Cancelado"
+          ]);
+        }
+      } catch (err) {
+        console.error('Error fetching HubSpot stages:', err);
+        setStages([
+          "Confirmado",
+          "Aguardando Posição",
+          "Reunião Agendada",
+          "Fazer Proposta",
+          "Follow Up 1",
+          "Não Realizado",
+          "Realizado",
+          "Cancelado"
+        ]);
+      } finally {
+        setLoadingStages(false);
+      }
+    };
+    fetchStages();
+  }, []);
 
   useEffect(() => {
     if (id) {
@@ -46,6 +95,28 @@ export const TrainingFormPage = ({ user }: { user?: any }) => {
               contatos: data.contatos || '',
               observacoes: data.observacoes || ''
             });
+
+            // Normalize offsets
+            const rawOffsets = data.dateOffsets;
+            let loadedOffsets: DateOffsetDetail[] = [];
+            if (Array.isArray(rawOffsets)) {
+              loadedOffsets = rawOffsets.map((item, index) => {
+                if (typeof item === 'number') {
+                  return {
+                    offset: item,
+                    opLabel: `Op ${index + 2}`
+                  };
+                } else if (item && typeof item === 'object' && typeof item.offset === 'number') {
+                  return {
+                    offset: item.offset,
+                    opLabel: item.opLabel || `Op ${index + 2}`
+                  };
+                }
+                return null;
+              }).filter(Boolean) as DateOffsetDetail[];
+            }
+            setDateOffsets(loadedOffsets);
+            setBaseOpLabel(data.baseOpLabel || 'Op 1');
           } else {
             setError('Treinamento não encontrado.');
           }
@@ -70,8 +141,18 @@ export const TrainingFormPage = ({ user }: { user?: any }) => {
     setError(null);
 
     try {
+      const isConfirmed = String(formData.etapa || "").toLowerCase().trim() === "confirmado" || 
+                          String(formData.etapa || "").toLowerCase().trim() === "confirmada";
+      const finalOffsets = isConfirmed ? [] : dateOffsets;
+
+      if (isConfirmed) {
+        setDateOffsets([]);
+      }
+
       const payload = {
         ...formData,
+        baseOpLabel,
+        dateOffsets: finalOffsets,
         updatedAt: serverTimestamp(),
         updatedBy: user?.nome || 'Sistema'
       };
@@ -159,7 +240,9 @@ export const TrainingFormPage = ({ user }: { user?: any }) => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Etapa Atual *</label>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Etapa Atual * {loadingStages && <span className="text-xs text-slate-400 font-normal ml-2 animate-pulse">(carregando...)</span>}
+                </label>
                 <select 
                   name="etapa"
                   value={formData.etapa}
@@ -168,14 +251,9 @@ export const TrainingFormPage = ({ user }: { user?: any }) => {
                   className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-slate-700"
                 >
                   <option value="">Selecione...</option>
-                  <option value="Confirmado">Confirmado</option>
-                  <option value="Aguardando Posição">Aguardando Posição</option>
-                  <option value="Reunião Agendada">Reunião Agendada</option>
-                  <option value="Fazer Proposta">Fazer Proposta</option>
-                  <option value="Follow Up 1">Follow Up 1</option>
-                  <option value="Não Realizado">Não Realizado</option>
-                  <option value="Realizado">Realizado</option>
-                  <option value="Cancelado">Cancelado</option>
+                  {stages.map(st => (
+                    <option key={st} value={st}>{st}</option>
+                  ))}
                 </select>
               </div>
               <div>
@@ -254,6 +332,245 @@ export const TrainingFormPage = ({ user }: { user?: any }) => {
                   className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all"
                 />
               </div>
+            </div>
+          </div>
+
+          {/* Sessão: Múltiplas Datas (Duração) */}
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden animate-fade-in">
+            <div className="px-6 py-4 bg-teal-50 border-b border-teal-100 flex items-center justify-between text-teal-700">
+              <div className="flex items-center gap-3">
+                <Calendar size={20} />
+                <h2 className="font-bold text-lg">Duração e Múltiplas Datas / Opções</h2>
+              </div>
+            </div>
+            <div className="p-6 space-y-5">
+              
+              {/* Data Principal Option Name */}
+              <div className="bg-slate-50 border border-slate-150 rounded-xl p-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <span className="text-xs font-black text-slate-400 uppercase tracking-wider block">Data Principal do Evento</span>
+                    <span className="text-base font-extrabold text-slate-800">
+                      {formData.dataEvento ? new Date(formData.dataEvento + 'T12:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) : 'Informe a data do evento acima'}
+                    </span>
+                  </div>
+                  <div className="w-full sm:w-56">
+                    <label className="block text-xs font-black text-slate-500 uppercase tracking-wider mb-1">Identificação da Opção</label>
+                    <input
+                      type="text"
+                      value={baseOpLabel}
+                      onChange={(e) => setBaseOpLabel(e.target.value)}
+                      placeholder="Op 1"
+                      disabled={!formData.dataEvento}
+                      className="w-full px-4 py-2 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-550 outline-none transition-all text-sm font-bold text-slate-800 disabled:opacity-50"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-sm font-semibold text-slate-500 leading-relaxed">
+                Se este treinamento tiver opções extras de data ou durar vários dias consecutivos, configure-os abaixo. Os deslocamentos (offsets) são salvos de forma dinâmica e acompanham a Data Principal!
+              </p>
+
+              {/* Seletor de Modo */}
+              <div className="flex bg-slate-100 p-1 rounded-xl gap-1">
+                <button
+                  type="button"
+                  onClick={() => setAddMode('individual')}
+                  className={`flex-1 py-2 text-center text-xs font-bold rounded-lg transition-all ${addMode === 'individual' ? 'bg-white text-teal-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                >
+                  Individual (1 a 1)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAddMode('range')}
+                  className={`flex-1 py-2 text-center text-xs font-bold rounded-lg transition-all ${addMode === 'range' ? 'bg-white text-teal-800 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                >
+                  Intervalo / Range de Datas
+                </button>
+              </div>
+
+              {addMode === 'individual' ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end p-4 bg-slate-50 border border-slate-100 rounded-xl">
+                  <div>
+                    <label className="block text-xs font-black text-slate-500 uppercase tracking-wider mb-1.5">Data</label>
+                    <input
+                      type="date"
+                      id="newAdditionalDateInput"
+                      disabled={!formData.dataEvento}
+                      className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-xs font-semibold disabled:opacity-50 text-slate-800"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-black text-slate-500 uppercase tracking-wider mb-1.5">Opção (Ex: Op 2, Turma B)</label>
+                    <input
+                      type="text"
+                      id="newAdditionalDateLabel"
+                      disabled={!formData.dataEvento}
+                      placeholder="Op 2"
+                      className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-xs font-bold disabled:opacity-50 text-slate-800"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    disabled={!formData.dataEvento}
+                    onClick={() => {
+                      const dateInput = document.getElementById('newAdditionalDateInput') as HTMLInputElement;
+                      const labelInput = document.getElementById('newAdditionalDateLabel') as HTMLInputElement;
+                      if (!dateInput || !dateInput.value || !formData.dataEvento) return;
+
+                      const baseDate = new Date(formData.dataEvento + 'T12:00:00');
+                      const addedDate = new Date(dateInput.value + 'T12:00:00');
+                      const diffTime = addedDate.getTime() - baseDate.getTime();
+                      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+                      if (diffDays === 0) {
+                        alert("Esta já é a data principal do evento!");
+                        return;
+                      }
+
+                      if (dateOffsets.some(o => o.offset === diffDays)) {
+                        alert("Uma data com este mesmo deslocamento/dia já foi adicionada!");
+                        return;
+                      }
+
+                      // Determine sequence label if empty
+                      let finalLabel = (labelInput?.value || '').trim();
+                      if (!finalLabel) {
+                        const allLabels = [baseOpLabel, ...dateOffsets.map(d => d.opLabel)];
+                        let maxNum = 0;
+                        allLabels.forEach(l => {
+                          const m = l.match(/Op\s*(\d+)/i);
+                          if (m) {
+                            const num = parseInt(m[1], 10);
+                            if (num > maxNum) maxNum = num;
+                          }
+                        });
+                        finalLabel = `Op ${maxNum + 1}`;
+                      }
+
+                      setDateOffsets(prev => [...prev, { offset: diffDays, opLabel: finalLabel }].sort((a, b) => a.offset - b.offset));
+                      dateInput.value = '';
+                      if (labelInput) labelInput.value = '';
+                    }}
+                    className="bg-teal-600 hover:bg-teal-700 text-white py-2.5 px-6 rounded-xl font-bold transition-all shadow-sm text-xs disabled:opacity-50 cursor-pointer h-11 flex items-center justify-center"
+                  >
+                    Adicionar Data Opção
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end p-4 bg-slate-50 border border-slate-100 rounded-xl">
+                  <div>
+                    <label className="block text-xs font-black text-slate-500 uppercase tracking-widest mb-1.5">Data Conclusiva / Final (Range)</label>
+                    <input
+                      type="date"
+                      id="rangeEndDateInput"
+                      disabled={!formData.dataEvento}
+                      className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-xs font-semibold disabled:opacity-50 text-slate-800"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    disabled={!formData.dataEvento}
+                    onClick={() => {
+                      const rangeInput = document.getElementById('rangeEndDateInput') as HTMLInputElement;
+                      if (!rangeInput || !rangeInput.value || !formData.dataEvento) return;
+
+                      const baseDate = new Date(formData.dataEvento + 'T12:00:00');
+                      const endDate = new Date(rangeInput.value + 'T12:00:00');
+                      const diffTime = endDate.getTime() - baseDate.getTime();
+                      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+                      if (diffDays <= 0) {
+                        alert("A data final deve ser posterior à data principal!");
+                        return;
+                      }
+
+                      const newOffsetsList: DateOffsetDetail[] = [...dateOffsets];
+                      
+                      for (let i = 1; i <= diffDays; i++) {
+                        if (!newOffsetsList.some(item => item.offset === i)) {
+                          const allCurrentLabels = [baseOpLabel, ...newOffsetsList.map(x => x.opLabel)];
+                          let maxNum = 0;
+                          allCurrentLabels.forEach(l => {
+                            const m = l.match(/Op\s*(\d+)/i);
+                            if (m) {
+                              const num = parseInt(m[1], 10);
+                              if (num > maxNum) maxNum = num;
+                            }
+                          });
+                          const nextLabel = `Op ${maxNum + 1}`;
+                          newOffsetsList.push({ offset: i, opLabel: nextLabel });
+                        }
+                      }
+
+                      setDateOffsets(newOffsetsList.sort((a, b) => a.offset - b.offset));
+                      rangeInput.value = '';
+                      alert("Datas de intervalo adicionadas com sucesso!");
+                    }}
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 px-6 rounded-xl font-bold transition-all shadow-sm text-xs disabled:opacity-50 cursor-pointer h-11 flex items-center justify-center"
+                  >
+                    Criar Intervalo Sequencial
+                  </button>
+                </div>
+              )}
+
+              {dateOffsets.length > 0 ? (
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-xs font-bold text-slate-550 uppercase tracking-wider">Outras Datas cadasrtadas por Opção:</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                    {dateOffsets.map((item) => {
+                      let displayDateText = "Data inválida";
+                      if (formData.dataEvento) {
+                        try {
+                          const baseDate = new Date(formData.dataEvento + 'T12:00:00');
+                          const computedDate = new Date(baseDate.getTime() + item.offset * 24 * 60 * 60 * 1000);
+                          displayDateText = computedDate.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                        } catch (e) {
+                          console.error(e);
+                        }
+                      }
+                      
+                      return (
+                        <div key={item.offset} className="flex flex-col p-3 rounded-xl bg-slate-50 border border-slate-205 gap-2 hover:border-slate-300 transition-colors">
+                          <div className="flex items-center justify-between">
+                            <span className="font-extrabold text-slate-800 text-xs">{displayDateText}</span>
+                            <button
+                              type="button"
+                              onClick={() => setDateOffsets(prev => prev.filter(o => o.offset !== item.offset))}
+                              className="bg-red-50 hover:bg-red-100 text-red-600 h-6 w-6 rounded-lg flex items-center justify-center transition-all cursor-pointer font-black border border-red-105 text-xs"
+                              title="Remover"
+                            >
+                              &times;
+                            </button>
+                          </div>
+                          <div className="flex items-center justify-between gap-1.5">
+                            <span className="text-[10px] text-slate-400 font-bold uppercase font-mono">
+                              {item.offset > 0 ? `+${item.offset}` : item.offset}d offset
+                            </span>
+                            <div className="flex items-center gap-1.5 shrink-0">
+                              <span className="text-[10px] font-bold text-slate-400 uppercase">Nome Opção:</span>
+                              <input
+                                type="text"
+                                value={item.opLabel}
+                                onChange={(e) => {
+                                  const newVal = e.target.value;
+                                  setDateOffsets(prev => prev.map(o => o.offset === item.offset ? { ...o, opLabel: newVal } : o));
+                                }}
+                                className="w-18 px-2 py-0.5 bg-white border border-slate-200 rounded font-black text-[10px] text-slate-750 text-center uppercase"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <div className="p-4 rounded-xl border border-dashed border-slate-200 text-center text-sm text-slate-400 italic">
+                  Nenhuma data adicional ou opção cadastrada.
+                </div>
+              )}
             </div>
           </div>
 

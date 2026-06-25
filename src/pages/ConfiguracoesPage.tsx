@@ -37,7 +37,8 @@ const DEFAULT_PHASES = [
   { name: '4.GERAL', order: 4, style: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
   { name: '5.SALA', order: 5, style: 'bg-cyan-100 text-cyan-700 border-cyan-200' },
   { name: '6.ATIV. SALA', order: 6, style: 'bg-rose-100 text-rose-700 border-rose-200' },
-  { name: '7.ATIV. ESPECÍFICO', order: 7, style: 'bg-red-100 text-red-700 border-red-200' }
+  { name: '7.ATIV. ESPECÍFICO', order: 7, style: 'bg-red-100 text-red-700 border-red-200' },
+  { name: '8.MATERIAL ATIVIDADES', order: 8, style: 'bg-purple-100 text-purple-700 border-purple-200' }
 ];
 
 const DEFAULT_PROGRAMS = [
@@ -97,6 +98,14 @@ export const ConfiguracoesPage = ({ user }: { user?: any }) => {
         }
       } else {
         setPhases(pList);
+        const hasMaterialAtividades = pList.some(p => p.name === '8.MATERIAL ATIVIDADES');
+        if (!hasMaterialAtividades) {
+          addDoc(collection(db, 'checklist_phases'), {
+            name: '8.MATERIAL ATIVIDADES',
+            order: 8,
+            style: 'bg-purple-100 text-purple-700 border-purple-200'
+          }).catch(err => console.error("Error seeding phase 8:", err));
+        }
       }
     });
 

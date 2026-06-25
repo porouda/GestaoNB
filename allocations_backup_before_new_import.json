@@ -1,0 +1,5372 @@
+[
+  {
+    "_id": "102",
+    "motivo_recusa": null,
+    "staff_id": "270",
+    "obs": "",
+    "treinamento_id": "44866676050",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-04",
+    "updatedAt": "2026-06-17T13:29:12.294Z"
+  },
+  {
+    "_id": "103",
+    "updatedAt": "2026-06-17T13:29:12.339Z",
+    "status": "confirmado",
+    "treinamento_id": "44866676050",
+    "data_alocacao": "2025-12-04",
+    "motivo_recusa": null,
+    "staff_id": "229",
+    "obs": ""
+  },
+  {
+    "_id": "104",
+    "updatedAt": "2026-06-17T13:29:12.368Z",
+    "data_alocacao": "2025-12-04",
+    "treinamento_id": "44866676050",
+    "status": "confirmado",
+    "staff_id": "175",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "105",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "135",
+    "treinamento_id": "44866676050",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-04",
+    "updatedAt": "2026-06-17T13:29:12.428Z"
+  },
+  {
+    "_id": "1068",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": "",
+    "treinamento_id": "52076835197",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-12",
+    "updatedAt": "2026-06-17T13:29:15.475Z"
+  },
+  {
+    "_id": "1069",
+    "treinamento_id": "52076835197",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-12",
+    "updatedAt": "2026-06-17T13:29:15.493Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "202"
+  },
+  {
+    "_id": "1070",
+    "updatedAt": "2026-06-17T13:29:15.515Z",
+    "status": "confirmado",
+    "treinamento_id": "52076835197",
+    "data_alocacao": "2026-01-12",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "1071",
+    "updatedAt": "2026-06-17T13:29:15.535Z",
+    "status": "confirmado",
+    "treinamento_id": "52076835197",
+    "data_alocacao": "2026-01-12",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": ""
+  },
+  {
+    "_id": "1072",
+    "motivo_recusa": null,
+    "staff_id": "114",
+    "obs": "",
+    "treinamento_id": "52076835197",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-12",
+    "updatedAt": "2026-06-17T13:29:15.553Z"
+  },
+  {
+    "_id": "1079",
+    "obs": "",
+    "staff_id": "23",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-01-15",
+    "treinamento_id": "51244925964",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:15.569Z"
+  },
+  {
+    "_id": "1080",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "51244925964",
+    "data_alocacao": "2026-01-15",
+    "updatedAt": "2026-06-17T13:29:15.588Z"
+  },
+  {
+    "_id": "1081",
+    "staff_id": "219",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:15.607Z",
+    "data_alocacao": "2026-01-15",
+    "status": "confirmado",
+    "treinamento_id": "51244925964"
+  },
+  {
+    "_id": "1082",
+    "treinamento_id": "51779351625",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-15",
+    "updatedAt": "2026-06-17T13:29:15.626Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "46"
+  },
+  {
+    "_id": "1083",
+    "treinamento_id": "51779351625",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-15",
+    "updatedAt": "2026-06-17T13:29:15.643Z",
+    "motivo_recusa": null,
+    "staff_id": "150",
+    "obs": ""
+  },
+  {
+    "_id": "1084",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "202",
+    "updatedAt": "2026-06-17T13:29:15.665Z",
+    "treinamento_id": "51779351625",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-15"
+  },
+  {
+    "_id": "1092",
+    "updatedAt": "2026-06-17T13:29:15.692Z",
+    "data_alocacao": "2026-01-19",
+    "status": "confirmado",
+    "treinamento_id": "52003305005",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1093",
+    "motivo_recusa": null,
+    "staff_id": "219",
+    "obs": "",
+    "treinamento_id": "52003305005",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-19",
+    "updatedAt": "2026-06-17T13:29:15.711Z"
+  },
+  {
+    "_id": "1094",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "107",
+    "updatedAt": "2026-06-17T13:29:15.730Z",
+    "treinamento_id": "52003305005",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-19"
+  },
+  {
+    "_id": "1095",
+    "treinamento_id": "52003305005",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-19",
+    "updatedAt": "2026-06-17T13:29:15.749Z",
+    "motivo_recusa": null,
+    "staff_id": "185",
+    "obs": ""
+  },
+  {
+    "_id": "1096",
+    "staff_id": "168",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-01-19",
+    "status": "confirmado",
+    "treinamento_id": "52003305005",
+    "updatedAt": "2026-06-17T13:29:15.767Z"
+  },
+  {
+    "_id": "1097",
+    "updatedAt": "2026-06-17T13:29:15.784Z",
+    "data_alocacao": "2026-01-19",
+    "treinamento_id": "52003305005",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "163",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1098",
+    "updatedAt": "2026-06-17T13:29:15.804Z",
+    "data_alocacao": "2026-01-19",
+    "treinamento_id": "52003305005",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "202",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1101",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:15.825Z",
+    "status": "confirmado",
+    "treinamento_id": "54194701362",
+    "data_alocacao": "2026-01-20"
+  },
+  {
+    "_id": "1102",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-01-20",
+    "status": "confirmado",
+    "treinamento_id": "54194701362",
+    "updatedAt": "2026-06-17T13:29:15.857Z"
+  },
+  {
+    "_id": "1108",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "51663150260",
+    "data_alocacao": "2026-01-21",
+    "updatedAt": "2026-06-17T13:29:15.875Z"
+  },
+  {
+    "_id": "1109",
+    "data_alocacao": "2026-01-21",
+    "treinamento_id": "51663150260",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:15.892Z",
+    "obs": "",
+    "staff_id": "219",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1111",
+    "data_alocacao": "2026-01-21",
+    "treinamento_id": "51663150260",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:15.912Z",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1112",
+    "updatedAt": "2026-06-17T13:29:15.938Z",
+    "status": "confirmado",
+    "treinamento_id": "51663150260",
+    "data_alocacao": "2026-01-21",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": ""
+  },
+  {
+    "_id": "1113",
+    "treinamento_id": "51663150260",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-21",
+    "updatedAt": "2026-06-17T13:29:15.955Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "185"
+  },
+  {
+    "_id": "1116",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "107",
+    "treinamento_id": "50574802745",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-21",
+    "updatedAt": "2026-06-17T13:29:15.972Z"
+  },
+  {
+    "_id": "1117",
+    "motivo_recusa": null,
+    "staff_id": "185",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:15.990Z",
+    "status": "confirmado",
+    "treinamento_id": "50574802745",
+    "data_alocacao": "2026-01-21"
+  },
+  {
+    "_id": "1124",
+    "obs": "",
+    "staff_id": "23",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:16.015Z",
+    "data_alocacao": "2026-01-22",
+    "treinamento_id": "53343167043",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1125",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": "",
+    "treinamento_id": "53343167043",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-22",
+    "updatedAt": "2026-06-17T13:29:16.035Z"
+  },
+  {
+    "_id": "1126",
+    "updatedAt": "2026-06-17T13:29:16.055Z",
+    "data_alocacao": "2026-01-22",
+    "treinamento_id": "53343167043",
+    "status": "confirmado",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1127",
+    "obs": "",
+    "staff_id": "270",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:16.071Z",
+    "data_alocacao": "2026-01-22",
+    "treinamento_id": "53343167043",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1128",
+    "updatedAt": "2026-06-17T13:29:16.088Z",
+    "status": "confirmado",
+    "treinamento_id": "53343167043",
+    "data_alocacao": "2026-01-22",
+    "motivo_recusa": null,
+    "staff_id": "229",
+    "obs": ""
+  },
+  {
+    "_id": "1129",
+    "treinamento_id": "53343167043",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-22",
+    "updatedAt": "2026-06-17T13:29:16.103Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "185"
+  },
+  {
+    "_id": "1133",
+    "data_alocacao": "2026-01-26",
+    "treinamento_id": "53696538271",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:16.118Z",
+    "staff_id": "46",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1134",
+    "motivo_recusa": null,
+    "staff_id": "25",
+    "obs": "",
+    "treinamento_id": "53696538271",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-26",
+    "updatedAt": "2026-06-17T13:29:16.137Z"
+  },
+  {
+    "_id": "1135",
+    "treinamento_id": "53696538271",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-26",
+    "updatedAt": "2026-06-17T13:29:16.153Z",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "1141",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "107",
+    "treinamento_id": "53700624390",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-27",
+    "updatedAt": "2026-06-17T13:29:16.172Z"
+  },
+  {
+    "_id": "1142",
+    "staff_id": "167",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-01-27",
+    "status": "confirmado",
+    "treinamento_id": "53700624390",
+    "updatedAt": "2026-06-17T13:29:16.189Z"
+  },
+  {
+    "_id": "1143",
+    "motivo_recusa": null,
+    "staff_id": "57",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:16.209Z",
+    "treinamento_id": "53700624390",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-27"
+  },
+  {
+    "_id": "1144",
+    "updatedAt": "2026-06-17T13:29:16.229Z",
+    "treinamento_id": "53700624390",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-27",
+    "motivo_recusa": null,
+    "staff_id": "160",
+    "obs": ""
+  },
+  {
+    "_id": "1145",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "52",
+    "treinamento_id": "53700624390",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-27",
+    "updatedAt": "2026-06-17T13:29:16.251Z"
+  },
+  {
+    "_id": "1153",
+    "updatedAt": "2026-06-17T13:29:16.271Z",
+    "status": "confirmado",
+    "treinamento_id": "51020424972",
+    "data_alocacao": "2026-01-29",
+    "motivo_recusa": null,
+    "staff_id": "25",
+    "obs": ""
+  },
+  {
+    "_id": "1154",
+    "obs": "",
+    "staff_id": "202",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:16.295Z",
+    "data_alocacao": "2026-01-29",
+    "treinamento_id": "51020424972",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1155",
+    "updatedAt": "2026-06-17T13:29:16.321Z",
+    "data_alocacao": "2026-01-29",
+    "treinamento_id": "51020424972",
+    "status": "confirmado",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1156",
+    "obs": "",
+    "staff_id": "67",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-01-29",
+    "treinamento_id": "51020424972",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:16.341Z"
+  },
+  {
+    "_id": "1157",
+    "staff_id": "52",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:16.364Z",
+    "data_alocacao": "2026-01-29",
+    "treinamento_id": "51020424972",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1158",
+    "updatedAt": "2026-06-17T13:29:16.381Z",
+    "treinamento_id": "51020424972",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-29",
+    "motivo_recusa": null,
+    "staff_id": "163",
+    "obs": ""
+  },
+  {
+    "_id": "1159",
+    "motivo_recusa": null,
+    "staff_id": "110",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:16.403Z",
+    "status": "confirmado",
+    "treinamento_id": "51020424972",
+    "data_alocacao": "2026-01-29"
+  },
+  {
+    "_id": "1165",
+    "updatedAt": "2026-06-17T13:29:16.421Z",
+    "data_alocacao": "2026-02-05",
+    "treinamento_id": "54061378998",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "110",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1167",
+    "motivo_recusa": null,
+    "staff_id": "229",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "54061378998",
+    "data_alocacao": "2026-02-05",
+    "updatedAt": "2026-06-17T13:29:16.438Z"
+  },
+  {
+    "_id": "1168",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-05",
+    "status": "confirmado",
+    "treinamento_id": "54061378998",
+    "updatedAt": "2026-06-17T13:29:16.459Z"
+  },
+  {
+    "_id": "1169",
+    "motivo_recusa": null,
+    "staff_id": "219",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:16.478Z",
+    "treinamento_id": "54061378998",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-05"
+  },
+  {
+    "_id": "1176",
+    "updatedAt": "2026-06-17T13:29:16.493Z",
+    "treinamento_id": "53697245757",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-06",
+    "motivo_recusa": null,
+    "staff_id": "46",
+    "obs": ""
+  },
+  {
+    "_id": "1177",
+    "motivo_recusa": null,
+    "staff_id": "110",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:16.508Z",
+    "status": "confirmado",
+    "treinamento_id": "54020407913",
+    "data_alocacao": "2026-02-06"
+  },
+  {
+    "_id": "1178",
+    "motivo_recusa": null,
+    "staff_id": "25",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:16.525Z",
+    "treinamento_id": "54020407913",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-06"
+  },
+  {
+    "_id": "1179",
+    "updatedAt": "2026-06-17T13:29:16.542Z",
+    "status": "confirmado",
+    "treinamento_id": "54020407913",
+    "data_alocacao": "2026-02-06",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": ""
+  },
+  {
+    "_id": "1193",
+    "motivo_recusa": null,
+    "staff_id": "2",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:16.569Z",
+    "treinamento_id": "50513338489",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-07"
+  },
+  {
+    "_id": "1223",
+    "updatedAt": "2026-06-17T13:29:16.586Z",
+    "status": "confirmado",
+    "treinamento_id": "45476361774",
+    "data_alocacao": "2026-02-12",
+    "motivo_recusa": null,
+    "staff_id": "111",
+    "obs": ""
+  },
+  {
+    "_id": "1225",
+    "motivo_recusa": null,
+    "staff_id": "167",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:16.605Z",
+    "treinamento_id": "45476361774",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-12"
+  },
+  {
+    "_id": "1228",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-12",
+    "treinamento_id": "45476361774",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:16.638Z"
+  },
+  {
+    "_id": "1232",
+    "updatedAt": "2026-06-17T13:29:16.656Z",
+    "status": "confirmado",
+    "treinamento_id": "45476361774",
+    "data_alocacao": "2026-02-12",
+    "motivo_recusa": null,
+    "staff_id": "168",
+    "obs": ""
+  },
+  {
+    "_id": "1233",
+    "staff_id": "163",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-12",
+    "treinamento_id": "45476361774",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:16.672Z"
+  },
+  {
+    "_id": "1239",
+    "data_alocacao": "2026-02-12",
+    "treinamento_id": "45476361774",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:16.689Z",
+    "obs": "",
+    "staff_id": "79",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "124",
+    "status": "confirmado",
+    "treinamento_id": "44866676050",
+    "data_alocacao": "2025-12-04",
+    "updatedAt": "2026-06-17T13:29:12.451Z",
+    "motivo_recusa": null,
+    "staff_id": "23",
+    "obs": ""
+  },
+  {
+    "_id": "1241",
+    "staff_id": "2",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:16.708Z",
+    "data_alocacao": "2026-02-12",
+    "status": "confirmado",
+    "treinamento_id": "45476361774"
+  },
+  {
+    "_id": "1255",
+    "motivo_recusa": "não pode",
+    "obs": "",
+    "staff_id": "168",
+    "treinamento_id": "40328300595",
+    "status": "recusado",
+    "data_alocacao": "2026-03-07",
+    "updatedAt": "2026-06-17T13:29:16.737Z"
+  },
+  {
+    "_id": "1256",
+    "motivo_recusa": null,
+    "staff_id": "185",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:16.755Z",
+    "treinamento_id": "40328300595",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-07"
+  },
+  {
+    "_id": "1257",
+    "staff_id": "163",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:16.776Z",
+    "data_alocacao": "2026-03-07",
+    "status": "confirmado",
+    "treinamento_id": "40328300595"
+  },
+  {
+    "_id": "1259",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:16.806Z",
+    "treinamento_id": "40328300595",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-07"
+  },
+  {
+    "_id": "1260",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": "",
+    "treinamento_id": "40328300595",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-07",
+    "updatedAt": "2026-06-17T13:29:16.836Z"
+  },
+  {
+    "_id": "1269",
+    "staff_id": "46",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:16.854Z",
+    "data_alocacao": "2026-03-28",
+    "status": "confirmado",
+    "treinamento_id": "46557583993"
+  },
+  {
+    "_id": "1270",
+    "updatedAt": "2026-06-17T13:29:16.897Z",
+    "data_alocacao": "2026-03-28",
+    "treinamento_id": "46557583993",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "237",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1271",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:16.915Z",
+    "treinamento_id": "46557583993",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-28"
+  },
+  {
+    "_id": "1272",
+    "updatedAt": "2026-06-17T13:29:16.933Z",
+    "status": "confirmado",
+    "treinamento_id": "46557583993",
+    "data_alocacao": "2026-03-28",
+    "motivo_recusa": null,
+    "staff_id": "202",
+    "obs": ""
+  },
+  {
+    "_id": "1273",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:16.950Z",
+    "data_alocacao": "2026-03-28",
+    "treinamento_id": "46557583993",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1274",
+    "staff_id": "25",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-28",
+    "status": "confirmado",
+    "treinamento_id": "46557583993",
+    "updatedAt": "2026-06-17T13:29:16.983Z"
+  },
+  {
+    "_id": "1275",
+    "data_alocacao": "2026-03-28",
+    "treinamento_id": "46557583993",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:17.019Z",
+    "staff_id": "168",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1276",
+    "data_alocacao": "2026-03-28",
+    "treinamento_id": "46557583993",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:17.035Z",
+    "obs": "",
+    "staff_id": "114",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1279",
+    "updatedAt": "2026-06-17T13:29:17.053Z",
+    "data_alocacao": "2026-02-04",
+    "treinamento_id": "48886916378",
+    "status": "confirmado",
+    "staff_id": "11",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1280",
+    "data_alocacao": "2026-02-04",
+    "treinamento_id": "48886916378",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:17.082Z",
+    "staff_id": "163",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1289",
+    "obs": "",
+    "staff_id": "167",
+    "motivo_recusa": "agenda",
+    "updatedAt": "2026-06-17T13:29:17.123Z",
+    "data_alocacao": "2026-02-04",
+    "treinamento_id": "46749187096",
+    "status": "recusado"
+  },
+  {
+    "_id": "1309",
+    "updatedAt": "2026-06-17T13:29:17.157Z",
+    "data_alocacao": "2026-02-04",
+    "treinamento_id": "46749187096",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "23",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1310",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "219",
+    "treinamento_id": "46749187096",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-04",
+    "updatedAt": "2026-06-17T13:29:17.174Z"
+  },
+  {
+    "_id": "1312",
+    "motivo_recusa": null,
+    "staff_id": "202",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:17.203Z",
+    "status": "confirmado",
+    "treinamento_id": "46749187096",
+    "data_alocacao": "2026-02-04"
+  },
+  {
+    "_id": "1317",
+    "motivo_recusa": null,
+    "staff_id": "229",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "46749187096",
+    "data_alocacao": "2026-02-04",
+    "updatedAt": "2026-06-17T13:29:17.220Z"
+  },
+  {
+    "_id": "1318",
+    "updatedAt": "2026-06-17T13:29:17.236Z",
+    "treinamento_id": "46749187096",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": null,
+    "staff_id": "150",
+    "obs": ""
+  },
+  {
+    "_id": "1319",
+    "updatedAt": "2026-06-17T13:29:17.272Z",
+    "status": "confirmado",
+    "treinamento_id": "46749187096",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": null,
+    "staff_id": "25",
+    "obs": ""
+  },
+  {
+    "_id": "1320",
+    "motivo_recusa": null,
+    "staff_id": "185",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:17.288Z",
+    "treinamento_id": "46749187096",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-04"
+  },
+  {
+    "_id": "1324",
+    "motivo_recusa": "agenda",
+    "staff_id": "17",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:17.307Z",
+    "status": "recusado",
+    "treinamento_id": "53897828942",
+    "data_alocacao": "2026-02-04"
+  },
+  {
+    "_id": "1325",
+    "updatedAt": "2026-06-17T13:29:17.325Z",
+    "status": "recusado",
+    "treinamento_id": "53897828942",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": "trabalho",
+    "staff_id": "114",
+    "obs": ""
+  },
+  {
+    "_id": "1330",
+    "updatedAt": "2026-06-17T13:29:17.344Z",
+    "status": "confirmado",
+    "treinamento_id": "53897828942",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": null,
+    "staff_id": "46",
+    "obs": ""
+  },
+  {
+    "_id": "1332",
+    "data_alocacao": "2026-02-04",
+    "treinamento_id": "53897828942",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:17.365Z",
+    "staff_id": "270",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1333",
+    "updatedAt": "2026-06-17T13:29:17.402Z",
+    "status": "confirmado",
+    "treinamento_id": "53897828942",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": ""
+  },
+  {
+    "_id": "1335",
+    "updatedAt": "2026-06-17T13:29:17.420Z",
+    "data_alocacao": "2026-02-07",
+    "treinamento_id": "50513338489",
+    "status": "confirmado",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1336",
+    "staff_id": "168",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-07",
+    "treinamento_id": "50513338489",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:17.438Z"
+  },
+  {
+    "_id": "1340",
+    "staff_id": "84",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-07",
+    "status": "confirmado",
+    "treinamento_id": "50513338489",
+    "updatedAt": "2026-06-17T13:29:17.454Z"
+  },
+  {
+    "_id": "1341",
+    "updatedAt": "2026-06-17T13:29:17.486Z",
+    "status": "recusado",
+    "treinamento_id": "46749187096",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": null,
+    "staff_id": "62",
+    "obs": ""
+  },
+  {
+    "_id": "1353",
+    "staff_id": "277",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-07",
+    "status": "confirmado",
+    "treinamento_id": "50513338489",
+    "updatedAt": "2026-06-17T13:29:17.506Z"
+  },
+  {
+    "_id": "1355",
+    "motivo_recusa": null,
+    "staff_id": "23",
+    "obs": "",
+    "treinamento_id": "46709508964",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-03",
+    "updatedAt": "2026-06-17T13:29:17.522Z"
+  },
+  {
+    "_id": "1357",
+    "motivo_recusa": null,
+    "staff_id": "110",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:17.538Z",
+    "status": "confirmado",
+    "treinamento_id": "46709508964",
+    "data_alocacao": "2026-03-03"
+  },
+  {
+    "_id": "1359",
+    "staff_id": "23",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-04",
+    "treinamento_id": "50574802811",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:17.562Z"
+  },
+  {
+    "_id": "1361",
+    "updatedAt": "2026-06-17T13:29:17.580Z",
+    "data_alocacao": "2026-03-04",
+    "status": "confirmado",
+    "treinamento_id": "50574802811",
+    "staff_id": "110",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1362",
+    "motivo_recusa": null,
+    "staff_id": "67",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:17.599Z",
+    "treinamento_id": "50513338489",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-07"
+  },
+  {
+    "_id": "1363",
+    "updatedAt": "2026-06-17T13:29:17.625Z",
+    "data_alocacao": "2026-02-07",
+    "treinamento_id": "50513338489",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "237",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1367",
+    "motivo_recusa": null,
+    "staff_id": "185",
+    "obs": "",
+    "treinamento_id": "50513338489",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-07",
+    "updatedAt": "2026-06-17T13:29:17.652Z"
+  },
+  {
+    "_id": "1372",
+    "status": "confirmado",
+    "treinamento_id": "40328300595",
+    "data_alocacao": "2026-03-07",
+    "updatedAt": "2026-06-17T13:29:17.673Z",
+    "motivo_recusa": null,
+    "staff_id": "5",
+    "obs": ""
+  },
+  {
+    "_id": "1375",
+    "updatedAt": "2026-06-17T13:29:17.694Z",
+    "status": "confirmado",
+    "treinamento_id": "53697245757",
+    "data_alocacao": "2026-02-06",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": ""
+  },
+  {
+    "_id": "1376",
+    "updatedAt": "2026-06-17T13:29:17.716Z",
+    "data_alocacao": "2026-02-06",
+    "status": "confirmado",
+    "treinamento_id": "53697245757",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1378",
+    "treinamento_id": "48945589123",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-06",
+    "updatedAt": "2026-06-17T13:29:17.734Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "246"
+  },
+  {
+    "_id": "1380",
+    "updatedAt": "2026-06-17T13:29:17.756Z",
+    "data_alocacao": "2026-03-20",
+    "treinamento_id": "47172415349",
+    "status": "confirmado",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1384",
+    "treinamento_id": "40328300595",
+    "status": "recusado",
+    "data_alocacao": "2026-03-07",
+    "updatedAt": "2026-06-17T13:29:17.773Z",
+    "motivo_recusa": "compromisso",
+    "obs": "",
+    "staff_id": "67"
+  },
+  {
+    "_id": "1386",
+    "data_alocacao": "2026-03-07",
+    "treinamento_id": "40328300595",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:17.792Z",
+    "staff_id": "66",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1390",
+    "staff_id": "79",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-04",
+    "status": "confirmado",
+    "treinamento_id": "53897828942",
+    "updatedAt": "2026-06-17T13:29:17.811Z"
+  },
+  {
+    "_id": "1393",
+    "updatedAt": "2026-06-17T13:29:17.843Z",
+    "status": "confirmado",
+    "treinamento_id": "46749187096",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": null,
+    "staff_id": "278",
+    "obs": ""
+  },
+  {
+    "_id": "1398",
+    "data_alocacao": "2026-02-04",
+    "treinamento_id": "46749187096",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:17.863Z",
+    "staff_id": "168",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1399",
+    "treinamento_id": "53897828942",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-04",
+    "updatedAt": "2026-06-17T13:29:17.882Z",
+    "motivo_recusa": null,
+    "staff_id": "277",
+    "obs": ""
+  },
+  {
+    "_id": "1407",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "84",
+    "updatedAt": "2026-06-17T13:29:17.900Z",
+    "treinamento_id": "48886916378",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-04"
+  },
+  {
+    "_id": "1408",
+    "updatedAt": "2026-06-17T13:29:17.919Z",
+    "data_alocacao": "2026-02-04",
+    "status": "confirmado",
+    "treinamento_id": "48886916378",
+    "staff_id": "199",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1409",
+    "data_alocacao": "2026-02-04",
+    "treinamento_id": "48886916378",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:17.941Z",
+    "staff_id": "111",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1411",
+    "motivo_recusa": null,
+    "staff_id": "92",
+    "obs": "",
+    "treinamento_id": "53897828942",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-04",
+    "updatedAt": "2026-06-17T13:29:17.966Z"
+  },
+  {
+    "_id": "1415",
+    "updatedAt": "2026-06-17T13:29:17.988Z",
+    "status": "confirmado",
+    "treinamento_id": "48886916378",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": null,
+    "staff_id": "52",
+    "obs": ""
+  },
+  {
+    "_id": "1426",
+    "obs": "",
+    "staff_id": "151",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-04",
+    "treinamento_id": "48886916378",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:18.011Z"
+  },
+  {
+    "_id": "1427",
+    "updatedAt": "2026-06-17T13:29:18.033Z",
+    "treinamento_id": "53897828942",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": null,
+    "staff_id": "119",
+    "obs": ""
+  },
+  {
+    "_id": "1430",
+    "staff_id": "52",
+    "obs": "",
+    "motivo_recusa": "NB Cancelou, como não terá mais disponibilidade",
+    "updatedAt": "2026-06-17T13:29:18.055Z",
+    "data_alocacao": "2026-02-07",
+    "treinamento_id": "50513338489",
+    "status": "recusado"
+  },
+  {
+    "_id": "1433",
+    "updatedAt": "2026-06-17T13:29:18.073Z",
+    "treinamento_id": "46749187096",
+    "status": "recusado",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": "agenda",
+    "staff_id": "237",
+    "obs": ""
+  },
+  {
+    "_id": "1443",
+    "staff_id": "246",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-13",
+    "status": "confirmado",
+    "treinamento_id": "51514816570",
+    "updatedAt": "2026-06-17T13:29:18.094Z"
+  },
+  {
+    "_id": "1444",
+    "updatedAt": "2026-06-17T13:29:18.119Z",
+    "treinamento_id": "51514816570",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-13",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": ""
+  },
+  {
+    "_id": "1445",
+    "staff_id": "25",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:18.138Z",
+    "data_alocacao": "2026-03-13",
+    "treinamento_id": "51514816570",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1446",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:18.156Z",
+    "data_alocacao": "2026-03-13",
+    "treinamento_id": "51514816570",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1447",
+    "obs": "",
+    "staff_id": "79",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-13",
+    "treinamento_id": "51514816570",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:18.176Z"
+  },
+  {
+    "_id": "1448",
+    "obs": "",
+    "staff_id": "119",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-13",
+    "treinamento_id": "51514816570",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:18.197Z"
+  },
+  {
+    "_id": "1449",
+    "updatedAt": "2026-06-17T13:29:18.219Z",
+    "data_alocacao": "2026-02-07",
+    "treinamento_id": "50513338489",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "25",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1461",
+    "staff_id": "46",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-11",
+    "treinamento_id": "54350288653",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:18.239Z"
+  },
+  {
+    "_id": "1475",
+    "status": "confirmado",
+    "treinamento_id": "54350288653",
+    "data_alocacao": "2026-02-11",
+    "updatedAt": "2026-06-17T13:29:18.258Z",
+    "motivo_recusa": null,
+    "staff_id": "66",
+    "obs": ""
+  },
+  {
+    "_id": "1477",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:18.278Z",
+    "data_alocacao": "2026-02-05",
+    "treinamento_id": "54061378998",
+    "status": "recusado"
+  },
+  {
+    "_id": "1481",
+    "data_alocacao": "2026-02-07",
+    "treinamento_id": "50513338489",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:18.296Z",
+    "staff_id": "46",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1482",
+    "motivo_recusa": null,
+    "staff_id": "229",
+    "obs": "",
+    "treinamento_id": "50513338489",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-07",
+    "updatedAt": "2026-06-17T13:29:18.318Z"
+  },
+  {
+    "_id": "1486",
+    "motivo_recusa": null,
+    "staff_id": "114",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "50513338489",
+    "data_alocacao": "2026-02-07",
+    "updatedAt": "2026-06-17T13:29:18.338Z"
+  },
+  {
+    "_id": "1488",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "185",
+    "treinamento_id": "45476361774",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-12",
+    "updatedAt": "2026-06-17T13:29:18.359Z"
+  },
+  {
+    "_id": "1509",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "21",
+    "updatedAt": "2026-06-17T13:29:18.378Z",
+    "treinamento_id": "45476361774",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-12"
+  },
+  {
+    "_id": "1523",
+    "status": "confirmado",
+    "treinamento_id": "45476361774",
+    "data_alocacao": "2026-02-12",
+    "updatedAt": "2026-06-17T13:29:18.398Z",
+    "motivo_recusa": null,
+    "staff_id": "67",
+    "obs": ""
+  },
+  {
+    "_id": "1530",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "278",
+    "treinamento_id": "54350288653",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-11",
+    "updatedAt": "2026-06-17T13:29:18.418Z"
+  },
+  {
+    "_id": "1531",
+    "data_alocacao": "2026-02-11",
+    "status": "confirmado",
+    "treinamento_id": "54350288653",
+    "updatedAt": "2026-06-17T13:29:18.437Z",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1532",
+    "treinamento_id": "54350288653",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-11",
+    "updatedAt": "2026-06-17T13:29:18.459Z",
+    "motivo_recusa": null,
+    "staff_id": "202",
+    "obs": ""
+  },
+  {
+    "_id": "1549",
+    "updatedAt": "2026-06-17T13:29:18.479Z",
+    "data_alocacao": "2026-02-25",
+    "treinamento_id": "47720342175",
+    "status": "confirmado",
+    "staff_id": "25",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1557",
+    "motivo_recusa": null,
+    "staff_id": "229",
+    "obs": "",
+    "treinamento_id": "46709508964",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-03",
+    "updatedAt": "2026-06-17T13:29:18.501Z"
+  },
+  {
+    "_id": "1560",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "50574802811",
+    "data_alocacao": "2026-03-04",
+    "updatedAt": "2026-06-17T13:29:18.520Z"
+  },
+  {
+    "_id": "1561",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-04",
+    "status": "confirmado",
+    "treinamento_id": "50574802811",
+    "updatedAt": "2026-06-17T13:29:18.538Z"
+  },
+  {
+    "_id": "1562",
+    "staff_id": "229",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:18.557Z",
+    "data_alocacao": "2026-03-04",
+    "status": "confirmado",
+    "treinamento_id": "50574802811"
+  },
+  {
+    "_id": "1574",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "51926139727",
+    "data_alocacao": "2026-03-02",
+    "updatedAt": "2026-06-17T13:29:18.578Z"
+  },
+  {
+    "_id": "1576",
+    "staff_id": "246",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:18.597Z",
+    "data_alocacao": "2026-03-09",
+    "status": "confirmado",
+    "treinamento_id": "43595396659"
+  },
+  {
+    "_id": "1578",
+    "data_alocacao": "2026-03-16",
+    "treinamento_id": "55433797981",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:18.616Z",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1583",
+    "updatedAt": "2026-06-17T13:29:18.649Z",
+    "data_alocacao": "2026-02-25",
+    "status": "confirmado",
+    "treinamento_id": "47720342175",
+    "staff_id": "5",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1587",
+    "staff_id": "150",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:18.673Z",
+    "data_alocacao": "2026-02-25",
+    "status": "confirmado",
+    "treinamento_id": "47720342175"
+  },
+  {
+    "_id": "1599",
+    "staff_id": "46",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:18.696Z",
+    "data_alocacao": "2026-02-12",
+    "treinamento_id": "54956682577",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1600",
+    "motivo_recusa": null,
+    "staff_id": "246",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:18.725Z",
+    "treinamento_id": "54956682577",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-12"
+  },
+  {
+    "_id": "1601",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "202",
+    "updatedAt": "2026-06-17T13:29:18.748Z",
+    "treinamento_id": "54956682577",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-12"
+  },
+  {
+    "_id": "1602",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:18.767Z",
+    "data_alocacao": "2026-02-12",
+    "status": "confirmado",
+    "treinamento_id": "54956682577"
+  },
+  {
+    "_id": "1603",
+    "motivo_recusa": null,
+    "staff_id": "277",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:18.787Z",
+    "status": "confirmado",
+    "treinamento_id": "54956682577",
+    "data_alocacao": "2026-02-12"
+  },
+  {
+    "_id": "1604",
+    "status": "confirmado",
+    "treinamento_id": "45476361774",
+    "data_alocacao": "2026-02-12",
+    "updatedAt": "2026-06-17T13:29:18.810Z",
+    "motivo_recusa": null,
+    "staff_id": "52",
+    "obs": ""
+  },
+  {
+    "_id": "1605",
+    "status": "confirmado",
+    "treinamento_id": "45476361774",
+    "data_alocacao": "2026-02-12",
+    "updatedAt": "2026-06-17T13:29:18.832Z",
+    "motivo_recusa": null,
+    "staff_id": "151",
+    "obs": ""
+  },
+  {
+    "_id": "1607",
+    "staff_id": "11",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:18.854Z",
+    "data_alocacao": "2026-02-12",
+    "treinamento_id": "45476361774",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1608",
+    "staff_id": "199",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:18.873Z",
+    "data_alocacao": "2026-02-12",
+    "treinamento_id": "45476361774",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1615",
+    "updatedAt": "2026-06-17T13:29:18.892Z",
+    "data_alocacao": "2026-02-26",
+    "status": "confirmado",
+    "treinamento_id": "52994270746",
+    "staff_id": "46",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1616",
+    "motivo_recusa": null,
+    "staff_id": "160",
+    "obs": "",
+    "treinamento_id": "52994270746",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-26",
+    "updatedAt": "2026-06-17T13:29:18.911Z"
+  },
+  {
+    "_id": "1621",
+    "data_alocacao": "2026-02-26",
+    "treinamento_id": "52994270746",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:18.934Z",
+    "staff_id": "79",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1622",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:18.954Z",
+    "status": "confirmado",
+    "treinamento_id": "52994270746",
+    "data_alocacao": "2026-02-26"
+  },
+  {
+    "_id": "1623",
+    "treinamento_id": "52994270746",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-26",
+    "updatedAt": "2026-06-17T13:29:18.976Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "237"
+  },
+  {
+    "_id": "1625",
+    "updatedAt": "2026-06-17T13:29:18.999Z",
+    "status": "recusado",
+    "treinamento_id": "52994270746",
+    "data_alocacao": "2026-02-26",
+    "motivo_recusa": "Não tem disponibilidade",
+    "staff_id": "67",
+    "obs": ""
+  },
+  {
+    "_id": "1627",
+    "staff_id": "46",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:19.019Z",
+    "data_alocacao": "2026-02-25",
+    "status": "confirmado",
+    "treinamento_id": "55475655048"
+  },
+  {
+    "_id": "1649",
+    "staff_id": "278",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:19.039Z",
+    "data_alocacao": "2026-02-26",
+    "treinamento_id": "52994270746",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1656",
+    "treinamento_id": "55475655048",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-25",
+    "updatedAt": "2026-06-17T13:29:19.069Z",
+    "motivo_recusa": null,
+    "staff_id": "163",
+    "obs": ""
+  },
+  {
+    "_id": "1657",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:19.089Z",
+    "data_alocacao": "2026-02-25",
+    "treinamento_id": "55475655048",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1658",
+    "staff_id": "66",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:19.109Z",
+    "data_alocacao": "2026-02-25",
+    "status": "confirmado",
+    "treinamento_id": "55475655048"
+  },
+  {
+    "_id": "1659",
+    "motivo_recusa": null,
+    "staff_id": "277",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:19.132Z",
+    "status": "confirmado",
+    "treinamento_id": "55475655048",
+    "data_alocacao": "2026-02-25"
+  },
+  {
+    "_id": "1664",
+    "updatedAt": "2026-06-17T13:29:19.154Z",
+    "treinamento_id": "55475655048",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-25",
+    "motivo_recusa": null,
+    "staff_id": "167",
+    "obs": ""
+  },
+  {
+    "_id": "1667",
+    "data_alocacao": "2026-02-25",
+    "status": "confirmado",
+    "treinamento_id": "55475655048",
+    "updatedAt": "2026-06-17T13:29:19.173Z",
+    "staff_id": "229",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1668",
+    "updatedAt": "2026-06-17T13:29:19.193Z",
+    "data_alocacao": "2026-02-25",
+    "treinamento_id": "55475655048",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "202",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1671",
+    "updatedAt": "2026-06-17T13:29:19.212Z",
+    "status": "confirmado",
+    "treinamento_id": "52994270746",
+    "data_alocacao": "2026-02-26",
+    "motivo_recusa": null,
+    "staff_id": "4",
+    "obs": ""
+  },
+  {
+    "_id": "1679",
+    "updatedAt": "2026-06-17T13:29:19.233Z",
+    "treinamento_id": "55478325041",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-23",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "25"
+  },
+  {
+    "_id": "168",
+    "treinamento_id": "40683133593",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-04",
+    "updatedAt": "2026-06-17T13:29:12.472Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "160"
+  },
+  {
+    "_id": "1680",
+    "updatedAt": "2026-06-17T13:29:19.254Z",
+    "data_alocacao": "2026-02-23",
+    "treinamento_id": "55478325041",
+    "status": "confirmado",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1681",
+    "staff_id": "23",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-23",
+    "treinamento_id": "55478325041",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:19.274Z"
+  },
+  {
+    "_id": "1689",
+    "staff_id": "219",
+    "obs": "",
+    "motivo_recusa": "Não pode",
+    "data_alocacao": "2026-02-23",
+    "status": "recusado",
+    "treinamento_id": "55478325041",
+    "updatedAt": "2026-06-17T13:29:19.296Z"
+  },
+  {
+    "_id": "169",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-04",
+    "treinamento_id": "40683133593",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:12.496Z"
+  },
+  {
+    "_id": "1690",
+    "updatedAt": "2026-06-17T13:29:19.315Z",
+    "data_alocacao": "2026-02-23",
+    "status": "recusado",
+    "treinamento_id": "55478325041",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": "Não pode"
+  },
+  {
+    "_id": "1699",
+    "updatedAt": "2026-06-17T13:29:19.347Z",
+    "treinamento_id": "55389465231",
+    "status": "recusado",
+    "data_alocacao": "2026-03-07",
+    "motivo_recusa": null,
+    "staff_id": "114",
+    "obs": ""
+  },
+  {
+    "_id": "170",
+    "motivo_recusa": null,
+    "staff_id": "167",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:12.536Z",
+    "status": "confirmado",
+    "treinamento_id": "40683133593",
+    "data_alocacao": "2025-12-04"
+  },
+  {
+    "_id": "1702",
+    "motivo_recusa": null,
+    "staff_id": "46",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:19.367Z",
+    "treinamento_id": "55389465231",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-07"
+  },
+  {
+    "_id": "1703",
+    "treinamento_id": "55389465231",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-07",
+    "updatedAt": "2026-06-17T13:29:19.387Z",
+    "motivo_recusa": null,
+    "staff_id": "229",
+    "obs": ""
+  },
+  {
+    "_id": "1704",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": "Sem disponibilidade",
+    "updatedAt": "2026-06-17T13:29:19.410Z",
+    "data_alocacao": "2026-03-07",
+    "treinamento_id": "40328300595",
+    "status": "recusado"
+  },
+  {
+    "_id": "1707",
+    "motivo_recusa": "Não tem disponibilidade",
+    "staff_id": "150",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:19.430Z",
+    "status": "recusado",
+    "treinamento_id": "55389465231",
+    "data_alocacao": "2026-03-07"
+  },
+  {
+    "_id": "171",
+    "status": "confirmado",
+    "treinamento_id": "40683133593",
+    "data_alocacao": "2025-12-04",
+    "updatedAt": "2026-06-17T13:29:12.560Z",
+    "motivo_recusa": null,
+    "staff_id": "114",
+    "obs": ""
+  },
+  {
+    "_id": "1713",
+    "treinamento_id": "55389465231",
+    "status": "recusado",
+    "data_alocacao": "2026-03-07",
+    "updatedAt": "2026-06-17T13:29:19.455Z",
+    "motivo_recusa": "Não tem disponibilidade",
+    "staff_id": "119",
+    "obs": ""
+  },
+  {
+    "_id": "1714",
+    "updatedAt": "2026-06-17T13:29:19.473Z",
+    "data_alocacao": "2026-03-07",
+    "status": "confirmado",
+    "treinamento_id": "55389465231",
+    "staff_id": "79",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1715",
+    "motivo_recusa": null,
+    "staff_id": "84",
+    "obs": "",
+    "treinamento_id": "55389465231",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-07",
+    "updatedAt": "2026-06-17T13:29:19.493Z"
+  },
+  {
+    "_id": "1718",
+    "status": "confirmado",
+    "treinamento_id": "55389465231",
+    "data_alocacao": "2026-03-07",
+    "updatedAt": "2026-06-17T13:29:19.513Z",
+    "motivo_recusa": null,
+    "staff_id": "279",
+    "obs": ""
+  },
+  {
+    "_id": "172",
+    "updatedAt": "2026-06-17T13:29:12.592Z",
+    "treinamento_id": "40683133593",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-04",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "79"
+  },
+  {
+    "_id": "1721",
+    "updatedAt": "2026-06-17T13:29:19.533Z",
+    "status": "confirmado",
+    "treinamento_id": "55475655048",
+    "data_alocacao": "2026-02-25",
+    "motivo_recusa": null,
+    "staff_id": "219",
+    "obs": ""
+  },
+  {
+    "_id": "1722",
+    "staff_id": "270",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-25",
+    "treinamento_id": "55475655048",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:19.549Z"
+  },
+  {
+    "_id": "173",
+    "obs": "",
+    "staff_id": "185",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:12.611Z",
+    "data_alocacao": "2025-12-04",
+    "treinamento_id": "40683133593",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1730",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": "",
+    "treinamento_id": "47720342175",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-25",
+    "updatedAt": "2026-06-17T13:29:19.581Z"
+  },
+  {
+    "_id": "1731",
+    "staff_id": "246",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-25",
+    "status": "confirmado",
+    "treinamento_id": "47720342175",
+    "updatedAt": "2026-06-17T13:29:19.599Z"
+  },
+  {
+    "_id": "1734",
+    "treinamento_id": "55475655048",
+    "status": "recusado",
+    "data_alocacao": "2026-02-25",
+    "updatedAt": "2026-06-17T13:29:19.627Z",
+    "motivo_recusa": "Não respondeu a mensagem",
+    "obs": "",
+    "staff_id": "111"
+  },
+  {
+    "_id": "174",
+    "staff_id": "150",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:12.633Z",
+    "data_alocacao": "2025-12-04",
+    "status": "confirmado",
+    "treinamento_id": "40683133593"
+  },
+  {
+    "_id": "175",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "202",
+    "updatedAt": "2026-06-17T13:29:12.649Z",
+    "treinamento_id": "40683133593",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-04"
+  },
+  {
+    "_id": "1755",
+    "status": "recusado",
+    "treinamento_id": "55454956929",
+    "data_alocacao": "2026-02-27",
+    "updatedAt": "2026-06-17T13:29:19.645Z",
+    "motivo_recusa": "Medico",
+    "staff_id": "237",
+    "obs": ""
+  },
+  {
+    "_id": "1760",
+    "status": "confirmado",
+    "treinamento_id": "55454956929",
+    "data_alocacao": "2026-02-27",
+    "updatedAt": "2026-06-17T13:29:19.665Z",
+    "motivo_recusa": null,
+    "staff_id": "66",
+    "obs": ""
+  },
+  {
+    "_id": "1761",
+    "treinamento_id": "55454956929",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-27",
+    "updatedAt": "2026-06-17T13:29:19.687Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "277"
+  },
+  {
+    "_id": "1762",
+    "updatedAt": "2026-06-17T13:29:19.704Z",
+    "status": "confirmado",
+    "treinamento_id": "55454956929",
+    "data_alocacao": "2026-02-27",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": ""
+  },
+  {
+    "_id": "1763",
+    "updatedAt": "2026-06-17T13:29:19.727Z",
+    "data_alocacao": "2026-02-27",
+    "treinamento_id": "55454956929",
+    "status": "confirmado",
+    "staff_id": "2",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1764",
+    "treinamento_id": "55454956929",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-27",
+    "updatedAt": "2026-06-17T13:29:19.748Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "84"
+  },
+  {
+    "_id": "1765",
+    "staff_id": "23",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:19.766Z",
+    "data_alocacao": "2026-02-27",
+    "status": "confirmado",
+    "treinamento_id": "55454956929"
+  },
+  {
+    "_id": "177",
+    "status": "confirmado",
+    "treinamento_id": "42229001294",
+    "data_alocacao": "2025-12-04",
+    "updatedAt": "2026-06-17T13:29:12.716Z",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "1770",
+    "updatedAt": "2026-06-17T13:29:19.783Z",
+    "treinamento_id": "51926139727",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-02",
+    "motivo_recusa": null,
+    "staff_id": "219",
+    "obs": ""
+  },
+  {
+    "_id": "1773",
+    "status": "confirmado",
+    "treinamento_id": "55454956929",
+    "data_alocacao": "2026-02-27",
+    "updatedAt": "2026-06-17T13:29:19.801Z",
+    "motivo_recusa": null,
+    "staff_id": "4",
+    "obs": ""
+  },
+  {
+    "_id": "1776",
+    "treinamento_id": "51926139727",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-02",
+    "updatedAt": "2026-06-17T13:29:19.819Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "168"
+  },
+  {
+    "_id": "178",
+    "treinamento_id": "42229001294",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-04",
+    "updatedAt": "2026-06-17T13:29:12.739Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "219"
+  },
+  {
+    "_id": "179",
+    "motivo_recusa": null,
+    "staff_id": "235",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:12.757Z",
+    "status": "confirmado",
+    "treinamento_id": "42229001294",
+    "data_alocacao": "2025-12-04"
+  },
+  {
+    "_id": "1793",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "246",
+    "treinamento_id": "56611329382",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-02",
+    "updatedAt": "2026-06-17T13:29:19.837Z"
+  },
+  {
+    "_id": "1795",
+    "motivo_recusa": null,
+    "staff_id": "246",
+    "obs": "",
+    "treinamento_id": "54955880783",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-05",
+    "updatedAt": "2026-06-17T13:29:19.858Z"
+  },
+  {
+    "_id": "1796",
+    "updatedAt": "2026-06-17T13:29:19.874Z",
+    "treinamento_id": "55454956929",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-27",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "278"
+  },
+  {
+    "_id": "1797",
+    "data_alocacao": "2026-02-27",
+    "treinamento_id": "55454956929",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T13:29:19.891Z",
+    "obs": "",
+    "staff_id": "67",
+    "motivo_recusa": "Trabalho na faculdade"
+  },
+  {
+    "_id": "1803",
+    "motivo_recusa": null,
+    "staff_id": "185",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:19.906Z",
+    "treinamento_id": "55454956929",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-27"
+  },
+  {
+    "_id": "1804",
+    "obs": "",
+    "staff_id": "67",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-02",
+    "treinamento_id": "51926139727",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:19.923Z"
+  },
+  {
+    "_id": "1807",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "185",
+    "treinamento_id": "52994270746",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-26",
+    "updatedAt": "2026-06-17T13:29:19.941Z"
+  },
+  {
+    "_id": "181",
+    "updatedAt": "2026-06-17T13:29:12.783Z",
+    "treinamento_id": "42229001294",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-04",
+    "motivo_recusa": null,
+    "staff_id": "67",
+    "obs": ""
+  },
+  {
+    "_id": "1810",
+    "updatedAt": "2026-06-17T13:29:19.960Z",
+    "status": "confirmado",
+    "treinamento_id": "55454956929",
+    "data_alocacao": "2026-02-27",
+    "motivo_recusa": null,
+    "staff_id": "25",
+    "obs": ""
+  },
+  {
+    "_id": "182",
+    "updatedAt": "2026-06-17T13:29:12.798Z",
+    "data_alocacao": "2025-12-04",
+    "treinamento_id": "42229001294",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "84",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1826",
+    "staff_id": "278",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:19.980Z",
+    "data_alocacao": "2026-03-02",
+    "treinamento_id": "56611329382",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1827",
+    "motivo_recusa": null,
+    "staff_id": "25",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:19.997Z",
+    "status": "confirmado",
+    "treinamento_id": "56611329382",
+    "data_alocacao": "2026-03-02"
+  },
+  {
+    "_id": "1831",
+    "staff_id": "23",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-10",
+    "status": "confirmado",
+    "treinamento_id": "56122050337",
+    "updatedAt": "2026-06-17T13:29:20.018Z"
+  },
+  {
+    "_id": "1835",
+    "staff_id": "246",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-10",
+    "treinamento_id": "56122050337",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:20.037Z"
+  },
+  {
+    "_id": "184",
+    "data_alocacao": "2025-12-04",
+    "treinamento_id": "42229001294",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:12.817Z",
+    "obs": "",
+    "staff_id": "66",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1841",
+    "data_alocacao": "2026-03-02",
+    "status": "confirmado",
+    "treinamento_id": "51926139727",
+    "updatedAt": "2026-06-17T13:29:20.057Z",
+    "staff_id": "4",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1843",
+    "status": "confirmado",
+    "treinamento_id": "51926139727",
+    "data_alocacao": "2026-03-02",
+    "updatedAt": "2026-06-17T13:29:20.074Z",
+    "motivo_recusa": null,
+    "staff_id": "57",
+    "obs": ""
+  },
+  {
+    "_id": "1850",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "219",
+    "treinamento_id": "54955880783",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-05",
+    "updatedAt": "2026-06-17T13:29:20.091Z"
+  },
+  {
+    "_id": "1851",
+    "obs": "",
+    "staff_id": "270",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-05",
+    "treinamento_id": "54955880783",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:20.109Z"
+  },
+  {
+    "_id": "1858",
+    "data_alocacao": "2026-03-05",
+    "treinamento_id": "54955880783",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T13:29:20.129Z",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": "Estará em deslocamento - Retorno RJ X CPS - Inter Risk "
+  },
+  {
+    "_id": "1859",
+    "motivo_recusa": "Estará em deslocamento - Retorno RJ X CPS - Inter Risk",
+    "staff_id": "237",
+    "obs": "",
+    "treinamento_id": "54955880783",
+    "status": "recusado",
+    "data_alocacao": "2026-03-05",
+    "updatedAt": "2026-06-17T13:29:20.151Z"
+  },
+  {
+    "_id": "1860",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "79",
+    "treinamento_id": "54955880783",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-05",
+    "updatedAt": "2026-06-17T13:29:20.179Z"
+  },
+  {
+    "_id": "1864",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-05",
+    "status": "confirmado",
+    "treinamento_id": "54955880783",
+    "updatedAt": "2026-06-17T13:29:20.198Z"
+  },
+  {
+    "_id": "1867",
+    "staff_id": "163",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:20.219Z",
+    "data_alocacao": "2026-03-05",
+    "treinamento_id": "54955880783",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1869",
+    "data_alocacao": "2026-03-06",
+    "treinamento_id": "48945589123",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:20.239Z",
+    "staff_id": "160",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1871",
+    "updatedAt": "2026-06-17T13:29:20.259Z",
+    "treinamento_id": "54955880783",
+    "status": "recusado",
+    "data_alocacao": "2026-03-05",
+    "motivo_recusa": "Não tem disponibilidade",
+    "obs": "",
+    "staff_id": "185"
+  },
+  {
+    "_id": "1872",
+    "staff_id": "150",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:20.275Z",
+    "data_alocacao": "2026-03-05",
+    "status": "confirmado",
+    "treinamento_id": "54955880783"
+  },
+  {
+    "_id": "1874",
+    "updatedAt": "2026-06-17T13:29:20.307Z",
+    "status": "confirmado",
+    "treinamento_id": "54955880783",
+    "data_alocacao": "2026-03-05",
+    "motivo_recusa": null,
+    "staff_id": "46",
+    "obs": ""
+  },
+  {
+    "_id": "1875",
+    "status": "recusado",
+    "treinamento_id": "54955880783",
+    "data_alocacao": "2026-03-05",
+    "updatedAt": "2026-06-17T13:29:20.328Z",
+    "motivo_recusa": "Com restrição de horário",
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "1882",
+    "staff_id": "25",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:20.347Z",
+    "data_alocacao": "2026-03-06",
+    "status": "confirmado",
+    "treinamento_id": "48945589123"
+  },
+  {
+    "_id": "1883",
+    "updatedAt": "2026-06-17T13:29:20.371Z",
+    "data_alocacao": "2026-03-06",
+    "status": "recusado",
+    "treinamento_id": "48945589123",
+    "staff_id": "111",
+    "obs": "",
+    "motivo_recusa": "Viagem a trabalho e qualificação da pesquisa"
+  },
+  {
+    "_id": "1885",
+    "data_alocacao": "2026-03-02",
+    "status": "confirmado",
+    "treinamento_id": "56611329382",
+    "updatedAt": "2026-06-17T13:29:20.392Z",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1888",
+    "updatedAt": "2026-06-17T13:29:20.409Z",
+    "data_alocacao": "2026-03-02",
+    "status": "confirmado",
+    "treinamento_id": "56611329382",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1890",
+    "updatedAt": "2026-06-17T13:29:20.427Z",
+    "data_alocacao": "2026-02-27",
+    "treinamento_id": "55454956929",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "229",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1891",
+    "updatedAt": "2026-06-17T13:29:20.446Z",
+    "data_alocacao": "2026-03-06",
+    "treinamento_id": "48945589123",
+    "status": "confirmado",
+    "staff_id": "67",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1901",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "66",
+    "treinamento_id": "51926139727",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-02",
+    "updatedAt": "2026-06-17T13:29:20.464Z"
+  },
+  {
+    "_id": "1902",
+    "motivo_recusa": "Tem aula",
+    "staff_id": "167",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:20.483Z",
+    "treinamento_id": "48945589123",
+    "status": "recusado",
+    "data_alocacao": "2026-03-06"
+  },
+  {
+    "_id": "1905",
+    "motivo_recusa": null,
+    "staff_id": "168",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:20.506Z",
+    "status": "confirmado",
+    "treinamento_id": "48945589123",
+    "data_alocacao": "2026-03-06"
+  },
+  {
+    "_id": "1907",
+    "staff_id": "21",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:20.525Z",
+    "data_alocacao": "2026-03-05",
+    "treinamento_id": "54955880783",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1909",
+    "motivo_recusa": null,
+    "staff_id": "21",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:20.552Z",
+    "status": "confirmado",
+    "treinamento_id": "43595396659",
+    "data_alocacao": "2026-03-09"
+  },
+  {
+    "_id": "191",
+    "updatedAt": "2026-06-17T13:29:12.842Z",
+    "data_alocacao": "2025-12-02",
+    "status": "confirmado",
+    "treinamento_id": "45725825836",
+    "staff_id": "246",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1915",
+    "data_alocacao": "2026-03-09",
+    "treinamento_id": "43595396659",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T13:29:20.572Z",
+    "obs": "",
+    "staff_id": "237",
+    "motivo_recusa": "Aula"
+  },
+  {
+    "_id": "1916",
+    "obs": "",
+    "staff_id": "135",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-09",
+    "treinamento_id": "43595396659",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:20.591Z"
+  },
+  {
+    "_id": "192",
+    "obs": "",
+    "staff_id": "202",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-02",
+    "treinamento_id": "45725825836",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:12.870Z"
+  },
+  {
+    "_id": "1928",
+    "updatedAt": "2026-06-17T13:29:20.610Z",
+    "treinamento_id": "56122050337",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-10",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "79"
+  },
+  {
+    "_id": "193",
+    "staff_id": "46",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-02",
+    "status": "confirmado",
+    "treinamento_id": "45725825836",
+    "updatedAt": "2026-06-17T13:29:12.892Z"
+  },
+  {
+    "_id": "1932",
+    "data_alocacao": "2026-03-11",
+    "treinamento_id": "54263985450",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:20.628Z",
+    "staff_id": "23",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1933",
+    "updatedAt": "2026-06-17T13:29:20.655Z",
+    "data_alocacao": "2026-03-11",
+    "treinamento_id": "54263985450",
+    "status": "confirmado",
+    "staff_id": "246",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1952",
+    "staff_id": "163",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:20.673Z",
+    "data_alocacao": "2026-03-11",
+    "treinamento_id": "54263985450",
+    "status": "confirmado"
+  },
+  {
+    "_id": "1954",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": "Tem Compromisso",
+    "updatedAt": "2026-06-17T13:29:20.738Z",
+    "data_alocacao": "2026-03-09",
+    "status": "recusado",
+    "treinamento_id": "43595396659"
+  },
+  {
+    "_id": "1965",
+    "updatedAt": "2026-06-17T13:29:20.755Z",
+    "status": "confirmado",
+    "treinamento_id": "56122050337",
+    "data_alocacao": "2026-03-10",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": ""
+  },
+  {
+    "_id": "1966",
+    "staff_id": "163",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:20.771Z",
+    "data_alocacao": "2026-03-10",
+    "status": "confirmado",
+    "treinamento_id": "56122050337"
+  },
+  {
+    "_id": "1973",
+    "updatedAt": "2026-06-17T13:29:20.790Z",
+    "status": "confirmado",
+    "treinamento_id": "54263985450",
+    "data_alocacao": "2026-03-11",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": ""
+  },
+  {
+    "_id": "1974",
+    "obs": "",
+    "staff_id": "79",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-11",
+    "treinamento_id": "54263985450",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:20.807Z"
+  },
+  {
+    "_id": "1976",
+    "updatedAt": "2026-06-17T13:29:20.826Z",
+    "status": "confirmado",
+    "treinamento_id": "54263985450",
+    "data_alocacao": "2026-03-11",
+    "motivo_recusa": null,
+    "staff_id": "4",
+    "obs": ""
+  },
+  {
+    "_id": "1978",
+    "staff_id": "160",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-11",
+    "treinamento_id": "54263985450",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:20.843Z"
+  },
+  {
+    "_id": "1980",
+    "treinamento_id": "56214465436",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-17",
+    "updatedAt": "2026-06-17T13:29:20.867Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "46"
+  },
+  {
+    "_id": "1982",
+    "data_alocacao": "2026-03-18",
+    "treinamento_id": "52002393658",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:20.888Z",
+    "obs": "",
+    "staff_id": "23",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1983",
+    "motivo_recusa": null,
+    "staff_id": "25",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:20.908Z",
+    "treinamento_id": "43595396659",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-09"
+  },
+  {
+    "_id": "1985",
+    "updatedAt": "2026-06-17T13:29:20.924Z",
+    "status": "confirmado",
+    "treinamento_id": "56116139846",
+    "data_alocacao": "2026-03-26",
+    "motivo_recusa": null,
+    "staff_id": "23",
+    "obs": ""
+  },
+  {
+    "_id": "1986",
+    "updatedAt": "2026-06-17T13:29:20.943Z",
+    "data_alocacao": "2026-03-10",
+    "treinamento_id": "56122050337",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "160",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1988",
+    "status": "confirmado",
+    "treinamento_id": "43595396659",
+    "data_alocacao": "2026-03-09",
+    "updatedAt": "2026-06-17T13:29:20.962Z",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "199",
+    "updatedAt": "2026-06-17T13:29:12.919Z",
+    "treinamento_id": "46794708277",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-01",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "1991",
+    "updatedAt": "2026-06-17T13:29:20.983Z",
+    "data_alocacao": "2026-03-10",
+    "treinamento_id": "56646457380",
+    "status": "recusado",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": "Aula"
+  },
+  {
+    "_id": "1992",
+    "data_alocacao": "2026-03-11",
+    "treinamento_id": "54263985450",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:21.001Z",
+    "staff_id": "67",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1993",
+    "motivo_recusa": "Não Pode",
+    "staff_id": "67",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:21.021Z",
+    "treinamento_id": "55433797981",
+    "status": "recusado",
+    "data_alocacao": "2026-03-16"
+  },
+  {
+    "_id": "1994",
+    "staff_id": "66",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:21.043Z",
+    "data_alocacao": "2026-03-16",
+    "status": "confirmado",
+    "treinamento_id": "55433797981"
+  },
+  {
+    "_id": "1995",
+    "staff_id": "163",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:21.068Z",
+    "data_alocacao": "2026-03-16",
+    "status": "confirmado",
+    "treinamento_id": "55433797981"
+  },
+  {
+    "_id": "1996",
+    "updatedAt": "2026-06-17T13:29:21.088Z",
+    "data_alocacao": "2026-03-16",
+    "status": "confirmado",
+    "treinamento_id": "55433797981",
+    "staff_id": "4",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "1997",
+    "staff_id": "219",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-16",
+    "treinamento_id": "55433797981",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:21.108Z"
+  },
+  {
+    "_id": "1998",
+    "motivo_recusa": "Não pode",
+    "staff_id": "168",
+    "obs": "",
+    "status": "recusado",
+    "treinamento_id": "55433797981",
+    "data_alocacao": "2026-03-16",
+    "updatedAt": "2026-06-17T13:29:21.130Z"
+  },
+  {
+    "_id": "2000",
+    "updatedAt": "2026-06-17T13:29:21.151Z",
+    "treinamento_id": "50435902886",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-26",
+    "motivo_recusa": null,
+    "staff_id": "246",
+    "obs": ""
+  },
+  {
+    "_id": "2007",
+    "obs": "",
+    "staff_id": "237",
+    "motivo_recusa": "Cliente declinou trabalho ",
+    "data_alocacao": "2026-03-10",
+    "treinamento_id": "56646457380",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T13:29:21.172Z"
+  },
+  {
+    "_id": "2008",
+    "motivo_recusa": "Cliente declinou trabalho",
+    "staff_id": "25",
+    "obs": "",
+    "status": "recusado",
+    "treinamento_id": "56646457380",
+    "data_alocacao": "2026-03-10",
+    "updatedAt": "2026-06-17T13:29:21.196Z"
+  },
+  {
+    "_id": "2009",
+    "motivo_recusa": "Cliente declinou trabalho",
+    "obs": "",
+    "staff_id": "219",
+    "treinamento_id": "56646457380",
+    "status": "recusado",
+    "data_alocacao": "2026-03-10",
+    "updatedAt": "2026-06-17T13:29:21.219Z"
+  },
+  {
+    "_id": "201",
+    "motivo_recusa": null,
+    "staff_id": "150",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:12.935Z",
+    "status": "confirmado",
+    "treinamento_id": "46794708277",
+    "data_alocacao": "2025-12-01"
+  },
+  {
+    "_id": "2011",
+    "treinamento_id": "56646457380",
+    "status": "recusado",
+    "data_alocacao": "2026-03-10",
+    "updatedAt": "2026-06-17T13:29:21.259Z",
+    "motivo_recusa": "Cliente declinou trabalho",
+    "obs": "",
+    "staff_id": "46"
+  },
+  {
+    "_id": "2013",
+    "status": "recusado",
+    "treinamento_id": "56646457380",
+    "data_alocacao": "2026-03-10",
+    "updatedAt": "2026-06-17T13:29:21.280Z",
+    "motivo_recusa": "Cliente declinou trabalho",
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "2014",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": "Aula",
+    "updatedAt": "2026-06-17T13:29:21.298Z",
+    "data_alocacao": "2026-03-09",
+    "status": "recusado",
+    "treinamento_id": "43595396659"
+  },
+  {
+    "_id": "2017",
+    "motivo_recusa": "Aula",
+    "staff_id": "278",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:21.317Z",
+    "treinamento_id": "43595396659",
+    "status": "recusado",
+    "data_alocacao": "2026-03-09"
+  },
+  {
+    "_id": "202",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "114",
+    "updatedAt": "2026-06-17T13:29:12.950Z",
+    "treinamento_id": "46794708277",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-01"
+  },
+  {
+    "_id": "2020",
+    "motivo_recusa": null,
+    "staff_id": "79",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "43595396659",
+    "data_alocacao": "2026-03-09",
+    "updatedAt": "2026-06-17T13:29:21.337Z"
+  },
+  {
+    "_id": "2022",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "280",
+    "treinamento_id": "43595396659",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-09",
+    "updatedAt": "2026-06-17T13:29:21.358Z"
+  },
+  {
+    "_id": "2023",
+    "treinamento_id": "55433797981",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-16",
+    "updatedAt": "2026-06-17T13:29:21.375Z",
+    "motivo_recusa": null,
+    "staff_id": "57",
+    "obs": ""
+  },
+  {
+    "_id": "2028",
+    "status": "confirmado",
+    "treinamento_id": "55433797981",
+    "data_alocacao": "2026-03-16",
+    "updatedAt": "2026-06-17T13:29:21.394Z",
+    "motivo_recusa": null,
+    "staff_id": "11",
+    "obs": ""
+  },
+  {
+    "_id": "203",
+    "updatedAt": "2026-06-17T13:29:12.977Z",
+    "treinamento_id": "46794708277",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-01",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": ""
+  },
+  {
+    "_id": "2052",
+    "treinamento_id": "56214465436",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-17",
+    "updatedAt": "2026-06-17T13:29:21.418Z",
+    "motivo_recusa": null,
+    "staff_id": "202",
+    "obs": ""
+  },
+  {
+    "_id": "2059",
+    "obs": "",
+    "staff_id": "4",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:21.445Z",
+    "data_alocacao": "2026-03-17",
+    "treinamento_id": "56214465436",
+    "status": "confirmado"
+  },
+  {
+    "_id": "2060",
+    "motivo_recusa": null,
+    "staff_id": "79",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:21.462Z",
+    "status": "confirmado",
+    "treinamento_id": "56214465436",
+    "data_alocacao": "2026-03-17"
+  },
+  {
+    "_id": "2061",
+    "motivo_recusa": "Não tem disponibilidade",
+    "obs": "",
+    "staff_id": "168",
+    "treinamento_id": "56214465436",
+    "status": "recusado",
+    "data_alocacao": "2026-03-17",
+    "updatedAt": "2026-06-17T13:29:21.480Z"
+  },
+  {
+    "_id": "2065",
+    "treinamento_id": "56122050337",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-10",
+    "updatedAt": "2026-06-17T13:29:21.500Z",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "2067",
+    "status": "recusado",
+    "treinamento_id": "56214465436",
+    "data_alocacao": "2026-03-17",
+    "updatedAt": "2026-06-17T13:29:21.521Z",
+    "motivo_recusa": "Não tem disponibilidade",
+    "staff_id": "185",
+    "obs": ""
+  },
+  {
+    "_id": "2068",
+    "updatedAt": "2026-06-17T13:29:21.542Z",
+    "data_alocacao": "2026-03-17",
+    "treinamento_id": "56214465436",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "135",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2069",
+    "updatedAt": "2026-06-17T13:29:21.560Z",
+    "treinamento_id": "56214465436",
+    "status": "recusado",
+    "data_alocacao": "2026-03-17",
+    "motivo_recusa": "Não tem disponibilidade",
+    "staff_id": "66",
+    "obs": ""
+  },
+  {
+    "_id": "207",
+    "obs": "",
+    "staff_id": "107",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:13.010Z",
+    "data_alocacao": "2025-11-30",
+    "treinamento_id": "36962053809",
+    "status": "confirmado"
+  },
+  {
+    "_id": "2071",
+    "motivo_recusa": null,
+    "staff_id": "46",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "55927343922",
+    "data_alocacao": "2026-03-25",
+    "updatedAt": "2026-06-17T13:29:21.578Z"
+  },
+  {
+    "_id": "2074",
+    "data_alocacao": "2026-03-17",
+    "treinamento_id": "56214465436",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:21.598Z",
+    "staff_id": "229",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2075",
+    "motivo_recusa": "Não tem disponibilidade ",
+    "staff_id": "202",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:21.617Z",
+    "status": "recusado",
+    "treinamento_id": "55927343922",
+    "data_alocacao": "2026-03-25"
+  },
+  {
+    "_id": "2076",
+    "updatedAt": "2026-06-17T13:29:21.635Z",
+    "treinamento_id": "55927343922",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-25",
+    "motivo_recusa": null,
+    "staff_id": "229",
+    "obs": ""
+  },
+  {
+    "_id": "208",
+    "motivo_recusa": null,
+    "staff_id": "57",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "36962053809",
+    "data_alocacao": "2025-11-30",
+    "updatedAt": "2026-06-17T13:29:13.027Z"
+  },
+  {
+    "_id": "2080",
+    "treinamento_id": "56214465436",
+    "status": "recusado",
+    "data_alocacao": "2026-03-17",
+    "updatedAt": "2026-06-17T13:29:21.656Z",
+    "motivo_recusa": "Não tem disponibilidade",
+    "staff_id": "278",
+    "obs": ""
+  },
+  {
+    "_id": "2086",
+    "treinamento_id": "56214465436",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-17",
+    "updatedAt": "2026-06-17T13:29:21.675Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "67"
+  },
+  {
+    "_id": "2088",
+    "data_alocacao": "2026-03-17",
+    "status": "confirmado",
+    "treinamento_id": "56214465436",
+    "updatedAt": "2026-06-17T13:29:21.691Z",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "209",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "202",
+    "treinamento_id": "36962053809",
+    "status": "confirmado",
+    "data_alocacao": "2025-11-30",
+    "updatedAt": "2026-06-17T13:29:13.052Z"
+  },
+  {
+    "_id": "2090",
+    "updatedAt": "2026-06-17T13:29:21.710Z",
+    "data_alocacao": "2026-03-17",
+    "treinamento_id": "56214465436",
+    "status": "recusado",
+    "staff_id": "17",
+    "obs": "",
+    "motivo_recusa": "Não tem disponibilidade"
+  },
+  {
+    "_id": "2093",
+    "motivo_recusa": null,
+    "staff_id": "25",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:21.727Z",
+    "treinamento_id": "56116139846",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-26"
+  },
+  {
+    "_id": "2096",
+    "updatedAt": "2026-06-17T13:29:21.745Z",
+    "data_alocacao": "2026-03-17",
+    "treinamento_id": "56214465436",
+    "status": "confirmado",
+    "staff_id": "25",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2097",
+    "motivo_recusa": "Não tem disponibilidade",
+    "staff_id": "107",
+    "obs": "",
+    "status": "recusado",
+    "treinamento_id": "56214465436",
+    "data_alocacao": "2026-03-17",
+    "updatedAt": "2026-06-17T13:29:21.764Z"
+  },
+  {
+    "_id": "2099",
+    "staff_id": "23",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:21.783Z",
+    "data_alocacao": "2026-03-27",
+    "treinamento_id": "56707031413",
+    "status": "confirmado"
+  },
+  {
+    "_id": "2101",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-27",
+    "treinamento_id": "56707031413",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:21.802Z"
+  },
+  {
+    "_id": "2107",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:21.821Z",
+    "data_alocacao": "2026-03-19",
+    "status": "confirmado",
+    "treinamento_id": "56175336541"
+  },
+  {
+    "_id": "2119",
+    "staff_id": "84",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:21.841Z",
+    "data_alocacao": "2026-03-18",
+    "treinamento_id": "52002393658",
+    "status": "confirmado"
+  },
+  {
+    "_id": "212",
+    "motivo_recusa": null,
+    "staff_id": "275",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:13.101Z",
+    "treinamento_id": "36962053809",
+    "status": "confirmado",
+    "data_alocacao": "2025-11-30"
+  },
+  {
+    "_id": "2121",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-18",
+    "status": "confirmado",
+    "treinamento_id": "52002393658",
+    "updatedAt": "2026-06-17T13:29:21.861Z"
+  },
+  {
+    "_id": "2123",
+    "motivo_recusa": null,
+    "staff_id": "229",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "52002393658",
+    "data_alocacao": "2026-03-18",
+    "updatedAt": "2026-06-17T13:29:21.880Z"
+  },
+  {
+    "_id": "2126",
+    "treinamento_id": "44491241118",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-18",
+    "updatedAt": "2026-06-17T13:29:21.901Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "46"
+  },
+  {
+    "_id": "2127",
+    "motivo_recusa": null,
+    "staff_id": "246",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:21.919Z",
+    "treinamento_id": "44491241118",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-18"
+  },
+  {
+    "_id": "2129",
+    "staff_id": "46",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-19",
+    "treinamento_id": "56175336541",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:21.943Z"
+  },
+  {
+    "_id": "213",
+    "updatedAt": "2026-06-17T13:29:13.116Z",
+    "data_alocacao": "2025-11-30",
+    "treinamento_id": "36962053809",
+    "status": "confirmado",
+    "staff_id": "276",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2132",
+    "staff_id": "219",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-19",
+    "status": "confirmado",
+    "treinamento_id": "56175336541",
+    "updatedAt": "2026-06-17T13:29:21.964Z"
+  },
+  {
+    "_id": "2137",
+    "data_alocacao": "2026-03-20",
+    "treinamento_id": "47172415349",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:21.985Z",
+    "obs": "",
+    "staff_id": "229",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2138",
+    "motivo_recusa": null,
+    "staff_id": "5",
+    "obs": "",
+    "treinamento_id": "47172415349",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-20",
+    "updatedAt": "2026-06-17T13:29:22.004Z"
+  },
+  {
+    "_id": "2145",
+    "updatedAt": "2026-06-17T13:29:22.034Z",
+    "treinamento_id": "56707031413",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-27",
+    "motivo_recusa": null,
+    "staff_id": "219",
+    "obs": ""
+  },
+  {
+    "_id": "2148",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-25",
+    "status": "confirmado",
+    "treinamento_id": "55927343922",
+    "updatedAt": "2026-06-17T13:29:22.055Z"
+  },
+  {
+    "_id": "2149",
+    "motivo_recusa": "Não tem disponibilidade",
+    "staff_id": "167",
+    "obs": "",
+    "status": "recusado",
+    "treinamento_id": "55433797981",
+    "data_alocacao": "2026-03-16",
+    "updatedAt": "2026-06-17T13:29:22.080Z"
+  },
+  {
+    "_id": "2155",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-18",
+    "status": "confirmado",
+    "treinamento_id": "52002393658",
+    "updatedAt": "2026-06-17T13:29:22.103Z"
+  },
+  {
+    "_id": "2157",
+    "updatedAt": "2026-06-17T13:29:22.132Z",
+    "data_alocacao": "2026-03-18",
+    "treinamento_id": "52002393658",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "2",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2158",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": "Não tem disponibilidade",
+    "data_alocacao": "2026-03-16",
+    "status": "recusado",
+    "treinamento_id": "55433797981",
+    "updatedAt": "2026-06-17T13:29:22.153Z"
+  },
+  {
+    "_id": "2161",
+    "data_alocacao": "2026-03-18",
+    "treinamento_id": "44491241118",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:22.178Z",
+    "obs": "",
+    "staff_id": "219",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2162",
+    "data_alocacao": "2026-03-18",
+    "treinamento_id": "44491241118",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:22.200Z",
+    "staff_id": "270",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2164",
+    "motivo_recusa": null,
+    "staff_id": "281",
+    "obs": "",
+    "treinamento_id": "44491241118",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-18",
+    "updatedAt": "2026-06-17T13:29:22.229Z"
+  },
+  {
+    "_id": "2165",
+    "updatedAt": "2026-06-17T13:29:22.249Z",
+    "data_alocacao": "2026-03-16",
+    "status": "confirmado",
+    "treinamento_id": "55433797981",
+    "staff_id": "79",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2174",
+    "staff_id": "79",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:22.266Z",
+    "data_alocacao": "2026-03-18",
+    "status": "confirmado",
+    "treinamento_id": "44491241118"
+  },
+  {
+    "_id": "2175",
+    "motivo_recusa": "Não tem disponibilidade",
+    "staff_id": "185",
+    "obs": "",
+    "treinamento_id": "44491241118",
+    "status": "recusado",
+    "data_alocacao": "2026-03-18",
+    "updatedAt": "2026-06-17T13:29:22.305Z"
+  },
+  {
+    "_id": "2177",
+    "updatedAt": "2026-06-17T13:29:22.324Z",
+    "data_alocacao": "2026-03-19",
+    "treinamento_id": "56175336541",
+    "status": "confirmado",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2179",
+    "data_alocacao": "2026-03-27",
+    "treinamento_id": "56707031413",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T13:29:22.347Z",
+    "obs": "",
+    "staff_id": "111",
+    "motivo_recusa": "Não tem disponibilidade"
+  },
+  {
+    "_id": "218",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-11-28",
+    "treinamento_id": "43896831305",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:13.140Z"
+  },
+  {
+    "_id": "2189",
+    "staff_id": "4",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:22.368Z",
+    "data_alocacao": "2026-03-27",
+    "status": "confirmado",
+    "treinamento_id": "56707031413"
+  },
+  {
+    "_id": "219",
+    "motivo_recusa": null,
+    "staff_id": "219",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "43896831305",
+    "data_alocacao": "2025-11-28",
+    "updatedAt": "2026-06-17T13:29:13.159Z"
+  },
+  {
+    "_id": "2193",
+    "motivo_recusa": null,
+    "staff_id": "278",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:22.389Z",
+    "treinamento_id": "56175336541",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-19"
+  },
+  {
+    "_id": "2197",
+    "updatedAt": "2026-06-17T13:29:22.410Z",
+    "status": "confirmado",
+    "treinamento_id": "56175336541",
+    "data_alocacao": "2026-03-19",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": ""
+  },
+  {
+    "_id": "2199",
+    "updatedAt": "2026-06-17T13:29:22.451Z",
+    "data_alocacao": "2026-03-18",
+    "treinamento_id": "44491241118",
+    "status": "confirmado",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "220",
+    "data_alocacao": "2025-11-28",
+    "status": "confirmado",
+    "treinamento_id": "43896831305",
+    "updatedAt": "2026-06-17T13:29:13.185Z",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2204",
+    "updatedAt": "2026-06-17T13:29:22.475Z",
+    "data_alocacao": "2026-03-27",
+    "status": "confirmado",
+    "treinamento_id": "56707031413",
+    "staff_id": "84",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "221",
+    "treinamento_id": "43896831305",
+    "status": "confirmado",
+    "data_alocacao": "2025-11-28",
+    "updatedAt": "2026-06-17T13:29:13.213Z",
+    "motivo_recusa": null,
+    "staff_id": "17",
+    "obs": ""
+  },
+  {
+    "_id": "2213",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "25",
+    "treinamento_id": "56175336541",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-19",
+    "updatedAt": "2026-06-17T13:29:22.507Z"
+  },
+  {
+    "_id": "2215",
+    "updatedAt": "2026-06-17T13:29:22.526Z",
+    "data_alocacao": "2026-03-17",
+    "status": "recusado",
+    "treinamento_id": "56214465436",
+    "staff_id": "151",
+    "obs": "",
+    "motivo_recusa": "Não retornou msg do wpp"
+  },
+  {
+    "_id": "2218",
+    "updatedAt": "2026-06-17T13:29:22.553Z",
+    "treinamento_id": "56214465436",
+    "status": "recusado",
+    "data_alocacao": "2026-03-17",
+    "motivo_recusa": "Não tem disponibilidade",
+    "staff_id": "167",
+    "obs": ""
+  },
+  {
+    "_id": "222",
+    "status": "intencao",
+    "treinamento_id": "44866676050",
+    "data_alocacao": "2025-12-04",
+    "updatedAt": "2026-06-17T13:29:13.230Z",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "2220",
+    "updatedAt": "2026-06-17T13:29:22.574Z",
+    "treinamento_id": "56214465436",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-17",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "163"
+  },
+  {
+    "_id": "2221",
+    "data_alocacao": "2026-03-27",
+    "treinamento_id": "56707031413",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T13:29:22.593Z",
+    "staff_id": "21",
+    "obs": "",
+    "motivo_recusa": "Não tem disponibilidade"
+  },
+  {
+    "_id": "2224",
+    "staff_id": "168",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:22.608Z",
+    "data_alocacao": "2026-03-19",
+    "status": "confirmado",
+    "treinamento_id": "56175336541"
+  },
+  {
+    "_id": "2226",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "66",
+    "updatedAt": "2026-06-17T13:29:22.644Z",
+    "treinamento_id": "52002393658",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-18"
+  },
+  {
+    "_id": "223",
+    "motivo_recusa": null,
+    "staff_id": "219",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:13.256Z",
+    "status": "intencao",
+    "treinamento_id": "44866676050",
+    "data_alocacao": "2025-12-04"
+  },
+  {
+    "_id": "2233",
+    "motivo_recusa": "Trabalho na faculdade",
+    "staff_id": "185",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:22.663Z",
+    "status": "recusado",
+    "treinamento_id": "51926139727",
+    "data_alocacao": "2026-03-02"
+  },
+  {
+    "_id": "2235",
+    "data_alocacao": "2026-03-02",
+    "treinamento_id": "51926139727",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T13:29:22.684Z",
+    "obs": "",
+    "staff_id": "237",
+    "motivo_recusa": "teste"
+  },
+  {
+    "_id": "2237",
+    "motivo_recusa": null,
+    "staff_id": "270",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "56175336541",
+    "data_alocacao": "2026-03-19",
+    "updatedAt": "2026-06-17T13:29:22.713Z"
+  },
+  {
+    "_id": "2239",
+    "motivo_recusa": "não pode dormir",
+    "staff_id": "79",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:22.748Z",
+    "status": "recusado",
+    "treinamento_id": "47172415349",
+    "data_alocacao": "2026-03-20"
+  },
+  {
+    "_id": "2241",
+    "updatedAt": "2026-06-17T13:29:22.775Z",
+    "status": "recusado",
+    "treinamento_id": "47172415349",
+    "data_alocacao": "2026-03-20",
+    "motivo_recusa": "aula na sexta",
+    "staff_id": "66",
+    "obs": ""
+  },
+  {
+    "_id": "225",
+    "obs": "",
+    "staff_id": "246",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:13.276Z",
+    "data_alocacao": "2025-12-04",
+    "treinamento_id": "40683133593",
+    "status": "confirmado"
+  },
+  {
+    "_id": "2251",
+    "staff_id": "246",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-23",
+    "status": "confirmado",
+    "treinamento_id": "48359315536",
+    "updatedAt": "2026-06-17T13:29:22.793Z"
+  },
+  {
+    "_id": "2260",
+    "staff_id": "25",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-23",
+    "status": "confirmado",
+    "treinamento_id": "48359315536",
+    "updatedAt": "2026-06-17T13:29:22.809Z"
+  },
+  {
+    "_id": "2261",
+    "motivo_recusa": "Não pode",
+    "staff_id": "278",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:22.835Z",
+    "treinamento_id": "48359315536",
+    "status": "recusado",
+    "data_alocacao": "2026-03-23"
+  },
+  {
+    "_id": "2262",
+    "updatedAt": "2026-06-17T13:29:22.852Z",
+    "data_alocacao": "2026-03-23",
+    "status": "recusado",
+    "treinamento_id": "48359315536",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": "Tem compromisso a noite"
+  },
+  {
+    "_id": "2263",
+    "staff_id": "67",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:22.882Z",
+    "data_alocacao": "2026-03-20",
+    "status": "confirmado",
+    "treinamento_id": "47172415349"
+  },
+  {
+    "_id": "2267",
+    "data_alocacao": "2026-03-25",
+    "status": "recusado",
+    "treinamento_id": "50505767512",
+    "updatedAt": "2026-06-17T13:29:22.914Z",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": "Não pode ficar fora. Pai estará em campinas"
+  },
+  {
+    "_id": "2268",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": "Não pode ficar fora. Pai estará em campinas",
+    "updatedAt": "2026-06-17T13:29:22.945Z",
+    "data_alocacao": "2026-03-26",
+    "status": "recusado",
+    "treinamento_id": "50435902886"
+  },
+  {
+    "_id": "227",
+    "staff_id": "25",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:13.314Z",
+    "data_alocacao": "2025-12-04",
+    "treinamento_id": "40683133593",
+    "status": "confirmado"
+  },
+  {
+    "_id": "2272",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "246",
+    "treinamento_id": "50505767512",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-25",
+    "updatedAt": "2026-06-17T13:29:22.966Z"
+  },
+  {
+    "_id": "2275",
+    "updatedAt": "2026-06-17T13:29:22.991Z",
+    "data_alocacao": "2026-03-25",
+    "status": "recusado",
+    "treinamento_id": "50505767512",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2276",
+    "status": "confirmado",
+    "treinamento_id": "50505767512",
+    "data_alocacao": "2026-03-25",
+    "updatedAt": "2026-06-17T13:29:23.013Z",
+    "motivo_recusa": null,
+    "staff_id": "4",
+    "obs": ""
+  },
+  {
+    "_id": "2290",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "79",
+    "updatedAt": "2026-06-17T13:29:23.035Z",
+    "treinamento_id": "50505767512",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-25"
+  },
+  {
+    "_id": "2291",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": "",
+    "treinamento_id": "50505767512",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-25",
+    "updatedAt": "2026-06-17T13:29:23.053Z"
+  },
+  {
+    "_id": "2292",
+    "staff_id": "79",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:23.077Z",
+    "data_alocacao": "2026-03-26",
+    "treinamento_id": "50435902886",
+    "status": "confirmado"
+  },
+  {
+    "_id": "2293",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-26",
+    "treinamento_id": "50435902886",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:23.096Z"
+  },
+  {
+    "_id": "2294",
+    "status": "confirmado",
+    "treinamento_id": "48359315536",
+    "data_alocacao": "2026-03-23",
+    "updatedAt": "2026-06-17T13:29:23.119Z",
+    "motivo_recusa": null,
+    "staff_id": "21",
+    "obs": ""
+  },
+  {
+    "_id": "230",
+    "updatedAt": "2026-06-17T13:29:13.336Z",
+    "data_alocacao": "2025-12-04",
+    "treinamento_id": "40683133593",
+    "status": "confirmado",
+    "staff_id": "110",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2300",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:23.136Z",
+    "data_alocacao": "2026-03-23",
+    "treinamento_id": "48359315536",
+    "status": "confirmado"
+  },
+  {
+    "_id": "2301",
+    "updatedAt": "2026-06-17T13:29:23.157Z",
+    "data_alocacao": "2026-03-24",
+    "treinamento_id": "55034857629",
+    "status": "recusado",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": "Viajando para Manaus"
+  },
+  {
+    "_id": "2303",
+    "motivo_recusa": "ASO ",
+    "staff_id": "160",
+    "obs": "",
+    "status": "recusado",
+    "treinamento_id": "55034857629",
+    "data_alocacao": "2026-03-24",
+    "updatedAt": "2026-06-17T13:29:23.175Z"
+  },
+  {
+    "_id": "2304",
+    "data_alocacao": "2026-03-24",
+    "status": "confirmado",
+    "treinamento_id": "55034857629",
+    "updatedAt": "2026-06-17T13:29:23.195Z",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2305",
+    "staff_id": "160",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:23.215Z",
+    "data_alocacao": "2026-03-25",
+    "treinamento_id": "50505767512",
+    "status": "confirmado"
+  },
+  {
+    "_id": "2307",
+    "updatedAt": "2026-06-17T13:29:23.233Z",
+    "status": "confirmado",
+    "treinamento_id": "55034857629",
+    "data_alocacao": "2026-03-24",
+    "motivo_recusa": null,
+    "staff_id": "23",
+    "obs": ""
+  },
+  {
+    "_id": "231",
+    "data_alocacao": "2025-11-25",
+    "treinamento_id": "45915950776",
+    "status": "intencao",
+    "updatedAt": "2026-06-17T13:29:13.359Z",
+    "staff_id": "1",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2310",
+    "treinamento_id": "56116139846",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-26",
+    "updatedAt": "2026-06-17T13:29:23.253Z",
+    "motivo_recusa": null,
+    "staff_id": "202",
+    "obs": ""
+  },
+  {
+    "_id": "2311",
+    "treinamento_id": "56116139846",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-26",
+    "updatedAt": "2026-06-17T13:29:23.271Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "278"
+  },
+  {
+    "_id": "2312",
+    "status": "recusado",
+    "treinamento_id": "55034857629",
+    "data_alocacao": "2026-03-24",
+    "updatedAt": "2026-06-17T13:29:23.288Z",
+    "motivo_recusa": "Aula",
+    "staff_id": "66",
+    "obs": ""
+  },
+  {
+    "_id": "2314",
+    "updatedAt": "2026-06-17T13:29:23.305Z",
+    "treinamento_id": "55034857629",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-24",
+    "motivo_recusa": null,
+    "staff_id": "4",
+    "obs": ""
+  },
+  {
+    "_id": "2315",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "150",
+    "treinamento_id": "50505767512",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-25",
+    "updatedAt": "2026-06-17T13:29:23.321Z"
+  },
+  {
+    "_id": "2316",
+    "motivo_recusa": null,
+    "staff_id": "150",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "50435902886",
+    "data_alocacao": "2026-03-26",
+    "updatedAt": "2026-06-17T13:29:23.342Z"
+  },
+  {
+    "_id": "2324",
+    "status": "confirmado",
+    "treinamento_id": "50505767512",
+    "data_alocacao": "2026-03-25",
+    "updatedAt": "2026-06-17T13:29:23.361Z",
+    "motivo_recusa": null,
+    "staff_id": "11",
+    "obs": ""
+  },
+  {
+    "_id": "2325",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-03-23",
+    "status": "recusado",
+    "treinamento_id": "48359315536",
+    "updatedAt": "2026-06-17T13:29:23.379Z"
+  },
+  {
+    "_id": "2327",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "67",
+    "treinamento_id": "55034857629",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-24",
+    "updatedAt": "2026-06-17T13:29:23.401Z"
+  },
+  {
+    "_id": "233",
+    "staff_id": "25",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:13.385Z",
+    "data_alocacao": "2025-11-25",
+    "status": "intencao",
+    "treinamento_id": "45915950776"
+  },
+  {
+    "_id": "2331",
+    "staff_id": "246",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-04-01",
+    "status": "confirmado",
+    "treinamento_id": "58025115923",
+    "updatedAt": "2026-06-17T13:29:23.427Z"
+  },
+  {
+    "_id": "2332",
+    "motivo_recusa": null,
+    "staff_id": "229",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "58025115923",
+    "data_alocacao": "2026-04-01",
+    "updatedAt": "2026-06-17T13:29:23.450Z"
+  },
+  {
+    "_id": "2333",
+    "data_alocacao": "2026-04-01",
+    "status": "confirmado",
+    "treinamento_id": "58025115923",
+    "updatedAt": "2026-06-17T13:29:23.468Z",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "235",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "57",
+    "updatedAt": "2026-06-17T13:29:13.401Z",
+    "treinamento_id": "45915950776",
+    "status": "intencao",
+    "data_alocacao": "2025-11-25"
+  },
+  {
+    "_id": "2355",
+    "updatedAt": "2026-06-17T13:29:23.490Z",
+    "treinamento_id": "58025115923",
+    "status": "recusado",
+    "data_alocacao": "2026-04-01",
+    "motivo_recusa": "viagem",
+    "staff_id": "135",
+    "obs": ""
+  },
+  {
+    "_id": "2356",
+    "treinamento_id": "58025115923",
+    "status": "confirmado",
+    "data_alocacao": "2026-04-01",
+    "updatedAt": "2026-06-17T13:29:23.506Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "84"
+  },
+  {
+    "_id": "2357",
+    "staff_id": "4",
+    "obs": "",
+    "motivo_recusa": "Não pode",
+    "data_alocacao": "2026-04-01",
+    "treinamento_id": "58025115923",
+    "status": "recusado",
+    "updatedAt": "2026-06-17T13:29:23.523Z"
+  },
+  {
+    "_id": "2361",
+    "updatedAt": "2026-06-17T13:29:23.543Z",
+    "data_alocacao": "2026-03-30",
+    "treinamento_id": "50502417174",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "246",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2362",
+    "treinamento_id": "50502417174",
+    "status": "confirmado",
+    "data_alocacao": "2026-03-30",
+    "updatedAt": "2026-06-17T13:29:23.563Z",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "2363",
+    "staff_id": "150",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:23.579Z",
+    "data_alocacao": "2026-03-30",
+    "treinamento_id": "50502417174",
+    "status": "confirmado"
+  },
+  {
+    "_id": "2366",
+    "motivo_recusa": "Não pode na segunda. Aula",
+    "staff_id": "278",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:23.598Z",
+    "status": "recusado",
+    "treinamento_id": "50502417174",
+    "data_alocacao": "2026-03-30"
+  },
+  {
+    "_id": "237",
+    "updatedAt": "2026-06-17T13:29:13.424Z",
+    "data_alocacao": "2025-11-25",
+    "status": "intencao",
+    "treinamento_id": "45915950776",
+    "staff_id": "66",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "2373",
+    "obs": "",
+    "staff_id": "278",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:23.616Z",
+    "data_alocacao": "2026-03-27",
+    "treinamento_id": "56707031413",
+    "status": "confirmado"
+  },
+  {
+    "_id": "2374",
+    "motivo_recusa": "Está na Tokio Marine",
+    "staff_id": "79",
+    "obs": "",
+    "status": "recusado",
+    "treinamento_id": "56707031413",
+    "data_alocacao": "2026-03-27",
+    "updatedAt": "2026-06-17T13:29:23.636Z"
+  },
+  {
+    "_id": "2375",
+    "updatedAt": "2026-06-17T13:29:23.663Z",
+    "status": "recusado",
+    "treinamento_id": "50502417174",
+    "data_alocacao": "2026-03-30",
+    "motivo_recusa": "Não pode ",
+    "staff_id": "168",
+    "obs": ""
+  },
+  {
+    "_id": "2388",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:23.700Z",
+    "data_alocacao": "2026-03-30",
+    "status": "confirmado",
+    "treinamento_id": "50502417174"
+  },
+  {
+    "_id": "239",
+    "motivo_recusa": null,
+    "staff_id": "63",
+    "obs": "",
+    "status": "intencao",
+    "treinamento_id": "45915950776",
+    "data_alocacao": "2025-11-25",
+    "updatedAt": "2026-06-17T13:29:13.444Z"
+  },
+  {
+    "_id": "2392",
+    "updatedAt": "2026-06-17T13:29:23.718Z",
+    "data_alocacao": "2026-03-23",
+    "treinamento_id": "48359315536",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "79",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "241",
+    "treinamento_id": "45915950776",
+    "status": "intencao",
+    "data_alocacao": "2025-11-25",
+    "updatedAt": "2026-06-17T13:29:13.469Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "91"
+  },
+  {
+    "_id": "243",
+    "motivo_recusa": null,
+    "staff_id": "114",
+    "obs": "",
+    "status": "intencao",
+    "treinamento_id": "45915950776",
+    "data_alocacao": "2025-11-25",
+    "updatedAt": "2026-06-17T13:29:13.488Z"
+  },
+  {
+    "_id": "245",
+    "motivo_recusa": null,
+    "staff_id": "150",
+    "obs": "",
+    "treinamento_id": "45915950776",
+    "status": "intencao",
+    "data_alocacao": "2025-11-25",
+    "updatedAt": "2026-06-17T13:29:13.507Z"
+  },
+  {
+    "_id": "264",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:13.522Z",
+    "data_alocacao": "2025-12-13",
+    "treinamento_id": "41880266077",
+    "status": "confirmado"
+  },
+  {
+    "_id": "265",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "5",
+    "treinamento_id": "41880266077",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-13",
+    "updatedAt": "2026-06-17T13:29:13.548Z"
+  },
+  {
+    "_id": "266",
+    "data_alocacao": "2025-12-13",
+    "status": "confirmado",
+    "treinamento_id": "41880266077",
+    "updatedAt": "2026-06-17T13:29:13.572Z",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "267",
+    "updatedAt": "2026-06-17T13:29:13.591Z",
+    "status": "confirmado",
+    "treinamento_id": "41880266077",
+    "data_alocacao": "2025-12-13",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": ""
+  },
+  {
+    "_id": "270",
+    "staff_id": "163",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-04",
+    "treinamento_id": "42229001294",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:13.622Z"
+  },
+  {
+    "_id": "273",
+    "staff_id": "168",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-04",
+    "treinamento_id": "40683133593",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:13.643Z"
+  },
+  {
+    "_id": "274",
+    "motivo_recusa": null,
+    "staff_id": "17",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:13.661Z",
+    "treinamento_id": "40683133593",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-04"
+  },
+  {
+    "_id": "276",
+    "motivo_recusa": null,
+    "staff_id": "246",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:13.680Z",
+    "treinamento_id": "41880266077",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-13"
+  },
+  {
+    "_id": "278",
+    "obs": "",
+    "staff_id": "23",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:13.704Z",
+    "data_alocacao": "2025-12-08",
+    "treinamento_id": "45416581653",
+    "status": "confirmado"
+  },
+  {
+    "_id": "281",
+    "data_alocacao": "2025-12-08",
+    "status": "confirmado",
+    "treinamento_id": "45416581653",
+    "updatedAt": "2026-06-17T13:29:13.723Z",
+    "staff_id": "229",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "289",
+    "updatedAt": "2026-06-17T13:29:13.742Z",
+    "data_alocacao": "2025-12-08",
+    "status": "confirmado",
+    "treinamento_id": "45416581653",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "291",
+    "obs": "",
+    "staff_id": "23",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-09",
+    "treinamento_id": "48887036050",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:13.762Z"
+  },
+  {
+    "_id": "293",
+    "motivo_recusa": null,
+    "staff_id": "246",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:13.788Z",
+    "status": "confirmado",
+    "treinamento_id": "48887036050",
+    "data_alocacao": "2025-12-09"
+  },
+  {
+    "_id": "295",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-09",
+    "status": "confirmado",
+    "treinamento_id": "48887036050",
+    "updatedAt": "2026-06-17T13:29:13.804Z"
+  },
+  {
+    "_id": "298",
+    "updatedAt": "2026-06-17T13:29:13.824Z",
+    "treinamento_id": "48887036050",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-09",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "270"
+  },
+  {
+    "_id": "307",
+    "updatedAt": "2026-06-17T13:29:13.840Z",
+    "treinamento_id": "50435919433",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-10",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "185"
+  },
+  {
+    "_id": "308",
+    "updatedAt": "2026-06-17T13:29:13.859Z",
+    "data_alocacao": "2025-12-10",
+    "treinamento_id": "50435919433",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "202",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "309",
+    "updatedAt": "2026-06-17T13:29:13.874Z",
+    "treinamento_id": "50435919433",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-10",
+    "motivo_recusa": null,
+    "staff_id": "219",
+    "obs": ""
+  },
+  {
+    "_id": "310",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "50435919433",
+    "data_alocacao": "2025-12-10",
+    "updatedAt": "2026-06-17T13:29:13.895Z"
+  },
+  {
+    "_id": "311",
+    "updatedAt": "2026-06-17T13:29:13.934Z",
+    "treinamento_id": "50435919433",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-10",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "246"
+  },
+  {
+    "_id": "312",
+    "updatedAt": "2026-06-17T13:29:13.955Z",
+    "treinamento_id": "50435919433",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-10",
+    "motivo_recusa": null,
+    "staff_id": "270",
+    "obs": ""
+  },
+  {
+    "_id": "313",
+    "data_alocacao": "2025-12-10",
+    "treinamento_id": "50435919433",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:13.972Z",
+    "staff_id": "114",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "314",
+    "motivo_recusa": null,
+    "staff_id": "25",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "50435919433",
+    "data_alocacao": "2025-12-10",
+    "updatedAt": "2026-06-17T13:29:13.989Z"
+  },
+  {
+    "_id": "326",
+    "obs": "",
+    "staff_id": "79",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.006Z",
+    "data_alocacao": "2025-12-11",
+    "treinamento_id": "50435941388",
+    "status": "confirmado"
+  },
+  {
+    "_id": "327",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-11",
+    "updatedAt": "2026-06-17T13:29:14.027Z",
+    "motivo_recusa": null,
+    "staff_id": "114",
+    "obs": ""
+  },
+  {
+    "_id": "328",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": "",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-11",
+    "updatedAt": "2026-06-17T13:29:14.050Z"
+  },
+  {
+    "_id": "329",
+    "data_alocacao": "2025-12-11",
+    "status": "confirmado",
+    "treinamento_id": "50435941388",
+    "updatedAt": "2026-06-17T13:29:14.068Z",
+    "staff_id": "150",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "330",
+    "obs": "",
+    "staff_id": "160",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.088Z",
+    "data_alocacao": "2025-12-11",
+    "treinamento_id": "50435941388",
+    "status": "confirmado"
+  },
+  {
+    "_id": "331",
+    "motivo_recusa": null,
+    "staff_id": "163",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "50435941388",
+    "data_alocacao": "2025-12-11",
+    "updatedAt": "2026-06-17T13:29:14.105Z"
+  },
+  {
+    "_id": "332",
+    "staff_id": "167",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-11",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:14.126Z"
+  },
+  {
+    "_id": "333",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-11",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:14.141Z"
+  },
+  {
+    "_id": "334",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "25",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-11",
+    "updatedAt": "2026-06-17T13:29:14.174Z"
+  },
+  {
+    "_id": "337",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-11",
+    "updatedAt": "2026-06-17T13:29:14.191Z",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "340",
+    "obs": "",
+    "staff_id": "202",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.212Z",
+    "data_alocacao": "2025-12-11",
+    "treinamento_id": "50435941388",
+    "status": "confirmado"
+  },
+  {
+    "_id": "342",
+    "updatedAt": "2026-06-17T13:29:14.234Z",
+    "treinamento_id": "50435941388",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-11",
+    "motivo_recusa": null,
+    "staff_id": "246",
+    "obs": ""
+  },
+  {
+    "_id": "344",
+    "staff_id": "229",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-10",
+    "status": "confirmado",
+    "treinamento_id": "50435919433",
+    "updatedAt": "2026-06-17T13:29:14.264Z"
+  },
+  {
+    "_id": "349",
+    "treinamento_id": "50435919433",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-10",
+    "updatedAt": "2026-06-17T13:29:14.285Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "46"
+  },
+  {
+    "_id": "355",
+    "status": "confirmado",
+    "treinamento_id": "50435941388",
+    "data_alocacao": "2025-12-11",
+    "updatedAt": "2026-06-17T13:29:14.301Z",
+    "motivo_recusa": null,
+    "staff_id": "67",
+    "obs": ""
+  },
+  {
+    "_id": "356",
+    "data_alocacao": "2025-12-11",
+    "status": "confirmado",
+    "treinamento_id": "50435941388",
+    "updatedAt": "2026-06-17T13:29:14.316Z",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "367",
+    "motivo_recusa": null,
+    "staff_id": "202",
+    "obs": "",
+    "treinamento_id": "48878202798",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-12",
+    "updatedAt": "2026-06-17T13:29:14.332Z"
+  },
+  {
+    "_id": "369",
+    "updatedAt": "2026-06-17T13:29:14.385Z",
+    "treinamento_id": "48878202798",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-12",
+    "motivo_recusa": null,
+    "staff_id": "23",
+    "obs": ""
+  },
+  {
+    "_id": "372",
+    "motivo_recusa": null,
+    "staff_id": "270",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:14.402Z",
+    "treinamento_id": "48878202798",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-12"
+  },
+  {
+    "_id": "390",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "134",
+    "treinamento_id": "45092712219",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-16",
+    "updatedAt": "2026-06-17T13:29:14.418Z"
+  },
+  {
+    "_id": "392",
+    "obs": "",
+    "staff_id": "135",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.433Z",
+    "data_alocacao": "2025-12-16",
+    "treinamento_id": "45092712219",
+    "status": "confirmado"
+  },
+  {
+    "_id": "393",
+    "staff_id": "23",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.454Z",
+    "data_alocacao": "2025-12-16",
+    "treinamento_id": "45092712219",
+    "status": "confirmado"
+  },
+  {
+    "_id": "396",
+    "treinamento_id": "45092712219",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-16",
+    "updatedAt": "2026-06-17T13:29:14.476Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "202"
+  },
+  {
+    "_id": "399",
+    "staff_id": "202",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-17",
+    "status": "confirmado",
+    "treinamento_id": "46794767406",
+    "updatedAt": "2026-06-17T13:29:14.491Z"
+  },
+  {
+    "_id": "400",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.508Z",
+    "data_alocacao": "2025-12-17",
+    "status": "confirmado",
+    "treinamento_id": "46794767406"
+  },
+  {
+    "_id": "403",
+    "updatedAt": "2026-06-17T13:29:14.529Z",
+    "data_alocacao": "2025-12-18",
+    "status": "confirmado",
+    "treinamento_id": "49070018196",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "404",
+    "updatedAt": "2026-06-17T13:29:14.548Z",
+    "treinamento_id": "49070018196",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-18",
+    "motivo_recusa": null,
+    "staff_id": "202",
+    "obs": ""
+  },
+  {
+    "_id": "405",
+    "staff_id": "110",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.564Z",
+    "data_alocacao": "2025-12-18",
+    "treinamento_id": "49070018196",
+    "status": "confirmado"
+  },
+  {
+    "_id": "406",
+    "updatedAt": "2026-06-17T13:29:14.581Z",
+    "data_alocacao": "2025-12-17",
+    "status": "confirmado",
+    "treinamento_id": "46638088713",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "407",
+    "motivo_recusa": null,
+    "staff_id": "160",
+    "obs": "",
+    "treinamento_id": "46638088713",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-17",
+    "updatedAt": "2026-06-17T13:29:14.600Z"
+  },
+  {
+    "_id": "408",
+    "motivo_recusa": null,
+    "staff_id": "46",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:14.617Z",
+    "status": "confirmado",
+    "treinamento_id": "46638088713",
+    "data_alocacao": "2025-12-17"
+  },
+  {
+    "_id": "409",
+    "obs": "",
+    "staff_id": "114",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.634Z",
+    "data_alocacao": "2025-12-17",
+    "treinamento_id": "46638088713",
+    "status": "confirmado"
+  },
+  {
+    "_id": "411",
+    "motivo_recusa": null,
+    "staff_id": "237",
+    "obs": "",
+    "treinamento_id": "47537259323",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-16",
+    "updatedAt": "2026-06-17T13:29:14.649Z"
+  },
+  {
+    "_id": "413",
+    "staff_id": "107",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.666Z",
+    "data_alocacao": "2025-12-16",
+    "status": "confirmado",
+    "treinamento_id": "47537259323"
+  },
+  {
+    "_id": "415",
+    "staff_id": "235",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.682Z",
+    "data_alocacao": "2025-12-16",
+    "status": "confirmado",
+    "treinamento_id": "47537259323"
+  },
+  {
+    "_id": "417",
+    "motivo_recusa": null,
+    "staff_id": "235",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:14.704Z",
+    "status": "confirmado",
+    "treinamento_id": "46794767406",
+    "data_alocacao": "2025-12-17"
+  },
+  {
+    "_id": "418",
+    "updatedAt": "2026-06-17T13:29:14.719Z",
+    "data_alocacao": "2025-12-17",
+    "treinamento_id": "46794767406",
+    "status": "confirmado",
+    "staff_id": "185",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "420",
+    "updatedAt": "2026-06-17T13:29:14.742Z",
+    "data_alocacao": "2025-12-16",
+    "treinamento_id": "47537259323",
+    "status": "confirmado",
+    "staff_id": "219",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "421",
+    "data_alocacao": "2025-12-17",
+    "treinamento_id": "46638088713",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:14.761Z",
+    "staff_id": "84",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "422",
+    "status": "confirmado",
+    "treinamento_id": "45092712219",
+    "data_alocacao": "2025-12-16",
+    "updatedAt": "2026-06-17T13:29:14.785Z",
+    "motivo_recusa": null,
+    "staff_id": "270",
+    "obs": ""
+  },
+  {
+    "_id": "424",
+    "updatedAt": "2026-06-17T13:29:14.803Z",
+    "treinamento_id": "46638088713",
+    "status": "confirmado",
+    "data_alocacao": "2025-12-17",
+    "motivo_recusa": null,
+    "staff_id": "167",
+    "obs": ""
+  },
+  {
+    "_id": "426",
+    "staff_id": "46",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.820Z",
+    "data_alocacao": "2025-12-16",
+    "treinamento_id": "47537259323",
+    "status": "confirmado"
+  },
+  {
+    "_id": "427",
+    "obs": "",
+    "staff_id": "246",
+    "motivo_recusa": null,
+    "data_alocacao": "2025-12-16",
+    "treinamento_id": "45092712219",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:14.847Z"
+  },
+  {
+    "_id": "428",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.862Z",
+    "data_alocacao": "2025-12-18",
+    "treinamento_id": "49070018196",
+    "status": "confirmado"
+  },
+  {
+    "_id": "429",
+    "motivo_recusa": null,
+    "staff_id": "135",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:14.883Z",
+    "status": "confirmado",
+    "treinamento_id": "46794767406",
+    "data_alocacao": "2025-12-17"
+  },
+  {
+    "_id": "433",
+    "status": "confirmado",
+    "treinamento_id": "46794708277",
+    "data_alocacao": "2025-12-01",
+    "updatedAt": "2026-06-17T13:29:14.902Z",
+    "motivo_recusa": null,
+    "staff_id": "219",
+    "obs": ""
+  },
+  {
+    "_id": "479",
+    "obs": "",
+    "staff_id": "135",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:14.918Z",
+    "data_alocacao": "2026-01-28",
+    "treinamento_id": "50513408000",
+    "status": "confirmado"
+  },
+  {
+    "_id": "480",
+    "updatedAt": "2026-06-17T13:29:14.932Z",
+    "treinamento_id": "50513408000",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-28",
+    "motivo_recusa": null,
+    "staff_id": "246",
+    "obs": ""
+  },
+  {
+    "_id": "483",
+    "staff_id": "135",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-01-29",
+    "treinamento_id": "50574802738",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:14.948Z"
+  },
+  {
+    "_id": "484",
+    "data_alocacao": "2026-01-29",
+    "treinamento_id": "50574802738",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:14.969Z",
+    "staff_id": "246",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "493",
+    "data_alocacao": "2026-01-17",
+    "treinamento_id": "42868501827",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:14.999Z",
+    "obs": "",
+    "staff_id": "107",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "494",
+    "data_alocacao": "2026-01-17",
+    "status": "confirmado",
+    "treinamento_id": "42868501827",
+    "updatedAt": "2026-06-17T13:29:15.019Z",
+    "staff_id": "57",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "495",
+    "data_alocacao": "2026-01-17",
+    "treinamento_id": "42868501827",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:15.037Z",
+    "obs": "",
+    "staff_id": "185",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "496",
+    "updatedAt": "2026-06-17T13:29:15.056Z",
+    "data_alocacao": "2026-01-17",
+    "status": "confirmado",
+    "treinamento_id": "42868501827",
+    "staff_id": "114",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "497",
+    "treinamento_id": "42868501827",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-17",
+    "updatedAt": "2026-06-17T13:29:15.077Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "163"
+  },
+  {
+    "_id": "589",
+    "motivo_recusa": null,
+    "staff_id": "246",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:15.095Z",
+    "treinamento_id": "49616256952",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-26"
+  },
+  {
+    "_id": "616",
+    "motivo_recusa": null,
+    "staff_id": "23",
+    "obs": "",
+    "status": "confirmado",
+    "treinamento_id": "49616256952",
+    "data_alocacao": "2026-01-26",
+    "updatedAt": "2026-06-17T13:29:15.115Z"
+  },
+  {
+    "_id": "618",
+    "motivo_recusa": null,
+    "staff_id": "110",
+    "obs": "",
+    "updatedAt": "2026-06-17T13:29:15.133Z",
+    "status": "confirmado",
+    "treinamento_id": "48265713227",
+    "data_alocacao": "2026-01-30"
+  },
+  {
+    "_id": "619",
+    "data_alocacao": "2026-01-28",
+    "treinamento_id": "50513408000",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:15.149Z",
+    "staff_id": "150",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "620",
+    "data_alocacao": "2026-01-29",
+    "status": "confirmado",
+    "treinamento_id": "50574802738",
+    "updatedAt": "2026-06-17T13:29:15.165Z",
+    "staff_id": "150",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "627",
+    "updatedAt": "2026-06-17T13:29:15.182Z",
+    "data_alocacao": "2026-01-26",
+    "treinamento_id": "49616256952",
+    "status": "confirmado",
+    "obs": "",
+    "staff_id": "135",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "628",
+    "data_alocacao": "2026-01-26",
+    "status": "confirmado",
+    "treinamento_id": "49616256952",
+    "updatedAt": "2026-06-17T13:29:15.201Z",
+    "staff_id": "237",
+    "obs": "",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "667",
+    "status": "confirmado",
+    "treinamento_id": "48265713227",
+    "data_alocacao": "2026-01-30",
+    "updatedAt": "2026-06-17T13:29:15.218Z",
+    "motivo_recusa": null,
+    "staff_id": "84",
+    "obs": ""
+  },
+  {
+    "_id": "774",
+    "staff_id": "219",
+    "obs": "",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:15.236Z",
+    "data_alocacao": "2026-01-30",
+    "treinamento_id": "48265713227",
+    "status": "confirmado"
+  },
+  {
+    "_id": "779",
+    "staff_id": "79",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-01-30",
+    "status": "confirmado",
+    "treinamento_id": "48265713227",
+    "updatedAt": "2026-06-17T13:29:15.252Z"
+  },
+  {
+    "_id": "891",
+    "updatedAt": "2026-06-17T13:29:15.270Z",
+    "status": "confirmado",
+    "treinamento_id": "48886916378",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": null,
+    "staff_id": "110",
+    "obs": ""
+  },
+  {
+    "_id": "893",
+    "obs": "",
+    "staff_id": "67",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:15.287Z",
+    "data_alocacao": "2026-02-04",
+    "treinamento_id": "48886916378",
+    "status": "confirmado"
+  },
+  {
+    "_id": "894",
+    "staff_id": "160",
+    "obs": "",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-02-04",
+    "treinamento_id": "48886916378",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:15.305Z"
+  },
+  {
+    "_id": "895",
+    "updatedAt": "2026-06-17T13:29:15.322Z",
+    "treinamento_id": "48886916378",
+    "status": "confirmado",
+    "data_alocacao": "2026-02-04",
+    "motivo_recusa": null,
+    "staff_id": "66",
+    "obs": ""
+  },
+  {
+    "_id": "961",
+    "treinamento_id": "50324206256",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-31",
+    "updatedAt": "2026-06-17T13:29:15.343Z",
+    "motivo_recusa": null,
+    "staff_id": "107",
+    "obs": ""
+  },
+  {
+    "_id": "962",
+    "updatedAt": "2026-06-17T13:29:15.362Z",
+    "treinamento_id": "50324206256",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-31",
+    "motivo_recusa": null,
+    "staff_id": "57",
+    "obs": ""
+  },
+  {
+    "_id": "963",
+    "obs": "",
+    "staff_id": "114",
+    "motivo_recusa": null,
+    "data_alocacao": "2026-01-31",
+    "treinamento_id": "50324206256",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:15.380Z"
+  },
+  {
+    "_id": "964",
+    "treinamento_id": "50324206256",
+    "status": "confirmado",
+    "data_alocacao": "2026-01-31",
+    "updatedAt": "2026-06-17T13:29:15.398Z",
+    "motivo_recusa": null,
+    "obs": "",
+    "staff_id": "135"
+  },
+  {
+    "_id": "965",
+    "obs": "",
+    "staff_id": "202",
+    "motivo_recusa": null,
+    "updatedAt": "2026-06-17T13:29:15.415Z",
+    "data_alocacao": "2026-01-31",
+    "treinamento_id": "50324206256",
+    "status": "confirmado"
+  },
+  {
+    "_id": "966",
+    "data_alocacao": "2026-01-31",
+    "treinamento_id": "50324206256",
+    "status": "confirmado",
+    "updatedAt": "2026-06-17T13:29:15.435Z",
+    "obs": "",
+    "staff_id": "237",
+    "motivo_recusa": null
+  },
+  {
+    "_id": "967",
+    "data_alocacao": "2026-01-31",
+    "status": "confirmado",
+    "treinamento_id": "50324206256",
+    "updatedAt": "2026-06-17T13:29:15.455Z",
+    "staff_id": "168",
+    "obs": "",
+    "motivo_recusa": null
+  }
+]

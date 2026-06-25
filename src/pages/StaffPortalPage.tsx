@@ -2,12 +2,76 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { AppLayout } from '../components/AppLayout';
 import { registrarLogAlocacao } from '../lib/alocacao-core';
 import { getEventId } from '../lib/normalization';
-import { db, normalizeDate } from '../lib/firebase';
+import { db, normalizeDate, formatarDataParaInput } from '../lib/firebase';
 import { collection, query, where, onSnapshot, doc, updateDoc, getDocs } from 'firebase/firestore';
-import { Calendar as CalendarIcon, DollarSign, User, MapPin, Clock, Search, ChevronRight, Info } from 'lucide-react';
+import { Calendar as CalendarIcon, DollarSign, User, MapPin, Clock, Search, ChevronRight, Info, Save, CreditCard, Plane, MessageSquare, ShieldCheck, CheckCircle2, Unlock, XCircle } from 'lucide-react';
 import { isWithinInterval, startOfDay, endOfDay, subDays, addDays, format } from 'date-fns';
 
 // UTILITIES
+
+const renderPortalStatusBadge = (status: string) => {
+  const s = (status || '').toLowerCase().trim();
+  let colorClass = "bg-slate-50 text-slate-500 border-slate-200";
+  let label = status;
+  let icon = <Clock size={10} />;
+
+  switch (s) {
+    case 'confirmado':
+    case 'confirmada':
+      colorClass = "bg-emerald-50 text-emerald-600 border-emerald-250";
+      label = "Confirmado";
+      icon = <CheckCircle2 size={10} />;
+      break;
+    case 'whatsapp':
+      colorClass = "bg-teal-50 text-teal-600 border-teal-250";
+      label = "Chamado no Zap";
+      icon = <MessageSquare size={10} />;
+      break;
+    case 'pessoalmente':
+      colorClass = "bg-sky-50 text-sky-600 border-sky-250";
+      label = "Pessoalmente";
+      icon = <User size={10} />;
+      break;
+    case 'pre_reserva':
+    case 'pré-reserva':
+    case 'pre-reserva':
+      colorClass = "bg-orange-50 text-orange-600 border-orange-250";
+      label = "Pré-Reserva";
+      icon = <Clock size={10} />;
+      break;
+    case 'deslocamento':
+      colorClass = "bg-indigo-50 text-indigo-600 border-indigo-250";
+      label = "Deslocamento";
+      icon = <Plane size={10} />;
+      break;
+    case 'intencao':
+      colorClass = "bg-zinc-50 text-zinc-500 border-zinc-250";
+      label = "Pendente";
+      icon = <Clock size={10} />;
+      break;
+    case 'data_liberada':
+      colorClass = "bg-slate-50 text-slate-500 border-slate-250";
+      label = "Data Liberada";
+      icon = <Unlock size={10} />;
+      break;
+    case 'recusado':
+      colorClass = "bg-rose-50 text-rose-600 border-rose-250";
+      label = "Recusado";
+      icon = <XCircle size={10} />;
+      break;
+    default:
+      colorClass = "bg-slate-50 text-slate-500 border-slate-250";
+      label = status;
+      icon = <Clock size={10} />;
+  }
+
+  return (
+    <span className={`inline-flex items-center gap-1 text-[8px] font-black uppercase px-2 py-0.5 rounded border ${colorClass}`}>
+      {icon}
+      <span>{label}</span>
+    </span>
+  );
+};
 
 const getRefId = (ref: any): string => {
   if (!ref) return "";
@@ -70,13 +134,26 @@ export const StaffPortalPage = ({ user }: { user?: any }) => {
   }, [user]);
 
   const [formData, setFormData] = useState({
+    nomeCompleto: '',
+    nomeAbreviado: '',
+    rg: '',
+    cpf: '',
+    dtNasc: '',
     celular: '',
     email: '',
+    endereco: '',
+    dtEntrada: '',
+    formaPagamento: '',
     banco: '',
     agencia: '',
     conta: '',
     chavePix: '',
-    observacoes: ''
+    integracaoEmbraer: '',
+    vencimentoASO: '',
+    vencimentoContrato: '',
+    observacoes: '',
+    funcaoId: '',
+    senha: ''
   });
   const [saving, setSaving] = useState(false);
   const [selectedWeekNum, setSelectedWeekNum] = useState<number>(0); 
@@ -155,13 +232,26 @@ export const StaffPortalPage = ({ user }: { user?: any }) => {
         const d = docSnap.data();
         setStaffData({ id: docSnap.id, ...d });
         setFormData({
+          nomeCompleto: d.nome_completo || d.nomeCompleto || d.Nome || '',
+          nomeAbreviado: d.nome_abreviado || d.nomeAbreviado || '',
+          rg: d.rg || '',
+          cpf: d.cpf || d.CPF || '',
+          dtNasc: formatarDataParaInput(d.dt_nascimento || d.dtNasc),
           celular: d.celular || '',
           email: d.email || '',
+          endereco: d.endereco || '',
+          dtEntrada: formatarDataParaInput(d.dt_entrada || d.dtEntrada),
+          formaPagamento: d.forma_pagamento || d.formaPagamento || '',
           banco: d.banco || '',
           agencia: d.agencia || '',
           conta: d.conta || '',
-          chavePix: d.chavePix || d.chave_pix || '',
-          observacoes: d.observacoes || ''
+          chavePix: d.chave_pix || d.chavePix || '',
+          integracaoEmbraer: d.integracao_embraer || d.integracaoEmbraer || '',
+          vencimentoASO: formatarDataParaInput(d.vencimento_aso || d.vencimentoASO),
+          vencimentoContrato: formatarDataParaInput(d.vencimento_contrato || d.vencimentoContrato),
+          observacoes: d.observacoes || '',
+          funcaoId: d.funcaoId || '',
+          senha: ''
         });
       }
     });
@@ -182,7 +272,7 @@ export const StaffPortalPage = ({ user }: { user?: any }) => {
 
   const timeline = useMemo(() => {
     const events: any[] = [];
-    const relevantStatuses = ['confirmado', 'confirmada', 'whatsapp', 'pessoalmente', 'pré-reserva', 'pre_reserva', 'pre-reserva', 'em_aberto'];
+    const relevantStatuses = ['confirmado', 'confirmada', 'whatsapp', 'pessoalmente', 'pré-reserva', 'pre_reserva', 'pre-reserva', 'em_aberto', 'data_liberada', 'recusado'];
 
     formalAllocations.forEach(aloc => {
       if (!relevantStatuses.includes(aloc.status)) {
@@ -236,8 +326,21 @@ export const StaffPortalPage = ({ user }: { user?: any }) => {
     const items: any[] = [];
     let total = 0;
 
+    const startLocal = new Date(
+      activeWeek.start.getUTCFullYear(),
+      activeWeek.start.getUTCMonth(),
+      activeWeek.start.getUTCDate(),
+      0, 0, 0
+    );
+    const endLocal = new Date(
+      activeWeek.end.getUTCFullYear(),
+      activeWeek.end.getUTCMonth(),
+      activeWeek.end.getUTCDate(),
+      23, 59, 59
+    );
+
     timeline.forEach(item => {
-      if (!item.date || !isWithinInterval(item.date, { start: activeWeek.start, end: activeWeek.end })) return;
+      if (!item.date || !isWithinInterval(item.date, { start: startLocal, end: endLocal })) return;
       if (item.status !== 'confirmado' && item.status !== 'confirmada') return;
 
       const staffFunc = financeFuncs.find(f => f.id === staffData.funcaoId);
@@ -279,10 +382,51 @@ export const StaffPortalPage = ({ user }: { user?: any }) => {
     if (!targetId) return;
     setSaving(true);
     try {
-      await updateDoc(doc(db, 'staffs', targetId), { ...formData });
+      const payload: any = {
+        nome_completo: formData.nomeCompleto,
+        nome_abreviado: formData.nomeAbreviado,
+        rg: formData.rg,
+        cpf: formData.cpf,
+        dt_nascimento: formData.dtNasc,
+        celular: formData.celular,
+        email: formData.email,
+        endereco: formData.endereco,
+        dt_entrada: formData.dtEntrada,
+        forma_pagamento: formData.formaPagamento,
+        banco: formData.banco,
+        agencia: formData.agencia,
+        conta: formData.conta,
+        chave_pix: formData.chavePix,
+        integracao_embraer: formData.integracaoEmbraer,
+        vencimento_aso: formData.vencimentoASO,
+        vencimento_contrato: formData.vencimentoContrato,
+        observacoes: formData.observacoes,
+        funcaoId: formData.funcaoId
+      };
+
+      if (formData.senha && formData.senha.trim().length >= 6) {
+        payload.senha = formData.senha.trim();
+      }
+
+      const response = await fetch('/api/staff-update-profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-auth-user': JSON.stringify(user)
+        },
+        body: JSON.stringify({ id: targetId, data: payload })
+      });
+
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.message || 'Erro ao salvar no servidor');
+      }
+
       alert('Cadastro atualizado com sucesso!');
-    } catch (err) {
-      alert('Erro ao salvar.');
+      setFormData(prev => ({ ...prev, senha: '' })); // Limpa campo de senha
+    } catch (err: any) {
+      console.error('Error saving profile:', err);
+      alert('Erro ao salvar: ' + err.message);
     } finally {
       setSaving(false);
     }
@@ -429,19 +573,7 @@ export const StaffPortalPage = ({ user }: { user?: any }) => {
                             <div className="bg-slate-100 px-3 py-1 rounded-lg text-[9px] font-black text-slate-500 uppercase">
                               {item.date?.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', timeZone: 'UTC' })}
                             </div>
-                            <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${
-                              item.status === 'confirmado' ? 'bg-emerald-50 text-emerald-600' : 
-                              item.status === 'whatsapp' ? 'bg-amber-50 text-amber-600' :
-                              item.status === 'pessoalmente' ? 'bg-indigo-50 text-indigo-600' :
-                              item.status === 'pre_reserva' ? 'bg-cyan-50 text-cyan-600' :
-                              item.status === 'recusado' ? 'bg-red-50 text-red-600' :
-                              'bg-slate-50 text-slate-500'
-                            }`}>
-                              {item.status === 'whatsapp' ? 'Chamado no Zap' : 
-                               item.status === 'pre_reserva' ? 'Pré-Reserva' :
-                               item.status === 'recusado' ? 'Recusado' :
-                               item.status}
-                            </span>
+                            {renderPortalStatusBadge(item.status)}
                           </div>
                           <h3 className="text-sm font-black text-slate-800 uppercase line-clamp-1">{item.title}</h3>
                           <p className="text-[9px] font-bold text-blue-600 uppercase mb-4">{item.subtitle}</p>
@@ -461,19 +593,37 @@ export const StaffPortalPage = ({ user }: { user?: any }) => {
 
                 <div>
                   <h2 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Histórico Recente</h2>
-                  <div className="space-y-2">
-                    {pastTrainings.slice(0, 10).map((item, idx) => (
-                      <div key={idx} className="bg-white p-4 rounded-2xl border border-slate-200 flex items-center justify-between">
-                        <div className="flex items-center gap-4">
-                          <div className="text-[9px] font-black text-slate-400 w-10">{item.date?.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', timeZone: 'UTC' })}</div>
-                          <div>
-                            <h4 className="text-xs font-black text-slate-700 uppercase leading-none">{item.title}</h4>
-                            <p className="text-[9px] font-bold text-slate-400 uppercase">{item.subtitle}</p>
-                          </div>
-                        </div>
-                        <ChevronRight size={14} className="text-slate-300" />
+                  <div className="space-y-4">
+                    {pastTrainings.length === 0 ? (
+                      <div className="bg-white border border-dashed border-slate-200 p-8 rounded-2xl text-center">
+                        <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">Nenhum evento no histórico.</p>
                       </div>
-                    ))}
+                    ) : (
+                      pastTrainings.slice(0, 10).map((item, idx) => (
+                        <div key={idx} className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm hover:border-slate-300 transition-all">
+                          <div className="flex justify-between items-start mb-4">
+                            <div className="bg-slate-100 px-3 py-1 rounded-lg text-[9px] font-black text-slate-500 uppercase">
+                              {item.date?.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' })}
+                            </div>
+                            {renderPortalStatusBadge(item.status)}
+                          </div>
+                          
+                          <h4 className="text-sm font-black text-slate-800 uppercase line-clamp-1">{item.title}</h4>
+                          <p className="text-[9px] font-bold text-blue-600 uppercase mb-4">{item.subtitle}</p>
+                          
+                          {(item.location || item.cidade || item.hora_saida || item.hora_volta) && (
+                            <div className="flex flex-wrap items-center justify-between gap-2 text-slate-400 border-t border-slate-50 pt-3 mt-1">
+                               <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase truncate max-w-xs">
+                                 <MapPin size={12} className="flex-shrink-0" /> {item.location} - {item.cidade}
+                               </div>
+                               <div className="flex items-center gap-1.5 text-[9px] font-bold uppercase flex-shrink-0">
+                                 <Clock size={12} className="flex-shrink-0" /> {item.hora_saida || '--:--'} - {item.hora_volta || '--:--'}
+                               </div>
+                            </div>
+                          )}
+                        </div>
+                      ))
+                    )}
                   </div>
                 </div>
               </div>
@@ -495,7 +645,9 @@ export const StaffPortalPage = ({ user }: { user?: any }) => {
                     </div>
                   </div>
                   <div className="flex items-center gap-6 border-t border-white/10 pt-6">
-                    <div className="text-[10px] font-bold opacity-60 uppercase">{format(activeWeek.start, 'dd/MM')} a {format(activeWeek.end, 'dd/MM')}</div>
+                    <div className="text-[10px] font-bold opacity-60 uppercase">
+                      {String(activeWeek.start.getUTCDate()).padStart(2, '0')}/{String(activeWeek.start.getUTCMonth() + 1).padStart(2, '0')} a {String(activeWeek.end.getUTCDate()).padStart(2, '0')}/{String(activeWeek.end.getUTCMonth() + 1).padStart(2, '0')}
+                    </div>
                     <div className="flex items-center gap-2 text-[10px] bg-white/10 px-3 py-1 rounded-full uppercase font-black text-blue-300">
                       <Info size={12} /> Valores Estimados
                     </div>
@@ -533,66 +685,273 @@ export const StaffPortalPage = ({ user }: { user?: any }) => {
             )}
 
             {activeTab === 'profile' && (
-              <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm">
-                <h2 className="text-sm font-black text-slate-800 uppercase tracking-widest mb-8">Dados de Cadastro</h2>
+              <div className="space-y-6">
                 <form onSubmit={handleSaveProfile} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Seção 1: Dados Pessoais */}
+                  <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm space-y-6 animate-fadeIn">
+                    <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                      <User size={18} className="text-blue-500" />
+                      <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest">Dados Pessoais</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="md:col-span-2">
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Nome Completo *</label>
+                        <input 
+                          type="text" 
+                          value={formData.nomeCompleto} 
+                          onChange={e => setFormData({...formData, nomeCompleto: e.target.value})}
+                          required
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Nome de Guerra *</label>
+                        <input 
+                          type="text" 
+                          value={formData.nomeAbreviado} 
+                          onChange={e => setFormData({...formData, nomeAbreviado: e.target.value})}
+                          required
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-blue-700 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">CPF *</label>
+                        <input 
+                          type="text" 
+                          value={formData.cpf} 
+                          onChange={e => setFormData({...formData, cpf: e.target.value})}
+                          required
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">RG</label>
+                        <input 
+                          type="text" 
+                          value={formData.rg} 
+                          onChange={e => setFormData({...formData, rg: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Data de Nascimento</label>
+                        <input 
+                          type="date" 
+                          value={formData.dtNasc} 
+                          onChange={e => setFormData({...formData, dtNasc: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">WhatsApp / Celular</label>
+                        <input 
+                          type="text" 
+                          value={formData.celular} 
+                          onChange={e => setFormData({...formData, celular: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">E-mail Principal</label>
+                        <input 
+                          type="email" 
+                          value={formData.email} 
+                          onChange={e => setFormData({...formData, email: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                    </div>
+
                     <div>
-                      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">WhatsApp / Celular</label>
+                      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Endereço Completo</label>
                       <input 
                         type="text" 
-                        value={formData.celular} 
-                        onChange={e => setFormData({...formData, celular: e.target.value})}
+                        value={formData.endereco} 
+                        onChange={e => setFormData({...formData, endereco: e.target.value})}
+                        placeholder="Rua, Número, Bairro, Cidade - UF"
                         className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
                       />
                     </div>
+                  </div>
+
+                  {/* Seção 2: Dados Bancários */}
+                  <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm space-y-6">
+                    <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                      <CreditCard size={18} className="text-emerald-500" />
+                      <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest">Dados Bancários / Pagamento</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Método de Preferência</label>
+                        <select 
+                          value={formData.formaPagamento} 
+                          onChange={e => setFormData({...formData, formaPagamento: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-300 transition-all" 
+                        >
+                          <option value="">Selecionar...</option>
+                          <option value="pix">Chave PIX</option>
+                          <option value="transferencia">Transferência Bancária</option>
+                          <option value="boleto">Boleto (Envio)</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Banco / Instituição</label>
+                        <input 
+                          type="text" 
+                          value={formData.banco} 
+                          onChange={e => setFormData({...formData, banco: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Agência</label>
+                        <input 
+                          type="text" 
+                          value={formData.agencia} 
+                          onChange={e => setFormData({...formData, agencia: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Conta</label>
+                        <input 
+                          type="text" 
+                          value={formData.conta} 
+                          onChange={e => setFormData({...formData, conta: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Chave PIX</label>
+                        <input 
+                          type="text" 
+                          value={formData.chavePix} 
+                          onChange={e => setFormData({...formData, chavePix: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-blue-600 outline-none focus:border-blue-500 transition-all" 
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Seção 3: Integração & Função */}
+                  <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm space-y-6">
+                    <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                      <Plane size={18} className="text-blue-500" />
+                      <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest">Integração & Função (Regulado)</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Tipo de Integração Embraer</label>
+                        <select 
+                          value={formData.integracaoEmbraer} 
+                          onChange={e => setFormData({...formData, integracaoEmbraer: e.target.value})}
+                          disabled={true}
+                          className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-400 cursor-not-allowed outline-none transition-all" 
+                        >
+                          <option value="">Sem Integração</option>
+                          <option value="contrato_embraer">Direto Embraer</option>
+                          <option value="contrato_stefanini">Via Stefanini</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Função (Valor Diário Regulado)</label>
+                        <select 
+                          value={formData.funcaoId} 
+                          onChange={e => setFormData({...formData, funcaoId: e.target.value})}
+                          disabled={true}
+                          className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-400 cursor-not-allowed outline-none transition-all" 
+                        >
+                          <option value="">Nenhuma Função Aplicada</option>
+                          {financeFuncs.map(f => (
+                            <option key={f.id} value={f.id}>{f.nome || f.name}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Data de Entrada</label>
+                        <input 
+                          type="date" 
+                          value={formData.dtEntrada} 
+                          onChange={e => setFormData({...formData, dtEntrada: e.target.value})}
+                          disabled={true}
+                          className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-400 cursor-not-allowed outline-none" 
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Vencimento ASO</label>
+                        <input 
+                          type="date" 
+                          value={formData.vencimentoASO} 
+                          onChange={e => setFormData({...formData, vencimentoASO: e.target.value})}
+                          disabled={true}
+                          className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-400 cursor-not-allowed outline-none" 
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Vencimento Integração</label>
+                        <input 
+                          type="date" 
+                          value={formData.vencimentoContrato} 
+                          onChange={e => setFormData({...formData, vencimentoContrato: e.target.value})}
+                          disabled={true}
+                          className="w-full bg-slate-100 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-slate-400 cursor-not-allowed outline-none" 
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Seção 4: Segurança */}
+                  <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm space-y-6">
+                    <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                      <ShieldCheck size={18} className="text-amber-500" />
+                      <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest">Segurança de Acesso</h3>
+                    </div>
+
                     <div>
-                      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">E-mail</label>
+                      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Nova Senha (deixe em branco se não quiser alterar)</label>
                       <input 
-                        type="email" 
-                        value={formData.email} 
-                        onChange={e => setFormData({...formData, email: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                        type="password" 
+                        value={formData.senha} 
+                        onChange={e => setFormData({...formData, senha: e.target.value})}
+                        placeholder="Mínimo de 6 caracteres"
+                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all font-mono" 
                       />
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="md:col-span-2">
-                      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Banco</label>
-                      <input 
-                        type="text" 
-                        value={formData.banco} 
-                        onChange={e => setFormData({...formData, banco: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
-                      />
+
+                  {/* Seção 5: Observações */}
+                  <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm space-y-6">
+                    <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                      <MessageSquare size={18} className="text-slate-500" />
+                      <h3 className="text-sm font-black text-slate-800 uppercase tracking-widest">Disponibilidade & Observações</h3>
                     </div>
+
                     <div>
-                      <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Conta</label>
-                      <input 
-                        type="text" 
-                        value={formData.conta} 
-                        onChange={e => setFormData({...formData, conta: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-bold text-slate-700 outline-none focus:border-blue-500 transition-all" 
+                      <textarea 
+                        value={formData.observacoes} 
+                        onChange={e => setFormData({...formData, observacoes: e.target.value})}
+                        rows={3}
+                        placeholder="Insira detalhes adicionais sobre sua escala ou preferências"
+                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 outline-none focus:border-blue-500 transition-all"
                       />
                     </div>
                   </div>
-                  <div>
-                    <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Chave PIX</label>
-                    <input 
-                      type="text" 
-                      value={formData.chavePix} 
-                      onChange={e => setFormData({...formData, chavePix: e.target.value})}
-                      className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-black text-blue-600 outline-none focus:border-blue-500 transition-all" 
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Disponibilidade / Observações</label>
-                    <textarea 
-                      value={formData.observacoes} 
-                      onChange={e => setFormData({...formData, observacoes: e.target.value})}
-                      className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 min-h-[100px] outline-none focus:border-blue-500 transition-all"
-                    />
-                  </div>
+
                   <button 
                     type="submit" 
                     disabled={saving}

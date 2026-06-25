@@ -1,4 +1,5 @@
 import admin from "firebase-admin";
+import { getFirestore } from "firebase-admin/firestore";
 import { readFileSync } from "fs";
 
 const firebaseConfig = JSON.parse(readFileSync("./firebase-applet-config.json", "utf-8"));
@@ -9,8 +10,7 @@ if (!admin.apps.length) {
   });
 }
 
-// Inyectamos el database ID manualmente si es necesario
-const db = admin.firestore(firebaseConfig.firestoreDatabaseId);
+const db = getFirestore(admin.apps[0]!, firebaseConfig.firestoreDatabaseId);
 
 async function listCollections() {
   console.log(`--- [ADMIN] Verificando Database: ${firebaseConfig.firestoreDatabaseId} ---`);
@@ -22,7 +22,7 @@ async function listCollections() {
     collections.forEach(collection => {
       console.log(`Coleção encontrada: ${collection.id}`);
     });
-  } catch (e) {
+  } catch (e: any) {
     console.error("Erro ao listar coleções:", e.message);
   }
 }

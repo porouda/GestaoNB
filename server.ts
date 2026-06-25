@@ -110,6 +110,42 @@ async function startServer() {
     return u;
   };
 
+  // Helper to determine if a backend user has write permission for a page/action
+  const hasUserWritePermission = async (user: any, pageId: string): Promise<boolean> => {
+    if (!user) return false;
+    const nivel = (user.nivel_acesso || user.nivel || '').toLowerCase();
+    if (nivel === 'admin') return true;
+
+    // Custom overrides check (e.g., inside staff document: customPermissions)
+    const overrides = user.customPermissions || user.excecoes_acesso;
+    if (overrides && overrides[pageId] !== undefined && overrides[pageId] !== 'inherit') {
+      return overrides[pageId] === 'write';
+    }
+
+    // Base Profile check
+    const perfilId = user.perfil_id || user.perfil;
+    if (perfilId) {
+      try {
+        const perfilDoc = await adminDb.collection('perfis_acesso').doc(perfilId).get();
+        if (perfilDoc.exists) {
+          const profile = perfilDoc.data();
+          if (profile && profile.paginas && profile.paginas[pageId]) {
+            return profile.paginas[pageId] === 'write';
+          }
+        }
+      } catch (err) {
+        console.error("[AUTH SERVER] Error fetching profile for permission check:", err);
+      }
+    }
+
+    // Fallbacks
+    if (pageId === 'importar-hubspot') {
+      return hasUserWritePermission(user, 'treinamentos');
+    }
+
+    return false;
+  };
+
   app.post("/api/login-cpf", async (req, res) => {
     const { cpf, senha } = req.body;
     console.log(`[AUTH] Tentativa de login para CPF: ${cpf}`);
@@ -203,6 +239,119 @@ async function startServer() {
     } catch (fError: any) {
         console.error("[AUTH ERROR]", fError);
         res.status(500).json({ status: "error", message: "Erro interno no servidor.", details: fError.message });
+    }
+  });
+
+  app.post("/api/register-first-password", async (req, res) => {
+    let { cpf, dtNascimento, senha } = req.body;
+    console.log(`[FIRST ACCESS] Tentativa de cadastro de senha para o CPF: ${cpf}`);
+    
+    if (!cpf || !dtNascimento || !senha) {
+        return res.status(400).json({ status: "error", message: "Preencha todos os campos obrigatórios: CPF, data de nascimento e senha de no mínimo 6 caracteres." });
+    }
+
+    if (senha.length < 6) {
+        return res.status(400).json({ status: "error", message: "A senha deve conter no mínimo 6 caracteres." });
+    }
+
+    const cpfClean = cpf.replace(/\D/g, '');
+    
+    try {
+        let q = clientQuery(clientCollection(clientDb, 'staffs'), clientWhere('cpf', '==', cpfClean));
+        let snapshot = await clientGetDocs(q);
+
+        if (snapshot.empty && cpfClean.length === 11) {
+            const cpfFormatted = `${cpfClean.slice(0,3)}.${cpfClean.slice(3,6)}.${cpfClean.slice(6,9)}-${cpfClean.slice(9,11)}`;
+            q = clientQuery(clientCollection(clientDb, 'staffs'), clientWhere('cpf', '==', cpfFormatted));
+            snapshot = await clientGetDocs(q);
+        }
+
+        if (snapshot.empty) {
+            return res.status(404).json({ status: "error", message: "Usuário com este CPF não foi encontrado. Entre em contato com a administração." });
+        }
+
+        const staffDoc = snapshot.docs[0];
+        const staff = staffDoc.data();
+        const staffId = staffDoc.id;
+
+        if (staff.ativo !== 'sim') {
+            return res.status(403).json({ status: "error", message: "Sua conta está inativa de acordo com a administração." });
+        }
+
+        const storedDtVal = staff.dt_nascimento || staff.dtNasc;
+        if (!storedDtVal) {
+            return res.status(400).json({ status: "error", message: "Sua data de nascimento não está cadastrada no sistema. Entre em contato com a administração para cadastrar seus dados." });
+        }
+
+        const inputDateStr = dtNascimento.trim(); // YYYY-MM-DD
+
+        const getStoredDateISO = (val: any): string => {
+            if (!val) return '';
+            let d: Date;
+            if (val && typeof val.toDate === 'function') {
+                d = val.toDate();
+            } else if (typeof val === 'object' && val.seconds !== undefined) {
+                d = new Date(val.seconds * 1000);
+            } else if (typeof val === 'string') {
+                const clean = val.trim();
+                if (clean.includes('-')) {
+                    const parts = clean.split('-').map(Number);
+                    if (parts.length === 3) {
+                        if (parts[0] > 1000) {
+                            return `${String(parts[0]).padStart(4, '0')}-${String(parts[1]).padStart(2, '0')}-${String(parts[2]).padStart(2, '0')}`;
+                        } else {
+                            return `${String(parts[2]).padStart(4, '0')}-${String(parts[1]).padStart(2, '0')}-${String(parts[0]).padStart(2, '0')}`;
+                        }
+                    }
+                } else if (clean.includes('/')) {
+                    const parts = clean.split('/').map(Number);
+                    if (parts.length === 3) {
+                        if (parts[2] > 1000) {
+                            return `${String(parts[2]).padStart(4, '0')}-${String(parts[1]).padStart(2, '0')}-${String(parts[0]).padStart(2, '0')}`;
+                        } else {
+                            return `${String(parts[0]).padStart(4, '0')}-${String(parts[1]).padStart(2, '0')}-${String(parts[2]).padStart(2, '0')}`;
+                        }
+                    }
+                }
+                d = new Date(val);
+            } else {
+                d = new Date(val);
+            }
+
+            if (isNaN(d.getTime())) return '';
+            
+            if (d.getHours() >= 20) {
+                d = new Date(d.getTime() + (6 * 60 * 60 * 1000));
+            }
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${y}-${m}-${day}`;
+        };
+
+        const parsedStoredDate = getStoredDateISO(storedDtVal);
+        console.log(`[FIRST ACCESS] Comparação de datas de nascimento. Input: "${inputDateStr}" | Stored: "${parsedStoredDate}"`);
+
+        if (!parsedStoredDate || parsedStoredDate !== inputDateStr) {
+            return res.status(400).json({ status: "error", message: "A data de nascimento informada não confere com nossos registros." });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(senha, salt);
+
+        const staffRef = clientDoc(clientDb, 'staffs', staffId);
+        await clientUpdateDoc(staffRef, {
+            senha: hash,
+            updatedAt: clientServerTimestamp(),
+            updatedBy: "Auto / Primeiro Acesso"
+        });
+
+        console.log(`[FIRST ACCESS] Senha cadastrada com sucesso para: ${staff.nomeCompleto || staff.nome_completo} (ID: ${staffId})`);
+        return res.json({ status: "success", message: "Sua senha foi cadastrada com sucesso! Agora você já pode acessar o painel." });
+
+    } catch (error: any) {
+        console.error("[FIRST ACCESS ERROR]", error);
+        return res.status(500).json({ status: "error", message: "Erro interno no servidor ao tentar cadastrar senha." });
     }
   });
 
@@ -360,13 +509,105 @@ async function startServer() {
       }
     });
 
+  app.post("/api/staff-update-profile", async (req, res) => {
+      const { id, data } = req.body;
+      const sessionUser = getSessionUser(req);
+      
+      if (!sessionUser) {
+        return res.status(401).json({ status: "error", message: "Usuário não autenticado." });
+      }
+
+      const isAdmin = sessionUser && (sessionUser.nivel === 'admin' || sessionUser.nivel_acesso === 'admin' || sessionUser.role === 'admin' || sessionUser.email === 'northbrasil@northbrasil.com.br');
+      
+      if (sessionUser.id !== id && !isAdmin) {
+        return res.status(403).json({ status: "error", message: "Você só pode atualizar seus próprios dados cadastrais." });
+      }
+  
+      try {
+        const payload = { ...data };
+        
+        // Hash password if change requested
+        if (payload.senha && payload.senha.length >= 6) {
+          const salt = await bcrypt.genSalt(10);
+          payload.senha = await bcrypt.hash(payload.senha, salt);
+        } else {
+          delete payload.senha; // Do not overwrite with empty
+        }
+  
+        payload.updatedAt = clientServerTimestamp();
+        payload.updatedBy = sessionUser.nome || 'Self';
+  
+        const staffColl = clientCollection(clientDb, "staffs");
+        await clientSetDoc(clientDoc(staffColl, id), payload, { merge: true });
+        
+        console.log(`[STAFF PROFILE UPDATE] Usuário ${sessionUser.nome} atualizou cadastro do staff/user ${id}`);
+        res.json({ status: "success", id });
+      } catch (error: any) {
+        console.error("[STAFF PROFILE UPDATE ERROR]", error);
+        res.status(500).json({ status: "error", message: error.message });
+      }
+  });
+
+  // HUBSPOT STAGES ENDPOINT
+  app.get("/api/hubspot/stages", async (req, res) => {
+    const accessToken = process.env.HUBSPOT_ACCESS_TOKEN;
+    const sessionUser = getSessionUser(req);
+    if (!sessionUser) {
+      return res.status(401).json({ status: "error", message: "Unauthorized." });
+    }
+
+    const defaultStages = [
+      "Confirmado",
+      "Aguardando Posição",
+      "Reunião Agendada",
+      "Fazer Proposta",
+      "Follow Up 1",
+      "Não Realizado",
+      "Realizado",
+      "Cancelado"
+    ];
+
+    if (!accessToken) {
+      console.log("[HUBSPOT] Token not configured. Returning default stages.");
+      return res.json({ status: "success", stages: defaultStages });
+    }
+
+    try {
+      console.log("[HUBSPOT] Fetching pipelines for stages...");
+      const pipelinesResponse = await axios.get("https://api.hubapi.com/crm/v3/pipelines/deals", {
+        headers: { Authorization: `Bearer ${accessToken}` }
+      });
+      
+      const stagesSet = new Set<string>();
+      pipelinesResponse.data.results.forEach((pipeline: any) => {
+        pipeline.stages.forEach((stage: any) => {
+          if (stage.label && stage.label.trim()) {
+            stagesSet.add(stage.label.trim());
+          }
+        });
+      });
+
+      // Combine with defaults to ensure we have standard ones too
+      defaultStages.forEach(s => stagesSet.add(s));
+      const sortedStages = Array.from(stagesSet).sort();
+
+      return res.json({ status: "success", stages: sortedStages });
+    } catch (error: any) {
+      console.error("[HUBSPOT STAGES ERROR]", error.message);
+      // Fallback to default stages to prevent UI failure
+      return res.json({ status: "success", stages: defaultStages });
+    }
+  });
+
   // HUBSPOT PREVIEW ENDPOINT
   app.get("/api/hubspot/preview", async (req, res) => {
     const accessToken = process.env.HUBSPOT_ACCESS_TOKEN;
+    const { startDate, endDate } = req.query;
     
     const sessionUser = getSessionUser(req);
-    if (!sessionUser || sessionUser.nivel !== 'admin') {
-      return res.status(403).json({ status: "error", message: "Only admins can perform sync." });
+    const canSync = await hasUserWritePermission(sessionUser, 'importar-hubspot');
+    if (!canSync) {
+      return res.status(403).json({ status: "error", message: "Acesso negado: Você não possui a permissão necessária para sincronizar com o HubSpot." });
     }
 
     if (!accessToken) {
@@ -422,11 +663,25 @@ async function startServer() {
             "description",
             "observacoes",
             "obs",
-            "associatedcontactids"
+            "associatedcontactids",
+            "associatedcompanyid"
           ],
-          associations: ["contacts"],
+          associations: ["contacts", "companies"],
           limit: 100
         };
+
+        if (typeof startDate === 'string' && typeof endDate === 'string' && startDate && endDate) {
+          const startDateMs = String(new Date(`${startDate}T00:00:00Z`).getTime());
+          const endDateMs = String(new Date(`${endDate}T23:59:59Z`).getTime());
+          searchPayload.filterGroups = [
+            {
+              filters: [
+                { propertyName: "data_do_evento", operator: "GTE", value: startDateMs },
+                { propertyName: "data_do_evento", operator: "LTE", value: endDateMs }
+              ]
+            }
+          ];
+        }
 
         if (nextPageAfter) {
           searchPayload.after = nextPageAfter;
@@ -452,9 +707,12 @@ async function startServer() {
       const deals = allDeals;
       console.log(`[HUBSPOT DEBUG] Final total found: ${deals.length} deals.`);
       
-      // 3. Collect all contact IDs (from associations and legacy properties)
+      // 3. Collect all contact & company IDs (from associations and legacy properties)
       const allContactIds = new Set<string>();
       const dealToContacts: Record<string, string[]> = {};
+
+      const allCompanyIds = new Set<string>();
+      const dealToCompanies: Record<string, string[]> = {};
 
       deals.forEach((deal: any) => {
         dealToContacts[deal.id] = [];
@@ -465,7 +723,7 @@ async function startServer() {
           dealToContacts[deal.id].push(cid);
         });
 
-        // Legacy property fallback
+        // Legacy property contact fallback
         const propAssocIds = deal.properties?.associatedcontactids;
         if (propAssocIds && typeof propAssocIds === 'string') {
           propAssocIds.split(';').forEach(id => {
@@ -476,12 +734,31 @@ async function startServer() {
             }
           });
         }
+
+        // Company associations
+        dealToCompanies[deal.id] = [];
+        const companyAssocs = deal.associations?.companies?.results || deal.associations?.company?.results || [];
+        companyAssocs.forEach((ca: any) => {
+          const cid = String(ca.id);
+          allCompanyIds.add(cid);
+          dealToCompanies[deal.id].push(cid);
+        });
+
+        // Legacy property company fallback
+        const propCompanyId = deal.properties?.associatedcompanyid;
+        if (propCompanyId && typeof propCompanyId === 'string') {
+          const cleanId = propCompanyId.trim();
+          if (cleanId && !dealToCompanies[deal.id].includes(cleanId)) {
+            allCompanyIds.add(cleanId);
+            dealToCompanies[deal.id].push(cleanId);
+          }
+        }
       });
 
-      // 4. Fallback: Fetch missing associations using Associations API v3
+      // 4. Fallback: Fetch missing contact associations using Associations API v3
       const dealsMissingAssocs = deals.filter((d: any) => dealToContacts[d.id].length === 0).map((d: any) => d.id);
       if (dealsMissingAssocs.length > 0) {
-        console.log(`[HUBSPOT DEBUG] Fetching v3 associations for ${dealsMissingAssocs.length} deals...`);
+        console.log(`[HUBSPOT DEBUG] Fetching v3 contact associations for ${dealsMissingAssocs.length} deals...`);
         try {
           const assocBatchResponse = await axios.post("https://api.hubapi.com/crm/v3/associations/deals/contacts/batch/read", {
             inputs: dealsMissingAssocs.map(id => ({ id }))
@@ -500,7 +777,33 @@ async function startServer() {
             });
           });
         } catch (assocErr) {
-          console.error("[HUBSPOT ASSOC BATCH ERROR] Proceeding...");
+          console.error("[HUBSPOT CONTACT ASSOC BATCH ERROR] Proceeding...");
+        }
+      }
+
+      // 4b. Fallback: Fetch missing company associations using Associations API v3
+      const dealsMissingCompanyAssocs = deals.filter((d: any) => dealToCompanies[d.id].length === 0).map((d: any) => d.id);
+      if (dealsMissingCompanyAssocs.length > 0) {
+        console.log(`[HUBSPOT DEBUG] Fetching v3 company associations for ${dealsMissingCompanyAssocs.length} deals...`);
+        try {
+          const assocBatchResponse = await axios.post("https://api.hubapi.com/crm/v3/associations/deals/companies/batch/read", {
+            inputs: dealsMissingCompanyAssocs.map(id => ({ id }))
+          }, {
+            headers: { Authorization: `Bearer ${accessToken}` }
+          });
+
+          assocBatchResponse.data.results.forEach((assoc: any) => {
+            const fromId = assoc.from.id;
+            const toIds = assoc.to.map((t: any) => String(t.id));
+            toIds.forEach((tid: string) => {
+              allCompanyIds.add(tid);
+              if (!dealToCompanies[fromId].includes(tid)) {
+                dealToCompanies[fromId].push(tid);
+              }
+            });
+          });
+        } catch (assocErr) {
+          console.error("[HUBSPOT COMPANY ASSOC BATCH ERROR] Proceeding...");
         }
       }
 
@@ -545,6 +848,33 @@ async function startServer() {
         }
       }
 
+      // 5b. Fetch company details in batches of 100
+      const companyMap: Record<string, string> = {};
+      if (allCompanyIds.size > 0) {
+        try {
+          const companyIdsArray = Array.from(allCompanyIds);
+          for (let i = 0; i < companyIdsArray.length; i += 100) {
+            const batch = companyIdsArray.slice(i, i + 100);
+            console.log(`[HUBSPOT DEBUG] Fetching company batch ${i/100 + 1}...`);
+            
+            const companyBatchResponse = await axios.post("https://api.hubapi.com/crm/v3/objects/companies/batch/read", {
+              inputs: batch.map(id => ({ id })),
+              properties: ["name", "domain"]
+            }, {
+              headers: { Authorization: `Bearer ${accessToken}` }
+            });
+            
+            companyBatchResponse.data.results.forEach((company: any) => {
+              const props = company.properties;
+              const name = props.name || props.domain || `ID: ${company.id}`;
+              companyMap[company.id] = name;
+            });
+          }
+        } catch (companyErr: any) {
+          console.error("[HUBSPOT COMPANY FETCH ERROR]", companyErr.response?.data || companyErr.message);
+        }
+      }
+
       const mappedDeals = deals.map((deal: any) => {
         const props = deal.properties;
         const assocIds = dealToContacts[deal.id] || [];
@@ -552,6 +882,10 @@ async function startServer() {
         const contactNames = assocIds.map((id: string) => contactMap[id]).filter(Boolean).join(', ');
         const finalContacts = contactNames || (assocIds.length > 0 ? `IDs: ${assocIds.join(', ')}` : "Sem Contatos");
         
+        const compIds = dealToCompanies[deal.id] || [];
+        const companyNames = compIds.map((id: string) => companyMap[id]).filter(Boolean).join(', ');
+        const finalCompany = companyNames || "";
+
         return {
           hubspotId: deal.id,
           nome_negocio: props.dealname || "Sem Nome",
@@ -563,11 +897,23 @@ async function startServer() {
           cidade: props.cidade_do_evento || props.cidade || props.city || null,
           observacoes: props.description || props.observacoes || props.obs || props.notes || null,
           contatos: finalContacts,
+          empresa: finalCompany,
           raw_props_debug: Object.keys(props).filter(k => props[k]).slice(0, 15).join(', ')
         };
       });
 
-      res.json({ status: "success", deals: mappedDeals });
+      let finalDeals = mappedDeals;
+      if (typeof startDate === 'string' && typeof endDate === 'string' && startDate && endDate) {
+        console.log(`[HUBSPOT DEBUG] Post-filtering ${mappedDeals.length} deals in memory by range: ${startDate} to ${endDate}...`);
+        finalDeals = mappedDeals.filter((deal: any) => {
+          if (!deal.data_evento) return false;
+          const dStr = String(deal.data_evento).substring(0, 10); // "YYYY-MM-DD"
+          return dStr >= startDate && dStr <= endDate;
+        });
+        console.log(`[HUBSPOT DEBUG] Post-filter result: ${finalDeals.length} deals.`);
+      }
+
+      res.json({ status: "success", deals: finalDeals });
     } catch (error: any) {
       console.error("[HUBSPOT PREVIEW ERROR]", error.response?.data || error.message);
       res.status(500).json({ status: "error", message: "Failed to fetch HubSpot deals", details: error.response?.data || error.message });
@@ -580,8 +926,9 @@ async function startServer() {
     const { deals } = req.body;
 
     const sessionUser = getSessionUser(req);
-    if (!sessionUser || sessionUser.nivel !== 'admin') {
-      return res.status(403).json({ status: "error", message: "Only admins can perform sync." });
+    const canSync = await hasUserWritePermission(sessionUser, 'importar-hubspot');
+    if (!canSync) {
+      return res.status(403).json({ status: "error", message: "Acesso negado: Você não possui a permissão necessária para sincronizar com o HubSpot." });
     }
 
     if (!accessToken) {
@@ -600,21 +947,33 @@ async function startServer() {
           const hubspotId = dealData.hubspotId;
           if (!hubspotId) continue;
 
+          const isConfirmed = String(dealData.etapa || "").toLowerCase().trim() === "confirmado" || 
+                              String(dealData.etapa || "").toLowerCase().trim() === "confirmada";
+
           const trainingData: any = {
             hubspotId: String(hubspotId),
             nome_negocio: dealData.nome_negocio || "Sem Nome (HubSpot)",
             nomeNegocio: dealData.nome_negocio || "Sem Nome (HubSpot)",
+            cliente: dealData.empresa || dealData.nome_negocio || "Sem Cliente (HubSpot)",
+            empresa: dealData.empresa || null,
             etapa: dealData.etapa || "Não Definido",
             dataEvento: dealData.data_evento || null,
             data_evento: dealData.data_evento || null,
             programa_nb: dealData.programa_nb || null,
+            programaNb: dealData.programa_nb || null,
             participantes: dealData.participantes || null,
+            local: dealData.local_evento || null,
             local_evento: dealData.local_evento || null,
+            localEvento: dealData.local_evento || null,
             cidade: dealData.cidade || null,
             observacoes: dealData.observacoes || null,
             contatos: dealData.contatos || null,
             lastSyncedAt: clientServerTimestamp(),
           };
+
+          if (isConfirmed) {
+            trainingData.dateOffsets = [];
+          }
 
           const docId = String(hubspotId);
           const docRef = clientDoc(clientDb, "trainings", docId);

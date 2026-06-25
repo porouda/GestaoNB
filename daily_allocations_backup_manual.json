@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "03ywzxbWfQXdaeLMBSkw",
+    "data_referencia": "2026-05-23",
+    "staff_id": "23",
+    "status": "pre_reserva",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1779545251,
+      "nanoseconds": 119000000
+    }
+  },
+  {
+    "_id": "7eIbizZJ0xutOah7RyOy",
+    "data_referencia": "2026-05-22",
+    "staff_id": "46",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1779545261,
+      "nanoseconds": 20000000
+    },
+    "status": "pre_reserva"
+  },
+  {
+    "_id": "GAwpUfI0WcNW19je53xU",
+    "staff_id": "23",
+    "status": "confirmado",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1779460510,
+      "nanoseconds": 781000000
+    },
+    "data_referencia": "2026-05-06"
+  }
+]

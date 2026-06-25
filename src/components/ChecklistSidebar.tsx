@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { format } from 'date-fns';
 import { motion, PanInfo, useAnimation } from "motion/react";
+import { usePagePermission } from '../lib/permissions';
 
 interface Task {
     templateId?: string;
@@ -50,6 +51,9 @@ interface ChecklistSidebarProps {
 }
 
 export const ChecklistSidebar: React.FC<ChecklistSidebarProps> = ({ training, user }) => {
+    const { canWrite: canWriteChecklistPage } = usePagePermission("checklist", user);
+    const permBtnChecklist = usePagePermission("btn-checklist", user);
+    const canWriteChecklist = canWriteChecklistPage || permBtnChecklist.canWrite;
     const [tasks, setTasks] = useState<Task[]>([]);
     const [loading, setLoading] = useState(true);
     const [removingIndex, setRemovingIndex] = useState<number | null>(null);
@@ -63,6 +67,9 @@ export const ChecklistSidebar: React.FC<ChecklistSidebarProps> = ({ training, us
     const [isConfiguring, setIsConfiguring] = useState(false);
 
     const [dbPhases, setDbPhases] = useState<Record<string, string>>({});
+    const [allActivities, setAllActivities] = useState<any[]>([]);
+    const [selectedActivityIds, setSelectedActivityIds] = useState<string[]>([]);
+    const [isSelectingActivities, setIsSelectingActivities] = useState(false);
 
     useEffect(() => {
         const unsub = onSnapshot(collection(db, 'checklist_phases'), snap => {
@@ -73,6 +80,23 @@ export const ChecklistSidebar: React.FC<ChecklistSidebarProps> = ({ training, us
             });
             setDbPhases(styles);
         });
+        return () => unsub();
+    }, []);
+
+    useEffect(() => {
+        const unsub = onSnapshot(
+            collection(db, 'checklist_activities'), 
+            snap => {
+                const list: any[] = [];
+                snap.forEach(doc => {
+                    list.push({ id: doc.id, ...doc.data() });
+                });
+                setAllActivities(list);
+            },
+            err => {
+                console.error('Error loading checklist_activities in sidebar:', err);
+            }
+        );
         return () => unsub();
     }, []);
 
@@ -157,9 +181,58 @@ export const ChecklistSidebar: React.FC<ChecklistSidebarProps> = ({ training, us
                             if (data.programaC) setProgramaC(data.programaC);
                         }
 
+                        const activeSelectedIds = activePlan === 'A' 
+                            ? (data.selectedActivities || []) 
+                            : activePlan === 'B' 
+                            ? (data.selectedActivitiesB || []) 
+                            : (data.selectedActivitiesC || []);
+
+                        setSelectedActivityIds(activeSelectedIds);
+
+                        const activeActivities = allActivities.filter(act => activeSelectedIds.includes(act.id));
+                        const dynamicTemplates: any[] = [];
+                        
+                        // Helper to parse description and subitems from material string
+                        const parseMaterial = (materialStr: string) => {
+                            const regex = /^(.*?)\s*[\(\[](.*?)[\)\]]\s*$/;
+                            const match = materialStr.match(regex);
+                            if (match) {
+                                const desc = match[1].trim();
+                                const subs = match[2].split(',').map(s => s.trim()).filter(Boolean);
+                                return { descricao: desc, subitens: subs };
+                            }
+                            return { descricao: materialStr, subitens: [] };
+                        };
+
+                        activeActivities.forEach((act, actIdx) => {
+                            const phaseName = `Atividade ${actIdx + 1}: ${act.nome}`;
+                            const items = Array.isArray(act.itens) ? act.itens : [];
+                            if (items.length === 0) {
+                                dynamicTemplates.push({
+                                    id: `activity_${act.id}_empty`,
+                                    descricao: "(Nenhum material cadastrado)",
+                                    fase: phaseName,
+                                    ordem: 0,
+                                    subitens: []
+                                });
+                            } else {
+                                items.forEach((item, itemIdx) => {
+                                    const parsed = parseMaterial(item);
+                                    dynamicTemplates.push({
+                                        id: `activity_${act.id}_item_${itemIdx}`,
+                                        descricao: parsed.descricao,
+                                        fase: phaseName,
+                                        ordem: itemIdx,
+                                        subitens: parsed.subitens
+                                    });
+                                });
+                            }
+                        });
+
+                        const combinedTemplates = [...latestTemplates, ...dynamicTemplates];
                         const storedTasks = data[activeTasksField] || [];
 
-                        const mergedTasks = latestTemplates.map(temp => {
+                        const mergedTasks = combinedTemplates.map(temp => {
                             const stored = storedTasks.find((st: any) => st.templateId === temp.id);
                             
                             let selected = stored?.subitemsSelecionados || [];
@@ -187,6 +260,14 @@ export const ChecklistSidebar: React.FC<ChecklistSidebarProps> = ({ training, us
                         setTasks(mergedTasks);
                         setLoading(false);
                     } else {
+                        const activeSelectedIds = activePlan === 'A' 
+                            ? [] 
+                            : activePlan === 'B' 
+                            ? [] 
+                            : [];
+
+                        setSelectedActivityIds(activeSelectedIds);
+
                         if (latestTemplates.length > 0) {
                             const initialTasks = latestTemplates.map(temp => ({
                                 templateId: temp.id,
@@ -224,9 +305,13 @@ export const ChecklistSidebar: React.FC<ChecklistSidebarProps> = ({ training, us
         return () => {
             if (unsubChecklist) unsubChecklist();
         };
-    }, [training?.id, training?.programaNb, activePlan, programaB, programaC]);
+    }, [training?.id, training?.programaNb, activePlan, programaB, programaC, allActivities]);
 
     const saveToFirestore = async (newTasks: Task[]) => {
+        if (!canWriteChecklist) {
+            alert("Acesso negado: Você não possui a permissão de escrita necessária.");
+            return;
+        }
         try {
             const activeTasksField = activePlan === 'A' ? 'tasks' : activePlan === 'B' ? 'tasksB' : 'tasksC';
             const activeProgressField = activePlan === 'A' ? 'progressA' : activePlan === 'B' ? 'progressB' : 'progressC';
@@ -436,6 +521,86 @@ export const ChecklistSidebar: React.FC<ChecklistSidebarProps> = ({ training, us
                 )}
             </div>
 
+            {/* Atividades e Jogos Específicos do Treinamento */}
+            {!loading && (() => {
+                const normalizeProg = (s: string) => String(s || '').toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/^NB\s+/i, '').trim();
+                const baseProgramName = activePlan === 'A' ? training.programaNb : activePlan === 'B' ? programaB : programaC;
+                const baseProgram = normalizeProg(baseProgramName);
+                const availableActivitiesForSelect = allActivities.filter(act => {
+                    const actProgramas = Array.isArray(act.programas) ? act.programas : (act.programa ? [act.programa] : []);
+                    return actProgramas.some(p => {
+                        const actProg = normalizeProg(p);
+                        return actProg === 'GERAL' || actProg === baseProgram || actProg.includes(baseProgram) || baseProgram.includes(actProg);
+                    }) || actProgramas.length === 0;
+                });
+
+                if (availableActivitiesForSelect.length === 0) return null;
+
+                return (
+                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-2">
+                        <button 
+                            onClick={() => setIsSelectingActivities(!isSelectingActivities)}
+                            className="w-full flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-600 hover:text-blue-600 transition-colors"
+                        >
+                            <span className="flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
+                                Atividades & Materiais ({selectedActivityIds.length})
+                            </span>
+                            <span className="text-[9px] text-blue-600 font-bold underline">
+                                {isSelectingActivities ? 'Ocultar Opções' : 'Selecionar Atividades'}
+                            </span>
+                        </button>
+
+                        {isSelectingActivities && (
+                            <div className="pt-2 border-t border-slate-200/60 grid grid-cols-1 gap-1.5 max-h-48 overflow-y-auto custom-scrollbar">
+                                {availableActivitiesForSelect.map(act => {
+                                    const isSelected = selectedActivityIds.includes(act.id);
+                                    return (
+                                        <button
+                                            key={act.id}
+                                            onClick={async () => {
+                                                if (!canWriteChecklist) return;
+                                                let newIds = [...selectedActivityIds];
+                                                if (isSelected) {
+                                                    newIds = newIds.filter(id => id !== act.id);
+                                                } else {
+                                                    newIds.push(act.id);
+                                                }
+                                                setSelectedActivityIds(newIds);
+                                                
+                                                // Save the selectedActivities list for the active plan in Firestore
+                                                const field = activePlan === 'A' ? 'selectedActivities' : activePlan === 'B' ? 'selectedActivitiesB' : 'selectedActivitiesC';
+                                                await updateDoc(doc(db, 'training_checklists', training.id), {
+                                                    [field]: newIds,
+                                                    updatedAt: clientServerTimestamp()
+                                                });
+                                            }}
+                                            className={`flex items-start gap-2.5 px-3 py-2 rounded-lg text-left text-xs font-bold border transition-all ${
+                                                isSelected 
+                                                ? 'bg-blue-50 border-blue-200 text-blue-800' 
+                                                : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
+                                            }`}
+                                        >
+                                            <div className="mt-0.5 shrink-0 text-blue-600">
+                                                {isSelected ? <CheckSquare size={14} /> : <Square size={14} />}
+                                            </div>
+                                            <div className="flex-1 min-w-0">
+                                                <p className="leading-tight truncate">{act.nome}</p>
+                                                {act.itens && act.itens.length > 0 && (
+                                                    <p className={`text-[8px] mt-0.5 font-bold uppercase tracking-wider ${isSelected ? 'text-blue-500' : 'text-slate-400'}`}>
+                                                        {act.itens.length} material(is) específico(s)
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+                );
+            })()}
+
             {/* Conteúdo do Checklist */}
             {loading ? (
                 <div className="flex flex-col items-center justify-center h-64 text-slate-400 gap-3">
@@ -459,7 +624,10 @@ export const ChecklistSidebar: React.FC<ChecklistSidebarProps> = ({ training, us
                     .map((t, i) => ({ ...t, originalIndex: i }))
                     .filter(t => t.fase === phase);
 
-                const style = phaseStyles[phase] || 'bg-slate-50 text-slate-500';
+                const isActivityPhase = phase.startsWith('Atividade ');
+                const style = isActivityPhase
+                    ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                    : (phaseStyles[phase] || 'bg-slate-50 text-slate-500');
 
                 return (
                     <div key={phase} className="space-y-3">
@@ -487,16 +655,17 @@ export const ChecklistSidebar: React.FC<ChecklistSidebarProps> = ({ training, us
                                     </div>
                                 )}
                                     <motion.div 
-                                        drag={(task.completado || task.naoAplica) ? false : "x"}
+                                        drag={(task.completado || task.naoAplica || !canWriteChecklist) ? false : "x"}
                                         dragConstraints={{ left: 0, right: 0 }}
                                         dragElastic={0.4}
                                         dragSnapToOrigin={true}
                                         onDragEnd={(_, info) => {
+                                            if (!canWriteChecklist) return;
                                             if (info.offset.x > 80) setTaskState(task.originalIndex, 'completed');
                                             else if (info.offset.x < -80) setTaskState(task.originalIndex, 'naoAplica');
                                         }}
                                         style={{ touchAction: "pan-y" }}
-                                        className={`relative group flex items-start gap-2 p-2 rounded-xl transition-colors duration-200 ${!task.completado && !task.naoAplica ? 'cursor-grab active:cursor-grabbing border bg-white border-slate-200 shadow-sm hover:shadow-md hover:border-blue-200 z-10' : ''} ${
+                                        className={`relative group flex items-start gap-2 p-2 rounded-xl transition-colors duration-200 ${!task.completado && !task.naoAplica ? (canWriteChecklist ? 'cursor-grab active:cursor-grabbing border bg-white border-slate-200 shadow-sm hover:shadow-md hover:border-blue-200 z-10' : 'border bg-white border-slate-200 shadow-sm z-10') : ''} ${
                                             task.completado 
                                             ? 'bg-emerald-50 border border-emerald-200' 
                                             : task.naoAplica

@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  useRef,
+  useLayoutEffect,
+} from "react";
 import { createPortal } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { db } from "../lib/firebase";
@@ -19,9 +25,14 @@ import {
 import { AppLayout } from "../components/AppLayout";
 import { usePagePermission } from "../lib/permissions";
 import { LogisticsDatePicker } from "../components/LogisticsDatePicker";
+import { TrainingFormModal } from "../components/TrainingFormModal";
 
 // Global fallback for drag and drop data on touch devices
-let currentDragData: { staffId: string; originTrainingId?: string; alocId?: string } | null = null;
+let currentDragData: {
+  staffId: string;
+  originTrainingId?: string;
+  alocId?: string;
+} | null = null;
 import {
   Calendar as CalendarIcon,
   Users,
@@ -47,6 +58,10 @@ import {
   Download,
   UserPlus,
   Check,
+  Unlock,
+  User,
+  XCircle,
+  Plane,
 } from "lucide-react";
 import {
   format,
@@ -58,6 +73,7 @@ import {
   isSameDay,
   isToday,
   isSameMonth,
+  addDays,
 } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { motion, AnimatePresence } from "motion/react";
@@ -79,6 +95,7 @@ interface Staff {
 interface Training {
   id: string;
   nomeNegocio: string;
+  cliente?: string;
   dataEvento: any;
   etapa: string;
   localEvento?: string;
@@ -89,9 +106,15 @@ interface Training {
   cidade?: string;
   observacoes?: string;
   contatos?: string;
+  isVirtual?: boolean;
+  dateOffsets?: any[];
+  offset?: number;
+  baseOpLabel?: string;
+  opLabel?: string;
 
   // Novos campos de Logística
   transporte?: string;
+  cronograma?: string;
   qtd_staffs?: number;
   qtd_equipes?: number;
   coordenador_interno?: string;
@@ -121,6 +144,7 @@ interface Allocation {
     | "pre_reserva"
     | "whatsapp"
     | "pessoalmente"
+    | "deslocamento"
     | "confirmado"
     | "data_liberada"
     | "recusado";
@@ -186,11 +210,58 @@ const normalizeDate = (dateVal: any) => {
   return d;
 };
 
+const getStaffStatusColor = (status: string) => {
+  const s = (status || "").toLowerCase().trim();
+  switch (s) {
+    case "confirmado":
+      return "bg-emerald-500 border-emerald-300 shadow-[0_0_10px_rgba(16,185,129,0.3)] text-white";
+    case "recusado":
+      return "bg-rose-500 border-rose-300 shadow-[0_0_10px_rgba(244,63,94,0.3)] text-white";
+    case "whatsapp":
+      return "bg-teal-500 border-teal-300 shadow-[0_0_10px_rgba(20,184,166,0.3)] text-white";
+    case "pessoalmente":
+      return "bg-sky-500 border-sky-305 shadow-[0_0_10px_rgba(14,165,233,0.3)] text-white";
+    case "pre_reserva":
+      return "bg-orange-500 border-orange-300 shadow-[0_0_10px_rgba(249,115,22,0.3)] text-white";
+    case "deslocamento":
+      return "bg-indigo-500 border-indigo-300 shadow-[0_0_10px_rgba(99,102,241,0.3)] text-white";
+    case "data_liberada":
+      return "bg-slate-550 border-slate-350 shadow-[0_0_10px_rgba(100,116,139,0.3)] text-white";
+    default:
+      return "bg-zinc-500 border-zinc-350 shadow-[0_0_10px_rgba(113,113,122,0.3)] text-white";
+  }
+};
+
+const renderStatusIcon = (status: string, size = 12, className = "") => {
+  const s = (status || "").toLowerCase().trim();
+  switch (s) {
+    case "confirmado":
+      return <CheckCircle2 size={size} className={className} />;
+    case "pre_reserva":
+      return <Clock size={size} className={className} />;
+    case "whatsapp":
+      return <MessageSquare size={size} className={className} />;
+    case "pessoalmente":
+      return <User size={size} className={className} />;
+    case "deslocamento":
+      return <Plane size={size} className={className} />;
+    case "data_liberada":
+      return <Unlock size={size} className={className} />;
+    case "recusado":
+      return <XCircle size={size} className={className} />;
+    default:
+      return <Clock size={size} className={className} />;
+  }
+};
+
 // Componente Unificado para Lista de Staffs e Uniformes
 const UnifiedStaffReport = ({ training, staffs, allocations }: any) => {
   const [showFullName, setShowFullName] = useState(false);
   const confirmedAllocations = allocations.filter(
-    (a: any) => a.status === "confirmado" || a.status === "pre_reserva" || a.status === "data_liberada",
+    (a: any) =>
+      a.status === "confirmado" ||
+      a.status === "pre_reserva" ||
+      a.status === "data_liberada",
   );
 
   const [printMode, setPrintMode] = useState<"staffs" | "uniforms" | null>(
@@ -203,11 +274,13 @@ const UnifiedStaffReport = ({ training, staffs, allocations }: any) => {
     return format(d, "dd/MM/yyyy");
   };
 
-  const isPool = !training || training === 'pool';
+  const isPool = !training || training === "pool";
   const displayTitle = isPool ? "POOL DE STAFFS" : training.nomeNegocio;
   const displayDate = isPool ? "AVULSO" : formatDate(training.dataEvento);
   const displayProg = isPool ? "ALOCAÇÃO DIÁRIA" : training.programaNb;
-  const displayLocal = isPool ? "---" : `${training.cidade} - ${training.localEvento}`;
+  const displayLocal = isPool
+    ? "---"
+    : `${training.cidade} - ${training.localEvento}`;
 
   const handlePrintRequest = (mode: "staffs" | "uniforms") => {
     setPrintMode(mode);
@@ -311,15 +384,11 @@ const UnifiedStaffReport = ({ training, staffs, allocations }: any) => {
                       <span className="font-medium text-slate-500">
                         NEGÓCIO:
                       </span>{" "}
-                      <span className="font-black">
-                        {displayTitle}
-                      </span>
+                      <span className="font-black">{displayTitle}</span>
                     </p>
                     <p>
                       <span className="font-medium text-slate-500">DATA:</span>{" "}
-                      <span className="font-black">
-                        {displayDate}
-                      </span>
+                      <span className="font-black">{displayDate}</span>
                     </p>
                     <p>
                       <span className="font-medium text-slate-500">
@@ -329,9 +398,7 @@ const UnifiedStaffReport = ({ training, staffs, allocations }: any) => {
                     </p>
                     <p>
                       <span className="font-medium text-slate-500">LOCAL:</span>{" "}
-                      <span className="font-black">
-                        {displayLocal}
-                      </span>
+                      <span className="font-black">{displayLocal}</span>
                     </p>
                   </div>
                 </div>
@@ -636,22 +703,36 @@ const UnifiedStaffReport = ({ training, staffs, allocations }: any) => {
 
 export const AllocationPage = ({ user }: { user?: any }) => {
   const { canWrite } = usePagePermission("alocacao", user);
+  const permAlocacao = usePagePermission("alocacao", user);
+  const permTreinamentos = usePagePermission("treinamentos", user);
+  const permFinanceiro = usePagePermission("financeiro", user);
+  const permChecklist = usePagePermission("checklist", user);
+  const permStaffs = usePagePermission("staffs", user);
+  const permBtnLogistica = usePagePermission("btn-logistica", user);
+  const permBtnFinanceiro = usePagePermission("btn-financeiro", user);
+  const permBtnChecklist = usePagePermission("btn-checklist", user);
+  const permBtnStaffs = usePagePermission("btn-staffs", user);
+  const permBtnHistorico = usePagePermission("btn-historico", user);
+  const canEditStaffs = canWrite || permBtnStaffs.canWrite;
   const navigate = useNavigate();
   const location = useLocation();
-  const locationState = location.state as { selectedDate?: string, selectedTrainingId?: string } | null;
+  const locationState = location.state as {
+    selectedDate?: string;
+    selectedTrainingId?: string;
+  } | null;
 
   const [selectedDate, setSelectedDate] = useState(() => {
     if (locationState?.selectedDate) {
       // Assuming selectedDate from locationState is a string format 'YYYY-MM-DD'
-      const parsed = new Date(locationState.selectedDate + 'T12:00:00Z');
+      const parsed = new Date(locationState.selectedDate + "T12:00:00Z");
       if (!isNaN(parsed.getTime())) return parsed;
     }
     return new Date();
   });
-  
+
   const [currentMonth, setCurrentMonth] = useState(() => {
     if (locationState?.selectedDate) {
-      const parsed = new Date(locationState.selectedDate + 'T12:00:00Z');
+      const parsed = new Date(locationState.selectedDate + "T12:00:00Z");
       if (!isNaN(parsed.getTime())) return parsed;
     }
     return new Date();
@@ -659,9 +740,11 @@ export const AllocationPage = ({ user }: { user?: any }) => {
 
   const [staffs, setStaffs] = useState<Staff[]>([]);
   const [trainings, setTrainings] = useState<Training[]>([]);
+  const [allTrainingIds, setAllTrainingIds] = useState<Set<string>>(new Set());
   const [checklists, setChecklists] = useState<Record<string, any>>({});
   const [allocations, setAllocations] = useState<Allocation[]>([]);
   const [monthTrainings, setMonthTrainings] = useState<Training[]>([]);
+  const [openTrainingsToday, setOpenTrainingsToday] = useState<Training[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedTrainingId, setSelectedTrainingId] = useState<string | null>(
     locationState?.selectedTrainingId || null,
@@ -684,24 +767,47 @@ export const AllocationPage = ({ user }: { user?: any }) => {
   >("cheio");
 
   const [showMobileCalendar, setShowMobileCalendar] = useState(false);
+  const [editingTrainingIdModal, setEditingTrainingIdModal] = useState<string | null>(null);
 
   const [logisticsForm, setLogisticsForm] = useState<Partial<Training>>({});
   const [activePicker, setActivePicker] = useState<keyof Training | null>(null);
 
-  // Ajuste automático de altura para textareas de logística
+  const obsLogisticaRef = useRef<HTMLTextAreaElement | null>(null);
+  const obsGeralLogisticaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const syncLogisticsTextareaHeights = () => {
+    const t1 = obsLogisticaRef.current;
+    const t2 = obsGeralLogisticaRef.current;
+    if (t1 && t2) {
+      t1.style.height = "auto";
+      t2.style.height = "auto";
+      const maxH = Math.max(t1.scrollHeight, t2.scrollHeight, 38);
+      t1.style.height = `${maxH}px`;
+      t2.style.height = `${maxH}px`;
+    }
+  };
+
+  // Ajuste automático de altura para textareas de logística com sincronização de altura
+  useLayoutEffect(() => {
+    if (sidebarType === "logistica") {
+      syncLogisticsTextareaHeights();
+    }
+  }, [
+    sidebarType,
+    selectedTrainingId,
+    logisticsForm.obs_logistica,
+    logisticsForm.obs_geral_logistica,
+  ]);
+
   useEffect(() => {
     if (sidebarType === "logistica") {
-      // Pequeno timeout para garantir que o DOM renderizou
+      // Pequeno timeout para garantir que o DOM renderizou após abertura e transição
       const timer = setTimeout(() => {
-        const textareas = document.querySelectorAll("textarea");
-        textareas.forEach((textarea) => {
-          textarea.style.height = "auto";
-          textarea.style.height = textarea.scrollHeight + "px";
-        });
-      }, 100);
+        syncLogisticsTextareaHeights();
+      }, 120);
       return () => clearTimeout(timer);
     }
-  }, [sidebarType, logisticsForm]);
+  }, [sidebarType, selectedTrainingId]);
 
   // Sync logistics form when training changes or sidebar opens
   useEffect(() => {
@@ -726,6 +832,7 @@ export const AllocationPage = ({ user }: { user?: any }) => {
           hora_saida: formatForInput(training.hora_saida),
           hora_retorno: formatForInput(training.hora_retorno),
           transporte: training.transporte || "",
+          cronograma: training.cronograma || "",
           qtd_staffs: training.qtd_staffs || 0,
           qtd_equipes: training.qtd_equipes || 0,
           coordenador_interno: training.coordenador_interno || "",
@@ -753,6 +860,13 @@ export const AllocationPage = ({ user }: { user?: any }) => {
     isObsOnly?: boolean;
   } | null>(null);
   const [refusalReason, setRefusalReason] = useState("");
+  const [hoveredObs, setHoveredObs] = useState<{
+    text: string;
+    left: number;
+    width: number;
+    top: number;
+    bottom: number;
+  } | null>(null);
   const [statusMenu, setStatusMenu] = useState<{
     alocId: string;
     x: number;
@@ -802,13 +916,16 @@ export const AllocationPage = ({ user }: { user?: any }) => {
     });
 
     // 1.5. Escutar Checklists para exibir progresso
-    const unsubChecklists = onSnapshot(collection(db, "training_checklists"), (snap) => {
-      const map: Record<string, any> = {};
-      snap.forEach((doc) => {
-        map[doc.id] = doc.data();
-      });
-      setChecklists(map);
-    });
+    const unsubChecklists = onSnapshot(
+      collection(db, "training_checklists"),
+      (snap) => {
+        const map: Record<string, any> = {};
+        snap.forEach((doc) => {
+          map[doc.id] = doc.data();
+        });
+        setChecklists(map);
+      },
+    );
 
     // 2. Escutar Treinamentos com mapeamento de campos exaustivo
     const unsubTrainings = onSnapshot(collection(db, "trainings"), (snap) => {
@@ -818,7 +935,18 @@ export const AllocationPage = ({ user }: { user?: any }) => {
           ...d,
           id: String(doc.id),
           nomeNegocio:
-            d.nomeNegocio || d.nome_negocio || d.cliente || d.negocio || "Sem Nome",
+            d.nomeNegocio ||
+            d.nome_negocio ||
+            d.cliente ||
+            d.negocio ||
+            "Sem Nome",
+          cliente:
+            d.cliente ||
+            d.nome_cliente ||
+            d.empresa ||
+            d.nomeNegocio ||
+            d.nome_negocio ||
+            "Sem Cliente",
           dataEvento:
             d.dataEvento || d.data_evento || d.data || d.data_evento_nb,
           etapa: d.etapa || "Confirmado",
@@ -826,7 +954,11 @@ export const AllocationPage = ({ user }: { user?: any }) => {
             d.localEvento || d.local_evento || d.local || d.local_evento_nb,
           cidade: d.cidade || d.cidade_evento || d.municipio || d.local_cidade,
           programaNb:
-            d.programaNb || d.programa_nb || d.atividade || d.programa || d.programa_nb_evento,
+            d.programaNb ||
+            d.programa_nb ||
+            d.atividade ||
+            d.programa ||
+            d.programa_nb_evento,
           participantes:
             d.participantes ||
             d.qtd_participantes ||
@@ -863,21 +995,101 @@ export const AllocationPage = ({ user }: { user?: any }) => {
         } as Training;
       });
 
-      const filtered = list.filter((t) => {
+      const allIds = new Set(list.map((t) => String(t.id)));
+      setAllTrainingIds(allIds);
+
+      const isConfirmedOrRealized = (etapa: string) => {
+        const s = String(etapa || "")
+          .toLowerCase()
+          .trim();
+        return (
+          s === "confirmado" ||
+          s === "confirmada" ||
+          s === "realizado" ||
+          s === "realizada"
+        );
+      };
+
+      const isCancelledOrSuspended = (etapa: string) => {
+        const s = String(etapa || "")
+          .toLowerCase()
+          .trim();
+        return (
+          s === "cancelado" ||
+          s === "cancelada" ||
+          s === "suspenso" ||
+          s === "suspensa" ||
+          s === "não realizado" ||
+          s === "nao realizado" ||
+          s === "não realizada" ||
+          s === "nao realizada"
+        );
+      };
+
+      const isOtherOpenStage = (etapa: string) => {
+        return !isConfirmedOrRealized(etapa) && !isCancelledOrSuspended(etapa);
+      };
+
+      const expandedList: Training[] = [];
+      list.forEach((t) => {
+        const hasExtraDates = Array.isArray(t.dateOffsets) && t.dateOffsets.some(item => {
+          if (typeof item === 'number') return item !== 0;
+          if (item && typeof item === 'object' && typeof item.offset === 'number') return item.offset !== 0;
+          return false;
+        });
+        const bLabel = hasExtraDates ? (t.baseOpLabel || 'Op 1') : '';
+        expandedList.push({
+          ...t,
+          offset: 0,
+          opLabel: bLabel
+        });
+
+        if (Array.isArray(t.dateOffsets)) {
+          t.dateOffsets.forEach((item, index) => {
+            let offsetNum = 0;
+            let opLabel = '';
+            if (typeof item === 'number') {
+              offsetNum = item;
+              opLabel = `Op ${index + 2}`;
+            } else if (item && typeof item === 'object' && typeof item.offset === 'number') {
+              offsetNum = item.offset;
+              opLabel = item.opLabel || `Op ${index + 2}`;
+            }
+
+            if (offsetNum !== 0) {
+              const baseD = normalizeDate(t.dataEvento);
+              if (baseD) {
+                const dOffset = addDays(baseD, offsetNum);
+                expandedList.push({
+                  ...t,
+                  dataEvento: dOffset,
+                  offset: offsetNum,
+                  opLabel: opLabel
+                });
+              }
+            }
+          });
+        }
+      });
+
+      const filtered = expandedList.filter((t) => {
         const tDate = normalizeDate(t.dataEvento);
         if (!tDate) return false;
-        const etapa = String(t.etapa || "").toLowerCase();
-        // Alinhado com ConsultantAllocationPage: mostra quase tudo exceto cancelados/suspensos
-        if (["não realizado", "nao realizado", "cancelado", "suspenso"].includes(etapa)) return false;
-        return isSameDay(tDate, selectedDate);
+        return isConfirmedOrRealized(t.etapa) && isSameDay(tDate, selectedDate);
       });
       setTrainings(filtered);
 
-      const monthFiltered = list.filter((t) => {
+      const openToday = expandedList.filter((t) => {
         const tDate = normalizeDate(t.dataEvento);
         if (!tDate) return false;
-        const etapa = String(t.etapa || "").toLowerCase();
-        if (["não realizado", "nao realizado", "cancelado", "suspenso"].includes(etapa)) return false;
+        return isOtherOpenStage(t.etapa) && isSameDay(tDate, selectedDate);
+      });
+      setOpenTrainingsToday(openToday);
+
+      const monthFiltered = expandedList.filter((t) => {
+        const tDate = normalizeDate(t.dataEvento);
+        if (!tDate) return false;
+        if (!isConfirmedOrRealized(t.etapa)) return false;
 
         const nextMonth = addMonths(currentMonth, 1);
         return (
@@ -896,7 +1108,7 @@ export const AllocationPage = ({ user }: { user?: any }) => {
       (snap) => {
         const list = snap.docs.map((doc) => {
           const d = doc.data();
-          
+
           // Debug
           console.log("Allocation doc:", doc.id, d);
 
@@ -1023,9 +1235,70 @@ export const AllocationPage = ({ user }: { user?: any }) => {
     }
   }, [selectedTrainingId, sidebarType]);
 
+  // Alocações filtradas para os treinamentos visíveis ou para o dia selecionado
+  const filteredAllocations = useMemo(() => {
+    const visibleTrainingIds = new Set(trainings.map((t) => String(t.id)));
+
+    return allocations.filter((aloc) => {
+      // Prioridade 1: ID do treinamento já bate com um dos treinamentos visíveis no dia
+      if (
+        aloc.treinamento_id &&
+        visibleTrainingIds.has(String(aloc.treinamento_id))
+      )
+        return true;
+
+      // Prioridade 2: Data da alocação bate com o dia selecionado
+      const alocDate = normalizeDate(aloc.data_alocacao);
+      if (alocDate && isSameDay(alocDate, selectedDate)) return true;
+
+      return false;
+    });
+  }, [allocations, trainings, selectedDate]);
+
+  // Renderiza tanto treinamentos reais do dia quanto treinamentos virtuais/órfãos do dia
+  const renderedTrainings = useMemo(() => {
+    // 1. Começamos com os treinamentos reais filtrados de hoje
+    const result = [...trainings];
+
+    // 2. Encontrar alocações deste dia que apontam para IDs de treinamentos inexistentes
+    const orphanAllocations = filteredAllocations.filter(
+      (a) =>
+        a.treinamento_id &&
+        a.treinamento_id !== "" &&
+        !allTrainingIds.has(String(a.treinamento_id)),
+    );
+
+    // 3. Obter IDs únicos de treinamentos não cadastrados
+    const missingIds = Array.from(
+      new Set(orphanAllocations.map((a) => String(a.treinamento_id))),
+    );
+
+    // 4. Inserir um card virtual/placeholder de treinamento para cada ID inexistente
+    missingIds.forEach((id) => {
+      const firstAloc = orphanAllocations.find(
+        (a) => String(a.treinamento_id) === id,
+      );
+      const dateStr = firstAloc?.data_alocacao
+        ? String(firstAloc.data_alocacao)
+        : format(selectedDate, "yyyy-MM-dd");
+
+      result.push({
+        id,
+        nomeNegocio: `Treinamento ${id} (Não Cadastrado)`,
+        etapa: "Confirmado",
+        dataEvento: dateStr,
+        programaNb: "Origem Externa / Legada",
+        participantes: 0,
+        isVirtual: true,
+      } as any);
+    });
+
+    return result;
+  }, [trainings, filteredAllocations, allTrainingIds, selectedDate]);
+
   const selectedTraining = useMemo(
-    () => trainings.find((t) => t.id === selectedTrainingId),
-    [trainings, selectedTrainingId],
+    () => renderedTrainings.find((t) => t.id === selectedTrainingId),
+    [renderedTrainings, selectedTrainingId],
   );
 
   // Sync global period with training preference
@@ -1040,7 +1313,9 @@ export const AllocationPage = ({ user }: { user?: any }) => {
   // Staffs que ainda não foram alocados hoje
   const availableStaffs = useMemo(() => {
     // Pegar todos os IDs de treinamentos que estão acontecendo hoje
-    const trainingTodayIds = new Set(trainings.map((t) => String(t.id)));
+    const trainingTodayIds = new Set(
+      renderedTrainings.map((t) => String(t.id)),
+    );
 
     // Apenas considerar staffs alocados no dia selecionado ou em treinamentos do dia
     const allocatedTodayIds = new Set(
@@ -1068,27 +1343,19 @@ export const AllocationPage = ({ user }: { user?: any }) => {
     return [...baseAvailable, ...duplicates].sort((a, b) =>
       a.nomeAbreviado.localeCompare(b.nomeAbreviado),
     );
-  }, [staffs, allocations, selectedDate, trainings, duplicatedStaffIds]);
-
-  // Alocações filtradas para os treinamentos visíveis ou para o dia selecionado
-  const filteredAllocations = useMemo(() => {
-    const visibleTrainingIds = new Set(trainings.map((t) => String(t.id)));
-
-    return allocations.filter((aloc) => {
-      // Prioridade 1: ID do treinamento já bate com um dos treinamentos visíveis no dia
-      if (aloc.treinamento_id && visibleTrainingIds.has(String(aloc.treinamento_id))) return true;
-
-      // Prioridade 2: Data da alocação bate com o dia selecionado
-      const alocDate = normalizeDate(aloc.data_alocacao);
-      if (alocDate && isSameDay(alocDate, selectedDate)) return true;
-
-      return false;
-    });
-  }, [allocations, trainings, selectedDate]);
+  }, [
+    staffs,
+    allocations,
+    selectedDate,
+    renderedTrainings,
+    duplicatedStaffIds,
+  ]);
 
   // Alocações sem treinamento (Pool/Diária)
   const poolAllocations = useMemo(() => {
-    return filteredAllocations.filter(a => !a.treinamento_id || a.treinamento_id === '');
+    return filteredAllocations.filter(
+      (a) => !a.treinamento_id || a.treinamento_id === "",
+    );
   }, [filteredAllocations]);
 
   // Alocações por treinamento ordenadas por status de prioridade
@@ -1098,9 +1365,10 @@ export const AllocationPage = ({ user }: { user?: any }) => {
       pre_reserva: 2,
       whatsapp: 3,
       pessoalmente: 4,
-      confirmado: 5,
-      data_liberada: 6,
-      recusado: 7,
+      deslocamento: 5,
+      confirmado: 6,
+      data_liberada: 7,
+      recusado: 8,
     };
 
     return filteredAllocations
@@ -1193,8 +1461,10 @@ export const AllocationPage = ({ user }: { user?: any }) => {
     data: any,
     baseMessage: string,
   ) => {
-    if (!canWrite) {
-      alert("Acesso negado: Você não possui a permissão de escrita necessária.");
+    if (!permFinanceiro.canWrite && !permBtnFinanceiro.canWrite) {
+      alert(
+        "Acesso negado: Você não possui a permissão de escrita necessária.",
+      );
       return;
     }
     try {
@@ -1243,8 +1513,10 @@ export const AllocationPage = ({ user }: { user?: any }) => {
     overriddenData?: Partial<Training>,
     customMessage?: string,
   ) => {
-    if (!canWrite) {
-      alert("Acesso negado: Você não possui a permissão de escrita necessária.");
+    if (!canWrite && !permBtnLogistica.canWrite) {
+      alert(
+        "Acesso negado: Você não possui a permissão de escrita necessária.",
+      );
       return;
     }
     if (!selectedTrainingId) return;
@@ -1340,26 +1612,31 @@ export const AllocationPage = ({ user }: { user?: any }) => {
     staffId: string,
     trainingId: string,
     originTrainingId?: string,
-    alocIdToMove?: string
+    alocIdToMove?: string,
   ) => {
-    if (!canWrite) {
-      alert("Acesso negado: Você não possui a permissão de escrita necessária.");
+    if (!canWrite && !permBtnStaffs.canWrite) {
+      alert(
+        "Acesso negado: Você não possui a permissão de escrita necessária.",
+      );
       return;
     }
-    const isPool = !trainingId || trainingId === 'pool';
-    const finalTrainingId = isPool ? '' : trainingId;
+    const isPool = !trainingId || trainingId === "pool";
+    const finalTrainingId = isPool ? "" : trainingId;
     const dateStr = format(selectedDate, "yyyy-MM-dd");
-    
+
     // Deterministic ID for target to prevent same staff in same training twice
-    const targetAlocId = isPool ? `pool_${dateStr}_${staffId}` : `${trainingId}_${staffId}`;
-    
+    const targetAlocId = isPool
+      ? `pool_${dateStr}_${staffId}`
+      : `${trainingId}_${staffId}`;
+
     const dataObj = new Date(dateStr + "T12:00:00");
     const staff = staffs.find((s) => s.id === staffId);
-    
-    const targetTraining = isPool ? null : (
-      trainings.find((t) => t.id === trainingId) ||
-      monthTrainings.find((t) => t.id === trainingId)
-    );
+
+    const targetTraining = isPool
+      ? null
+      : renderedTrainings.find((t) => t.id === trainingId) ||
+        trainings.find((t) => t.id === trainingId) ||
+        monthTrainings.find((t) => t.id === trainingId);
 
     try {
       if (duplicatedStaffIds.includes(staffId)) {
@@ -1369,39 +1646,45 @@ export const AllocationPage = ({ user }: { user?: any }) => {
       let currentStatus = "intencao";
 
       if (originTrainingId && originTrainingId !== trainingId) {
-        const isOldPool = !originTrainingId || originTrainingId === 'pool';
-        
+        const isOldPool = !originTrainingId || originTrainingId === "pool";
+
         // Use provided alocIdToMove if it exists (from Pool), otherwise fallback to deterministic old ID
-        const cleanupId = alocIdToMove || (isOldPool ? `pool_${dateStr}_${staffId}` : `${originTrainingId}_${staffId}`);
-        
-        const originTraining = isOldPool ? null : (
-          trainings.find((t) => t.id === originTrainingId) ||
-          monthTrainings.find((t) => t.id === originTrainingId)
-        );
+        const cleanupId =
+          alocIdToMove ||
+          (isOldPool
+            ? `pool_${dateStr}_${staffId}`
+            : `${originTrainingId}_${staffId}`);
+
+        const originTraining = isOldPool
+          ? null
+          : renderedTrainings.find((t) => t.id === originTrainingId) ||
+            trainings.find((t) => t.id === originTrainingId) ||
+            monthTrainings.find((t) => t.id === originTrainingId);
 
         // Find the existing allocation to preserve status
-        const existingAloc = allocations.find(a => a.id === cleanupId);
+        const existingAloc = allocations.find((a) => a.id === cleanupId);
         if (existingAloc) {
           currentStatus = existingAloc.status || "intencao";
         }
-        
+
         await deleteDoc(doc(db, "allocations", cleanupId));
-        
+
         if (!isOldPool) {
           await createLog(
             originTrainingId,
-            `Staff ${staff?.nomeAbreviado} movido de [${originTraining?.nomeNegocio || "N/A"}] para [${isPool ? "POOL AVULSO" : (targetTraining?.nomeNegocio || "N/A")}].`,
+            `Staff ${staff?.nomeAbreviado} movido de [${originTraining?.nomeNegocio || "N/A"}] para [${isPool ? "POOL AVULSO" : targetTraining?.nomeNegocio || "N/A"}].`,
           );
         }
-        
+
         if (!isPool) {
           await createLog(
             trainingId,
-            `Staff ${staff?.nomeAbreviado} recebido de [${isOldPool ? "POOL AVULSO" : (originTraining?.nomeNegocio || "N/A")}].`,
+            `Staff ${staff?.nomeAbreviado} recebido de [${isOldPool ? "POOL AVULSO" : originTraining?.nomeNegocio || "N/A"}].`,
           );
         }
       } else {
-        if (!isPool) await createLog(trainingId, `Staff ${staff?.nomeAbreviado} alocado.`);
+        if (!isPool)
+          await createLog(trainingId, `Staff ${staff?.nomeAbreviado} alocado.`);
       }
 
       await setDoc(doc(db, "allocations", targetAlocId), {
@@ -1418,8 +1701,10 @@ export const AllocationPage = ({ user }: { user?: any }) => {
   };
 
   const removeAllocation = async (allocationId: string) => {
-    if (!canWrite) {
-      alert("Acesso negado: Você não possui a permissão de escrita necessária.");
+    if (!canWrite && !permBtnStaffs.canWrite) {
+      alert(
+        "Acesso negado: Você não possui a permissão de escrita necessária.",
+      );
       return;
     }
     try {
@@ -1444,8 +1729,10 @@ export const AllocationPage = ({ user }: { user?: any }) => {
     status?: string,
     reason?: string,
   ) => {
-    if (!canWrite) {
-      alert("Acesso negado: Você não possui a permissão de escrita necessária.");
+    if (!canWrite && !permBtnStaffs.canWrite) {
+      alert(
+        "Acesso negado: Você não possui a permissão de escrita necessária.",
+      );
       return;
     }
     try {
@@ -1504,14 +1791,55 @@ export const AllocationPage = ({ user }: { user?: any }) => {
   }, [currentMonth]);
 
   const CalendarBlock = ({ month, days }: { month: Date; days: Date[] }) => {
-    const confirmedCount = monthTrainings.filter((t) => {
-      const tDate = normalizeDate(t.dataEvento);
-      return (
-        tDate &&
-        isSameMonth(tDate, month) &&
-        (t.etapa === "Confirmado" || t.etapa === "Realizado")
-      );
-    }).length;
+    const confirmedCount = useMemo(() => {
+      const uniqueEventIds = new Set<string>();
+
+      // 1. Treinamentos reais neste mês (já filtrados na escuta por confirmado/realizado)
+      monthTrainings.forEach((t) => {
+        const tDate = normalizeDate(t.dataEvento);
+        if (
+          tDate &&
+          isSameMonth(tDate, month) &&
+          tDate.getFullYear() === month.getFullYear()
+        ) {
+          const etapa = String(t.etapa || "")
+            .toLowerCase()
+            .trim();
+          const isExcluded =
+            etapa === "cancelado" ||
+            etapa === "cancelada" ||
+            etapa === "suspenso" ||
+            etapa === "suspensa" ||
+            etapa === "não realizado" ||
+            etapa === "nao realizado" ||
+            etapa === "não realizada" ||
+            etapa === "nao realizada";
+          if (!isExcluded) {
+            uniqueEventIds.add(String(t.id));
+          }
+        }
+      });
+
+      // 2. Órfãos associados a este mês que têm alocações
+      allocations.forEach((aloc) => {
+        const alocDate = normalizeDate(aloc.data_alocacao);
+        if (
+          alocDate &&
+          isSameMonth(alocDate, month) &&
+          alocDate.getFullYear() === month.getFullYear()
+        ) {
+          if (
+            aloc.treinamento_id &&
+            aloc.treinamento_id !== "" &&
+            !allTrainingIds.has(String(aloc.treinamento_id))
+          ) {
+            uniqueEventIds.add(`orphan-${aloc.treinamento_id}`);
+          }
+        }
+      });
+
+      return uniqueEventIds.size;
+    }, [month, monthTrainings, allocations, allTrainingIds]);
 
     return (
       <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden mb-4">
@@ -1543,11 +1871,27 @@ export const AllocationPage = ({ user }: { user?: any }) => {
               ),
             )}
             {days.map((day) => {
-              const dayTrainings = monthTrainings.filter((t) => {
+              const dayTrainingsCount = monthTrainings.filter((t) => {
                 const tDate = normalizeDate(t.dataEvento);
                 return tDate && isSameDay(tDate, day);
+              }).length;
+
+              const orphansSet = new Set<string>();
+              allocations.forEach((aloc) => {
+                const alocDate = normalizeDate(aloc.data_alocacao);
+                if (alocDate && isSameDay(alocDate, day)) {
+                  if (
+                    aloc.treinamento_id &&
+                    aloc.treinamento_id !== "" &&
+                    !allTrainingIds.has(String(aloc.treinamento_id))
+                  ) {
+                    orphansSet.add(String(aloc.treinamento_id));
+                  }
+                }
               });
-              const count = dayTrainings.length;
+              const dayOrphanCount = orphansSet.size;
+
+              const count = dayTrainingsCount + dayOrphanCount;
 
               let trainingBorder = "border border-transparent";
               if (count === 1) trainingBorder = "border-2 border-emerald-500";
@@ -1559,8 +1903,8 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                 <button
                   key={day.toISOString()}
                   onClick={() => {
-                      setSelectedDate(day);
-                      setShowMobileCalendar(false);
+                    setSelectedDate(day);
+                    setShowMobileCalendar(false);
                   }}
                   className={`
                   aspect-square flex flex-col items-center justify-center rounded-lg text-[10px] font-bold transition-all relative
@@ -1647,101 +1991,181 @@ export const AllocationPage = ({ user }: { user?: any }) => {
               <div
                 className={`
                     w-64 flex-shrink-0 bg-amber-500/10 border border-amber-500/30 rounded-[28px] flex flex-col transition-all cursor-pointer group relative overflow-hidden transform-gpu
-                    ${selectedTrainingId === 'pool' ? "ring-2 ring-amber-500 bg-amber-500/20" : "hover:bg-amber-500/15"}
+                    ${selectedTrainingId === "pool" ? "ring-2 ring-amber-500 bg-amber-500/20" : "hover:bg-amber-500/15"}
                   `}
-                onClick={() => setSelectedTrainingId('pool')}
+                onClick={() => setSelectedTrainingId("pool")}
               >
-                <div className="p-4 border-b border-amber-500/20 space-y-1">
-                  <h3 className="text-[11px] font-black text-amber-500 uppercase tracking-widest flex items-center gap-2">
-                    <UserPlus size={14} />
-                    Pool de Staffs
-                  </h3>
-                  <p className="text-[9px] font-bold text-amber-600/70 uppercase">Alocações avulsas (sem evento)</p>
+                <div className="p-4 border-b border-amber-500/20 space-y-3">
+                  <div className="space-y-1">
+                    <h3 className="text-[11px] font-black text-amber-500 uppercase tracking-widest flex items-center gap-2">
+                      <UserPlus size={14} />
+                      Pool de Staffs
+                    </h3>
+                    <p className="text-[9px] font-bold text-amber-600/70 uppercase">
+                      Alocações avulsas (sem evento)
+                    </p>
+                  </div>
+
+                  {openTrainingsToday.length > 0 && (
+                    <div className="pt-2 border-t border-amber-500/15 space-y-1.5 cursor-default" onClick={(e) => e.stopPropagation()}>
+                      <h4 className="text-[9px] font-black text-amber-400/90 uppercase tracking-wider">
+                        Treinamentos a fechar ({openTrainingsToday.length})
+                      </h4>
+                      <div className="space-y-1 max-h-40 overflow-y-auto custom-scrollbar-white pr-0.5">
+                        {openTrainingsToday.map((t) => (
+                          <div
+                            key={t.id}
+                            onDoubleClick={(e) => {
+                              e.stopPropagation();
+                              setEditingTrainingIdModal(t.id);
+                            }}
+                            className="p-2 rounded-xl bg-amber-500/10 border border-amber-500/20 text-white text-[10px] space-y-1 flex flex-col cursor-pointer hover:bg-amber-500/20 hover:border-amber-500/40 transition-colors"
+                            title="Clique duplo para editar os dados deste treinamento"
+                          >
+                             <div className="font-extrabold text-amber-300 truncate" title={t.nomeNegocio}>
+                               {t.opLabel && <span className="text-[8px] bg-amber-500/20 text-amber-400 px-1 py-0.5 rounded font-black mr-1">[{t.opLabel}]</span>}
+                               {t.nomeNegocio}
+                             </div>
+                            <div className="flex items-center justify-between text-[8px] text-amber-200/75 font-semibold leading-none gap-2">
+                              <span className="truncate max-w-[70%]" title={t.programaNb}>
+                                {t.programaNb || "Sem programa"}
+                              </span>
+                              <span className="shrink-0 font-black text-amber-400">
+                                {t.participantes || 0} PAX
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-                
+
                 <div
                   className="flex-1 overflow-y-auto p-3 space-y-1 custom-scrollbar-white"
                   onDragEnter={(e) => e.preventDefault()}
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={(e) => {
-                    const staffId = e.dataTransfer.getData("staffId") || currentDragData?.staffId;
-                    const originId = e.dataTransfer.getData("originTrainingId") || currentDragData?.originTrainingId;
-                    const alocId = e.dataTransfer.getData("alocId") || currentDragData?.alocId;
+                    if (!canEditStaffs) {
+                      alert("Acesso negado: Você não possui a permissão de escrita necessária.");
+                      return;
+                    }
+                    const staffId =
+                      e.dataTransfer.getData("staffId") ||
+                      currentDragData?.staffId;
+                    const originId =
+                      e.dataTransfer.getData("originTrainingId") ||
+                      currentDragData?.originTrainingId;
+                    const alocId =
+                      e.dataTransfer.getData("alocId") ||
+                      currentDragData?.alocId;
                     if (staffId) {
-                      assignStaff(staffId, 'pool', originId, alocId);
+                      assignStaff(staffId, "pool", originId, alocId);
                     }
                     currentDragData = null;
                   }}
                 >
                   <AnimatePresence>
                     {poolAllocations.map((aloc, idx) => {
-                       const staff = staffs.find(s => String(s.id) === String(aloc.staff_id));
-                       return (
-                         <motion.div
-                           key={aloc.id}
-                           draggable={true}
-                           onDragStart={(e) => {
-                             e.dataTransfer.setData("staffId", aloc.staff_id);
-                             e.dataTransfer.setData("originTrainingId", 'pool');
-                             e.dataTransfer.setData("alocId", aloc.id); 
-                             currentDragData = { staffId: aloc.staff_id, originTrainingId: 'pool', alocId: aloc.id };
-                           }}
-                           className="group/staff relative bg-slate-800 p-1.5 rounded-lg flex items-center border border-white/10 hover:bg-slate-700 transition-all active:scale-95 cursor-grab shadow-sm"
-                         >
-                           <div className="flex items-center gap-2 truncate flex-1">
-                             <span className="text-[10px] font-black text-amber-400/90 w-4 tabular-nums">{idx + 1}</span>
-                             <p className="text-[11px] font-bold text-white truncate group-hover/staff:text-blue-300 transition-colors uppercase gap-2 flex items-center">
-                               {staff?.nomeAbreviado || "---"}
-                               <span className="text-[8px] font-black bg-amber-500/20 px-1 rounded text-amber-400">POOL</span>
-                             </p>
-                           </div>
-                           
-                           {/* Status Menu Button (Standardized circle) */}
-                           <div className="flex items-center ml-auto pr-0.5 relative">
-                              <button
-                                onMouseDown={(e) => {
-                                  e.stopPropagation();
-                                  const rect = e.currentTarget.getBoundingClientRect();
-                                  setStatusMenu({ alocId: aloc.id, x: rect.left, y: rect.top });
-                                }}
-                                className={`w-6 h-6 rounded-full cursor-pointer hover:scale-110 active:scale-95 transition-all border-[3px] shadow-sm flex-shrink-0 ${
-                                  aloc.status === "confirmado"
-                                    ? "bg-emerald-500 border-emerald-300 shadow-[0_0_10px_rgba(16,185,129,0.3)]"
-                                    : aloc.status === "recusado"
-                                      ? "bg-red-500 border-red-300 shadow-[0_0_10px_rgba(239,68,68,0.3)]"
-                                      : aloc.status === "whatsapp"
-                                        ? "bg-amber-400 border-amber-200 shadow-[0_0_10px_rgba(251,191,36,0.3)]"
-                                        : aloc.status === "pessoalmente"
-                                          ? "bg-blue-500 border-blue-300 shadow-[0_0_10px_rgba(59,130,246,0.3)]"
-                                          : aloc.status === "pre_reserva"
-                                            ? "bg-purple-500 border-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.3)]"
-                                            : aloc.status === "data_liberada"
-                                              ? "bg-pink-500 border-pink-300 shadow-[0_0_10px_rgba(236,72,153,0.3)]"
-                                              : "bg-slate-600 border-slate-400"
-                                }`}
-                                title={aloc.status.toUpperCase()}
-                              />
-                           </div>
-                         </motion.div>
-                       );
+                      const staff = staffs.find(
+                        (s) => String(s.id) === String(aloc.staff_id),
+                      );
+                      return (
+                        <motion.div
+                          key={aloc.id}
+                          draggable={canEditStaffs}
+                          onDragStart={(e) => {
+                            if (!canEditStaffs) {
+                              e.preventDefault();
+                              return;
+                            }
+                            e.dataTransfer.setData("staffId", aloc.staff_id);
+                            e.dataTransfer.setData("originTrainingId", "pool");
+                            e.dataTransfer.setData("alocId", aloc.id);
+                            currentDragData = {
+                              staffId: aloc.staff_id,
+                              originTrainingId: "pool",
+                              alocId: aloc.id,
+                            };
+                          }}
+                          onMouseEnter={(e) => {
+                            if (aloc.obs) {
+                              const rect =
+                                e.currentTarget.getBoundingClientRect();
+                              setHoveredObs({
+                                text: aloc.obs,
+                                left: rect.left,
+                                width: rect.width,
+                                top: rect.top,
+                                bottom: rect.bottom,
+                              });
+                            }
+                          }}
+                          onMouseLeave={() => setHoveredObs(null)}
+                          className={`group/staff relative bg-slate-800 p-1.5 rounded-lg flex items-center border border-white/10 hover:bg-slate-700 transition-all active:scale-95 shadow-sm ${canWrite ? "cursor-grab" : "cursor-default"}`}
+                        >
+                          <div className="flex items-center gap-2 truncate flex-1">
+                            <span className="text-[10px] font-black text-amber-400/90 w-4 tabular-nums">
+                              {idx + 1}
+                            </span>
+                            <p className="text-[11px] font-bold text-white truncate group-hover/staff:text-blue-300 transition-colors uppercase gap-2 flex items-center">
+                              {staff?.nomeAbreviado || "---"}
+                              <span className="text-[8px] font-black bg-amber-500/20 px-1 rounded text-amber-400">
+                                POOL
+                              </span>
+                            </p>
+                          </div>
+
+                          {/* Status Menu Button (Standardized circle) */}
+                          <div className="flex items-center ml-auto pr-0.5 relative">
+                            <button
+                              onMouseDown={(e) => {
+                                e.stopPropagation();
+                                if (!permAlocacao.canWrite) {
+                                  alert(
+                                    "Acesso negado: Você não possui a permissão de escrita necessária.",
+                                  );
+                                  return;
+                                }
+                                const rect =
+                                  e.currentTarget.getBoundingClientRect();
+                                setStatusMenu({
+                                  alocId: aloc.id,
+                                  x: rect.left,
+                                  y: rect.bottom,
+                                });
+                              }}
+                              className={`w-6 h-6 rounded-full cursor-pointer hover:scale-110 active:scale-95 transition-all border flex items-center justify-center p-0 shadow-sm flex-shrink-0 ${getStaffStatusColor(aloc.status)}`}
+                              title={aloc.status.toUpperCase()}
+                            >
+                              {renderStatusIcon(aloc.status, 13, "text-white")}
+                            </button>
+                          </div>
+                        </motion.div>
+                      );
                     })}
                   </AnimatePresence>
-                  
+
                   {poolAllocations.length === 0 && (
                     <div className="h-full flex flex-col items-center justify-center py-10 opacity-20 group-hover:opacity-40 transition-opacity">
-                       <UserPlus size={24} className="text-white mb-2" />
-                       <span className="text-[8px] font-black text-white uppercase text-center tracking-widest">Arraste para<br/>alocação avulsa</span>
+                      <UserPlus size={24} className="text-white mb-2" />
+                      <span className="text-[8px] font-black text-white uppercase text-center tracking-widest">
+                        Arraste para
+                        <br />
+                        alocação avulsa
+                      </span>
                     </div>
                   )}
                 </div>
               </div>
 
-              {trainings.length > 0 ? (
-                trainings.map((training) => (
+              {renderedTrainings.length > 0 ? (
+                renderedTrainings.map((training) => (
                   <div
                     key={training.id}
                     className={`
-                        w-64 flex-shrink-0 bg-white/5 border border-white/10 rounded-[28px] flex flex-col transition-all cursor-pointer group relative overflow-hidden transform-gpu
+                        w-64 flex-shrink-0 bg-white/5 border rounded-[28px] flex flex-col transition-all cursor-pointer group relative overflow-hidden transform-gpu
+                        ${training.isVirtual ? "border-amber-500/30 bg-amber-500/[0.02]" : "border-white/10"}
                         ${selectedTrainingId === training.id ? "ring-2 ring-blue-500 bg-white/[0.08]" : "hover:bg-white/[0.06]"}
                       `}
                     onClick={() => setSelectedTrainingId(training.id)}
@@ -1749,20 +2173,39 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                     {/* Header do Treinamento */}
                     <div className="p-4 border-b border-white/5 space-y-2.5">
                       <div className="flex justify-between items-start">
-                        <h3 className="text-[11px] font-black text-white leading-tight uppercase line-clamp-2 tracking-tight">
-                          {training.nomeNegocio}
-                        </h3>
-                        <button
-                          onClick={(e) => {
+                        <h3
+                          onDoubleClick={(e) => {
                             e.stopPropagation();
-                            setSelectedTrainingId(training.id);
-                            setSidebarType("history");
+                            setEditingTrainingIdModal(training.id);
                           }}
-                          className="p-1.5 text-white/40 hover:text-white hover:bg-white/10 rounded-lg transition-all"
-                          title="Logs de Alocação"
+                          className="text-[11px] font-black text-white leading-tight uppercase line-clamp-2 tracking-tight flex items-center gap-1.5 flex-wrap cursor-pointer hover:text-blue-400 transition-colors"
+                          title="Clique duplo para editar os dados deste treinamento"
                         >
-                          <History size={12} />
-                        </button>
+                          {training.opLabel && (
+                            <span className="bg-blue-500/20 text-blue-400 border border-blue-500/20 px-1 py-0.5 rounded text-[8px] font-black mr-1">
+                              {training.opLabel}
+                            </span>
+                          )}
+                          {training.nomeNegocio}
+                          {training.isVirtual && (
+                            <span className="bg-amber-500/20 text-amber-400 border border-amber-500/20 px-1 py-0.5 rounded text-[8px] font-black">
+                              ÓRFÃO
+                            </span>
+                          )}
+                        </h3>
+                        {permBtnHistorico.canRead && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedTrainingId(training.id);
+                              setSidebarType("history");
+                            }}
+                            className="p-1.5 text-white/40 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+                            title="Logs de Alocação"
+                          >
+                            <History size={12} />
+                          </button>
+                        )}
                       </div>
 
                       <div className="grid grid-cols-1 gap-1.5">
@@ -1832,11 +2275,20 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                               {training.transporte || "---"}
                             </span>
                           </div>
+                          {training.cronograma && (
+                            <div className="flex items-center gap-1.5 text-amber-200 text-[9px] font-black uppercase mt-0.5">
+                              <ClipboardList size={10} className="text-amber-200/50 flex-shrink-0" />
+                              <span className="truncate" title={training.cronograma}>
+                                {training.cronograma}
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
 
-                      <div className="grid grid-cols-2 gap-1.5 pt-1">
+                    <div className="grid grid-cols-2 gap-1.5 px-4 pb-3 pt-1.5 border-b border-white/5">
+                      {permBtnLogistica.canRead && (
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
@@ -1849,6 +2301,8 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                           <Truck size={12} className="flex-shrink-0" />
                           <span>Logística</span>
                         </button>
+                      )}
+                      {permBtnFinanceiro.canRead && (
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
@@ -1861,6 +2315,8 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                           <DollarSign size={12} className="flex-shrink-0" />
                           <span>Financ.</span>
                         </button>
+                      )}
+                      {permBtnStaffs.canRead && (
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
@@ -1873,6 +2329,8 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                           <Shirt size={12} className="flex-shrink-0" />
                           <span>Unif/Equipe</span>
                         </button>
+                      )}
+                      {permBtnChecklist.canRead && (
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
@@ -1886,24 +2344,44 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                           <span>
                             {(() => {
                               const chk = checklists[training.id];
-                              if(!chk) return 'Checklist';
-                              const progresses = [chk.progressA, chk.progressB, chk.progressC].filter(p => typeof p === 'number');
-                              if (progresses.length === 0) return 'Checklist';
-                              const avg = Math.round(progresses.reduce((a, b) => a + b, 0) / progresses.length);
-                              return avg > 0 ? `Checklist (${avg}%)` : 'Checklist';
+                              if (!chk) return "Checklist";
+                              const progresses = [
+                                chk.progressA,
+                                chk.progressB,
+                                chk.progressC,
+                              ].filter((p) => typeof p === "number");
+                              if (progresses.length === 0) return "Checklist";
+                              const avg = Math.round(
+                                progresses.reduce((a, b) => a + b, 0) /
+                                  progresses.length,
+                              );
+                              return avg > 0
+                                ? `Checklist (${avg}%)`
+                                : "Checklist";
                             })()}
                           </span>
                         </button>
-                      </div>
+                      )}
+                    </div>
                     {/* Lista de Staffs Alocados */}
                     <div
                       className="flex-1 overflow-y-auto p-3 space-y-1 custom-scrollbar-white"
                       onDragEnter={(e) => e.preventDefault()}
                       onDragOver={(e) => e.preventDefault()}
                       onDrop={(e) => {
-                        const staffId = e.dataTransfer.getData("staffId") || currentDragData?.staffId;
-                        const originId = e.dataTransfer.getData("originTrainingId") || currentDragData?.originTrainingId;
-                        const alocId = e.dataTransfer.getData("alocId") || currentDragData?.alocId;
+                        if (!canEditStaffs) {
+                          alert("Acesso negado: Você não possui a permissão de escrita necessária.");
+                          return;
+                        }
+                        const staffId =
+                          e.dataTransfer.getData("staffId") ||
+                          currentDragData?.staffId;
+                        const originId =
+                          e.dataTransfer.getData("originTrainingId") ||
+                          currentDragData?.originTrainingId;
+                        const alocId =
+                          e.dataTransfer.getData("alocId") ||
+                          currentDragData?.alocId;
                         if (staffId && training.id) {
                           assignStaff(staffId, training.id, originId, alocId);
                         }
@@ -1923,23 +2401,52 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                             return (
                               <motion.div
                                 key={aloc.id}
-                                draggable={true}
+                                draggable={canEditStaffs}
                                 onDragStart={(e) => {
-                                  e.dataTransfer.setData("staffId", aloc.staff_id);
-                                  e.dataTransfer.setData("originTrainingId", training.id);
+                                  if (!canEditStaffs) {
+                                    e.preventDefault();
+                                    return;
+                                  }
+                                  e.dataTransfer.setData(
+                                    "staffId",
+                                    aloc.staff_id,
+                                  );
+                                  e.dataTransfer.setData(
+                                    "originTrainingId",
+                                    training.id,
+                                  );
                                   e.dataTransfer.setData("alocId", aloc.id);
                                   currentDragData = {
                                     staffId: aloc.staff_id,
                                     originTrainingId: training.id,
-                                    alocId: aloc.id
+                                    alocId: aloc.id,
                                   };
                                 }}
                                 onContextMenu={(e) => {
                                   e.preventDefault();
                                   e.stopPropagation();
                                 }}
-                                style={{ touchAction: "none", WebkitTouchCallout: "none", WebkitUserSelect: "none", userSelect: "none" }}
-                                className="group/staff relative bg-slate-800 p-1.5 rounded-lg flex items-center border border-white/10 hover:bg-slate-700 transition-all active:scale-95 cursor-grab shadow-sm"
+                                style={{
+                                  touchAction: "none",
+                                  WebkitTouchCallout: "none",
+                                  WebkitUserSelect: "none",
+                                  userSelect: "none",
+                                }}
+                                onMouseEnter={(e) => {
+                                  if (aloc.obs) {
+                                    const rect =
+                                      e.currentTarget.getBoundingClientRect();
+                                    setHoveredObs({
+                                      text: aloc.obs,
+                                      left: rect.left,
+                                      width: rect.width,
+                                      top: rect.top,
+                                      bottom: rect.bottom,
+                                    });
+                                  }
+                                }}
+                                onMouseLeave={() => setHoveredObs(null)}
+                                className={`group/staff relative bg-slate-800 p-1.5 rounded-lg flex items-center border border-white/10 hover:bg-slate-700 transition-all active:scale-95 shadow-sm ${canWrite ? "cursor-grab" : "cursor-default"}`}
                               >
                                 <div className="flex items-center gap-2 truncate flex-1">
                                   <span className="text-[10px] font-black text-amber-400/90 w-4 tabular-nums">
@@ -1989,57 +2496,33 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                                   </div>
                                 </div>
 
-                                {/* Tooltip de Observação da Alocação */}
-                                {aloc.obs && (
-                                  <div className="absolute left-1/2 -translate-x-1/2 top-full mt-1 hidden group-hover/staff:block z-[100] w-60 pointer-events-none">
-                                    <div className="bg-amber-600 text-white p-3 rounded-xl shadow-2xl text-[10px] font-bold leading-relaxed border border-amber-500 relative">
-                                      <div className="flex items-center gap-2 mb-1.5 text-white">
-                                        <Info size={12} strokeWidth={3} />
-                                        <span className="uppercase tracking-[0.1em] text-[8px] font-black">
-                                          Observação
-                                        </span>
-                                      </div>
-                                      <p className="antialiased whitespace-normal break-words leading-tight">
-                                        {aloc.obs}
-                                      </p>
-                                      <div className="absolute top-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-amber-600 rotate-45 border-l border-t border-amber-500" />
-                                    </div>
-                                  </div>
-                                )}
-
                                 <div className="flex items-center ml-auto pr-0.5 relative">
                                   <button
                                     onMouseDown={(e) => {
                                       e.stopPropagation();
+                                      if (!permAlocacao.canWrite) {
+                                        alert(
+                                          "Acesso negado: Você não possui a permissão de escrita necessária.",
+                                        );
+                                        return;
+                                      }
                                       const rect =
                                         e.currentTarget.getBoundingClientRect();
-                                      const menuHeight = 220;
-                                      const spaceBelow =
-                                        window.innerHeight - rect.bottom;
-                                      const y =
-                                        spaceBelow < menuHeight
-                                          ? rect.top - menuHeight
-                                          : rect.bottom;
-                                      const x = rect.left - 140; // Abre para a esquerda
-                                      setStatusMenu({ alocId: aloc.id, x, y });
+                                      setStatusMenu({
+                                        alocId: aloc.id,
+                                        x: rect.left,
+                                        y: rect.bottom,
+                                      });
                                     }}
-                                    className={`w-6 h-6 rounded-full cursor-pointer hover:scale-110 active:scale-95 transition-all border-[3px] shadow-sm flex-shrink-0 ${
-                                      aloc.status === "confirmado"
-                                        ? "bg-emerald-500 border-emerald-300 shadow-[0_0_10px_rgba(16,185,129,0.3)]"
-                                        : aloc.status === "recusado"
-                                          ? "bg-red-500 border-red-300 shadow-[0_0_10px_rgba(239,68,68,0.3)]"
-                                          : aloc.status === "whatsapp"
-                                            ? "bg-amber-400 border-amber-200 shadow-[0_0_10px_rgba(251,191,36,0.3)]"
-                                            : aloc.status === "pessoalmente"
-                                              ? "bg-blue-500 border-blue-300 shadow-[0_0_10px_rgba(59,130,246,0.3)]"
-                                              : aloc.status === "pre_reserva"
-                                                ? "bg-purple-500 border-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.3)]"
-                                                : aloc.status === "data_liberada"
-                                                  ? "bg-pink-500 border-pink-300 shadow-[0_0_10px_rgba(236,72,153,0.3)]"
-                                                  : "bg-slate-600 border-slate-400"
-                                    }`}
+                                    className={`w-6 h-6 rounded-full cursor-pointer hover:scale-110 active:scale-95 transition-all border flex items-center justify-center p-0 shadow-sm flex-shrink-0 ${getStaffStatusColor(aloc.status)}`}
                                     title={aloc.status.toUpperCase()}
-                                  />
+                                  >
+                                    {renderStatusIcon(
+                                      aloc.status,
+                                      13,
+                                      "text-white",
+                                    )}
+                                  </button>
                                 </div>
                               </motion.div>
                             );
@@ -2070,80 +2553,112 @@ export const AllocationPage = ({ user }: { user?: any }) => {
               )}
             </div>
 
-            {/* Painel Lateral Interno: Switcher de Sidebar */}
+            {/* Painel de Gestão (Modal Sobreposto Ampliado) */}
             <AnimatePresence mode="wait">
               {sidebarType && selectedTraining && (
-                <motion.div
-                  initial={{ x: "100%" }}
-                  animate={{ x: 0 }}
-                  exit={{ x: "100%" }}
-                  className={`fixed top-0 bottom-0 bg-white shadow-2xl z-50 overflow-hidden flex flex-col border-l border-slate-200 ${sidebarType === "checklist" ? "left-0 right-0 w-full" : "right-0 w-[650px]"}`}
+                <div
+                  className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8"
+                  onClick={() => setSidebarType(null)}
                 >
-                  {/* Header do Sidebar */}
-                  <div className="p-4 bg-slate-900 text-white flex justify-between items-center relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -mr-10 -mt-10" />
-                    <div className="z-10">
-                      <h3 className="text-[12px] font-black text-blue-400 uppercase tracking-[0.2em] mb-1">
-                        {sidebarType === "logistica"
-                          ? "Gerenciamento Logístico"
-                          : sidebarType === "financeiro"
-                            ? "Controle Financeiro"
-                            : sidebarType === "uniformes" ||
-                                sidebarType === "staffs"
-                              ? "Gestão de Equipe e Uniformes"
-                              : sidebarType === "history"
-                                ? "Histórico de Alocações"
-                                : "Checklist Operacional"}
-                      </h3>
-                      <p className="text-lg font-black uppercase tracking-tight line-clamp-1">
-                        {selectedTraining.nomeNegocio}
-                      </p>
+                  <motion.div
+                    initial={{ scale: 0.95, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.95, opacity: 0 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    onClick={(e) => e.stopPropagation()}
+                    className={`bg-white w-full ${sidebarType === "financeiro" || sidebarType === "checklist" ? "max-w-3xl" : "max-w-7xl"} h-full max-h-[92vh] rounded-[32px] shadow-2xl overflow-hidden flex flex-col border border-slate-200`}
+                  >
+                    {/* Header do Sidebar */}
+                    <div className="p-4 bg-slate-900 text-white flex justify-between items-center relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -mr-10 -mt-10" />
+                      <div className="z-10">
+                        <h3 className="text-[12px] font-black text-blue-400 uppercase tracking-[0.2em] mb-1">
+                          {sidebarType === "logistica"
+                            ? "Gerenciamento Logístico"
+                            : sidebarType === "financeiro"
+                              ? "Controle Financeiro"
+                              : sidebarType === "uniformes" ||
+                                  sidebarType === "staffs"
+                                ? "Gestão de Equipe e Uniformes"
+                                : sidebarType === "history"
+                                  ? "Histórico de Alocações"
+                                  : "Checklist Operacional"}
+                        </h3>
+                        <p className="text-lg font-black uppercase tracking-tight line-clamp-1">
+                          {selectedTraining.nomeNegocio}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => setSidebarType(null)}
+                        className="p-2 hover:bg-white/10 rounded-full transition-all z-10"
+                      >
+                        <X size={24} />
+                      </button>
                     </div>
-                    <button
-                      onClick={() => setSidebarType(null)}
-                      className="p-2 hover:bg-white/10 rounded-full transition-all z-10"
-                    >
-                      <X size={24} />
-                    </button>
-                  </div>
 
-                  {/* Conteúdo dinâmico baseado no sidebarType */}
-                  <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-slate-50/30">
-                    {sidebarType === "logistica" && (
-                      <div className="space-y-3 pb-8">
-                        {/* SEÇÃO: PRÉ EVENTO */}
-                        <div className="bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-sm">
-                          <div className="bg-slate-800 p-2.5 h-12 flex justify-between items-center">
-                            <div className="flex items-center gap-2">
-                              <div className="p-1 bg-blue-500/20 rounded-lg">
-                                <Clock size={12} className="text-blue-400" />
+                    {/* Conteúdo dinâmico baseado no sidebarType */}
+                    <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-slate-50/30">
+                      {sidebarType === "logistica" && (
+                        <div className="space-y-3 pb-8">
+                          {/* SEÇÃO: PRÉ EVENTO */}
+                          <div className="bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-sm">
+                            <div className="bg-slate-800 p-2.5 h-12 flex justify-between items-center">
+                              <div className="flex items-center gap-2">
+                                <div className="p-1 bg-blue-500/20 rounded-lg">
+                                  <Clock size={12} className="text-blue-400" />
+                                </div>
+                                <h4 className="font-black uppercase text-[11px] tracking-widest text-white">
+                                  PRÉ EVENTO
+                                </h4>
                               </div>
-                              <h4 className="font-black uppercase text-[11px] tracking-widest text-white">
-                                PRÉ EVENTO
-                              </h4>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              {logisticsForm.conferido_pre_at ? (
-                                <div className="flex items-center gap-2">
-                                  <div className="flex flex-col items-end">
-                                    <span className="text-[12px] font-black text-emerald-400 uppercase tracking-tighter">
-                                      CONFERIDO EM{" "}
-                                      {format(
-                                        new Date(
-                                          logisticsForm.conferido_pre_at,
-                                        ),
-                                        "dd/MM HH:mm",
-                                      )}
-                                    </span>
-                                    <span className="text-[11px] font-bold text-slate-400 uppercase">
-                                      POR {logisticsForm.conferido_pre_by}
-                                    </span>
+                              <div className="flex items-center gap-3">
+                                {logisticsForm.conferido_pre_at ? (
+                                  <div className="flex items-center gap-2">
+                                    <div className="flex flex-col items-end">
+                                      <span className="text-[12px] font-black text-emerald-400 uppercase tracking-tighter">
+                                        CONFERIDO EM{" "}
+                                        {format(
+                                          new Date(
+                                            logisticsForm.conferido_pre_at,
+                                          ),
+                                          "dd/MM HH:mm",
+                                        )}
+                                      </span>
+                                      <span className="text-[11px] font-bold text-slate-400 uppercase">
+                                        POR {logisticsForm.conferido_pre_by}
+                                      </span>
+                                    </div>
+                                    <button
+                                      onClick={async () => {
+                                        const update = {
+                                          conferido_pre_at: null,
+                                          conferido_pre_by: "",
+                                        };
+                                        const newData = {
+                                          ...logisticsForm,
+                                          ...update,
+                                        };
+                                        setLogisticsForm(newData);
+                                        await handleSaveLogistics(
+                                          newData,
+                                          "Conferência de logística PRÉ removida.",
+                                        );
+                                      }}
+                                      className="px-2 py-1 bg-red-600/10 text-red-500 border border-red-500/20 rounded text-[11px] font-black hover:bg-red-600 hover:text-white transition-all uppercase"
+                                    >
+                                      Desfazer
+                                    </button>
                                   </div>
+                                ) : (
                                   <button
                                     onClick={async () => {
                                       const update = {
-                                        conferido_pre_at: null,
-                                        conferido_pre_by: "",
+                                        conferido_pre_at:
+                                          new Date().toISOString(),
+                                        conferido_pre_by:
+                                          user?.nomeAbreviado ||
+                                          user?.nome ||
+                                          "Admin",
                                       };
                                       const newData = {
                                         ...logisticsForm,
@@ -2152,48 +2667,23 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                                       setLogisticsForm(newData);
                                       await handleSaveLogistics(
                                         newData,
-                                        "Conferência de logística PRÉ removida.",
+                                        `Logística PRÉ conferida por ${update.conferido_pre_by}.`,
                                       );
                                     }}
-                                    className="px-2 py-1 bg-red-600/10 text-red-500 border border-red-500/20 rounded text-[11px] font-black hover:bg-red-600 hover:text-white transition-all uppercase"
+                                    className="px-3 py-1.5 bg-blue-600/20 text-blue-400 border border-blue-500/30 rounded-lg text-[10px] font-black hover:bg-blue-600 hover:text-white transition-all uppercase tracking-widest"
                                   >
-                                    Desfazer
+                                    CONFERIR
                                   </button>
-                                </div>
-                              ) : (
-                                <button
-                                  onClick={async () => {
-                                    const update = {
-                                      conferido_pre_at:
-                                        new Date().toISOString(),
-                                      conferido_pre_by:
-                                        user?.nomeAbreviado ||
-                                        user?.nome ||
-                                        "Admin",
-                                    };
-                                    const newData = {
-                                      ...logisticsForm,
-                                      ...update,
-                                    };
-                                    setLogisticsForm(newData);
-                                    await handleSaveLogistics(
-                                      newData,
-                                      `Logística PRÉ conferida por ${update.conferido_pre_by}.`,
-                                    );
-                                  }}
-                                  className="px-3 py-1.5 bg-blue-600/20 text-blue-400 border border-blue-500/30 rounded-lg text-[10px] font-black hover:bg-blue-600 hover:text-white transition-all uppercase tracking-widest"
-                                >
-                                  CONFERIR
-                                </button>
-                              )}
+                                )}
+                              </div>
                             </div>
-                          </div>
-                          <div
-                            className={`p-3 space-y-2 transition-opacity ${logisticsForm.conferido_pre_at ? "opacity-60 pointer-events-none" : ""}`}
-                          >
-                            <div className="grid grid-cols-2 gap-2.5">
-                              <div className="grid grid-cols-2 gap-2">
-                                <div className="space-y-0.5 relative">
+                            <div
+                              className={`p-3 space-y-4 transition-opacity ${logisticsForm.conferido_pre_at ? "opacity-60 pointer-events-none" : ""}`}
+                            >
+                              {/* LINHA 1: H. Saída, H. Retorno, Transporte, Qtd Staffs, Qtd Equipes */}
+                              <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
+                                {/* H. Saída */}
+                                <div className="space-y-0.5 relative col-span-1 md:col-span-2">
                                   <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
                                     H. Saída
                                   </label>
@@ -2214,7 +2704,9 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                                     />
                                   </div>
                                 </div>
-                                <div className="space-y-0.5 relative">
+
+                                {/* H. Retorno */}
+                                <div className="space-y-0.5 relative col-span-1 md:col-span-2">
                                   <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
                                     H. Retorno
                                   </label>
@@ -2235,151 +2727,203 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                                     />
                                   </div>
                                 </div>
-                              </div>
-                              <div className="space-y-0.5">
-                                <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
-                                  Transporte
-                                </label>
-                                <input
-                                  type="text"
-                                  placeholder="Ex: Van 15 lugares..."
-                                  value={logisticsForm.transporte || ""}
-                                  onChange={(e) =>
-                                    setLogisticsForm({
-                                      ...logisticsForm,
-                                      transporte: e.target.value,
-                                    })
-                                  }
-                                  className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-emerald-500"
-                                />
-                              </div>
-                            </div>
 
-                            <div className="grid grid-cols-2 gap-2">
-                              <div className="space-y-0.5">
-                                <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
-                                  Qtd Staffs
-                                </label>
-                                <input
-                                  type="number"
-                                  value={logisticsForm.qtd_staffs || 0}
-                                  onChange={(e) =>
-                                    setLogisticsForm({
-                                      ...logisticsForm,
-                                      qtd_staffs: parseInt(e.target.value),
-                                    })
-                                  }
-                                  className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
-                                />
-                              </div>
-                              <div className="space-y-0.5">
-                                <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
-                                  Qtd Equipes
-                                </label>
-                                <input
-                                  type="number"
-                                  value={logisticsForm.qtd_equipes || 0}
-                                  onChange={(e) =>
-                                    setLogisticsForm({
-                                      ...logisticsForm,
-                                      qtd_equipes: parseInt(e.target.value),
-                                    })
-                                  }
-                                  className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
-                                />
-                              </div>
-                            </div>
+                                {/* Transporte (OCUPA MAIS ESPAÇO) */}
+                                <div className="space-y-0.5 col-span-1 md:col-span-6">
+                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                    Transporte
+                                  </label>
+                                  <input
+                                    type="text"
+                                    placeholder="Ex: Van 15 lugares..."
+                                    value={logisticsForm.transporte || ""}
+                                    onChange={(e) =>
+                                      setLogisticsForm({
+                                        ...logisticsForm,
+                                        transporte: e.target.value,
+                                      })
+                                    }
+                                    className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-emerald-500"
+                                  />
+                                </div>
 
-                            <div className="grid grid-cols-3 gap-2.5">
-                              <div className="space-y-0.5">
-                                <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
-                                  Coord. Interno
-                                </label>
-                                <input
-                                  type="text"
-                                  value={
-                                    logisticsForm.coordenador_interno || ""
-                                  }
-                                  onChange={(e) =>
-                                    setLogisticsForm({
-                                      ...logisticsForm,
-                                      coordenador_interno: e.target.value,
-                                    })
-                                  }
-                                  className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
-                                />
+                                {/* Qtd Staffs */}
+                                <div className="space-y-0.5 col-span-1 md:col-span-1">
+                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                    Qtd Staffs
+                                  </label>
+                                  <input
+                                    type="number"
+                                    value={logisticsForm.qtd_staffs || 0}
+                                    onChange={(e) =>
+                                      setLogisticsForm({
+                                        ...logisticsForm,
+                                        qtd_staffs:
+                                          parseInt(e.target.value) || 0,
+                                      })
+                                    }
+                                    className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
+                                  />
+                                </div>
+
+                                {/* Qtd Equipes */}
+                                <div className="space-y-0.5 col-span-1 md:col-span-1">
+                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                    Qtd Equipes
+                                  </label>
+                                  <input
+                                    type="number"
+                                    value={logisticsForm.qtd_equipes || 0}
+                                    onChange={(e) =>
+                                      setLogisticsForm({
+                                        ...logisticsForm,
+                                        qtd_equipes:
+                                          parseInt(e.target.value) || 0,
+                                      })
+                                    }
+                                    className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
+                                  />
+                                </div>
                               </div>
-                              <div className="space-y-0.5">
-                                <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
-                                  Coord. Evento
-                                </label>
-                                <input
-                                  type="text"
-                                  value={logisticsForm.coordenador_evento || ""}
-                                  onChange={(e) =>
-                                    setLogisticsForm({
-                                      ...logisticsForm,
-                                      coordenador_evento: e.target.value,
-                                    })
-                                  }
-                                  className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
-                                />
-                              </div>
-                              <div className="space-y-0.5">
-                                <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
-                                  Resp. Montagem
-                                </label>
-                                <input
-                                  type="text"
-                                  value={
-                                    logisticsForm.responsavel_montagem || ""
-                                  }
-                                  onChange={(e) =>
-                                    setLogisticsForm({
-                                      ...logisticsForm,
-                                      responsavel_montagem: e.target.value,
-                                    })
-                                  }
-                                  className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
-                                />
+
+                              {/* LINHA 2: Cronograma, Coord. Interno, Coord. Evento, Resp. Montagem */}
+                              <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+                                <div className="space-y-0.5 md:col-span-2">
+                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                    Cronograma
+                                  </label>
+                                  <input
+                                    type="text"
+                                    placeholder="Horários, observações..."
+                                    value={
+                                      logisticsForm.cronograma || ""
+                                    }
+                                    onChange={(e) =>
+                                      setLogisticsForm({
+                                        ...logisticsForm,
+                                        cronograma: e.target.value,
+                                      })
+                                    }
+                                    className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
+                                  />
+                                </div>
+                                <div className="space-y-0.5 md:col-span-1">
+                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                    Coord. Interno
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={
+                                      logisticsForm.coordenador_interno || ""
+                                    }
+                                    onChange={(e) =>
+                                      setLogisticsForm({
+                                        ...logisticsForm,
+                                        coordenador_interno: e.target.value,
+                                      })
+                                    }
+                                    className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
+                                  />
+                                </div>
+                                <div className="space-y-0.5 md:col-span-1">
+                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                    Coord. Evento
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={
+                                      logisticsForm.coordenador_evento || ""
+                                    }
+                                    onChange={(e) =>
+                                      setLogisticsForm({
+                                        ...logisticsForm,
+                                        coordenador_evento: e.target.value,
+                                      })
+                                    }
+                                    className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
+                                  />
+                                </div>
+                                <div className="space-y-0.5 md:col-span-1">
+                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                    Resp. Montagem
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={
+                                      logisticsForm.responsavel_montagem || ""
+                                    }
+                                    onChange={(e) =>
+                                      setLogisticsForm({
+                                        ...logisticsForm,
+                                        responsavel_montagem: e.target.value,
+                                      })
+                                    }
+                                    className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 outline-none focus:ring-1 focus:ring-indigo-500"
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
 
-                        {/* SEÇÃO: PÓS EVENTO */}
-                        <div className="bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-sm">
-                          <div className="bg-amber-600 p-2.5 h-12 flex justify-between items-center">
-                            <div className="flex items-center gap-2">
-                              <div className="p-1 bg-white/20 rounded-lg">
-                                <History size={12} className="text-white" />
+                          {/* SEÇÃO: PÓS EVENTO */}
+                          <div className="bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-sm">
+                            <div className="bg-amber-600 p-2.5 h-12 flex justify-between items-center">
+                              <div className="flex items-center gap-2">
+                                <div className="p-1 bg-white/20 rounded-lg">
+                                  <History size={12} className="text-white" />
+                                </div>
+                                <h4 className="font-black uppercase text-[11px] tracking-widest text-white">
+                                  PÓS EVENTO
+                                </h4>
                               </div>
-                              <h4 className="font-black uppercase text-[11px] tracking-widest text-white">
-                                PÓS EVENTO
-                              </h4>
-                            </div>
-                            <div className="flex items-center gap-3">
-                              {logisticsForm.conferido_pos_at ? (
-                                <div className="flex items-center gap-2">
-                                  <div className="flex flex-col items-end">
-                                    <span className="text-[12px] font-black text-white uppercase tracking-tighter">
-                                      CONFERIDO EM{" "}
-                                      {format(
-                                        new Date(
-                                          logisticsForm.conferido_pos_at,
-                                        ),
-                                        "dd/MM HH:mm",
-                                      )}
-                                    </span>
-                                    <span className="text-[11px] font-bold text-amber-200 uppercase">
-                                      POR {logisticsForm.conferido_pos_by}
-                                    </span>
+                              <div className="flex items-center gap-3">
+                                {logisticsForm.conferido_pos_at ? (
+                                  <div className="flex items-center gap-2">
+                                    <div className="flex flex-col items-end">
+                                      <span className="text-[12px] font-black text-white uppercase tracking-tighter">
+                                        CONFERIDO EM{" "}
+                                        {format(
+                                          new Date(
+                                            logisticsForm.conferido_pos_at,
+                                          ),
+                                          "dd/MM HH:mm",
+                                        )}
+                                      </span>
+                                      <span className="text-[11px] font-bold text-amber-200 uppercase">
+                                        POR {logisticsForm.conferido_pos_by}
+                                      </span>
+                                    </div>
+                                    <button
+                                      onClick={async () => {
+                                        const update = {
+                                          conferido_pos_at: null,
+                                          conferido_pos_by: "",
+                                        };
+                                        const newData = {
+                                          ...logisticsForm,
+                                          ...update,
+                                        };
+                                        setLogisticsForm(newData);
+                                        await handleSaveLogistics(
+                                          newData,
+                                          "Conferência de logística PÓS removida.",
+                                        );
+                                      }}
+                                      className="px-2 py-0.5 bg-white/20 text-white border border-white/30 rounded text-[10px] font-black hover:bg-white hover:text-amber-600 transition-all uppercase"
+                                    >
+                                      Desfazer
+                                    </button>
                                   </div>
+                                ) : (
                                   <button
                                     onClick={async () => {
                                       const update = {
-                                        conferido_pos_at: null,
-                                        conferido_pos_by: "",
+                                        conferido_pos_at:
+                                          new Date().toISOString(),
+                                        conferido_pos_by:
+                                          user?.nomeAbreviado ||
+                                          user?.nome ||
+                                          "Admin",
                                       };
                                       const newData = {
                                         ...logisticsForm,
@@ -2388,956 +2932,963 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                                       setLogisticsForm(newData);
                                       await handleSaveLogistics(
                                         newData,
-                                        "Conferência de logística PÓS removida.",
+                                        `Logística PÓS conferida por ${update.conferido_pos_by}.`,
                                       );
                                     }}
-                                    className="px-2 py-0.5 bg-white/20 text-white border border-white/30 rounded text-[10px] font-black hover:bg-white hover:text-amber-600 transition-all uppercase"
+                                    className="px-3 py-1.5 bg-white/20 text-white border border-white/30 rounded-lg text-[10px] font-black hover:bg-white hover:text-amber-600 transition-all uppercase tracking-widest"
                                   >
-                                    Desfazer
+                                    CONFERIR
                                   </button>
-                                </div>
-                              ) : (
-                                <button
-                                  onClick={async () => {
-                                    const update = {
-                                      conferido_pos_at:
-                                        new Date().toISOString(),
-                                      conferido_pos_by:
-                                        user?.nomeAbreviado ||
-                                        user?.nome ||
-                                        "Admin",
-                                    };
-                                    const newData = {
-                                      ...logisticsForm,
-                                      ...update,
-                                    };
-                                    setLogisticsForm(newData);
-                                    await handleSaveLogistics(
-                                      newData,
-                                      `Logística PÓS conferida por ${update.conferido_pos_by}.`,
-                                    );
-                                  }}
-                                  className="px-3 py-1.5 bg-white/20 text-white border border-white/30 rounded-lg text-[10px] font-black hover:bg-white hover:text-amber-600 transition-all uppercase tracking-widest"
-                                >
-                                  CONFERIR
-                                </button>
-                              )}
-                            </div>
-                          </div>
-                          <div
-                            className={`p-3 space-y-2 transition-opacity ${logisticsForm.conferido_pos_at ? "opacity-60 pointer-events-none" : ""}`}
-                          >
-                            <div className="grid grid-cols-2 gap-2.5">
-                              <div className="grid grid-cols-2 gap-2">
-                                <div className="space-y-0.5 relative">
-                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
-                                    Saída Real
-                                  </label>
-                                  <div
-                                    onClick={() =>
-                                      setActivePicker("hora_real_saida")
-                                    }
-                                    className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 cursor-pointer hover:border-blue-300 transition-colors flex justify-between items-center"
-                                  >
-                                    <span>
-                                      {formatLogisticsDateDisplay(
-                                        logisticsForm.hora_real_saida,
-                                      ) || "--/-- --:--"}
-                                    </span>
-                                    <Clock
-                                      size={14}
-                                      className="text-slate-300"
-                                    />
-                                  </div>
-                                </div>
-                                <div className="space-y-0.5 relative">
-                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
-                                    Chegada Real
-                                  </label>
-                                  <div
-                                    onClick={() =>
-                                      setActivePicker("hora_real_chegada")
-                                    }
-                                    className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 cursor-pointer hover:border-blue-300 transition-colors flex justify-between items-center"
-                                  >
-                                    <span>
-                                      {formatLogisticsDateDisplay(
-                                        logisticsForm.hora_real_chegada,
-                                      ) || "--/-- --:--"}
-                                    </span>
-                                    <Clock
-                                      size={14}
-                                      className="text-slate-300"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="grid grid-cols-2 gap-2">
-                                <div className="space-y-0.5">
-                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
-                                    Voucher
-                                  </label>
-                                  <div className="flex gap-1 bg-slate-50 border border-slate-200 p-1 rounded-lg">
-                                    <button
-                                      type="button"
-                                      onClick={() =>
-                                        setLogisticsForm({
-                                          ...logisticsForm,
-                                          voucher_alimentacao: "Sim",
-                                        })
-                                      }
-                                      className={`flex-1 py-1 rounded-md text-[11px] font-black transition-all ${logisticsForm.voucher_alimentacao === "Sim" ? "bg-white text-blue-600 shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
-                                    >
-                                      SIM
-                                    </button>
-                                    <button
-                                      type="button"
-                                      onClick={() =>
-                                        setLogisticsForm({
-                                          ...logisticsForm,
-                                          voucher_alimentacao: "Não",
-                                        })
-                                      }
-                                      className={`flex-1 py-1 rounded-md text-[11px] font-black transition-all ${logisticsForm.voucher_alimentacao === "Não" ? "bg-white text-red-600 shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
-                                    >
-                                      NÃO
-                                    </button>
-                                  </div>
-                                </div>
-                                <div className="space-y-0.5">
-                                  <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
-                                    Bombeiro
-                                  </label>
-                                  <div className="flex gap-1 bg-slate-50 border border-slate-200 p-1 rounded-lg">
-                                    <button
-                                      type="button"
-                                      onClick={() =>
-                                        setLogisticsForm({
-                                          ...logisticsForm,
-                                          bombeiro: "Sim",
-                                        })
-                                      }
-                                      className={`flex-1 py-1 rounded-md text-[11px] font-black transition-all ${logisticsForm.bombeiro === "Sim" ? "bg-white text-blue-600 shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
-                                    >
-                                      SIM
-                                    </button>
-                                    <button
-                                      type="button"
-                                      onClick={() =>
-                                        setLogisticsForm({
-                                          ...logisticsForm,
-                                          bombeiro: "Não",
-                                        })
-                                      }
-                                      className={`flex-1 py-1 rounded-md text-[11px] font-black transition-all ${logisticsForm.bombeiro === "Não" ? "bg-white text-red-600 shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
-                                    >
-                                      NÃO
-                                    </button>
-                                  </div>
-                                </div>
+                                )}
                               </div>
                             </div>
-                          </div>
-                        </div>
-
-                        {/* Observações */}
-                        <div className="bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-sm">
-                          <div className="bg-slate-700 p-2.5 h-12 flex items-center gap-2">
-                            <div className="p-1 bg-white/20 rounded-lg">
-                              <MessageSquare size={12} className="text-white" />
-                            </div>
-                            <h4 className="font-black uppercase text-[11px] tracking-widest text-white">
-                              OBSERVAÇÕES
-                            </h4>
-                          </div>
-                          <div className="p-3 space-y-2">
-                            <div className="space-y-0.5">
-                              <label className="text-[9px] font-black text-slate-400 uppercase ml-1">
-                                Observações de Logística
-                              </label>
-                              <textarea
-                                rows={1}
-                                value={logisticsForm.obs_logistica || ""}
-                                onFocus={(e) => {
-                                  e.target.style.height = "auto";
-                                  e.target.style.height =
-                                    e.target.scrollHeight + "px";
-                                }}
-                                onInput={(e) => {
-                                  const target =
-                                    e.target as HTMLTextAreaElement;
-                                  target.style.height = "auto";
-                                  target.style.height =
-                                    target.scrollHeight + "px";
-                                }}
-                                onChange={(e) =>
-                                  setLogisticsForm({
-                                    ...logisticsForm,
-                                    obs_logistica: e.target.value,
-                                  })
-                                }
-                                className="w-full bg-slate-50 border border-slate-200 p-2 rounded-lg font-bold text-[12px] text-slate-700 outline-none focus:ring-1 focus:ring-slate-400 resize-none overflow-hidden min-h-[38px]"
-                              />
-                            </div>
-                            <div className="space-y-0.5">
-                              <label className="text-[9px] font-black text-slate-400 uppercase ml-1">
-                                Observações Gerais
-                              </label>
-                              <textarea
-                                rows={1}
-                                value={logisticsForm.obs_geral_logistica || ""}
-                                onFocus={(e) => {
-                                  e.target.style.height = "auto";
-                                  e.target.style.height =
-                                    e.target.scrollHeight + "px";
-                                }}
-                                onInput={(e) => {
-                                  const target =
-                                    e.target as HTMLTextAreaElement;
-                                  target.style.height = "auto";
-                                  target.style.height =
-                                    target.scrollHeight + "px";
-                                }}
-                                onChange={(e) =>
-                                  setLogisticsForm({
-                                    ...logisticsForm,
-                                    obs_geral_logistica: e.target.value,
-                                  })
-                                }
-                                className="w-full bg-slate-50 border border-slate-200 p-2 rounded-lg font-bold text-[12px] text-slate-700 outline-none focus:ring-1 focus:ring-slate-400 resize-none overflow-hidden min-h-[38px]"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {sidebarType === "financeiro" && (
-                      <div className="space-y-3">
-                        <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
-                          <label className="block text-[9px] font-black uppercase text-slate-400 mb-1.5">
-                            Período Padrão (Todos)
-                          </label>
-                          <div className="flex bg-white p-1 rounded-lg border border-slate-200 shadow-sm">
-                            <button
-                              onClick={async () => {
-                                if (!canWrite) {
-                                  alert("Acesso negado: Você não possui a permissão de escrita necessária.");
-                                  return;
-                                }
-                                setFinanceGlobalPeriod("cheio");
-                                // Persist preference in training
-                                if (selectedTraining?.id) {
-                                  await updateDoc(
-                                    doc(db, "trainings", selectedTraining.id),
-                                    { finance_default_period: "cheio" },
-                                  );
-                                }
-                                
-                                const confirmed = getAllocationsByTraining(
-                                  selectedTraining.id,
-                                ).filter((a) => a.status === "confirmado");
-                                for (const a of confirmed) {
-                                  if (!a.finance_period_is_manual) {
-                                    const staff = staffs.find(
-                                      (s) => s.id === a.staff_id,
-                                    );
-                                    await updateFinance(
-                                      a.id,
-                                      { finance_period: "cheio" },
-                                      `Período de ${staff?.nomeAbreviado} alterado para DIÁRIA INTEIRA (Massa).`,
-                                    );
-                                  }
-                                }
-                              }}
-                              className={`flex-1 py-1 rounded-md text-[9px] font-black transition-all ${financeGlobalPeriod === "cheio" ? "bg-blue-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
+                            <div
+                              className={`p-3 space-y-2 transition-opacity ${logisticsForm.conferido_pos_at ? "opacity-60 pointer-events-none" : ""}`}
                             >
-                              TODOS: DIÁRIA
-                            </button>
-                            <button
-                              onClick={async () => {
-                                if (!canWrite) {
-                                  alert("Acesso negado: Você não possui a permissão de escrita necessária.");
-                                  return;
-                                }
-                                setFinanceGlobalPeriod("meio");
-                                // Persist preference in training
-                                if (selectedTraining?.id) {
-                                  await updateDoc(
-                                    doc(db, "trainings", selectedTraining.id),
-                                    { finance_default_period: "meio" },
-                                  );
-                                }
-
-                                const confirmed = getAllocationsByTraining(
-                                  selectedTraining.id,
-                                ).filter((a) => a.status === "confirmado");
-                                for (const a of confirmed) {
-                                  if (!a.finance_period_is_manual) {
-                                    const staff = staffs.find(
-                                      (s) => s.id === a.staff_id,
-                                    );
-                                    await updateFinance(
-                                      a.id,
-                                      { finance_period: "meio" },
-                                      `Período de ${staff?.nomeAbreviado} alterado para MEIA DIÁRIA (Massa).`,
-                                    );
-                                  }
-                                }
-                              }}
-                              className={`flex-1 py-1 rounded-md text-[9px] font-black transition-all ${financeGlobalPeriod === "meio" ? "bg-blue-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
-                            >
-                              TODOS: MEIA
-                            </button>
-                          </div>
-                        </div>
-
-                        <div className="space-y-1.5">
-                          {getAllocationsByTraining(selectedTraining.id)
-                            .filter((a) => a.status === "confirmado")
-                            .map((aloc: any, idx: number) => {
-                              const staff = staffs.find(
-                                (s) => String(s.id) === String(aloc.staff_id),
-                              );
-                              
-                              // Prioriza a função salva na alocação, senão usa a do cadastro do staff
-                              const effectiveFuncId = aloc.finance_funcao_id || staff?.funcaoId;
-                              const func = financeFunctions.find(
-                                (f) => f.id === effectiveFuncId,
-                              );
-
-                              const period =
-                                aloc.finance_period || financeGlobalPeriod;
-                              const baseValue = aloc.finance_is_manual
-                                ? parseFloat(aloc.finance_base_value) || 0
-                                : period === "meio"
-                                  ? parseFloat(func?.valor_meio_periodo) || 0
-                                  : parseFloat(func?.valor_diaria) || 0;
-
-                              const genericVoucher = financeAdditionals.find(
-                                (a) =>
-                                  a.nome?.toLowerCase() === "voucher" ||
-                                  a.nome?.toLowerCase().includes("alimentação"),
-                              );
-                              const defaultVoucherValue = genericVoucher
-                                ? parseFloat(genericVoucher.valor_padrao) || 0
-                                : parseFloat(
-                                    selectedTraining.voucher_alimentacao,
-                                  ) || 0;
-
-                              const isVoucherActive =
-                                aloc.finance_voucher === "sim" ||
-                                selectedTraining.voucher_alimentacao === "Sim";
-                              const voucherVal = isVoucherActive
-                                ? aloc.finance_voucher_is_manual
-                                  ? parseFloat(aloc.finance_voucher_value) || 0
-                                  : defaultVoucherValue
-                                : 0;
-
-                              const extrasVal = (
-                                aloc.finance_extras || []
-                              ).reduce(
-                                (acc: number, curr: any) =>
-                                  acc + (parseFloat(curr.value) || 0),
-                                0,
-                              );
-                              const total = baseValue + voucherVal + extrasVal;
-
-                              const isFacilitador =
-                                func?.nome
-                                  .toLowerCase()
-                                  .includes("facilitador") ||
-                                func?.nome.toLowerCase().includes("instrutor");
-
-                              const cardColors = [
-                                "bg-blue-50/40 border-blue-200 hover:border-blue-400",
-                                "bg-emerald-50/40 border-emerald-200 hover:border-emerald-400",
-                                "bg-purple-50/40 border-purple-200 hover:border-purple-400",
-                                "bg-amber-50/40 border-amber-200 hover:border-amber-400",
-                                "bg-rose-50/40 border-rose-200 hover:border-rose-400",
-                                "bg-indigo-50/40 border-indigo-200 hover:border-indigo-400",
-                              ];
-                              const currentStyle =
-                                cardColors[idx % cardColors.length];
-
-                              return (
-                                <div
-                                  key={aloc.id}
-                                  className={`${currentStyle} p-1.5 rounded-lg border-2 shadow-sm transition-all group relative overflow-hidden flex flex-col gap-1.5`}
-                                >
-                                  <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full -mr-6 -mt-6 blur-xl"></div>
-
-                                  {/* SINGLE LINE LAYOUT */}
-                                  <div className="flex items-center gap-2 relative z-10 w-full overflow-x-auto no-scrollbar py-0.5">
-                                    {/* 1. NOME */}
-                                    <div className="flex items-center gap-1.5 bg-white/80 px-1.5 py-1 rounded border border-white shadow-sm shrink-0">
-                                      <p className="text-[10px] font-black uppercase text-slate-900 whitespace-nowrap">
-                                        {staff?.nomeAbreviado || "Staff"}
-                                      </p>
-                                      {staff?.id &&
-                                        staffActivityLast30Days[staff.id] !==
-                                          undefined && (
-                                          <span
-                                            className={`text-[8px] font-black px-1 py-0.5 rounded-md shadow-sm ${
-                                              staffActivityLast30Days[
-                                                staff.id
-                                              ] >= 5
-                                                ? "bg-red-500 text-white"
-                                                : staffActivityLast30Days[
-                                                      staff.id
-                                                    ] >= 3
-                                                  ? "bg-amber-500 text-white"
-                                                  : "bg-emerald-500 text-white"
-                                            }`}
-                                          >
-                                            {String(
-                                              staffActivityLast30Days[staff.id],
-                                            ).padStart(2, "0")}
-                                          </span>
-                                        )}
+                              <div className="grid grid-cols-2 gap-2.5">
+                                <div className="grid grid-cols-2 gap-2">
+                                  <div className="space-y-0.5 relative">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                      Saída Real
+                                    </label>
+                                    <div
+                                      onClick={() =>
+                                        setActivePicker("hora_real_saida")
+                                      }
+                                      className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 cursor-pointer hover:border-blue-300 transition-colors flex justify-between items-center"
+                                    >
+                                      <span>
+                                        {formatLogisticsDateDisplay(
+                                          logisticsForm.hora_real_saida,
+                                        ) || "--/-- --:--"}
+                                      </span>
+                                      <Clock
+                                        size={14}
+                                        className="text-slate-300"
+                                      />
                                     </div>
-
-                                    {/* 2. FUNÇÃO */}
-                                    <div className="flex-1 min-w-[120px]">
-                                      <select
-                                        value={aloc.finance_funcao_id || staff?.funcaoId || ""}
-                                        onChange={async (e) => {
-                                          const newFuncId = e.target.value;
-                                          const oldFuncId = aloc.finance_funcao_id || staff?.funcaoId;
-                                          const oldFunc =
-                                            financeFunctions.find(
-                                              (f) => f.id === oldFuncId,
-                                            )?.nome || "NÃO DEFINIDA";
-                                          const newFunc =
-                                            financeFunctions.find(
-                                              (f) => f.id === newFuncId,
-                                            )?.nome || "NÃO DEFINIDA";
-                                          
-                                          await updateFinance(
-                                            aloc.id,
-                                            { finance_funcao_id: newFuncId },
-                                            `Função de ${staff?.nomeAbreviado || "Staff"} alterada de [${oldFunc}] para [${newFunc}] apenas nesta alocação.`,
-                                          );
-                                        }}
-                                        className="w-full text-[9px] font-bold text-blue-800 bg-white/80 border border-blue-100 px-2 py-1 rounded uppercase outline-none cursor-pointer hover:border-blue-400 transition-all shadow-sm appearance-none"
-                                      >
-                                        <option value="">
-                                          FUNÇÃO NÃO DEFINIDA
-                                        </option>
-                                        {financeFunctions.map((f) => (
-                                          <option key={f.id} value={f.id}>
-                                            {f.nome}
-                                          </option>
-                                        ))}
-                                      </select>
+                                  </div>
+                                  <div className="space-y-0.5 relative">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                      Chegada Real
+                                    </label>
+                                    <div
+                                      onClick={() =>
+                                        setActivePicker("hora_real_chegada")
+                                      }
+                                      className="w-full bg-slate-50 border border-slate-200 p-1.5 rounded-lg font-bold text-[13px] text-slate-700 cursor-pointer hover:border-blue-300 transition-colors flex justify-between items-center"
+                                    >
+                                      <span>
+                                        {formatLogisticsDateDisplay(
+                                          logisticsForm.hora_real_chegada,
+                                        ) || "--/-- --:--"}
+                                      </span>
+                                      <Clock
+                                        size={14}
+                                        className="text-slate-300"
+                                      />
                                     </div>
-
-                                    {/* 3. ETIQUETA INTEIRA/MEIA */}
-                                    <div className="relative flex items-center shrink-0">
-                                      <select
-                                        value={aloc.finance_period || "cheio"}
-                                        onChange={(e) =>
-                                          updateFinance(
-                                            aloc.id,
-                                            {
-                                              finance_period: e.target.value,
-                                              finance_period_is_manual: true,
-                                            },
-                                            `Período de ${staff?.nomeAbreviado} alterado para ${e.target.value === "cheio" ? "DIÁRIA INTEIRA" : "MEIA DIÁRIA"}.`,
-                                          )
+                                  </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-2">
+                                  <div className="space-y-0.5">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                      Voucher
+                                    </label>
+                                    <div className="flex gap-1 bg-slate-50 border border-slate-200 p-1 rounded-lg">
+                                      <button
+                                        type="button"
+                                        onClick={() =>
+                                          setLogisticsForm({
+                                            ...logisticsForm,
+                                            voucher_alimentacao: "Sim",
+                                          })
                                         }
-                                        className={`text-[8px] font-black py-1 px-2 rounded uppercase outline-none shadow-sm appearance-none border transition-all ${aloc.finance_period === "meio" ? "bg-amber-600 border-amber-700 text-white" : "bg-slate-600 border-slate-700 text-white"}`}
+                                        className={`flex-1 py-1 rounded-md text-[11px] font-black transition-all ${logisticsForm.voucher_alimentacao === "Sim" ? "bg-white text-blue-600 shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
                                       >
-                                        <option value="cheio">INTEIRA</option>
-                                        <option value="meio">MEIA</option>
-                                      </select>
-                                      {aloc.finance_period_is_manual && (
-                                        <button
-                                          onClick={() =>
+                                        SIM
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() =>
+                                          setLogisticsForm({
+                                            ...logisticsForm,
+                                            voucher_alimentacao: "Não",
+                                          })
+                                        }
+                                        className={`flex-1 py-1 rounded-md text-[11px] font-black transition-all ${logisticsForm.voucher_alimentacao === "Não" ? "bg-white text-red-600 shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
+                                      >
+                                        NÃO
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <div className="space-y-0.5">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase ml-1">
+                                      Bombeiro
+                                    </label>
+                                    <div className="flex gap-1 bg-slate-50 border border-slate-200 p-1 rounded-lg">
+                                      <button
+                                        type="button"
+                                        onClick={() =>
+                                          setLogisticsForm({
+                                            ...logisticsForm,
+                                            bombeiro: "Sim",
+                                          })
+                                        }
+                                        className={`flex-1 py-1 rounded-md text-[11px] font-black transition-all ${logisticsForm.bombeiro === "Sim" ? "bg-white text-blue-600 shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
+                                      >
+                                        SIM
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() =>
+                                          setLogisticsForm({
+                                            ...logisticsForm,
+                                            bombeiro: "Não",
+                                          })
+                                        }
+                                        className={`flex-1 py-1 rounded-md text-[11px] font-black transition-all ${logisticsForm.bombeiro === "Não" ? "bg-white text-red-600 shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
+                                      >
+                                        NÃO
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Observações */}
+                          <div className="bg-white border border-slate-200 rounded-[20px] overflow-hidden shadow-sm">
+                            <div className="bg-slate-700 p-2.5 h-12 flex items-center gap-2">
+                              <div className="p-1 bg-white/20 rounded-lg">
+                                <MessageSquare
+                                  size={12}
+                                  className="text-white"
+                                />
+                              </div>
+                              <h4 className="font-black uppercase text-[11px] tracking-widest text-white">
+                                OBSERVAÇÕES
+                              </h4>
+                            </div>
+                            <div className="p-4 grid grid-cols-2 gap-4">
+                              <div className="space-y-0.5 flex flex-col">
+                                <label className="text-[9px] font-black text-slate-400 uppercase ml-1">
+                                  Observações de Logística
+                                </label>
+                                <textarea
+                                  ref={obsLogisticaRef}
+                                  id="textarea-obs-logistica"
+                                  rows={1}
+                                  value={logisticsForm.obs_logistica || ""}
+                                  onChange={(e) =>
+                                    setLogisticsForm({
+                                      ...logisticsForm,
+                                      obs_logistica: e.target.value,
+                                    })
+                                  }
+                                  className="w-full bg-slate-50 border border-slate-200 p-2 rounded-lg font-bold text-[12px] text-slate-700 outline-none focus:ring-1 focus:ring-slate-400 resize-none overflow-hidden min-h-[38px]"
+                                />
+                              </div>
+                              <div className="space-y-0.5 flex flex-col">
+                                <label className="text-[9px] font-black text-slate-400 uppercase ml-1">
+                                  Observações Gerais
+                                </label>
+                                <textarea
+                                  ref={obsGeralLogisticaRef}
+                                  id="textarea-obs-geral-logistica"
+                                  rows={1}
+                                  value={
+                                    logisticsForm.obs_geral_logistica || ""
+                                  }
+                                  onChange={(e) =>
+                                    setLogisticsForm({
+                                      ...logisticsForm,
+                                      obs_geral_logistica: e.target.value,
+                                    })
+                                  }
+                                  className="w-full bg-slate-50 border border-slate-200 p-2 rounded-lg font-bold text-[12px] text-slate-700 outline-none focus:ring-1 focus:ring-slate-400 resize-none overflow-hidden min-h-[38px]"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {sidebarType === "financeiro" && (
+                        <div className="space-y-3">
+                          <div className="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                            <label className="block text-[9px] font-black uppercase text-slate-400 mb-1.5">
+                              Período Padrão (Todos)
+                            </label>
+                            <div className="flex bg-white p-1 rounded-lg border border-slate-200 shadow-sm">
+                              <button
+                                onClick={async () => {
+                                  if (!canWrite) {
+                                    alert(
+                                      "Acesso negado: Você não possui a permissão de escrita necessária.",
+                                    );
+                                    return;
+                                  }
+                                  setFinanceGlobalPeriod("cheio");
+                                  // Persist preference in training
+                                  if (selectedTraining?.id) {
+                                    await updateDoc(
+                                      doc(db, "trainings", selectedTraining.id),
+                                      { finance_default_period: "cheio" },
+                                    );
+                                  }
+
+                                  const confirmed = getAllocationsByTraining(
+                                    selectedTraining.id,
+                                  ).filter((a) => a.status === "confirmado");
+                                  for (const a of confirmed) {
+                                    if (!a.finance_period_is_manual) {
+                                      const staff = staffs.find(
+                                        (s) => s.id === a.staff_id,
+                                      );
+                                      await updateFinance(
+                                        a.id,
+                                        { finance_period: "cheio" },
+                                        `Período de ${staff?.nomeAbreviado} alterado para DIÁRIA INTEIRA (Massa).`,
+                                      );
+                                    }
+                                  }
+                                }}
+                                className={`flex-1 py-1 rounded-md text-[9px] font-black transition-all ${financeGlobalPeriod === "cheio" ? "bg-blue-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
+                              >
+                                TODOS: DIÁRIA
+                              </button>
+                              <button
+                                onClick={async () => {
+                                  if (!canWrite) {
+                                    alert(
+                                      "Acesso negado: Você não possui a permissão de escrita necessária.",
+                                    );
+                                    return;
+                                  }
+                                  setFinanceGlobalPeriod("meio");
+                                  // Persist preference in training
+                                  if (selectedTraining?.id) {
+                                    await updateDoc(
+                                      doc(db, "trainings", selectedTraining.id),
+                                      { finance_default_period: "meio" },
+                                    );
+                                  }
+
+                                  const confirmed = getAllocationsByTraining(
+                                    selectedTraining.id,
+                                  ).filter((a) => a.status === "confirmado");
+                                  for (const a of confirmed) {
+                                    if (!a.finance_period_is_manual) {
+                                      const staff = staffs.find(
+                                        (s) => s.id === a.staff_id,
+                                      );
+                                      await updateFinance(
+                                        a.id,
+                                        { finance_period: "meio" },
+                                        `Período de ${staff?.nomeAbreviado} alterado para MEIA DIÁRIA (Massa).`,
+                                      );
+                                    }
+                                  }
+                                }}
+                                className={`flex-1 py-1 rounded-md text-[9px] font-black transition-all ${financeGlobalPeriod === "meio" ? "bg-blue-600 text-white shadow-sm" : "text-slate-400 hover:text-slate-600"}`}
+                              >
+                                TODOS: MEIA
+                              </button>
+                            </div>
+                          </div>
+
+                          <div className="space-y-1.5">
+                            {getAllocationsByTraining(selectedTraining.id)
+                              .filter((a) => a.status === "confirmado")
+                              .map((aloc: any, idx: number) => {
+                                const staff = staffs.find(
+                                  (s) => String(s.id) === String(aloc.staff_id),
+                                );
+
+                                // Prioriza a função salva na alocação, senão usa a do cadastro do staff
+                                const effectiveFuncId =
+                                  aloc.finance_funcao_id || staff?.funcaoId;
+                                const func = financeFunctions.find(
+                                  (f) => f.id === effectiveFuncId,
+                                );
+
+                                const period =
+                                  aloc.finance_period || financeGlobalPeriod;
+                                const baseValue = aloc.finance_is_manual
+                                  ? parseFloat(aloc.finance_base_value) || 0
+                                  : period === "meio"
+                                    ? parseFloat(func?.valor_meio_periodo) || 0
+                                    : parseFloat(func?.valor_diaria) || 0;
+
+                                const genericVoucher = financeAdditionals.find(
+                                  (a) =>
+                                    a.nome?.toLowerCase() === "voucher" ||
+                                    a.nome
+                                      ?.toLowerCase()
+                                      .includes("alimentação"),
+                                );
+                                const defaultVoucherValue = genericVoucher
+                                  ? parseFloat(genericVoucher.valor_padrao) || 0
+                                  : parseFloat(
+                                      selectedTraining.voucher_alimentacao,
+                                    ) || 0;
+
+                                const isVoucherActive =
+                                  aloc.finance_voucher === "sim" ||
+                                  selectedTraining.voucher_alimentacao ===
+                                    "Sim";
+                                const voucherVal = isVoucherActive
+                                  ? aloc.finance_voucher_is_manual
+                                    ? parseFloat(aloc.finance_voucher_value) ||
+                                      0
+                                    : defaultVoucherValue
+                                  : 0;
+
+                                const extrasVal = (
+                                  aloc.finance_extras || []
+                                ).reduce(
+                                  (acc: number, curr: any) =>
+                                    acc + (parseFloat(curr.value) || 0),
+                                  0,
+                                );
+                                const total =
+                                  baseValue + voucherVal + extrasVal;
+
+                                const isFacilitador =
+                                  func?.nome
+                                    .toLowerCase()
+                                    .includes("facilitador") ||
+                                  func?.nome
+                                    .toLowerCase()
+                                    .includes("instrutor");
+
+                                const cardColors = [
+                                  "bg-blue-50/40 border-blue-200 hover:border-blue-400",
+                                  "bg-emerald-50/40 border-emerald-200 hover:border-emerald-400",
+                                  "bg-purple-50/40 border-purple-200 hover:border-purple-400",
+                                  "bg-amber-50/40 border-amber-200 hover:border-amber-400",
+                                  "bg-rose-50/40 border-rose-200 hover:border-rose-400",
+                                  "bg-indigo-50/40 border-indigo-200 hover:border-indigo-400",
+                                ];
+                                const currentStyle =
+                                  cardColors[idx % cardColors.length];
+
+                                return (
+                                  <div
+                                    key={aloc.id}
+                                    className={`${currentStyle} p-1.5 rounded-lg border-2 shadow-sm transition-all group relative overflow-hidden flex flex-col gap-1.5`}
+                                  >
+                                    <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full -mr-6 -mt-6 blur-xl"></div>
+
+                                    {/* SINGLE LINE LAYOUT */}
+                                    <div className="flex items-center gap-2 relative z-10 w-full overflow-x-auto no-scrollbar py-0.5">
+                                      {/* 1. NOME */}
+                                      <div className="flex items-center gap-1.5 bg-white/80 px-1.5 py-1 rounded border border-white shadow-sm shrink-0">
+                                        <p className="text-[10px] font-black uppercase text-slate-900 whitespace-nowrap">
+                                          {staff?.nomeAbreviado || "Staff"}
+                                        </p>
+                                        {staff?.id &&
+                                          staffActivityLast30Days[staff.id] !==
+                                            undefined && (
+                                            <span
+                                              className={`text-[8px] font-black px-1 py-0.5 rounded-md shadow-sm ${
+                                                staffActivityLast30Days[
+                                                  staff.id
+                                                ] >= 5
+                                                  ? "bg-red-500 text-white"
+                                                  : staffActivityLast30Days[
+                                                        staff.id
+                                                      ] >= 3
+                                                    ? "bg-amber-500 text-white"
+                                                    : "bg-emerald-500 text-white"
+                                              }`}
+                                            >
+                                              {String(
+                                                staffActivityLast30Days[
+                                                  staff.id
+                                                ],
+                                              ).padStart(2, "0")}
+                                            </span>
+                                          )}
+                                      </div>
+
+                                      {/* 2. FUNÇÃO */}
+                                      <div className="flex-1 min-w-[120px]">
+                                        <select
+                                          value={
+                                            aloc.finance_funcao_id ||
+                                            staff?.funcaoId ||
+                                            ""
+                                          }
+                                          onChange={async (e) => {
+                                            const newFuncId = e.target.value;
+                                            const oldFuncId =
+                                              aloc.finance_funcao_id ||
+                                              staff?.funcaoId;
+                                            const oldFunc =
+                                              financeFunctions.find(
+                                                (f) => f.id === oldFuncId,
+                                              )?.nome || "NÃO DEFINIDA";
+                                            const newFunc =
+                                              financeFunctions.find(
+                                                (f) => f.id === newFuncId,
+                                              )?.nome || "NÃO DEFINIDA";
+
+                                            await updateFinance(
+                                              aloc.id,
+                                              { finance_funcao_id: newFuncId },
+                                              `Função de ${staff?.nomeAbreviado || "Staff"} alterada de [${oldFunc}] para [${newFunc}] apenas nesta alocação.`,
+                                            );
+                                          }}
+                                          className="w-full text-[9px] font-bold text-blue-800 bg-white/80 border border-blue-100 px-2 py-1 rounded uppercase outline-none cursor-pointer hover:border-blue-400 transition-all shadow-sm appearance-none"
+                                        >
+                                          <option value="">
+                                            FUNÇÃO NÃO DEFINIDA
+                                          </option>
+                                          {financeFunctions.map((f) => (
+                                            <option key={f.id} value={f.id}>
+                                              {f.nome}
+                                            </option>
+                                          ))}
+                                        </select>
+                                      </div>
+
+                                      {/* 3. ETIQUETA INTEIRA/MEIA */}
+                                      <div className="relative flex items-center shrink-0">
+                                        <select
+                                          value={aloc.finance_period || "cheio"}
+                                          onChange={(e) =>
                                             updateFinance(
                                               aloc.id,
                                               {
-                                                finance_period_is_manual: false,
-                                                finance_period:
-                                                  financeGlobalPeriod,
+                                                finance_period: e.target.value,
+                                                finance_period_is_manual: true,
                                               },
-                                              `Trava manual de período de ${staff?.nomeAbreviado} removida.`,
+                                              `Período de ${staff?.nomeAbreviado} alterado para ${e.target.value === "cheio" ? "DIÁRIA INTEIRA" : "MEIA DIÁRIA"}.`,
                                             )
                                           }
-                                          className="absolute -top-1 -right-1 w-3.5 h-3.5 flex items-center justify-center text-[7px] font-black bg-orange-400 text-white rounded-full border border-white shadow-sm z-20"
-                                          title="Resetar para Automático"
+                                          className={`text-[8px] font-black py-1 px-2 rounded uppercase outline-none shadow-sm appearance-none border transition-all ${aloc.finance_period === "meio" ? "bg-amber-600 border-amber-700 text-white" : "bg-slate-600 border-slate-700 text-white"}`}
                                         >
-                                          M
-                                        </button>
-                                      )}
-                                    </div>
-
-                                    {/* 4. VALOR BASE */}
-                                    <div className="w-24 shrink-0">
-                                      <div className="relative flex items-center">
-                                        <span className="absolute left-1.5 text-[8px] font-black text-slate-400">
-                                          R$
-                                        </span>
-                                        <input
-                                          type="number"
-                                          key={`base-${aloc.id}-${baseValue}`}
-                                          defaultValue={baseValue}
-                                          onBlur={(e) => {
-                                            const val =
-                                              parseFloat(e.target.value) || 0;
-                                            if (val !== baseValue) {
-                                              updateFinance(
-                                                aloc.id,
-                                                {
-                                                  finance_base_value: val,
-                                                  finance_is_manual: true,
-                                                },
-                                                `Valor base de ${staff?.nomeAbreviado} alterado para R$ ${val}.`,
-                                              );
-                                            }
-                                          }}
-                                          className={`w-full border py-1 pl-5 pr-4 rounded text-[9px] font-black outline-none focus:ring-1 focus:ring-blue-400 tabular-nums transition-all ${aloc.finance_is_manual ? "bg-orange-50 border-orange-200 text-orange-900" : "bg-white border-slate-200 text-slate-700"}`}
-                                        />
-                                        {aloc.finance_is_manual && (
+                                          <option value="cheio">INTEIRA</option>
+                                          <option value="meio">MEIA</option>
+                                        </select>
+                                        {aloc.finance_period_is_manual && (
                                           <button
                                             onClick={() =>
                                               updateFinance(
                                                 aloc.id,
                                                 {
-                                                  finance_is_manual: false,
-                                                  finance_base_value: null,
+                                                  finance_period_is_manual: false,
+                                                  finance_period:
+                                                    financeGlobalPeriod,
                                                 },
-                                                `Valor base de ${staff?.nomeAbreviado} resetado para automático.`,
+                                                `Trava manual de período de ${staff?.nomeAbreviado} removida.`,
                                               )
                                             }
-                                            className="absolute right-0.5 w-3.5 h-3.5 flex items-center justify-center text-[7px] font-black bg-orange-200 text-orange-900 rounded hover:bg-orange-500 hover:text-white transition-all shadow-sm border border-orange-300"
-                                            title="Voltar Automático"
+                                            className="absolute -top-1 -right-1 w-3.5 h-3.5 flex items-center justify-center text-[7px] font-black bg-orange-400 text-white rounded-full border border-white shadow-sm z-20"
+                                            title="Resetar para Automático"
                                           >
                                             M
                                           </button>
                                         )}
                                       </div>
+
+                                      {/* 4. VALOR BASE */}
+                                      <div className="w-24 shrink-0">
+                                        <div className="relative flex items-center">
+                                          <span className="absolute left-1.5 text-[8px] font-black text-slate-400">
+                                            R$
+                                          </span>
+                                          <input
+                                            type="number"
+                                            key={`base-${aloc.id}-${baseValue}`}
+                                            defaultValue={baseValue}
+                                            onBlur={(e) => {
+                                              const val =
+                                                parseFloat(e.target.value) || 0;
+                                              if (val !== baseValue) {
+                                                updateFinance(
+                                                  aloc.id,
+                                                  {
+                                                    finance_base_value: val,
+                                                    finance_is_manual: true,
+                                                  },
+                                                  `Valor base de ${staff?.nomeAbreviado} alterado para R$ ${val}.`,
+                                                );
+                                              }
+                                            }}
+                                            className={`w-full border py-1 pl-5 pr-4 rounded text-[9px] font-black outline-none focus:ring-1 focus:ring-blue-400 tabular-nums transition-all ${aloc.finance_is_manual ? "bg-orange-50 border-orange-200 text-orange-900" : "bg-white border-slate-200 text-slate-700"}`}
+                                          />
+                                          {aloc.finance_is_manual && (
+                                            <button
+                                              onClick={() =>
+                                                updateFinance(
+                                                  aloc.id,
+                                                  {
+                                                    finance_is_manual: false,
+                                                    finance_base_value: null,
+                                                  },
+                                                  `Valor base de ${staff?.nomeAbreviado} resetado para automático.`,
+                                                )
+                                              }
+                                              className="absolute right-0.5 w-3.5 h-3.5 flex items-center justify-center text-[7px] font-black bg-orange-200 text-orange-900 rounded hover:bg-orange-500 hover:text-white transition-all shadow-sm border border-orange-300"
+                                              title="Voltar Automático"
+                                            >
+                                              M
+                                            </button>
+                                          )}
+                                        </div>
+                                      </div>
+
+                                      {/* 5. VOUCHER */}
+                                      <div className="shrink-0">
+                                        <div className="flex bg-white rounded border overflow-hidden shadow-sm">
+                                          <select
+                                            value={aloc.finance_voucher}
+                                            onChange={(e) =>
+                                              updateFinance(
+                                                aloc.id,
+                                                {
+                                                  finance_voucher:
+                                                    e.target.value,
+                                                },
+                                                `Voucher de ${staff?.nomeAbreviado} alterado para ${e.target.value.toUpperCase()}.`,
+                                              )
+                                            }
+                                            className={`p-1 text-[8px] font-black outline-none appearance-none text-center transition-all ${aloc.finance_voucher === "sim" ? "bg-purple-600 text-white" : "bg-white text-slate-500"}`}
+                                          >
+                                            <option value="nao">
+                                              VOUCHER: NÃO
+                                            </option>
+                                            <option value="sim">
+                                              VOUCHER: SIM
+                                            </option>
+                                          </select>
+                                          {aloc.finance_voucher === "sim" && (
+                                            <div className="relative flex items-center w-16 border-l border-slate-200">
+                                              <span className="absolute left-1 text-[7px] font-black text-slate-400">
+                                                R$
+                                              </span>
+                                              <input
+                                                type="number"
+                                                key={`voucher-${aloc.id}-${voucherVal}`}
+                                                defaultValue={voucherVal}
+                                                onBlur={(e) => {
+                                                  const val =
+                                                    parseFloat(
+                                                      e.target.value,
+                                                    ) || 0;
+                                                  if (val !== voucherVal) {
+                                                    updateFinance(
+                                                      aloc.id,
+                                                      {
+                                                        finance_voucher_value:
+                                                          val,
+                                                        finance_voucher_is_manual: true,
+                                                      },
+                                                      `Valor do voucher de ${staff?.nomeAbreviado} alterado para R$ ${val}.`,
+                                                    );
+                                                  }
+                                                }}
+                                                className={`w-full py-1 pl-4 pr-1 text-[8px] font-black outline-none tabular-nums transition-all ${aloc.finance_voucher_is_manual ? "bg-orange-50 text-orange-900" : "bg-purple-50 text-purple-700"}`}
+                                              />
+                                              {aloc.finance_voucher_is_manual && (
+                                                <button
+                                                  onClick={() =>
+                                                    updateFinance(
+                                                      aloc.id,
+                                                      {
+                                                        finance_voucher_is_manual: false,
+                                                        finance_voucher_value:
+                                                          null,
+                                                      },
+                                                      `Valor do voucher de ${staff?.nomeAbreviado} resetado para automático.`,
+                                                    )
+                                                  }
+                                                  className="absolute right-0.5 w-3 h-3 flex items-center justify-center text-[6px] font-black bg-orange-100 text-orange-900 rounded hover:bg-orange-500 hover:text-white transition-all border border-orange-200"
+                                                  title="Voltar Automático"
+                                                >
+                                                  M
+                                                </button>
+                                              )}
+                                            </div>
+                                          )}
+                                        </div>
+                                      </div>
                                     </div>
 
-                                    {/* 5. VOUCHER */}
-                                    <div className="shrink-0">
-                                      <div className="flex bg-white rounded border overflow-hidden shadow-sm">
-                                        <select
-                                          value={aloc.finance_voucher}
-                                          onChange={(e) =>
-                                            updateFinance(
-                                              aloc.id,
-                                              {
-                                                finance_voucher: e.target.value,
-                                              },
-                                              `Voucher de ${staff?.nomeAbreviado} alterado para ${e.target.value.toUpperCase()}.`,
-                                            )
-                                          }
-                                          className={`p-1 text-[8px] font-black outline-none appearance-none text-center transition-all ${aloc.finance_voucher === "sim" ? "bg-purple-600 text-white" : "bg-white text-slate-500"}`}
-                                        >
-                                          <option value="nao">
-                                            VOUCHER: NÃO
-                                          </option>
-                                          <option value="sim">
-                                            VOUCHER: SIM
-                                          </option>
-                                        </select>
-                                        {aloc.finance_voucher === "sim" && (
-                                          <div className="relative flex items-center w-16 border-l border-slate-200">
-                                            <span className="absolute left-1 text-[7px] font-black text-slate-400">
-                                              R$
-                                            </span>
-                                            <input
-                                              type="number"
-                                              key={`voucher-${aloc.id}-${voucherVal}`}
-                                              defaultValue={voucherVal}
-                                              onBlur={(e) => {
-                                                const val =
-                                                  parseFloat(e.target.value) ||
-                                                  0;
-                                                if (val !== voucherVal) {
-                                                  updateFinance(
-                                                    aloc.id,
-                                                    {
-                                                      finance_voucher_value:
-                                                        val,
-                                                      finance_voucher_is_manual: true,
-                                                    },
-                                                    `Valor do voucher de ${staff?.nomeAbreviado} alterado para R$ ${val}.`,
-                                                  );
-                                                }
-                                              }}
-                                              className={`w-full py-1 pl-4 pr-1 text-[8px] font-black outline-none tabular-nums transition-all ${aloc.finance_voucher_is_manual ? "bg-orange-50 text-orange-900" : "bg-purple-50 text-purple-700"}`}
-                                            />
-                                            {aloc.finance_voucher_is_manual && (
-                                              <button
-                                                onClick={() =>
-                                                  updateFinance(
-                                                    aloc.id,
-                                                    {
-                                                      finance_voucher_is_manual: false,
-                                                      finance_voucher_value:
-                                                        null,
-                                                    },
-                                                    `Valor do voucher de ${staff?.nomeAbreviado} resetado para automático.`,
-                                                  )
-                                                }
-                                                className="absolute right-0.5 w-3 h-3 flex items-center justify-center text-[6px] font-black bg-orange-100 text-orange-900 rounded hover:bg-orange-500 hover:text-white transition-all border border-orange-200"
-                                                title="Voltar Automático"
+                                    {/* ADICIONAIS EXTRAS (SUGESTÃO A) */}
+                                    {(addingExtraFor === aloc.id ||
+                                      (aloc.finance_extras || []).length >
+                                        0) && (
+                                      <div className="space-y-1.5 pt-1.5 border-t border-black/5 mt-1">
+                                        <div className="px-1">
+                                          <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">
+                                            Adicionais Extras
+                                          </span>
+                                        </div>
+
+                                        {addingExtraFor === aloc.id && (
+                                          <div className="bg-blue-50/50 p-2 rounded-lg border border-blue-100 flex flex-col gap-2 mt-1">
+                                            <div className="flex gap-1.5">
+                                              <select
+                                                autoFocus
+                                                value={newExtraDesc}
+                                                onChange={(e) => {
+                                                  const selectedId =
+                                                    e.target.value;
+                                                  setNewExtraDesc(selectedId);
+                                                  const bono =
+                                                    financeAdditionals.find(
+                                                      (a) =>
+                                                        a.id === selectedId,
+                                                    );
+                                                  if (bono) {
+                                                    setNewExtraValue(
+                                                      parseFloat(
+                                                        bono.valor_padrao || 0,
+                                                      ).toString(),
+                                                    );
+                                                  }
+                                                }}
+                                                className="flex-1 text-[9px] font-bold p-1.5 border border-blue-200 rounded outline-none focus:ring-1 focus:ring-blue-400 uppercase bg-white"
                                               >
-                                                M
+                                                <option value="">
+                                                  SELECIONE UM ADICIONAL
+                                                </option>
+                                                {financeAdditionals.map((a) => (
+                                                  <option
+                                                    key={a.id}
+                                                    value={a.id}
+                                                  >
+                                                    {a.nome?.toUpperCase()}
+                                                  </option>
+                                                ))}
+                                              </select>
+                                              <div className="w-20 relative">
+                                                <span className="absolute left-1 top-1.5 text-[8px] font-black text-blue-400">
+                                                  R$
+                                                </span>
+                                                <input
+                                                  placeholder="0,00"
+                                                  value={newExtraValue}
+                                                  onChange={(e) =>
+                                                    setNewExtraValue(
+                                                      e.target.value,
+                                                    )
+                                                  }
+                                                  className="w-full text-[9px] font-bold p-1.5 pl-4 border border-blue-200 rounded outline-none focus:ring-1 focus:ring-blue-400"
+                                                />
+                                              </div>
+                                            </div>
+                                            <div className="flex justify-end gap-1.5">
+                                              <button
+                                                onClick={() => {
+                                                  setAddingExtraFor(null);
+                                                  setNewExtraDesc("");
+                                                  setNewExtraValue("");
+                                                }}
+                                                className="px-2 py-1 text-[8px] font-black text-slate-500 hover:text-slate-700"
+                                              >
+                                                CANCELAR
                                               </button>
+                                              <button
+                                                onClick={(e) => {
+                                                  e.preventDefault();
+                                                  submitNewExtra(
+                                                    aloc.id,
+                                                    staff?.nomeAbreviado || "",
+                                                    aloc.finance_extras || [],
+                                                  );
+                                                }}
+                                                disabled={
+                                                  !newExtraDesc ||
+                                                  !newExtraValue
+                                                }
+                                                className="px-2 py-1 bg-blue-600 text-white rounded text-[8px] font-black hover:bg-blue-700 disabled:opacity-50"
+                                              >
+                                                SALVAR ADICIONAL
+                                              </button>
+                                            </div>
+                                          </div>
+                                        )}
+
+                                        {(aloc.finance_extras || []).length >
+                                          0 && (
+                                          <div className="space-y-1">
+                                            {aloc.finance_extras.map(
+                                              (extra: any) => (
+                                                <div
+                                                  key={extra.id}
+                                                  className="flex items-center justify-between bg-white/60 p-1.5 rounded-lg border border-white group/extra"
+                                                >
+                                                  <div className="flex items-center gap-2">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
+                                                    <span className="text-[9px] font-black text-slate-700 uppercase">
+                                                      {extra.description}
+                                                    </span>
+                                                  </div>
+                                                  <div className="flex items-center gap-2">
+                                                    <span className="text-[9px] font-black text-slate-900 tabular-nums">
+                                                      R${" "}
+                                                      {parseFloat(
+                                                        extra.value,
+                                                      ).toLocaleString(
+                                                        "pt-BR",
+                                                        {
+                                                          minimumFractionDigits: 2,
+                                                        },
+                                                      )}
+                                                    </span>
+                                                    <button
+                                                      onClick={() => {
+                                                        const newExtras =
+                                                          aloc.finance_extras.filter(
+                                                            (e: any) =>
+                                                              e.id !== extra.id,
+                                                          );
+                                                        updateFinance(
+                                                          aloc.id,
+                                                          {
+                                                            finance_extras:
+                                                              newExtras,
+                                                          },
+                                                          `Adicional [${extra.description}] removido de ${staff?.nomeAbreviado}.`,
+                                                        );
+                                                      }}
+                                                      className="w-4 h-4 flex items-center justify-center text-slate-300 hover:text-red-500 transition-all"
+                                                    >
+                                                      <X
+                                                        size={10}
+                                                        strokeWidth={3}
+                                                      />
+                                                    </button>
+                                                  </div>
+                                                </div>
+                                              ),
                                             )}
                                           </div>
                                         )}
                                       </div>
-                                    </div>
-                                  </div>
-
-                                  {/* ADICIONAIS EXTRAS (SUGESTÃO A) */}
-                                  {(addingExtraFor === aloc.id ||
-                                    (aloc.finance_extras || []).length > 0) && (
-                                    <div className="space-y-1.5 pt-1.5 border-t border-black/5 mt-1">
-                                      <div className="px-1">
-                                        <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">
-                                          Adicionais Extras
-                                        </span>
-                                      </div>
-
-                                    {addingExtraFor === aloc.id && (
-                                      <div className="bg-blue-50/50 p-2 rounded-lg border border-blue-100 flex flex-col gap-2 mt-1">
-                                        <div className="flex gap-1.5">
-                                          <select
-                                            autoFocus
-                                            value={newExtraDesc}
-                                            onChange={(e) => {
-                                              const selectedId = e.target.value;
-                                              setNewExtraDesc(selectedId);
-                                              const bono =
-                                                financeAdditionals.find(
-                                                  (a) => a.id === selectedId,
-                                                );
-                                              if (bono) {
-                                                setNewExtraValue(
-                                                  parseFloat(
-                                                    bono.valor_padrao || 0,
-                                                  ).toString(),
-                                                );
-                                              }
-                                            }}
-                                            className="flex-1 text-[9px] font-bold p-1.5 border border-blue-200 rounded outline-none focus:ring-1 focus:ring-blue-400 uppercase bg-white"
-                                          >
-                                            <option value="">
-                                              SELECIONE UM ADICIONAL
-                                            </option>
-                                            {financeAdditionals.map((a) => (
-                                              <option key={a.id} value={a.id}>
-                                                {a.nome?.toUpperCase()}
-                                              </option>
-                                            ))}
-                                          </select>
-                                          <div className="w-20 relative">
-                                            <span className="absolute left-1 top-1.5 text-[8px] font-black text-blue-400">
-                                              R$
-                                            </span>
-                                            <input
-                                              placeholder="0,00"
-                                              value={newExtraValue}
-                                              onChange={(e) =>
-                                                setNewExtraValue(e.target.value)
-                                              }
-                                              className="w-full text-[9px] font-bold p-1.5 pl-4 border border-blue-200 rounded outline-none focus:ring-1 focus:ring-blue-400"
-                                            />
-                                          </div>
-                                        </div>
-                                        <div className="flex justify-end gap-1.5">
-                                          <button
-                                            onClick={() => {
-                                              setAddingExtraFor(null);
-                                              setNewExtraDesc("");
-                                              setNewExtraValue("");
-                                            }}
-                                            className="px-2 py-1 text-[8px] font-black text-slate-500 hover:text-slate-700"
-                                          >
-                                            CANCELAR
-                                          </button>
-                                          <button
-                                            onClick={(e) => {
-                                              e.preventDefault();
-                                              submitNewExtra(
-                                                aloc.id,
-                                                staff?.nomeAbreviado || "",
-                                                aloc.finance_extras || [],
-                                              );
-                                            }}
-                                            disabled={
-                                              !newExtraDesc || !newExtraValue
-                                            }
-                                            className="px-2 py-1 bg-blue-600 text-white rounded text-[8px] font-black hover:bg-blue-700 disabled:opacity-50"
-                                          >
-                                            SALVAR ADICIONAL
-                                          </button>
-                                        </div>
-                                      </div>
                                     )}
 
-                                    {(aloc.finance_extras || []).length > 0 && (
-                                      <div className="space-y-1">
-                                        {aloc.finance_extras.map(
-                                          (extra: any) => (
-                                            <div
-                                              key={extra.id}
-                                              className="flex items-center justify-between bg-white/60 p-1.5 rounded-lg border border-white group/extra"
-                                            >
-                                              <div className="flex items-center gap-2">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
-                                                <span className="text-[9px] font-black text-slate-700 uppercase">
-                                                  {extra.description}
-                                                </span>
-                                              </div>
-                                              <div className="flex items-center gap-2">
-                                                <span className="text-[9px] font-black text-slate-900 tabular-nums">
-                                                  R${" "}
-                                                  {parseFloat(
-                                                    extra.value,
-                                                  ).toLocaleString("pt-BR", {
-                                                    minimumFractionDigits: 2,
-                                                  })}
-                                                </span>
-                                                <button
-                                                  onClick={() => {
-                                                    const newExtras =
-                                                      aloc.finance_extras.filter(
-                                                        (e: any) =>
-                                                          e.id !== extra.id,
-                                                      );
-                                                    updateFinance(
-                                                      aloc.id,
-                                                      {
-                                                        finance_extras:
-                                                          newExtras,
-                                                      },
-                                                      `Adicional [${extra.description}] removido de ${staff?.nomeAbreviado}.`,
-                                                    );
-                                                  }}
-                                                  className="w-4 h-4 flex items-center justify-center text-slate-300 hover:text-red-500 transition-all"
-                                                >
-                                                  <X
-                                                    size={10}
-                                                    strokeWidth={3}
-                                                  />
-                                                </button>
-                                              </div>
-                                            </div>
-                                          ),
+                                    {/* 6. TOTAL A PAGAR - Linha de baixo */}
+                                    <div className="flex justify-between items-center mt-2 pt-2 border-t border-emerald-100">
+                                      <div>
+                                        {addingExtraFor !== aloc.id && (
+                                          <button
+                                            onClick={() =>
+                                              setAddingExtraFor(aloc.id)
+                                            }
+                                            className="flex items-center gap-1.5 px-2 py-1.5 bg-blue-50 text-blue-600 rounded-lg border border-blue-100 text-[10px] font-black hover:bg-blue-600 hover:text-white transition-all uppercase tracking-tight"
+                                          >
+                                            <Plus size={12} strokeWidth={3} />
+                                            ADICIONAR EXTRA
+                                          </button>
                                         )}
                                       </div>
-                                    )}
-                                  </div>
-                                )}
 
-                                  {/* 6. TOTAL A PAGAR - Linha de baixo */}
-                                  <div className="flex justify-between items-center mt-2 pt-2 border-t border-emerald-100">
-                                    <div>
-                                      {addingExtraFor !== aloc.id && (
-                                        <button
-                                          onClick={() =>
-                                            setAddingExtraFor(aloc.id)
-                                          }
-                                          className="flex items-center gap-1.5 px-2 py-1.5 bg-blue-50 text-blue-600 rounded-lg border border-blue-100 text-[10px] font-black hover:bg-blue-600 hover:text-white transition-all uppercase tracking-tight"
-                                        >
-                                          <Plus size={12} strokeWidth={3} />
-                                          ADICIONAR EXTRA
-                                        </button>
-                                      )}
-                                    </div>
-
-                                    <div className="bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 flex items-center gap-3">
-                                      <span className="text-[9px] font-black text-emerald-600 uppercase tracking-widest">
-                                        Total a Pagar
-                                      </span>
-                                      <p className="text-[12px] font-black text-emerald-700 tabular-nums">
-                                        R${" "}
-                                        {total.toLocaleString("pt-BR", {
-                                          minimumFractionDigits: 2,
-                                        })}
-                                      </p>
+                                      <div className="bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 flex items-center gap-3">
+                                        <span className="text-[9px] font-black text-emerald-600 uppercase tracking-widest">
+                                          Total a Pagar
+                                        </span>
+                                        <p className="text-[12px] font-black text-emerald-700 tabular-nums">
+                                          R${" "}
+                                          {total.toLocaleString("pt-BR", {
+                                            minimumFractionDigits: 2,
+                                          })}
+                                        </p>
+                                      </div>
                                     </div>
                                   </div>
+                                );
+                              })}
+
+                            {getAllocationsByTraining(
+                              selectedTraining.id,
+                            ).filter((a) => a.status === "confirmado")
+                              .length === 0 && (
+                              <div className="py-10 text-center opacity-40 italic text-[10px] text-slate-400">
+                                Nenhum staff confirmado.
+                              </div>
+                            )}
+                          </div>
+
+                          <div className="pt-2 border-t border-slate-100">
+                            <div className="flex justify-between items-center bg-slate-900 p-2 rounded-lg shadow-sm">
+                              <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">
+                                Total Estimado
+                              </span>
+                              <span className="text-sm font-black text-white tabular-nums">
+                                R${" "}
+                                {getAllocationsByTraining(selectedTraining.id)
+                                  .filter((a) => a.status === "confirmado")
+                                  .reduce((acc, aloc) => {
+                                    const staff = staffs.find(
+                                      (s) =>
+                                        String(s.id) === String(aloc.staff_id),
+                                    );
+                                    const func = financeFunctions.find(
+                                      (f) => f.id === staff?.funcaoId,
+                                    );
+                                    const period =
+                                      aloc.finance_period ||
+                                      financeGlobalPeriod;
+                                    const baseValue = aloc.finance_is_manual
+                                      ? parseFloat(aloc.finance_base_value) || 0
+                                      : period === "meio"
+                                        ? parseFloat(
+                                            func?.valor_meio_periodo,
+                                          ) || 0
+                                        : parseFloat(func?.valor_diaria) || 0;
+
+                                    const extrasVal = (
+                                      aloc.finance_extras || []
+                                    ).reduce(
+                                      (acc: number, curr: any) =>
+                                        acc + (parseFloat(curr.value) || 0),
+                                      0,
+                                    );
+
+                                    const genericVoucher =
+                                      financeAdditionals.find(
+                                        (a) =>
+                                          a.nome?.toLowerCase() === "voucher" ||
+                                          a.nome
+                                            ?.toLowerCase()
+                                            .includes("alimentação"),
+                                      );
+                                    const defaultVoucherValue = genericVoucher
+                                      ? parseFloat(
+                                          genericVoucher.valor_padrao,
+                                        ) || 0
+                                      : parseFloat(
+                                          selectedTraining.voucher_alimentacao,
+                                        ) || 0;
+
+                                    const isVoucherActive =
+                                      aloc.finance_voucher === "sim" ||
+                                      selectedTraining.voucher_alimentacao ===
+                                        "Sim";
+                                    const voucherVal = isVoucherActive
+                                      ? aloc.finance_voucher_is_manual
+                                        ? parseFloat(
+                                            aloc.finance_voucher_value,
+                                          ) || 0
+                                        : defaultVoucherValue
+                                      : 0;
+
+                                    return (
+                                      acc + baseValue + voucherVal + extrasVal
+                                    );
+                                  }, 0)
+                                  .toLocaleString("pt-BR", {
+                                    minimumFractionDigits: 2,
+                                  })}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {(sidebarType === "staffs" ||
+                        sidebarType === "uniformes") && (
+                        <UnifiedStaffReport
+                          training={
+                            selectedTrainingId === "pool"
+                              ? "pool"
+                              : selectedTraining
+                          }
+                          staffs={staffs}
+                          allocations={
+                            selectedTrainingId === "pool"
+                              ? poolAllocations
+                              : getAllocationsByTraining(selectedTrainingId!)
+                          }
+                        />
+                      )}
+
+                      {sidebarType === "checklist" && (
+                        <ChecklistSidebar
+                          training={trainings.find(
+                            (t) => t.id === selectedTrainingId,
+                          )}
+                          user={user}
+                        />
+                      )}
+
+                      {sidebarType === "history" && (
+                        <div className="space-y-0 pt-2 pb-10">
+                          {historyItems.length > 0 ? (
+                            historyItems.map((item, i) => (
+                              <div
+                                key={item.id}
+                                className="relative pl-6 pb-4 border-l border-slate-200 last:border-0 ml-1"
+                              >
+                                <div className="absolute left-[-5px] top-1 w-2 h-2 rounded-full bg-blue-500 shadow-sm" />
+                                <div className="flex items-center gap-2 mb-0.5">
+                                  <p className="text-[10px] font-black text-slate-400 uppercase">
+                                    {item.timestamp
+                                      ? format(
+                                          item.timestamp.toDate(),
+                                          "dd/MM HH:mm",
+                                        )
+                                      : "--:--:--"}
+                                  </p>
+                                  <span className="text-[9px] font-bold text-slate-300">
+                                    •
+                                  </span>
+                                  <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest">
+                                    por {item.user}
+                                  </p>
                                 </div>
-                              );
-                            })}
-
-                          {getAllocationsByTraining(selectedTraining.id).filter(
-                            (a) => a.status === "confirmado",
-                          ).length === 0 && (
-                            <div className="py-10 text-center opacity-40 italic text-[10px] text-slate-400">
-                              Nenhum staff confirmado.
+                                <p className="text-[12px] font-bold text-slate-700 leading-tight">
+                                  {item.message}
+                                </p>
+                              </div>
+                            ))
+                          ) : (
+                            <div className="h-[400px] flex flex-col items-center justify-center text-slate-300 italic py-20 text-center">
+                              <History size={48} className="opacity-10 mb-4" />
+                              <p className="text-sm font-black uppercase tracking-widest">
+                                Nenhuma atividade registrada ainda
+                              </p>
                             </div>
                           )}
                         </div>
+                      )}
+                    </div>
 
-                        <div className="pt-2 border-t border-slate-100">
-                          <div className="flex justify-between items-center bg-slate-900 p-2 rounded-lg shadow-sm">
-                            <span className="text-[8px] font-black text-slate-400 uppercase tracking-wider">
-                              Total Estimado
-                            </span>
-                            <span className="text-sm font-black text-white tabular-nums">
-                              R${" "}
-                              {getAllocationsByTraining(selectedTraining.id)
-                                .filter((a) => a.status === "confirmado")
-                                .reduce((acc, aloc) => {
-                                  const staff = staffs.find(
-                                    (s) =>
-                                      String(s.id) === String(aloc.staff_id),
-                                  );
-                                  const func = financeFunctions.find(
-                                    (f) => f.id === staff?.funcaoId,
-                                  );
-                                  const period =
-                                    aloc.finance_period || financeGlobalPeriod;
-                                  const baseValue = aloc.finance_is_manual
-                                    ? parseFloat(aloc.finance_base_value) || 0
-                                    : period === "meio"
-                                      ? parseFloat(func?.valor_meio_periodo) ||
-                                        0
-                                      : parseFloat(func?.valor_diaria) || 0;
-
-                                  const extrasVal = (
-                                    aloc.finance_extras || []
-                                  ).reduce(
-                                    (acc: number, curr: any) =>
-                                      acc + (parseFloat(curr.value) || 0),
-                                    0,
-                                  );
-
-                                  const genericVoucher =
-                                    financeAdditionals.find(
-                                      (a) =>
-                                        a.nome?.toLowerCase() === "voucher" ||
-                                        a.nome
-                                          ?.toLowerCase()
-                                          .includes("alimentação"),
-                                    );
-                                  const defaultVoucherValue = genericVoucher
-                                    ? parseFloat(genericVoucher.valor_padrao) ||
-                                      0
-                                    : parseFloat(
-                                        selectedTraining.voucher_alimentacao,
-                                      ) || 0;
-
-                                  const isVoucherActive =
-                                    aloc.finance_voucher === "sim" ||
-                                    selectedTraining.voucher_alimentacao ===
-                                      "Sim";
-                                  const voucherVal = isVoucherActive
-                                    ? aloc.finance_voucher_is_manual
-                                      ? parseFloat(
-                                          aloc.finance_voucher_value,
-                                        ) || 0
-                                      : defaultVoucherValue
-                                    : 0;
-
-                                  return (
-                                    acc + baseValue + voucherVal + extrasVal
-                                  );
-                                }, 0)
-                                .toLocaleString("pt-BR", {
-                                  minimumFractionDigits: 2,
-                                })}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {(sidebarType === "staffs" ||
-                      sidebarType === "uniformes") && (
-                      <UnifiedStaffReport
-                        training={selectedTrainingId === 'pool' ? 'pool' : selectedTraining}
-                        staffs={staffs}
-                        allocations={selectedTrainingId === 'pool' ? poolAllocations : getAllocationsByTraining(
-                          selectedTrainingId!,
-                        )}
-                      />
-                    )}
-
-                    {sidebarType === "checklist" && (
-                      <ChecklistSidebar 
-                        training={trainings.find(t => t.id === selectedTrainingId)} 
-                        user={user} 
-                      />
-                    )}
-
-                    {sidebarType === "history" && (
-                      <div className="space-y-0 pt-2 pb-10">
-                        {historyItems.length > 0 ? (
-                          historyItems.map((item, i) => (
-                            <div
-                              key={item.id}
-                              className="relative pl-6 pb-4 border-l border-slate-200 last:border-0 ml-1"
-                            >
-                              <div className="absolute left-[-5px] top-1 w-2 h-2 rounded-full bg-blue-500 shadow-sm" />
-                              <div className="flex items-center gap-2 mb-0.5">
-                                <p className="text-[10px] font-black text-slate-400 uppercase">
-                                  {item.timestamp
-                                    ? format(
-                                        item.timestamp.toDate(),
-                                        "dd/MM HH:mm",
-                                      )
-                                    : "--:--:--"}
-                                </p>
-                                <span className="text-[9px] font-bold text-slate-300">
-                                  •
-                                </span>
-                                <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest">
-                                  por {item.user}
-                                </p>
-                              </div>
-                              <p className="text-[12px] font-bold text-slate-700 leading-tight">
-                                {item.message}
-                              </p>
-                            </div>
-                          ))
-                        ) : (
-                          <div className="h-[400px] flex flex-col items-center justify-center text-slate-300 italic py-20 text-center">
-                            <History size={48} className="opacity-10 mb-4" />
-                            <p className="text-sm font-black uppercase tracking-widest">
-                              Nenhuma atividade registrada ainda
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Footer do Sidebar */}
-                  <div className="p-6 border-t border-slate-100 bg-white flex gap-3">
-                    {sidebarType === "logistica" ? (
-                      <>
+                    {/* Footer do Sidebar */}
+                    <div className="p-6 border-t border-slate-100 bg-white flex gap-3">
+                      {sidebarType === "logistica" ? (
+                        <>
+                          <button
+                            onClick={() => setSidebarType(null)}
+                            className="flex-1 py-4 bg-slate-100 text-slate-600 font-black rounded-2xl hover:bg-slate-200 transition-all uppercase text-[12px] tracking-widest"
+                          >
+                            Cancelar
+                          </button>
+                          <button
+                            onClick={() => handleSaveLogistics()}
+                            className="flex-[2] py-4 bg-blue-600 text-white font-black rounded-2xl shadow-xl shadow-blue-200 hover:bg-blue-700 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 uppercase text-[12px] tracking-widest"
+                          >
+                            <CheckCircle2 size={18} /> Salvar Alterações
+                          </button>
+                        </>
+                      ) : (
                         <button
                           onClick={() => setSidebarType(null)}
                           className="flex-1 py-4 bg-slate-100 text-slate-600 font-black rounded-2xl hover:bg-slate-200 transition-all uppercase text-[12px] tracking-widest"
                         >
-                          Cancelar
+                          Fechar Painel
                         </button>
-                        <button
-                          onClick={() => handleSaveLogistics()}
-                          className="flex-[2] py-4 bg-blue-600 text-white font-black rounded-2xl shadow-xl shadow-blue-200 hover:bg-blue-700 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 uppercase text-[12px] tracking-widest"
-                        >
-                          <CheckCircle2 size={18} /> Salvar Alterações
-                        </button>
-                      </>
-                    ) : (
-                      <button
-                        onClick={() => setSidebarType(null)}
-                        className="flex-1 py-4 bg-slate-100 text-slate-600 font-black rounded-2xl hover:bg-slate-200 transition-all uppercase text-[12px] tracking-widest"
-                      >
-                        Fechar Painel
-                      </button>
-                    )}
-                  </div>
-                </motion.div>
+                      )}
+                    </div>
+                  </motion.div>
+                </div>
               )}
             </AnimatePresence>
           </div>
@@ -3345,8 +3896,8 @@ export const AllocationPage = ({ user }: { user?: any }) => {
           {/* Sidebar Staffs / Mobile Calendar */}
           <div className="w-64 md:w-72 xl:w-64 order-2 flex flex-col gap-3 flex-shrink-0 min-h-0">
             <div className="xl:hidden bg-slate-800 rounded-[28px] overflow-hidden flex flex-col border border-slate-700 shadow-sm flex-shrink-0">
-              <button 
-                onClick={() => setShowMobileCalendar(!showMobileCalendar)} 
+              <button
+                onClick={() => setShowMobileCalendar(!showMobileCalendar)}
                 className="p-4 flex items-center justify-between text-white w-full hover:bg-slate-700/50 transition-colors"
               >
                 <div className="flex items-center gap-3">
@@ -3355,24 +3906,45 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                     {format(selectedDate, "dd MMM", { locale: ptBR })}
                   </span>
                 </div>
-                <ChevronDown size={18} className={`text-slate-400 transition-transform duration-300 ${showMobileCalendar ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  size={18}
+                  className={`text-slate-400 transition-transform duration-300 ${showMobileCalendar ? "rotate-180" : ""}`}
+                />
               </button>
               <AnimatePresence>
                 {showMobileCalendar && (
-                  <motion.div 
-                    initial={{ height: 0 }} 
-                    animate={{ height: 'auto' }} 
-                    exit={{ height: 0 }} 
+                  <motion.div
+                    initial={{ height: 0 }}
+                    animate={{ height: "auto" }}
+                    exit={{ height: 0 }}
                     className="overflow-hidden bg-slate-800 border-t border-slate-700"
                   >
                     <div className="p-3 pb-2 relative">
                       <div className="flex justify-between items-center mb-2 px-2 relative z-20">
-                        <button onClick={() => setCurrentMonth(subMonths(currentMonth, 1))} className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-all"> <ChevronLeft size={14}/> </button>
-                        <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">{format(currentMonth, 'MMMM yyyy', {locale: ptBR})}</span>
-                        <button onClick={() => setCurrentMonth(addMonths(currentMonth, 1))} className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-all"> <ChevronRight size={14}/> </button>
+                        <button
+                          onClick={() =>
+                            setCurrentMonth(subMonths(currentMonth, 1))
+                          }
+                          className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-all"
+                        >
+                          {" "}
+                          <ChevronLeft size={14} />{" "}
+                        </button>
+                        <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
+                          {format(currentMonth, "MMMM yyyy", { locale: ptBR })}
+                        </span>
+                        <button
+                          onClick={() =>
+                            setCurrentMonth(addMonths(currentMonth, 1))
+                          }
+                          className="p-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-white transition-all"
+                        >
+                          {" "}
+                          <ChevronRight size={14} />{" "}
+                        </button>
                       </div>
                       <div className="bg-slate-900/50 rounded-2xl p-2 relative z-20">
-                         <CalendarBlock month={currentMonth} days={days1} />
+                        <CalendarBlock month={currentMonth} days={days1} />
                       </div>
                     </div>
                   </motion.div>
@@ -3397,9 +3969,20 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                 onDragEnter={(e) => e.preventDefault()}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
-                  const staffId = e.dataTransfer.getData("staffId") || currentDragData?.staffId;
-                  const originId = e.dataTransfer.getData("originTrainingId") || currentDragData?.originTrainingId;
-                  const alocId = e.dataTransfer.getData("alocId") || currentDragData?.alocId || `${originId}_${staffId}`;
+                  if (!canWrite) {
+                    alert("Acesso negado: Você não possui a permissão de escrita necessária.");
+                    return;
+                  }
+                  const staffId =
+                    e.dataTransfer.getData("staffId") ||
+                    currentDragData?.staffId;
+                  const originId =
+                    e.dataTransfer.getData("originTrainingId") ||
+                    currentDragData?.originTrainingId;
+                  const alocId =
+                    e.dataTransfer.getData("alocId") ||
+                    currentDragData?.alocId ||
+                    `${originId}_${staffId}`;
                   if (staffId && originId) {
                     removeAllocation(alocId);
                   }
@@ -3409,8 +3992,12 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                 {availableStaffs.map((staff) => (
                   <div
                     key={staff.id}
-                    draggable={true}
+                    draggable={canWrite}
                     onDragStart={(e) => {
+                      if (!canWrite) {
+                        e.preventDefault();
+                        return;
+                      }
                       e.dataTransfer.setData("staffId", staff.id);
                       currentDragData = { staffId: staff.id };
                     }}
@@ -3418,10 +4005,15 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                       e.preventDefault();
                       e.stopPropagation();
                     }}
-                    style={{ touchAction: "none", WebkitTouchCallout: "none", WebkitUserSelect: "none", userSelect: "none" }}
+                    style={{
+                      touchAction: "none",
+                      WebkitTouchCallout: "none",
+                      WebkitUserSelect: "none",
+                      userSelect: "none",
+                    }}
                     className={`
                           group/free p-1.5 rounded-lg border border-slate-200 flex items-center justify-between transition-all active:scale-95 relative
-                          ${selectedTrainingId ? "bg-white shadow-sm hover:border-blue-400 hover:shadow-md cursor-grab" : "bg-slate-50 opacity-60"}
+                          ${selectedTrainingId ? `bg-white shadow-sm hover:border-blue-400 hover:shadow-md ${canWrite ? "cursor-grab" : "cursor-default"}` : "bg-slate-50 opacity-60"}
                         `}
                   >
                     <div className="flex items-center gap-2 overflow-hidden">
@@ -3489,37 +4081,59 @@ export const AllocationPage = ({ user }: { user?: any }) => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              style={{ left: statusMenu.x, top: statusMenu.y }}
+              style={{
+                left: Math.max(
+                  10,
+                  Math.min(statusMenu.x - 140, window.innerWidth - 180),
+                ),
+                top: Math.max(
+                  10,
+                  Math.min(statusMenu.y, window.innerHeight - 445),
+                ),
+              }}
               className="absolute bg-white rounded-2xl shadow-2xl border border-slate-200 p-2 min-w-[160px] flex flex-col gap-1"
             >
               {[
-                { id: "intencao", label: "Pendência", color: "bg-slate-500" },
+                {
+                  id: "intencao",
+                  label: "Pendência",
+                  iconClass: "bg-zinc-50 text-zinc-650",
+                },
                 {
                   id: "pre_reserva",
                   label: "Pré-reserva",
-                  color: "bg-purple-500",
+                  iconClass: "bg-orange-50 text-orange-600",
                 },
                 {
                   id: "whatsapp",
                   label: "Chamado no Zap",
-                  color: "bg-amber-400",
+                  iconClass: "bg-teal-50 text-teal-650",
                 },
                 {
                   id: "pessoalmente",
                   label: "Pessoalmente",
-                  color: "bg-blue-500",
+                  iconClass: "bg-sky-50 text-sky-600",
+                },
+                {
+                  id: "deslocamento",
+                  label: "Deslocamento",
+                  iconClass: "bg-indigo-50 text-indigo-600",
                 },
                 {
                   id: "confirmado",
                   label: "Confirmado",
-                  color: "bg-emerald-500",
+                  iconClass: "bg-emerald-50 text-emerald-600",
                 },
                 {
                   id: "data_liberada",
                   label: "Data Liberada",
-                  color: "bg-pink-500",
+                  iconClass: "bg-slate-100 text-slate-655",
                 },
-                { id: "recusado", label: "Recusado", color: "bg-red-500" },
+                {
+                  id: "recusado",
+                  label: "Recusado",
+                  iconClass: "bg-rose-50 text-rose-600",
+                },
               ].map((item) => (
                 <button
                   key={item.id}
@@ -3541,9 +4155,13 @@ export const AllocationPage = ({ user }: { user?: any }) => {
                     }
                     setStatusMenu(null);
                   }}
-                  className="flex items-center gap-3 px-3 py-2 hover:bg-slate-50 rounded-xl transition-all w-full text-left"
+                  className="flex items-center gap-2.5 px-2 py-1.5 hover:bg-slate-50 rounded-xl transition-all w-full text-left cursor-pointer"
                 >
-                  <div className={`w-2.5 h-2.5 rounded-full ${item.color}`} />
+                  <div
+                    className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${item.iconClass}`}
+                  >
+                    {renderStatusIcon(item.id, 12)}
+                  </div>
                   <span className="text-[10px] font-black uppercase text-slate-700 tracking-wider font-mono">
                     {item.label}
                   </span>
@@ -3597,6 +4215,42 @@ export const AllocationPage = ({ user }: { user?: any }) => {
           </div>
         )}
       </AnimatePresence>
+
+      {/* Observação Hover Tooltip Programático */}
+      {hoveredObs &&
+        (() => {
+          const showAbove = hoveredObs.bottom + 140 > window.innerHeight;
+          const tooltipStyle = {
+            position: "fixed",
+            left: hoveredObs.left + hoveredObs.width / 2,
+            transform: "translateX(-50%)",
+            zIndex: 120,
+            bottom: showAbove
+              ? window.innerHeight - hoveredObs.top + 6
+              : undefined,
+            top: !showAbove ? hoveredObs.bottom + 6 : undefined,
+          };
+          return (
+            <div style={tooltipStyle} className="w-60 pointer-events-none">
+              <div className="bg-amber-600 text-white p-3 rounded-xl shadow-2xl text-[10px] font-bold leading-relaxed border border-amber-500 relative">
+                <div className="flex items-center gap-2 mb-1.5 text-white">
+                  <Info size={12} strokeWidth={3} />
+                  <span className="uppercase tracking-[0.1em] text-[8px] font-black">
+                    Observação
+                  </span>
+                </div>
+                <p className="antialiased whitespace-normal break-words leading-tight">
+                  {hoveredObs.text}
+                </p>
+                {showAbove ? (
+                  <div className="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-amber-600 rotate-45 border-r border-b border-amber-500" />
+                ) : (
+                  <div className="absolute top-[-4px] left-1/2 -translate-x-1/2 w-2 h-2 bg-amber-600 rotate-45 border-l border-t border-amber-500" />
+                )}
+              </div>
+            </div>
+          );
+        })()}
 
       <AnimatePresence>
         {refusalModal && (
@@ -3763,6 +4417,13 @@ export const AllocationPage = ({ user }: { user?: any }) => {
           />
         )}
       </AnimatePresence>
+      {editingTrainingIdModal && (
+        <TrainingFormModal
+          trainingId={editingTrainingIdModal}
+          user={user}
+          onClose={() => setEditingTrainingIdModal(null)}
+        />
+      )}
     </AppLayout>
   );
 };

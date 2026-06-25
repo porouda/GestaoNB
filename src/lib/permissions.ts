@@ -23,6 +23,14 @@ export const SYSTEM_PAGES: SectionPermission[] = [
   { id: 'financeiro-pagamentos', name: 'Financeiro (Pagamentos)', path: '/financeiro/pagamentos', category: 'Administrativo' },
   { id: 'acessos', name: 'Gestão de Acessos', path: '/acessos', category: 'Sistema' },
   { id: 'configuracoes', name: 'Configurações', path: '/configuracoes', category: 'Sistema' },
+  
+  // Custom Granular Permissions
+  { id: 'importar-hubspot', name: 'Sincronizar HubSpot (Importar)', path: '/treinamentos', category: 'Operacional' },
+  { id: 'btn-logistica', name: 'Visualizar Aba Logística (Alocação)', path: '/alocacao', category: 'Operacional' },
+  { id: 'btn-checklist', name: 'Visualizar Aba Checklist (Alocação)', path: '/alocacao', category: 'Operacional' },
+  { id: 'btn-financeiro', name: 'Visualizar Aba Financeira (Alocação)', path: '/alocacao', category: 'Administrativo' },
+  { id: 'btn-staffs', name: 'Visualizar Aba Equipe/Uniformes (Alocação)', path: '/alocacao', category: 'Equipe' },
+  { id: 'btn-historico', name: 'Visualizar Aba Histórico (Alocação)', path: '/alocacao', category: 'Equipe' },
 ];
 
 export interface ProfileAccess {
@@ -81,6 +89,26 @@ export function getUserPermission(
     if (internalAllowedByDefault.includes(pageId)) {
       return 'read';
     }
+  }
+
+  // Fallbacks for custom granular sub-permissions (inherits from corresponding parent permission if undefined)
+  if (pageId === 'importar-hubspot') {
+    return getUserPermission(user, 'treinamentos', profilesMap);
+  }
+  if (pageId === 'btn-logistica') {
+    return getUserPermission(user, 'treinamentos', profilesMap);
+  }
+  if (pageId === 'btn-financeiro') {
+    return getUserPermission(user, 'financeiro', profilesMap);
+  }
+  if (pageId === 'btn-checklist') {
+    return getUserPermission(user, 'checklist', profilesMap);
+  }
+  if (pageId === 'btn-staffs') {
+    return getUserPermission(user, 'staffs', profilesMap);
+  }
+  if (pageId === 'btn-historico') {
+    return getUserPermission(user, 'alocacao', profilesMap);
   }
 
   return 'none';

@@ -13,7 +13,8 @@ import {
   Printer,
   DollarSign,
   FileText,
-  Shield
+  Shield,
+  User
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { db } from '../lib/firebase';
@@ -109,7 +110,7 @@ export const AppLayout: React.FC<LayoutProps> = ({ children, user }) => {
         <nav className="flex-1 py-4 space-y-1 overflow-x-hidden overflow-y-auto custom-scrollbar">
           {/* Pessoal Category always shown if user has access */}
           {canAccess('meu-portal') && (
-            <SidebarItem to="/meu-portal" icon={Home}>Meu Portal</SidebarItem>
+            <SidebarItem to="/meu-portal" icon={User}>Meu Portal</SidebarItem>
           )}
           {canAccess('home') && (
             <SidebarItem to="/" icon={Home}>Início</SidebarItem>
